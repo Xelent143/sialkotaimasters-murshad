@@ -23,9 +23,8 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://sialkotaimasters.com/website-development.html">
     
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <script src="https://unpkg.com/lucide@latest"></script>
     
@@ -36,7 +35,7 @@
         "@type": "Service",
         "name": "Website Development Services",
         "provider": {
-            "@type": "Organization",
+            "@type": "LocalBusiness",
             "name": "Sialkot AI Masters",
             "address": {
                 "@type": "PostalAddress",
@@ -45,27 +44,68 @@
                 "addressCountry": "PK"
             }
         },
-        "areaServed": {
-            "@type": "Country",
-            "name": "Pakistan"
-        },
+        "areaServed": [
+            {
+                "@type": "City",
+                "name": "Sialkot"
+            },
+            {
+                "@type": "City",
+                "name": "Lahore"
+            },
+            {
+                "@type": "City",
+                "name": "Karachi"
+            },
+            {
+                "@type": "City",
+                "name": "Islamabad"
+            },
+            {
+                "@type": "City",
+                "name": "Faisalabad"
+            },
+            {
+                "@type": "City",
+                "name": "Gujranwala"
+            },
+            {
+                "@type": "Country",
+                "name": "Pakistan"
+            }
+        ],
         "serviceType": "Website Development",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "150"
+        },
         "offers": [
             {
                 "@type": "Offer",
                 "name": "Basic Website",
+                "description": "Up to 5 pages, mobile responsive, contact form, basic SEO",
                 "price": "15000",
                 "priceCurrency": "PKR"
             },
             {
                 "@type": "Offer",
                 "name": "Business Website",
+                "description": "Up to 10 pages, blog integration, advanced SEO, speed optimization",
                 "price": "35000",
                 "priceCurrency": "PKR"
             },
             {
                 "@type": "Offer",
+                "name": "E-commerce Website",
+                "description": "Unlimited products, payment integration, inventory management, order tracking",
+                "price": "75000",
+                "priceCurrency": "PKR"
+            },
+            {
+                "@type": "Offer",
                 "name": "Advanced B2B Website",
+                "description": "3D product configurator, tiered pricing system, B2B inquiry cart, WhatsApp integration",
                 "price": "150000",
                 "priceCurrency": "PKR"
             }
@@ -74,567 +114,1141 @@
     </script>
     
     <style>
-        /* Hero Section */
-        .webdev-hero {
-            background: linear-gradient(135deg, var(--gray-900) 0%, var(--primary-900) 50%, var(--accent-900) 100%);
-            color: var(--white);
-            padding: calc(var(--space-24) + 80px) 0 var(--space-20);
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #111111;
+            --bg-card-hover: #1a1a1a;
+            --neon-cyan: #00f5ff;
+            --neon-magenta: #ff00ff;
+            --neon-lime: #39ff14;
+            --neon-orange: #ff6600;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --border-color: #222222;
+            --border-color-hover: #333333;
+            --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: none;
+            line-height: 1.6;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 245, 255, 0.1);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.3s ease;
+        }
+
+        /* Background Canvas */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--neon-cyan);
+            top: 10%;
+            left: 10%;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--neon-magenta);
+            bottom: 20%;
+            right: 10%;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--neon-lime);
+            top: 50%;
+            left: 50%;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 1px solid var(--neon-cyan);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        
-        .webdev-hero::before {
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-cta:hover::before {
+            left: 100%;
+        }
+
+        .nav-cta:hover {
+            background: rgba(0, 245, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10rem 2rem 4rem;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(0, 245, 255, 0.1);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--neon-cyan);
+            margin-bottom: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        .page-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--neon-lime);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px var(--neon-lime);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .page-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .page-header h1 span {
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: var(--neon-cyan);
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.6), 0 0 60px rgba(0, 245, 255, 0.3);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--neon-magenta);
+            color: var(--neon-magenta);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+        }
+
+        .btn-accent {
+            padding: 1rem 2rem;
+            background: var(--neon-orange);
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.6);
+        }
+
+        .btn-outline {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Hero Stats */
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bg-secondary {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 245, 255, 0.1);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title .highlight {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Trust Section */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .trust-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .trust-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.1);
+        }
+
+        .trust-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(255, 0, 255, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            border: 1px solid rgba(0, 245, 255, 0.2);
+        }
+
+        .trust-icon i {
+            width: 32px;
+            height: 32px;
+            color: var(--neon-cyan);
+        }
+
+        .trust-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>');
-            background-size: 80px 80px;
-            animation: backgroundFloat 20s linear infinite;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
-        
-        @keyframes backgroundFloat {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-80px); }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
-        
-        .webdev-hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .webdev-hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            background: rgba(245, 158, 11, 0.2);
-            color: var(--accent-400);
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-full);
-            font-size: var(--text-sm);
-            font-weight: 600;
-            margin-bottom: var(--space-6);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-        
-        .webdev-hero h1 {
-            font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: var(--space-6);
-        }
-        
-        .webdev-hero h1 span {
-            color: var(--accent-400);
-        }
-        
-        .webdev-hero-subtitle {
-            font-size: var(--text-xl);
-            color: var(--gray-300);
-            margin-bottom: var(--space-8);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .webdev-hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-12);
-            margin-top: var(--space-12);
-            padding-top: var(--space-8);
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .hero-stat {
-            text-align: center;
-        }
-        
-        .hero-stat-number {
-            font-size: var(--text-4xl);
-            font-weight: 800;
-            color: var(--accent-400);
-        }
-        
-        .hero-stat-label {
-            font-size: var(--text-sm);
-            color: var(--gray-400);
-        }
-        
-        /* Trust Section */
-        .trust-section {
-            background: var(--gray-50);
-            padding: var(--space-16) 0;
-        }
-        
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-8);
-            text-align: center;
-        }
-        
-        .trust-item {
-            padding: var(--space-6);
-        }
-        
-        .trust-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--white);
-            border-radius: var(--radius-2xl);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto var(--space-4);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .trust-icon i {
-            width: 32px;
-            height: 32px;
-            color: var(--primary-600);
-        }
-        
-        .trust-number {
-            font-size: var(--text-3xl);
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: var(--space-1);
-        }
-        
-        .trust-label {
-            font-size: var(--text-sm);
-            color: var(--gray-600);
-        }
-        
-        /* Services Overview */
-        .services-overview {
-            padding: var(--space-20) 0;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-8);
-            margin-top: var(--space-10);
-        }
-        
-        .service-card {
-            background: var(--white);
-            border: 2px solid var(--gray-200);
-            border-radius: var(--radius-2xl);
-            padding: var(--space-8);
-            transition: all var(--transition-base);
-        }
-        
+
         .service-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-2xl);
-            border-color: var(--primary-300);
+            border-color: rgba(0, 245, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 245, 255, 0.1);
         }
-        
+
         .service-card-icon {
             width: 64px;
             height: 64px;
-            background: var(--primary-100);
-            border-radius: var(--radius-2xl);
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(255, 0, 255, 0.1));
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: var(--space-6);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 245, 255, 0.2);
         }
-        
+
         .service-card-icon i {
             width: 32px;
             height: 32px;
-            color: var(--primary-600);
+            color: var(--neon-cyan);
         }
-        
+
         .service-card h3 {
-            font-size: var(--text-xl);
-            margin-bottom: var(--space-3);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
         }
-        
+
         .service-card p {
-            color: var(--gray-600);
-            margin-bottom: var(--space-4);
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
         }
-        
+
         .service-card-features {
             list-style: none;
         }
-        
+
         .service-card-features li {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-1) 0;
-            font-size: var(--text-sm);
-            color: var(--gray-700);
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
-        
+
         .service-card-features li i {
-            width: 16px;
-            height: 16px;
-            color: var(--success-500);
+            width: 18px;
+            height: 18px;
+            color: var(--neon-lime);
         }
-        
-        /* Why Choose Us */
-        .why-choose-section {
-            background: var(--gray-900);
-            color: var(--white);
-            padding: var(--space-20) 0;
-        }
-        
+
+        /* Why Choose Section */
         .why-choose-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-8);
-            margin-top: var(--space-10);
+            gap: 1.5rem;
         }
-        
+
         .why-choose-item {
             display: flex;
-            gap: var(--space-4);
-            padding: var(--space-6);
-            background: rgba(255,255,255,0.05);
-            border-radius: var(--radius-xl);
-            border: 1px solid rgba(255,255,255,0.1);
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            transition: all 0.4s ease;
         }
-        
+
+        .why-choose-item:hover {
+            border-color: rgba(0, 245, 255, 0.3);
+            transform: translateX(8px);
+        }
+
         .why-choose-icon {
             width: 48px;
             height: 48px;
-            background: var(--primary-600);
-            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
-        
+
         .why-choose-icon i {
             width: 24px;
             height: 24px;
-            color: var(--white);
+            color: #000;
         }
-        
+
         .why-choose-content h4 {
-            font-size: var(--text-lg);
-            margin-bottom: var(--space-2);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
         }
-        
+
         .why-choose-content p {
-            color: var(--gray-400);
-            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
-        
+
         /* Pricing Section */
-        .pricing-section {
-            padding: var(--space-20) 0;
-            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
-        }
-        
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-6);
-            margin-top: var(--space-10);
+            gap: 2rem;
         }
-        
+
         .pricing-card {
-            background: var(--white);
-            border: 2px solid var(--gray-200);
-            border-radius: var(--radius-2xl);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 0;
             display: flex;
             flex-direction: column;
-            transition: all var(--transition-base);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
-        
+
         .pricing-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-2xl);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 40px rgba(0, 245, 255, 0.1);
         }
-        
+
         .pricing-card.featured {
-            border-color: var(--primary-500);
-            border-width: 3px;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1), var(--shadow-xl);
+            border-color: var(--neon-cyan);
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.05), var(--bg-card));
         }
-        
-        .pricing-card.featured:hover {
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15), var(--shadow-2xl);
-        }
-        
-        .pricing-card.b2b {
-            border-color: var(--accent-500);
-            background: linear-gradient(180deg, var(--white) 0%, var(--accent-50) 100%);
-        }
-        
-        .pricing-badge {
+
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
             position: absolute;
             top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: var(--space-2) var(--space-4);
-            font-size: var(--text-xs);
+            right: 0;
+            background: var(--neon-cyan);
+            color: #000;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-            box-shadow: var(--shadow-md);
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.05em;
         }
-        
-        .pricing-badge.popular {
-            background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
-            color: var(--white);
+
+        .pricing-card.b2b {
+            border-color: var(--neon-orange);
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.05), var(--bg-card));
         }
-        
-        .pricing-badge.b2b-badge {
-            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-600) 100%);
-            color: var(--white);
+
+        .pricing-card.b2b::before {
+            content: 'FOR MANUFACTURERS';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--neon-orange);
+            color: #000;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.05em;
         }
-        
+
         .pricing-header {
-            padding: var(--space-8) var(--space-6) var(--space-6);
+            padding: 2.5rem 1.5rem 1.5rem;
             text-align: center;
-            border-bottom: 1px solid var(--gray-100);
+            border-bottom: 1px solid var(--border-color);
         }
-        
+
         .pricing-card.featured .pricing-header,
         .pricing-card.b2b .pricing-header {
-            padding-top: var(--space-12);
+            padding-top: 3rem;
         }
-        
+
         .pricing-name {
-            font-size: var(--text-2xl);
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: var(--space-2);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
-        
+
         .pricing-amount {
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            gap: var(--space-1);
-            margin-bottom: var(--space-3);
+            gap: 0.25rem;
+            margin-bottom: 0.5rem;
         }
-        
+
         .pricing-currency {
-            font-size: var(--text-xl);
-            font-weight: 600;
-            color: var(--gray-600);
-            margin-top: var(--space-1);
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
         }
-        
+
         .pricing-number {
-            font-size: var(--text-5xl);
-            font-weight: 800;
-            color: var(--primary-600);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
             line-height: 1;
+            text-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
         }
-        
+
         .pricing-card.b2b .pricing-number {
-            color: var(--accent-600);
+            color: var(--neon-orange);
+            text-shadow: 0 0 20px rgba(255, 102, 0, 0.3);
         }
-        
+
         .pricing-desc {
-            font-size: var(--text-sm);
-            color: var(--gray-500);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
         }
-        
+
         .pricing-body {
-            padding: var(--space-6);
+            padding: 1.5rem;
             flex: 1;
         }
-        
+
         .pricing-features-list {
             list-style: none;
         }
-        
+
         .pricing-features-list li {
             display: flex;
             align-items: flex-start;
-            gap: var(--space-3);
-            padding: var(--space-2) 0;
-            font-size: var(--text-sm);
-            color: var(--gray-700);
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
-        
+
         .pricing-features-list li i {
-            width: 20px;
-            height: 20px;
-            color: var(--success-500);
+            width: 18px;
+            height: 18px;
+            color: var(--neon-lime);
             flex-shrink: 0;
             margin-top: 2px;
         }
-        
+
+        .pricing-features-list li.feature-highlight {
+            color: var(--text-primary);
+        }
+
         .pricing-features-list li.feature-highlight i {
-            color: var(--accent-500);
+            color: var(--neon-orange);
         }
-        
+
         .pricing-footer {
-            padding: var(--space-6);
-            border-top: 1px solid var(--gray-100);
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
         }
-        
+
         /* Process Section */
-        .process-section {
-            padding: var(--space-20) 0;
-            background: var(--gray-50);
-        }
-        
         .process-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-8);
-            margin-top: var(--space-12);
+            gap: 2rem;
             position: relative;
         }
-        
+
         .process-step {
             text-align: center;
             position: relative;
-            background: var(--white);
-            padding: var(--space-8) var(--space-6);
-            border-radius: var(--radius-2xl);
-            box-shadow: var(--shadow-lg);
+            background: var(--bg-card);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
         }
-        
+
+        .process-step:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-4px);
+        }
+
         .process-step:not(:last-child)::after {
             content: '';
             position: absolute;
             top: 50%;
-            right: -var(--space-4);
-            width: var(--space-8);
+            right: -1rem;
+            width: 2rem;
             height: 2px;
-            background: linear-gradient(90deg, var(--primary-300), var(--primary-500));
+            background: linear-gradient(90deg, var(--neon-cyan), transparent);
             transform: translateY(-50%);
-            z-index: 0;
         }
-        
+
         .process-number {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            color: #000;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: var(--text-2xl);
-            font-weight: 800;
-            margin: 0 auto var(--space-5);
-            box-shadow: var(--shadow-lg);
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
         }
-        
+
         .process-step h4 {
-            font-size: var(--text-xl);
-            margin-bottom: var(--space-3);
-            color: var(--gray-900);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
         }
-        
+
         .process-step p {
-            font-size: var(--text-sm);
-            color: var(--gray-600);
-            line-height: 1.6;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
-        
+
         /* FAQ Section */
-        .faq-section {
-            background: var(--gray-50);
-            padding: var(--space-20) 0;
-        }
-        
         .faq-grid {
             max-width: 800px;
-            margin: var(--space-10) auto 0;
+            margin: 0 auto;
         }
-        
+
         .faq-item {
-            background: var(--white);
-            border-radius: var(--radius-xl);
-            margin-bottom: var(--space-4);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 1rem;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
-        
+
+        .faq-item:hover {
+            border-color: rgba(0, 245, 255, 0.2);
+        }
+
         .faq-question {
             width: 100%;
-            padding: var(--space-5) var(--space-6);
+            padding: 1.25rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: none;
             border: none;
-            font-size: var(--text-base);
+            font-size: 1rem;
             font-weight: 600;
             text-align: left;
             cursor: pointer;
-            color: var(--gray-900);
+            color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif;
         }
-        
+
         .faq-question i {
             width: 20px;
             height: 20px;
-            color: var(--gray-500);
-            transition: transform var(--transition-fast);
+            color: var(--neon-cyan);
+            transition: transform 0.3s ease;
         }
-        
+
         .faq-item.active .faq-question i {
             transform: rotate(45deg);
         }
-        
+
         .faq-answer {
-            padding: 0 var(--space-6);
+            padding: 0 1.5rem;
             max-height: 0;
             overflow: hidden;
-            transition: all var(--transition-base);
+            transition: all 0.3s ease;
         }
-        
+
         .faq-item.active .faq-answer {
-            padding: 0 var(--space-6) var(--space-5);
+            padding: 0 1.5rem 1.25rem;
             max-height: 500px;
         }
-        
+
         .faq-answer p {
-            color: var(--gray-600);
-            line-height: 1.6;
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
-        
+
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
-            color: var(--white);
-            padding: var(--space-20) 0;
             text-align: center;
+            background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+            border-top: 1px solid var(--border-color);
         }
-        
-        .cta-section h2 {
-            font-size: var(--text-4xl);
-            margin-bottom: var(--space-4);
+
+        .cta-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .cta-section p {
-            font-size: var(--text-xl);
-            color: var(--primary-100);
-            margin-bottom: var(--space-8);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 245, 255, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
         }
-        
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: rgba(0, 245, 255, 0.1);
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .footer-bottom a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+        }
+
+        /* Add-on Tags */
+        .addon-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .addon-tags {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .addon-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .addon-tag:hover {
+            border-color: var(--neon-magenta);
+            color: var(--neon-magenta);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+        }
+
+        .addon-tag i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .addon-tag .price {
+            color: var(--neon-lime);
+            font-weight: 600;
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
+            body { cursor: auto; }
+            .cursor, .cursor-follower { display: none; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            
             .trust-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -656,19 +1270,27 @@
             
             .process-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: var(--space-6);
+                gap: 1.5rem;
             }
             
             .process-step:not(:last-child)::after,
             .process-step:nth-child(2)::after {
                 display: none;
             }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
         }
-        
+
         @media (max-width: 576px) {
-            .webdev-hero-stats {
-                flex-wrap: wrap;
-                gap: var(--space-6);
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                gap: 1.5rem;
             }
             
             .trust-grid,
@@ -683,74 +1305,106 @@
             .process-step:not(:last-child)::after {
                 display: none;
             }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .addon-tags {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar" id="navbar">
-        <div class="container nav-container">
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Grid Overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- Floating Orbs -->
+    <div class="orb orb-1" id="orb1"></div>
+    <div class="orb orb-2" id="orb2"></div>
+    <div class="orb orb-3" id="orb3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="images/logo.svg" alt="Sialkot AI Masters" class="logo-img">
+                <div class="logo-icon">
+                    <i data-lucide="brain-circuit" style="width: 24px; height: 24px; color: #000;"></i>
+                </div>
+                Sialkot AI Masters
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="website-development.html" class="active">Web Development</a></li>
+                <li><a href="store.html">AI Tools</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="https://calendly.com/sialkotaimasters/strategy-call" class="nav-cta" target="_blank">
+                <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
+                Book a Call
             </a>
             <button class="mobile-toggle" id="mobileToggle">
                 <i data-lucide="menu"></i>
             </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="website-development.html" class="nav-link active">Web Development</a></li>
-                <li><a href="store.html" class="nav-link">AI Tools Store</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-            <a href="https://calendly.com/sialkotaimasters/strategy-call" class="btn btn-primary nav-cta" target="_blank">Free Strategy Call</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="webdev-hero">
+    <section class="page-header">
         <div class="container">
-            <div class="webdev-hero-content">
-                <div class="webdev-hero-badge">
-                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
-                    Based in Sialkot, Serving All Pakistan
+            <div class="page-badge">
+                <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+                Based in Sialkot, Serving All Pakistan
+            </div>
+            <h1>Professional Website Development in <span>Sialkot, Pakistan</span></h1>
+            <p class="page-subtitle">Custom websites for manufacturers, exporters, and businesses. From simple brochure sites to advanced B2B platforms with 3D configurators and tiered pricing systems.</p>
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn-primary">
+                    <i data-lucide="credit-card" style="width: 20px; height: 20px;"></i>
+                    View Pricing
+                </a>
+                <a href="https://wa.me/923022922242?text=Hi! I'm interested in website development services." target="_blank" class="btn-secondary">
+                    <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                    WhatsApp Us
+                </a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">150+</div>
+                    <div class="hero-stat-label">Websites Built</div>
                 </div>
-                <h1>Professional Website Development in <span>Sialkot, Pakistan</span></h1>
-                <p class="webdev-hero-subtitle">Custom websites for manufacturers, exporters, and businesses. From simple brochure sites to advanced B2B platforms with 3D configurators and tiered pricing.</p>
-                <div class="hero-buttons">
-                    <a href="#pricing" class="btn btn-accent btn-lg">View Pricing</a>
-                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in website development services." target="_blank" class="btn btn-outline btn-lg" style="color: white; border-color: rgba(255,255,255,0.3);">
-                        <i data-lucide="message-circle"></i>
-                        WhatsApp Us
-                    </a>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">40+</div>
+                    <div class="hero-stat-label">Cities Served</div>
                 </div>
-                
-                <div class="webdev-hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">150+</div>
-                        <div class="hero-stat-label">Websites Built</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">40+</div>
-                        <div class="hero-stat-label">Cities Served</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">99%</div>
-                        <div class="hero-stat-label">Client Satisfaction</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">6+</div>
-                        <div class="hero-stat-label">Years Experience</div>
-                    </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">99%</div>
+                    <div class="hero-stat-label">Client Satisfaction</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">6+</div>
+                    <div class="hero-stat-label">Years Experience</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Trust Section -->
-    <section class="trust-section">
+    <section class="bg-secondary">
         <div class="container">
-            <div class="trust-grid">
+            <div class="trust-grid reveal">
                 <div class="trust-item">
                     <div class="trust-icon">
                         <i data-lucide="shield-check"></i>
@@ -784,16 +1438,16 @@
     </section>
 
     <!-- Services Overview -->
-    <section class="services-overview">
+    <section>
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-tag">Our Services</span>
-                <h2 class="section-title">Website Solutions for Every Business</h2>
-                <p class="section-subtitle">From basic websites to advanced B2B platforms, we have the perfect solution for your needs</p>
+                <h2 class="section-title">Website Solutions for <span class="highlight">Every Business</span></h2>
+                <p class="section-subtitle">From basic websites to advanced B2B platforms, we have the perfect solution for your manufacturing, export, or retail business</p>
             </div>
             
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card reveal">
                     <div class="service-card-icon">
                         <i data-lucide="layout"></i>
                     </div>
@@ -807,7 +1461,7 @@
                     </ul>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card reveal">
                     <div class="service-card-icon">
                         <i data-lucide="shopping-cart"></i>
                     </div>
@@ -821,7 +1475,7 @@
                     </ul>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card reveal">
                     <div class="service-card-icon">
                         <i data-lucide="box"></i>
                     </div>
@@ -839,15 +1493,15 @@
     </section>
 
     <!-- Why Choose Us -->
-    <section class="why-choose-section">
+    <section class="bg-secondary">
         <div class="container">
-            <div class="section-header light">
+            <div class="section-header reveal">
                 <span class="section-tag">Why Choose Us</span>
-                <h2 class="section-title">The Sialkot AI Masters Difference</h2>
+                <h2 class="section-title">The Sialkot AI Masters <span class="highlight">Difference</span></h2>
                 <p class="section-subtitle">What sets us apart from other web development companies in Pakistan</p>
             </div>
             
-            <div class="why-choose-grid">
+            <div class="why-choose-grid reveal">
                 <div class="why-choose-item">
                     <div class="why-choose-icon">
                         <i data-lucide="code"></i>
@@ -912,24 +1566,24 @@
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing-section" id="pricing">
+    <section id="pricing">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-tag">Pricing</span>
-                <h2 class="section-title">Transparent Pricing, No Hidden Costs</h2>
+                <h2 class="section-title">Transparent Pricing, <span class="highlight">No Hidden Costs</span></h2>
                 <p class="section-subtitle">Choose the package that fits your business needs. All prices in Pakistani Rupees.</p>
             </div>
             
             <div class="pricing-grid">
                 <!-- Basic Plan -->
-                <div class="pricing-card">
+                <div class="pricing-card reveal">
                     <div class="pricing-header">
                         <div class="pricing-name">Basic</div>
                         <div class="pricing-amount">
                             <span class="pricing-currency">PKR</span>
                             <span class="pricing-number">15,000</span>
                         </div>
-                        <p class="pricing-desc">Perfect for small businesses and startups</p>
+                        <p class="pricing-desc">Perfect for small businesses and startups in Sialkot, Gujranwala, and surrounding areas</p>
                     </div>
                     <div class="pricing-body">
                         <ul class="pricing-features-list">
@@ -942,22 +1596,22 @@
                         </ul>
                     </div>
                     <div class="pricing-footer">
-                        <a href="https://wa.me/923022922242?text=Hi! I'm interested in the Basic website package (PKR 15,000)." target="_blank" class="btn btn-outline btn-full">
-                            <i data-lucide="message-circle"></i> Get Started
+                        <a href="https://wa.me/923022922242?text=Hi! I'm interested in the Basic website package (PKR 15,000)." target="_blank" class="btn-outline btn-full">
+                            <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
+                            Get Started
                         </a>
                     </div>
                 </div>
                 
                 <!-- Business Plan (Featured) -->
-                <div class="pricing-card featured">
-                    <div class="pricing-badge popular">Most Popular</div>
+                <div class="pricing-card featured reveal">
                     <div class="pricing-header">
                         <div class="pricing-name">Business</div>
                         <div class="pricing-amount">
                             <span class="pricing-currency">PKR</span>
                             <span class="pricing-number">35,000</span>
                         </div>
-                        <p class="pricing-desc">Ideal for growing businesses with content needs</p>
+                        <p class="pricing-desc">Ideal for growing businesses in Lahore, Karachi, Islamabad with content needs</p>
                     </div>
                     <div class="pricing-body">
                         <ul class="pricing-features-list">
@@ -970,22 +1624,22 @@
                         </ul>
                     </div>
                     <div class="pricing-footer">
-                        <a href="https://wa.me/923022922242?text=Hi! I'm interested in the Business website package (PKR 35,000)." target="_blank" class="btn btn-primary btn-full">
-                            <i data-lucide="message-circle"></i> Get Started
+                        <a href="https://wa.me/923022922242?text=Hi! I'm interested in the Business website package (PKR 35,000)." target="_blank" class="btn-primary btn-full">
+                            <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
+                            Get Started
                         </a>
                     </div>
                 </div>
                 
                 <!-- Advanced B2B Plan -->
-                <div class="pricing-card b2b">
-                    <div class="pricing-badge b2b-badge">For Manufacturers</div>
+                <div class="pricing-card b2b reveal">
                     <div class="pricing-header">
                         <div class="pricing-name">Advanced B2B</div>
                         <div class="pricing-amount">
                             <span class="pricing-currency">PKR</span>
                             <span class="pricing-number">150,000</span>
                         </div>
-                        <p class="pricing-desc">Enterprise platform for manufacturers & exporters</p>
+                        <p class="pricing-desc">Enterprise platform for manufacturers, exporters, and leather/surgical goods businesses</p>
                     </div>
                     <div class="pricing-body">
                         <ul class="pricing-features-list">
@@ -998,21 +1652,37 @@
                         </ul>
                     </div>
                     <div class="pricing-footer">
-                        <a href="b2b-websites.html" class="btn btn-accent btn-full">
-                            <i data-lucide="arrow-right"></i> View Full Details
+                        <a href="b2b-websites.html" class="btn-accent btn-full">
+                            <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+                            View Full Details
                         </a>
                     </div>
                 </div>
             </div>
-            
-            <div style="text-align: center; margin-top: var(--space-8);">
-                <p style="color: var(--gray-600); margin-bottom: var(--space-4);">Need something custom? We also build:</p>
-                <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in an E-commerce website package (PKR 75,000)." target="_blank" class="btn btn-outline">
-                        <i data-lucide="shopping-cart"></i> E-commerce (PKR 75,000)
+
+            <!-- Add-ons Section -->
+            <div class="addon-section reveal">
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Popular add-ons for your website:</p>
+                <div class="addon-tags">
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in adding an AI Chatbot to my website (PKR 8,000)." target="_blank" class="addon-tag">
+                        <i data-lucide="bot"></i>
+                        <span>AI Chatbot</span>
+                        <span class="price">PKR 8,000</span>
                     </a>
-                    <a href="https://wa.me/923022922242?text=Hi! I need a custom website solution." target="_blank" class="btn btn-outline">
-                        <i data-lucide="settings"></i> Custom Solution
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in adding WhatsApp Business integration (PKR 5,000)." target="_blank" class="addon-tag">
+                        <i data-lucide="message-circle"></i>
+                        <span>WhatsApp Business</span>
+                        <span class="price">PKR 5,000</span>
+                    </a>
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in adding Live Chat to my website (PKR 6,000)." target="_blank" class="addon-tag">
+                        <i data-lucide="message-square"></i>
+                        <span>Live Chat</span>
+                        <span class="price">PKR 6,000</span>
+                    </a>
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in the E-commerce website package (PKR 75,000)." target="_blank" class="addon-tag">
+                        <i data-lucide="shopping-cart"></i>
+                        <span>E-commerce Store</span>
+                        <span class="price">PKR 75,000</span>
                     </a>
                 </div>
             </div>
@@ -1020,15 +1690,15 @@
     </section>
 
     <!-- Process Section -->
-    <section class="process-section">
+    <section class="bg-secondary">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-tag">Our Process</span>
-                <h2 class="section-title">How We Work</h2>
-                <p class="section-subtitle">Simple, transparent process from start to finish</p>
+                <h2 class="section-title">How We <span class="highlight">Work</span></h2>
+                <p class="section-subtitle">Simple, transparent process from start to finish for clients across Pakistan</p>
             </div>
             
-            <div class="process-grid">
+            <div class="process-grid reveal">
                 <div class="process-step">
                     <div class="process-number">1</div>
                     <h4>Discovery</h4>
@@ -1054,14 +1724,14 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section">
+    <section>
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-tag">FAQ</span>
-                <h2 class="section-title">Frequently Asked Questions</h2>
+                <h2 class="section-title">Frequently Asked <span class="highlight">Questions</span></h2>
             </div>
             
-            <div class="faq-grid">
+            <div class="faq-grid reveal">
                 <div class="faq-item">
                     <button class="faq-question">
                         <span>How long does it take to build a website?</span>
@@ -1128,54 +1798,232 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2>Ready to Get Your Website?</h2>
-            <p>Let's discuss your project and create a website that helps your business grow.</p>
-            <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-                <a href="https://wa.me/923022922242?text=Hi! I'm interested in getting a website. Can we discuss my requirements?" target="_blank" class="btn btn-white btn-lg">
-                    <i data-lucide="message-circle"></i> WhatsApp Us Now
-                </a>
-                <a href="contact.html" class="btn btn-outline btn-lg" style="color: white; border-color: rgba(255,255,255,0.5);">
-                    Contact Page
-                </a>
+            <div class="cta-box reveal">
+                <div class="cta-content">
+                    <h2>Ready to Get Your Website?</h2>
+                    <p>Let's discuss your project and create a website that helps your business grow. Whether you're in Sialkot, Lahore, Karachi, or anywhere in Pakistan.</p>
+                    <div class="hero-buttons" style="justify-content: center;">
+                        <a href="https://wa.me/923022922242?text=Hi! I'm interested in getting a website. Can we discuss my requirements?" target="_blank" class="btn-primary">
+                            <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                            WhatsApp Us Now
+                        </a>
+                        <a href="contact.html" class="btn-secondary">
+                            Contact Page
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="footer-logo">
-                        <img src="images/logo.svg" alt="Sialkot AI Masters" style="height: 40px;">
-                    </a>
-                    <p>AI solutions for Pakistani businesses.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="website-development.html">Website Development</a></li>
-                        <li><a href="b2b-websites.html">B2B Platforms</a></li>
-                        <li><a href="store.html">AI Tools</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><i data-lucide="map-pin"></i> Sialkot, Pakistan</li>
-                        <li><i data-lucide="phone"></i> 0302-2922242</li>
-                        <li><i data-lucide="mail"></i> saad@sialkotaimasters.com</li>
-                    </ul>
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="brain-circuit" style="width: 24px; height: 24px; color: #000;"></i>
+                    </div>
+                    Sialkot AI Masters
+                </a>
+                <p>AI solutions built for Pakistani businesses. From Sialkot to the world. Specializing in manufacturing, leather goods, surgical instruments, and export businesses.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width: 18px; height: 18px;"></i></a>
+                    <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Sialkot AI Masters. A project of Sialkot Sample Masters.</p>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="store.html">AI Tools Store</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">AI Solutions</a></li>
+                    <li><a href="website-development.html">Web Development</a></li>
+                    <li><a href="b2b-websites.html">B2B Platforms</a></li>
+                    <li><a href="services.html">AI Consulting</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:saad@sialkotaimasters.com">saad@sialkotaimasters.com</a></li>
+                    <li><a href="tel:+923022922242">0302-2922242</a></li>
+                    <li><a href="https://wa.me/923022922242" target="_blank">WhatsApp Chat</a></li>
+                    <li><span>Sialkot, Punjab, Pakistan</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sialkot AI Masters. All rights reserved. A division of <a href="https://www.sialkotsamplemasters.com" target="_blank">Sialkot Sample Masters</a></p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
     <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorFollower = document.getElementById('cursorFollower');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            cursorFollower.style.left = followerX - 20 + 'px';
+            cursorFollower.style.top = followerY - 20 + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effect on interactive elements
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.borderColor = 'var(--neon-magenta)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.borderColor = 'var(--neon-cyan)';
+            });
+        });
+
+        // Floating Orbs Animation
+        const orb1 = document.getElementById('orb1');
+        const orb2 = document.getElementById('orb2');
+        const orb3 = document.getElementById('orb3');
+        let orbTime = 0;
+
+        function animateOrbs() {
+            orbTime += 0.005;
+            
+            orb1.style.transform = `translate(${Math.sin(orbTime) * 20}px, ${Math.cos(orbTime * 0.7) * 20}px)`;
+            orb2.style.transform = `translate(${Math.cos(orbTime * 0.8) * 30}px, ${Math.sin(orbTime * 1.2) * 20}px)`;
+            orb3.style.transform = `translate(${Math.sin(orbTime * 1.1) * 25}px, ${Math.cos(orbTime * 0.9) * 25}px)`;
+            
+            requestAnimationFrame(animateOrbs);
+        }
+        animateOrbs();
+
+        // Background Canvas - Particle Network
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = 50;
+        const connectionDistance = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.radius = Math.random() * 2 + 1;
+            }
+
+            update() {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 150) {
+                    const force = (150 - distance) / 150;
+                    const angle = Math.atan2(dy, dx);
+                    this.vx -= Math.cos(angle) * force * 1.5;
+                    this.vy -= Math.sin(angle) * force * 1.5;
+                }
+
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 245, 255, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((particle, i) => {
+                particles.slice(i + 1).forEach(other => {
+                    const dx = particle.x - other.x;
+                    const dy = particle.y - other.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particle.x, particle.y);
+                        ctx.lineTo(other.x, other.y);
+                        ctx.strokeStyle = `rgba(0, 245, 255, ${0.15 * (1 - dist / connectionDistance)})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
@@ -1190,6 +2038,14 @@
                     item.classList.add('active');
                 }
             });
+        });
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
     </script>
 </body>
