@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Business Automation Pakistan | WhatsApp API & Chatbot Services Sialkot</title>
+    <meta name="description" content="SEO Business automation services in Pakistan. Official WhatsApp API setup, bulk messaging, chatbots & auto-replies. Perfect for exporters & e-commerce. Starting PKR 30,000.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #111111;
+            --neon-cyan: #00f5ff;
+            --neon-lime: #ff00ff;
+            --neon-lime: #39ff14;
+            --neon-orange: #ff6600;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #222222;
+            --primary: var(--neon-lime);
+            --primary-glow: rgba(57, 255, 20, 0.5);
+            --primary-faint: rgba(57, 255, 20, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px; height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed; pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        .cursor-follower {
+            width: 40px; height: 40px;
+            background: var(--primary-faint);
+            border-radius: 50%;
+            position: fixed; pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.3s ease;
+        }
+
+        /* Canvas Background */
+        #bgCanvas {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+        }
+        .grid-overlay {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1; pointer-events: none;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .nav-container {
+            max-width: 1400px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 0.75rem;
+            text-decoration: none; color: var(--text-primary);
+            font-weight: 700; font-size: 1.25rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--primary));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            font-weight: 500; transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            background: transparent; color: var(--primary);
+            text-decoration: none; border-radius: 8px;
+            font-weight: 600; border: 1px solid var(--primary);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .nav-cta:hover {
+            background: var(--primary-faint);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--text-primary); cursor: pointer; }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 10rem 2rem 6rem;
+            position: relative; z-index: 2;
+        }
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-faint);
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem; color: var(--primary);
+            margin-bottom: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 span { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow); }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+        .hero-buttons {
+            display: flex; gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--primary); color: #000;
+            text-decoration: none; border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: none; cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px var(--primary-glow);
+        }
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none; border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .btn-secondary:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+        .btn-whatsapp {
+            padding: 1rem 2rem;
+            background: #25D366; color: #fff;
+            text-decoration: none; border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Section Styles */
+        section { padding: 6rem 2rem; position: relative; z-index: 2; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .bg-secondary { background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-tag {
+            display: inline-block; padding: 0.5rem 1rem;
+            background: var(--primary-faint);
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            border-radius: 4px;
+            font-size: 0.875rem; color: var(--primary);
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .section-title .highlight {
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary-glow);
+        }
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .benefit-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(57, 255, 20, 0.3);
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.1);
+        }
+        .benefit-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--primary-faint), rgba(0, 245, 255, 0.1));
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .benefit-icon i { color: var(--primary); }
+        .benefit-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        .benefit-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        .feature-list h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        .feature-list ul { list-style: none; }
+        .feature-list li {
+            display: flex; align-items: center; gap: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+        .feature-list li i { color: var(--neon-lime); }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.1);
+        }
+        .pricing-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary-faint), var(--bg-card));
+        }
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute; top: 0; right: 0;
+            background: var(--primary); color: #000;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem; font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .pricing-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        .pricing-amount {
+            display: flex; align-items: baseline; gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .pricing-amount .currency { color: var(--text-secondary); }
+        .pricing-amount .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem; font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+        .pricing-amount .period { color: var(--text-secondary); font-size: 0.875rem; }
+        .pricing-features { list-style: none; margin-bottom: 2rem; }
+        .pricing-features li {
+            display: flex; align-items: center; gap: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .pricing-features li i { color: var(--neon-lime); }
+        .btn-pricing {
+            width: 100%; padding: 0.875rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            text-decoration: none;
+        }
+        .btn-pricing:hover {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+        }
+        .pricing-card.featured .btn-pricing {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* FAQ Section */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover { border-color: rgba(57, 255, 20, 0.3); }
+        .faq-question {
+            padding: 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .faq-question i { transition: transform 0.3s ease; color: var(--primary); }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(57, 255, 20, 0.2);
+        }
+        .testimonial-text {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        .testimonial-author { font-weight: 600; color: var(--primary); }
+        .testimonial-company { color: var(--text-secondary); font-size: 0.875rem; }
+
+        /* Trust Indicators */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .trust-item .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+        .trust-item .label { color: var(--text-secondary); font-size: 0.9rem; }
+
+        /* CTA Section */
+        .cta-section { text-align: center; }
+        .cta-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .cta-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+        .cta-box p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Cost Notice */
+        .cost-notice {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .cost-notice h4 {
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+        .cost-notice p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 2rem 2rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            position: relative; z-index: 2;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+        .footer-social { display: flex; gap: 1rem; }
+        .footer-social a {
+            width: 40px; height: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        .footer-social a:hover {
+            background: var(--primary-faint);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        .footer-links h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--primary); }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        .footer-bottom a { color: var(--primary); text-decoration: none; }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            body { cursor: auto; }
+            .cursor, .cursor-follower { display: none; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .features-grid { grid-template-columns: 1fr; }
+            .trust-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+    <div class="grid-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="brain-circuit" style="width: 24px; height: 24px; color: #000;"></i>
+                </div>
+                Sialkot AI Masters
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="ai-chatbots.html">AI Chatbots</a></li>
+                <li><a href="whatsapp-automation.html" class="active">WhatsApp</a></li>
+                <li><a href="store.html">AI Tools</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="https://wa.me/923022922242" class="nav-cta" target="_blank">
+                <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                WhatsApp
+            </a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                SEO Business Automation
+            </div>
+            <h1>Turn WhatsApp Into Your <span>#1 Sales Channel</span></h1>
+            <p class="hero-subtitle">
+                Automate Orders, Support & Marketing on Pakistan's Most-Used App. Get found by customers searching for your services on Google. Our automation turns your SEO Business account into a 24/7 sales and support machine. Send bulk broadcasts, automate replies, capture orders, and never miss a customer message again.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/923022922242?text=Hi! I'm interested in SEO Business Automation." class="btn-whatsapp" target="_blank">
+                    <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                    Get SEO Services Setup
+                </a>
+                <a href="https://calendly.com/sialkotaimasters/strategy-call" class="btn-secondary" target="_blank">
+                    <i data-lucide="calendar" style="width: 20px; height: 20px;"></i>
+                    See Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="bg-secondary" id="benefits">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Key Benefits</span>
+                <h2 class="section-title">Why Automate Your <span class="highlight">SEO Business</span></h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i data-lucide="zap" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>Instant Auto-Replies</h3>
+                    <p>Respond to customer messages instantly, even when you're busy or offline. Set up welcome messages, away notifications, and quick replies for common questions. Your customers get instant acknowledgment while you focus on running your business.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i data-lucide="users" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>Bulk Broadcast Messaging</h3>
+                    <p>Send promotional messages, new arrivals, and offers to thousands of customers at once. Perfect for Eid sales, new product launches, and seasonal promotions. Stay top-of-mind without manual messaging.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i data-lucide="shopping-cart" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>Order Automation</h3>
+                    <p>Let customers place orders directly through WhatsApp. Automated order forms, confirmation messages, and payment instructions. Your customers love the convenience - no apps to download, no websites to navigate.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i data-lucide="layout-grid" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>Catalog Integration</h3>
+                    <p>Showcase your products directly in WhatsApp. Customers browse your catalog, ask questions, and place orders without leaving the app. Perfect for Pakistani customers who prefer simple, direct communication.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i data-lucide="users-round" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>Team Collaboration</h3>
+                    <p>Multiple team members can manage one SEO Business account. Route messages to the right department - sales, support, or technical. Never let a message fall through the cracks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Features</span>
+                <h2 class="section-title">Complete WhatsApp <span class="highlight">Automation Suite</span></h2>
+                <p class="section-subtitle">Everything you need to turn WhatsApp into your primary sales channel</p>
+            </div>
+            <div class="features-grid reveal">
+                <div class="feature-list">
+                    <h4><i data-lucide="cpu" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 0.5rem;"></i>Core Features</h4>
+                    <ul>
+                        <li><i data-lucide="check-circle"></i> Official SEO Business API</li>
+                        <li><i data-lucide="check-circle"></i> Welcome Messages</li>
+                        <li><i data-lucide="check-circle"></i> Away Messages</li>
+                        <li><i data-lucide="check-circle"></i> Quick Replies</li>
+                        <li><i data-lucide="check-circle"></i> Labels & Organization</li>
+                        <li><i data-lucide="check-circle"></i> Message Templates</li>
+                        <li><i data-lucide="check-circle"></i> Contact Import</li>
+                        <li><i data-lucide="check-circle"></i> Analytics Dashboard</li>
+                    </ul>
+                </div>
+                <div class="feature-list">
+                    <h4 style="color: var(--neon-cyan);"><i data-lucide="sparkles" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 0.5rem;"></i>Advanced Features</h4>
+                    <ul>
+                        <li><i data-lucide="check-circle"></i> Chatbot Integration</li>
+                        <li><i data-lucide="check-circle"></i> Order Forms</li>
+                        <li><i data-lucide="check-circle"></i> Payment Reminders</li>
+                        <li><i data-lucide="check-circle"></i> Appointment Scheduling</li>
+                        <li><i data-lucide="check-circle"></i> CRM Integration</li>
+                        <li><i data-lucide="check-circle"></i> Multi-Agent Support</li>
+                        <li><i data-lucide="check-circle"></i> Broadcast Scheduling</li>
+                        <li><i data-lucide="check-circle"></i> Delivery Tracking</li>
+                    </ul>
+                </div>
+                <div class="feature-list">
+                    <h4 style="color: var(--neon-lime);"><i data-lucide="shopping-bag" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 0.5rem;"></i>E-commerce Features</h4>
+                    <ul>
+                        <li><i data-lucide="check-circle"></i> Product Catalog</li>
+                        <li><i data-lucide="check-circle"></i> Shopping Cart</li>
+                        <li><i data-lucide="check-circle"></i> Payment Links</li>
+                        <li><i data-lucide="check-circle"></i> Order Confirmations</li>
+                        <li><i data-lucide="check-circle"></i> Shipping Updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="bg-secondary" id="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Pricing</span>
+                <h2 class="section-title">Choose Your <span class="highlight">WhatsApp Plan</span></h2>
+                <p class="section-subtitle">Official SEO Business API setup with zero risk of being banned</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card reveal">
+                    <div class="pricing-name">SEO Starter</div>
+                    <div class="pricing-desc">Perfect for small businesses starting with WhatsApp automation</div>
+                    <div class="pricing-amount">
+                        <span class="currency">PKR</span>
+                        <span class="number">20,000</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> SEO Business API setup</li>
+                        <li><i data-lucide="check"></i> Basic auto-replies (welcome, away)</li>
+                        <li><i data-lucide="check"></i> 10 quick reply templates</li>
+                        <li><i data-lucide="check"></i> Contact import (up to 1,000)</li>
+                        <li><i data-lucide="check"></i> 1 month support</li>
+                    </ul>
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in the SEO Starter package (PKR 30,000)." class="btn-pricing" target="_blank">
+                        Get Started
+                    </a>
+                </div>
+
+                <div class="pricing-card featured reveal">
+                    <div class="pricing-name">SEO Business</div>
+                    <div class="pricing-desc">For growing businesses ready to scale</div>
+                    <div class="pricing-amount">
+                        <span class="currency">PKR</span>
+                        <span class="number">45,000</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Everything in Starter</li>
+                        <li><i data-lucide="check"></i> Chatbot integration (50 responses)</li>
+                        <li><i data-lucide="check"></i> Product catalog setup</li>
+                        <li><i data-lucide="check"></i> Bulk messaging setup</li>
+                        <li><i data-lucide="check"></i> Message templates (20)</li>
+                        <li><i data-lucide="check"></i> Analytics dashboard</li>
+                        <li><i data-lucide="check"></i> 3 months support</li>
+                        <li><i data-lucide="check"></i> Up to 5,000 contacts</li>
+                    </ul>
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in the SEO Business package (PKR 55,000)." class="btn-pricing" target="_blank">
+                        Get Started
+                    </a>
+                </div>
+
+                <div class="pricing-card reveal">
+                    <div class="pricing-name">SEO Enterprise</div>
+                    <div class="pricing-desc">Full-scale automation solution</div>
+                    <div class="pricing-amount">
+                        <span class="currency">PKR</span>
+                        <span class="number">85,000</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Everything in Business</li>
+                        <li><i data-lucide="check"></i> Advanced AI chatbot</li>
+                        <li><i data-lucide="check"></i> Order automation system</li>
+                        <li><i data-lucide="check"></i> CRM integration</li>
+                        <li><i data-lucide="check"></i> Multi-agent setup</li>
+                        <li><i data-lucide="check"></i> Custom templates (50)</li>
+                        <li><i data-lucide="check"></i> Priority support</li>
+                        <li><i data-lucide="check"></i> 6 months support</li>
+                        <li><i data-lucide="check"></i> Unlimited contacts</li>
+                    </ul>
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in the SEO Enterprise package (PKR 95,000)." class="btn-pricing" target="_blank">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+            <div class="cost-notice">
+                <h4><i data-lucide="info" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 0.5rem;"></i>Monthly WhatsApp API Costs (Meta Official Rates)</h4>
+                <p>First 1,000 conversations/month: FREE | Additional conversations: ~$0.005-0.08 per conversation | We help you minimize costs with proper template usage</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">What Our <span class="highlight">Clients Say</span></h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">"Our Eid sale generated 3x more orders. We sent a WhatsApp broadcast to our customer list about our Eid collection. Within 24 hours, we had 300+ inquiries and 150 orders. The ROI was incredible - cost us almost nothing compared to paid ads."</p>
+                    <div class="testimonial-author">Hassan</div>
+                    <div class="testimonial-company">Clothing Brand Owner, Sialkot</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">"Customers love the instant responses. International buyers message us at odd hours due to time differences. The auto-reply tells them we received their message and will respond soon. Our response rate improved dramatically."</p>
+                    <div class="testimonial-author">Sara</div>
+                    <div class="testimonial-company">Jewelry Exporter, Lahore</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">"Order management became effortless. We get 50+ order inquiries daily through WhatsApp. The automation handles initial questions, collects requirements, and sends order confirmations. What used to take 3 hours daily now takes 30 minutes."</p>
+                    <div class="testimonial-author">Kamran</div>
+                    <div class="testimonial-company">Leather Goods Manufacturer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="bg-secondary">
+        <div class="container">
+            <div class="trust-grid reveal">
+                <div class="trust-item">
+                    <span class="number">85%</span>
+                    <span class="label">Pakistanis Use WhatsApp Daily</span>
+                </div>
+                <div class="trust-item">
+                    <span class="number">60%</span>
+                    <span class="label">Higher Open Rates Than Email</span>
+                </div>
+                <div class="trust-item">
+                    <span class="number">5x</span>
+                    <span class="label">Faster Customer Response Time</span>
+                </div>
+                <div class="trust-item">
+                    <span class="number">40%</span>
+                    <span class="label">Reduction in Support Workload</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Frequently Asked <span class="highlight">Questions</span></h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        Is this the official SEO Business API or unofficial?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We set up the official SEO Business API through Meta's verified partners. This means your business gets a verified profile (green tick possible), unlimited messaging capabilities, and zero risk of being banned. Unofficial WhatsApp automation tools can get your number blocked permanently.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        Can I use my existing business phone number?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, you can use your existing business number, but it will be migrated to the API and can't be used on regular WhatsApp anymore. We recommend using a dedicated business number for automation. We can help you get a new business SIM if needed.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        How does bulk messaging work? Will customers get spammed?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Bulk messaging uses pre-approved message templates that customers opt into receiving. You can only message customers who have contacted you first or explicitly opted in. This keeps your messages compliant and welcomed by customers who want to hear from you.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        Can customers still talk to a real person?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! Automation handles repetitive tasks, but human agents can jump into any conversation at any time. We set up seamless handoff - customers can request to speak with a human, and the chatbot will notify your team immediately.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        How long does setup take?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Starter packages are ready in 3-5 days. Business packages take 1-2 weeks. Enterprise solutions with custom integrations take 2-3 weeks. Meta's verification process (required for green tick) can take an additional 1-2 weeks.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section bg-secondary">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2>Ready to Automate Your WhatsApp?</h2>
+                <p>Join 500+ Pakistani businesses using WhatsApp automation to sell more and support customers better.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in SEO Business Automation." class="btn-primary" target="_blank">
+                        <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                        Get Started - PKR 30,000
+                    </a>
+                    <a href="https://wa.me/923022922242" class="btn-whatsapp" target="_blank">
+                        <i data-lucide="phone" style="width: 20px; height: 20px;"></i>
+                        WhatsApp: 0302-2922242
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="brain-circuit" style="width: 24px; height: 24px; color: #000;"></i>
+                    </div>
+                    Sialkot AI Masters
+                </a>
+                <p>AI solutions built for Pakistani businesses. From Sialkot to the world.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width: 18px; height: 18px;"></i></a>
+                    <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="store.html">AI Tools Store</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="ai-chatbots.html">AI Chatbots</a></li>
+                    <li><a href="whatsapp-automation.html">SEO Services</a></li>
+                    <li><a href="seo-services.html">SEO Services</a></li>
+                    <li><a href="ecommerce-development.html">E-commerce Development</a></li>
+                    <li><a href="ai-lead-generation.html">AI Lead Generation</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:saad@sialkotaimasters.com">saad@sialkotaimasters.com</a></li>
+                    <li><a href="tel:+923022922242">0302-2922242</a></li>
+                    <li><a href="https://wa.me/923022922242" target="_blank">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sialkot AI Masters. All rights reserved. A division of <a href="https://www.sialkotsamplemasters.com" target="_blank">Sialkot Sample Masters</a></p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorFollower = document.getElementById('cursorFollower');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            cursorFollower.style.left = followerX - 20 + 'px';
+            cursorFollower.style.top = followerY - 20 + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.borderColor = 'var(--neon-cyan)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.borderColor = 'var(--primary)';
+            });
+        });
+
+        // Background Canvas
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = 50;
+        const connectionDistance = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.radius = Math.random() * 2 + 1;
+            }
+
+            update() {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 150) {
+                    const force = (150 - distance) / 150;
+                    const angle = Math.atan2(dy, dx);
+                    this.vx -= Math.cos(angle) * force * 1.5;
+                    this.vy -= Math.sin(angle) * force * 1.5;
+                }
+
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(57, 255, 20, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((particle, i) => {
+                particles.slice(i + 1).forEach(other => {
+                    const dx = particle.x - other.x;
+                    const dy = particle.y - other.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particle.x, particle.y);
+                        ctx.lineTo(other.x, other.y);
+                        ctx.strokeStyle = `rgba(57, 255, 20, ${0.15 * (1 - dist / connectionDistance)})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
