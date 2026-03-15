@@ -1,0 +1,335 @@
+/**
+ * Sialkot AI Masters - Main JavaScript
+ * Handles navigation, interactions, and Stripe payments
+ */
+
+// Initialize Lucide icons
+document.addEventListener('DOMContentLoaded', function() {
+    lucide.createIcons();
+    initNavigation();
+    initFAQ();
+    initScrollAnimations();
+    initStripeCheckout();
+    initSmoothScroll();
+});
+
+// ================================
+// NAVIGATION
+// ================================
+function initNavigation() {
+    const navbar = document.getElementById('navbar');
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    // Sticky navbar on scroll
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+    });
+    
+    // Mobile menu toggle
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            
+            if (navMenu.classList.contains('active')) {
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        });
+        
+        // Close mobile menu when clicking a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+    }
+}
+
+// ================================
+// FAQ ACCORDION
+// ================================
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Close other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+}
+
+// ================================
+// SCROLL ANIMATIONS
+// ================================
+function initScrollAnimations() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fadeInUp');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    const animateElements = document.querySelectorAll('.service-card, .tool-card, .why-card, .industry-card, .case-card, .testimonial-card');
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        observer.observe(el);
+    });
+}
+
+// ================================
+// SMOOTH SCROLL
+// ================================
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const navHeight = document.getElementById('navbar').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+}
+
+// ================================
+// STRIPE CHECKOUT
+// ================================
+function initStripeCheckout() {
+    // Initialize Stripe with your publishable key
+    // Replace with your actual Stripe publishable key
+    const stripe = Stripe('pk_test_YOUR_STRIPE_PUBLISHABLE_KEY');
+    
+    const buyButtons = document.querySelectorAll('.btn-buy');
+    
+    buyButtons.forEach(button => {
+        button.addEventListener('click', async (e) => {
+            const product = button.getAttribute('data-product');
+            const price = button.getAttribute('data-price');
+            
+            // Show coming soon for products not ready
+            if (button.textContent.trim() === 'Coming Soon') {
+                showToast('This product is coming soon! Join the waitlist.');
+                return;
+            }
+            
+            // For Flat Lay Pro - redirect to checkout
+            if (product === 'flatlaypro') {
+                try {
+                    // Option 1: Redirect to Stripe Payment Link
+                    window.open('https://buy.stripe.com/YOUR_PAYMENT_LINK', '_blank');
+                    
+                    // Option 2: Create checkout session (requires backend)
+                    // const session = await createCheckoutSession(product, price);
+                    // stripe.redirectToCheckout({ sessionId: session.id });
+                    
+                } catch (error) {
+                    console.error('Checkout error:', error);
+                    showToast('Something went wrong. Please try again or contact us on WhatsApp.');
+                }
+            }
+        });
+    });
+}
+
+// ================================
+// TOAST NOTIFICATIONS
+// ================================
+function showToast(message, type = 'info') {
+    const toast = document.getElementById('toast');
+    const toastMessage = toast.querySelector('.toast-message');
+    const toastIcon = toast.querySelector('i');
+    
+    toastMessage.textContent = message;
+    
+    // Set icon based on type
+    const iconMap = {
+        'success': 'check-circle',
+        'error': 'alert-circle',
+        'info': 'info'
+    };
+    toastIcon.setAttribute('data-lucide', iconMap[type] || 'info');
+    lucide.createIcons();
+    
+    // Show toast
+    toast.classList.add('show');
+    
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+// ================================
+// FORM HANDLING
+// ================================
+function handleContactForm(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    // Simulate form submission (replace with actual backend)
+    setTimeout(() => {
+        showToast('Message sent successfully! We\'ll get back to you soon.', 'success');
+        form.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }, 1500);
+    
+    // For actual implementation, use:
+    // fetch('/api/contact', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(data)
+    // })
+}
+
+// ================================
+// NEWSLETTER SUBSCRIPTION
+// ================================
+function handleNewsletterSubmit(e) {
+    e.preventDefault();
+    
+    const email = e.target.querySelector('input[type="email"]').value;
+    
+    if (email) {
+        showToast('Thanks for subscribing! Check your email for confirmation.', 'success');
+        e.target.reset();
+    } else {
+        showToast('Please enter a valid email address.', 'error');
+    }
+}
+
+// ================================
+// UTILITY FUNCTIONS
+// ================================
+
+// Debounce function for performance
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Throttle function for scroll events
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Copy to clipboard
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showToast('Copied to clipboard!', 'success');
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+    });
+}
+
+// ================================
+// ANALYTICS (Optional)
+// ================================
+function trackEvent(eventName, properties = {}) {
+    // Google Analytics 4
+    if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, properties);
+    }
+    
+    // Facebook Pixel
+    if (typeof fbq !== 'undefined') {
+        fbq('track', eventName, properties);
+    }
+    
+    console.log('Event tracked:', eventName, properties);
+}
+
+// Track page views
+document.addEventListener('DOMContentLoaded', () => {
+    trackEvent('page_view', {
+        page_title: document.title,
+        page_location: window.location.href
+    });
+});
+
+// Track CTA clicks
+document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const btnText = btn.textContent.trim();
+        trackEvent('cta_click', {
+            button_text: btnText,
+            button_location: btn.closest('section')?.className || 'unknown'
+        });
+    });
+});
+
+// Export functions for global access
+window.SialkotAIMasters = {
+    showToast,
+    copyToClipboard,
+    trackEvent,
+    handleContactForm,
+    handleNewsletterSubmit
+};

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Store | Sialkot AI Masters</title>
+    <meta name="description" content="Buy AI tools for your business. Flat Lay Pro, LabelCraft AI, and more. One-time payment, no subscriptions.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/store.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="Sialkot AI Masters" class="logo-img">
+            </a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <i data-lucide="menu"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="services.html" class="nav-link">Services <i data-lucide="chevron-down" class="dropdown-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="services.html#ai-solutions">AI Solutions</a></li>
+                        <li><a href="services.html#web-development">Web Development</a></li>
+                        <li><a href="services.html#consulting">AI Consulting</a></li>
+                    </ul>
+                </li>
+                <li><a href="store.html" class="nav-link active">AI Tools Store</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="https://calendly.com/sialkotaimasters/strategy-call" class="btn btn-primary nav-cta" target="_blank">
+                <i data-lucide="calendar"></i>
+                Free Strategy Call
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <span class="section-tag">Shop</span>
+                <h1>AI Tools Store</h1>
+                <p>Ready-to-use AI tools for your business. Buy once, own forever. No subscriptions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section section-padding bg-light">
+        <div class="container">
+            <!-- Featured Product -->
+            <div class="featured-product">
+                <div class="product-badge-large">⭐ Best Seller</div>
+                <div class="featured-product-grid">
+                    <div class="product-gallery">
+                        <div class="product-main-image">
+                            <div class="demo-mockup">
+                                <div class="mockup-header">
+                                    <span class="mockup-dot red"></span>
+                                    <span class="mockup-dot yellow"></span>
+                                    <span class="mockup-dot green"></span>
+                                </div>
+                                <div class="mockup-content">
+                                    <div class="mockup-sidebar">
+                                        <div class="mockup-nav-item active">📸 Product Photos</div>
+                                        <div class="mockup-nav-item">👤 Model Shoot</div>
+                                        <div class="mockup-nav-item">📝 Listings</div>
+                                    </div>
+                                    <div class="mockup-main">
+                                        <div class="mockup-input">
+                                            <span>Describe your product...</span>
+                                        </div>
+                                        <div class="mockup-results">
+                                            <div class="result-card">
+                                                <div class="result-image">👟</div>
+                                                <div class="result-info">
+                                                    <div class="result-title">Sports Shoes</div>
+                                                    <div class="result-desc">Professional flat-lay...</div>
+                                                </div>
+                                            </div>
+                                            <div class="result-card">
+                                                <div class="result-image">👟</div>
+                                                <div class="result-info">
+                                                    <div class="result-title">Sports Shoes</div>
+                                                    <div class="result-desc">Studio lighting...</div>
+                                                </div>
+                                            </div>
+                                            <div class="result-card">
+                                                <div class="result-image">👟</div>
+                                                <div class="result-info">
+                                                    <div class="result-title">Sports Shoes</div>
+                                                    <div class="result-desc">Lifestyle shot...</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-details">
+                        <h2>Flat Lay Pro</h2>
+                        <p class="product-tagline">AI-powered product photography for e-commerce sellers. Generate professional flat-lay images from just a description.</p>
+                        
+                        <div class="product-price-large">
+                            <span class="currency">PKR</span>
+                            <span class="amount">2,000</span>
+                            <span class="period">one-time payment</span>
+                        </div>
+                        
+                        <div class="product-features-list">
+                            <div class="feature-item">
+                                <i data-lucide="check-circle"></i>
+                                <div>
+                                    <strong>AI Product Photos</strong>
+                                    <span>Generate professional flat-lay images from text description</span>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <i data-lucide="check-circle"></i>
+                                <div>
+                                    <strong>AI Model Photoshoot</strong>
+                                    <span>Upload your model, generate apparel images on different models</span>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <i data-lucide="check-circle"></i>
+                                <div>
+                                    <strong>Auto Listings</strong>
+                                    <span>Generate titles, descriptions, keywords, and price suggestions</span>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <i data-lucide="check-circle"></i>
+                                <div>
+                                    <strong>5 Products/Day</strong>
+                                    <span>Per Google account (50/day with 10 accounts)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <i data-lucide="check-circle"></i>
+                                <div>
+                                    <strong>Lifetime Access</strong>
+                                    <span>No monthly fees. Buy once, use forever.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-ctas">
+                            <button class="btn btn-primary btn-xl" onclick="buyNow('flatlaypro', 2000)">
+                                <i data-lucide="shopping-cart"></i>
+                                Buy Now — PKR 2,000
+                            </button>
+                            
+                            <a href="https://wa.me/923022922242?text=Hi!%20I'm%20interested%20in%20Flat%20Lay%20Pro.%20Can%20you%20tell%20me%20more?" class="btn btn-outline btn-xl" target="_blank">
+                                <i data-lucide="message-circle"></i>
+                                Ask on WhatsApp
+                            </a>
+                        </div>
+                        
+                        <div class="product-guarantee">
+                            <i data-lucide="shield-check"></i>
+                            <span>7-day WhatsApp support included</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other Products -->
+            <div class="other-products">
+                <h3>More AI Tools Coming Soon</h3>                
+                <div class="products-grid">
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <span class="product-emoji">🏷️</span>
+                        </div>
+                        <div class="product-info">
+                            <h4>LabelCraft AI</h4>
+                            <p>AI-powered woven label design for manufacturers</p>
+                            
+                            <div class="product-meta">
+                                <span class="product-price">PKR 1,500</span>
+                                <span class="product-status coming-soon">Coming Soon</span>
+                            </div>
+                            
+                            <button class="btn btn-outline btn-sm" onclick="joinWaitlist('labelcraft')">Join Waitlist</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <span class="product-emoji">📦</span>
+                        </div>
+                        <div class="product-info">
+                            <h4>ExportList AI</h4>
+                            <p>Auto-generate export product listings for international buyers</p>
+                            
+                            <div class="product-meta">
+                                <span class="product-price">PKR 2,500</span>
+                                <span class="product-status coming-soon">Coming Soon</span>
+                            </div>
+                            
+                            <button class="btn btn-outline btn-sm" onclick="joinWaitlist('exportlist')">Join Waitlist</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <span class="product-emoji">📊</span>
+                        </div>
+                        <div class="product-info">
+                            <h4>CatalogGen Pro</h4>
+                            <p>Bulk product catalog generator with professional layouts</p>
+                            
+                            <div class="product-meta">
+                                <span class="product-price">PKR 3,500</span>
+                                <span class="product-status coming-soon">Coming Soon</span>
+                            </div>
+                            
+                            <button class="btn btn-outline btn-sm" onclick="joinWaitlist('cataloggen')">Join Waitlist</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Comparison Table -->
+            <div class="comparison-section">
+                <h3>Compare AI Tools</h3>                
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Flat Lay Pro</th>
+                                <th>LabelCraft AI</th>
+                                <th>ExportList AI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Product Photography</td>
+                                <td><i data-lucide="check" class="check-icon"></i></td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>Model Photoshoot</td>
+                                <td><i data-lucide="check" class="check-icon"></i></td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>Auto Listings</td>
+                                <td><i data-lucide="check" class="check-icon"></i></td>
+                                <td>—</td>
+                                <td><i data-lucide="check" class="check-icon"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Label Design</td>
+                                <td>—</td>
+                                <td><i data-lucide="check" class="check-icon"></i></td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>Multi-language</td>
+                                <td><i data-lucide="check" class="check-icon"></i></td>
+                                <td><i data-lucide="check" class="check-icon"></i></td>
+                                <td><i data-lucide="check" class="check-icon"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Best For</td>
+                                <td>E-commerce Sellers</td>
+                                <td>Manufacturers</td>
+                                <td>Exporters</td>
+                            </tr>
+                            <tr class="price-row">
+                                <td><strong>Price</strong></td>
+                                <td><strong class="price-highlight">PKR 2,000</strong></td>
+                                <td><strong>PKR 1,500</strong></td>
+                                <td><strong>PKR 2,500</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2>Common Questions</h2>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I access the tool after purchase?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>After payment, you'll receive an email with instant access instructions. You'll also get a WhatsApp message from our team with setup guidance.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept credit/debit cards via Stripe, JazzCash, and EasyPaisa. International customers can pay via Stripe.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is there a refund policy?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Due to the digital nature of our products, all sales are final. However, we provide 7-day WhatsApp support to ensure you can use the tool successfully.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I use this for client work?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Each license is for one business. If you're an agency serving multiple clients, contact us for agency pricing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <div class="cta-content">
+                    <h2>Need a Custom AI Solution?</h2>
+                    <p>Our off-the-shelf tools not enough? We build custom AI solutions tailored to your specific business needs.</p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-white btn-lg">Discuss Your Project</a>
+                        <a href="services.html" class="btn btn-outline-white btn-lg">View Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">🧠</span>
+                        <span>Sialkot<span class="logo-accent">AI</span>Masters</span>
+                    </a>
+                    <p class="footer-tagline">AI solutions built for Pakistani businesses. From Sialkot to the world.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                        <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="store.html">AI Tools Store</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#ai-solutions">AI Solutions</a></li>
+                        <li><a href="services.html#web-development">Web Development</a></li>
+                        <li><a href="services.html#consulting">AI Consulting</a></li>
+                        <li><a href="store.html">AI Tools Store</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i data-lucide="mail"></i> <a href="mailto:saad@sialkotaimasters.com">saad@sialkotaimasters.com</a></li>
+                        <li><i data-lucide="phone"></i> <a href="tel:+923022922242">0302-2922242</a></li>
+                        <li><i data-lucide="map-pin"></i> <span>Sialkot, Pakistan</span></li>
+                        <li><i data-lucide="message-circle"></i> <a href="https://wa.me/923022922242" target="_blank">WhatsApp Chat</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sialkot AI Masters. All rights reserved.</p>
+                <p class="footer-parent">A division of <a href="https://www.sialkotsamplemasters.com" target="_blank">Sialkot Sample Masters</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i data-lucide="info"></i>
+        <span class="toast-message"></span>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Store page specific functions
+        function buyNow(product, price) {
+            // Replace with your Stripe Payment Link
+            const stripeLink = 'https://buy.stripe.com/YOUR_PAYMENT_LINK_FOR_FLATLAYPRO';
+            window.open(stripeLink, '_blank');
+            
+            // Track event
+            if (typeof trackEvent !== 'undefined') {
+                trackEvent('begin_checkout', {
+                    product: product,
+                    price: price
+                });
+            }
+        }
+
+        function joinWaitlist(product) {
+            showToast(`You've been added to the ${product} waitlist! We'll notify you when it's ready.`);
+            
+            // Track event
+            if (typeof trackEvent !== 'undefined') {
+                trackEvent('join_waitlist', {
+                    product: product
+                });
+            }
+        }
+    </script>
+</body>
+</html>

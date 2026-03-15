@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Sialkot AI Masters</title>
+    <meta name="description" content="Get in touch with Sialkot AI Masters. WhatsApp, email, or book a free strategy call. We're here to help your business grow with AI.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="Sialkot AI Masters" class="logo-img">
+            </a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i data-lucide="menu"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="store.html" class="nav-link">AI Tools Store</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+            <a href="https://calendly.com/sialkotaimasters/strategy-call" class="btn btn-primary nav-cta" target="_blank">Free Strategy Call</a>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <span class="section-tag">Contact</span>
+                <h1>Let's Talk</h1>
+                <p>Have a project in mind? We'd love to hear from you.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    
+                    <p class="contact-description">Ready to transform your business with AI? Choose the option that works best for you.</p>
+                    
+                    <div class="contact-methods">
+                        <a href="https://wa.me/923022922242" class="contact-card whatsapp" target="_blank">
+                            <div class="contact-icon">
+                                <i data-lucide="message-circle"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">WhatsApp</span>
+                                <span class="contact-value">0302-2922242</span>
+                                <span class="contact-hint">Fastest response</span>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:saad@sialkotaimasters.com" class="contact-card">
+                            <div class="contact-icon">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">saad@sialkotaimasters.com</span>
+                            </div>
+                        </a>
+                        
+                        <a href="tel:+923022922242" class="contact-card">
+                            <div class="contact-icon">
+                                <i data-lucide="phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">Phone</span>
+                                <span class="contact-value">0302-2922242</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-location">
+                        <h4>📍 Location</h4>
+                        <p>Sialkot, Pakistan<br><em>Home of the world's finest surgical and sports equipment manufacturing</em></p>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper">
+                    <div class="form-card">
+                        <h3>Send us a Message</h3>
+                        
+                        <form id="contactForm" onsubmit="return handleFormSubmit(event)">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required placeholder="John Doe">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required placeholder="john@example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number (Optional)</label>
+                                <input type="tel" id="phone" name="phone" placeholder="03XX-XXXXXXX">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="service">Interested In</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Select a service...</option>
+                                    <option value="flatlaypro">Flat Lay Pro</option>
+                                    <option value="ai-tools">AI Tools (Other)</option>
+                                    <option value="website">Website Development</option>
+                                    <option value="consulting">AI Consulting</option>
+                                    <option value="custom">Custom AI Solution</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" rows="4" required placeholder="Tell us about your project..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg btn-full">
+                                <i data-lucide="send"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2>Common Questions</h2>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What's your typical response time?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We typically respond within 2-4 hours during business hours (9 AM - 6 PM PST). WhatsApp is the fastest way to reach us.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you work with international clients?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! While we specialize in Pakistani businesses, we work with clients globally. Payment via Stripe makes international transactions easy.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I visit your office?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! We're based in Sialkot. Schedule a visit through our contact form or WhatsApp us to arrange a meeting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">🧠</span>
+                        <span>Sialkot<span class="logo-accent">AI</span>Masters</span>
+                    </a>
+                    <p>AI solutions for Pakistani businesses.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="store.html">Store</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>saad@sialkotaimasters.com<br>0302-2922242<br>Sialkot, Pakistan</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sialkot AI Masters</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast">
+        <i data-lucide="info"></i>
+        <span class="toast-message"></span>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i data-lucide="loader-2"></i> Sending...';
+            submitBtn.disabled = true;
+            lucide.createIcons();
+            
+            // Simulate form submission
+            setTimeout(() => {
+                showToast('Message sent successfully! We\'ll get back to you soon.', 'success');
+                form.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                lucide.createIcons();
+            }, 1500);
+            
+            return false;
+        }
+    </script>
+</body>
+</html>
