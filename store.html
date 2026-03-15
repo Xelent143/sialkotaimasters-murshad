@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/store.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <script src="https://js.stripe.com/v3/"></script>
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -393,11 +392,13 @@
             <div class="faq-grid">
                 <div class="faq-item">
                     <button class="faq-question">
-                        <span>How do I access the tool after purchase?</span>
+                        <span>How do I buy and access the tool?</span>
                         <i data-lucide="plus" class="faq-icon"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>After payment, you'll receive an email with instant access instructions. You'll also get a WhatsApp message from our team with setup guidance.</p>
+                        <p><strong>Step 1:</strong> Click "Buy Now" to open WhatsApp with a pre-filled message.</p>
+                        <p><strong>Step 2:</strong> We'll send you JazzCash/EasyPaisa payment details.</p>
+                        <p><strong>Step 3:</strong> After payment confirmation, you'll get instant access via WhatsApp.</p>
                     </div>
                 </div>
                 
@@ -407,7 +408,7 @@
                         <i data-lucide="plus" class="faq-icon"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>We accept JazzCash, EasyPaisa, and credit/debit cards via Stripe. International customers can pay via Stripe.</p>
+                        <p>We accept <strong>JazzCash</strong> and <strong>EasyPaisa</strong>. Click "Buy Now" to open WhatsApp and we'll send you the payment details. Once payment is confirmed, you'll get instant access.</p>
                     </div>
                 </div>
                 
@@ -510,32 +511,5 @@
     </div>
 
     <script src="js/main.js"></script>
-    <script>
-        // Store page specific functions
-        function buyNow(product, price) {
-            // Replace with your Stripe Payment Link
-            const stripeLink = 'https://buy.stripe.com/YOUR_PAYMENT_LINK_FOR_FLATLAYPRO';
-            window.open(stripeLink, '_blank');
-            
-            // Track event
-            if (typeof trackEvent !== 'undefined') {
-                trackEvent('begin_checkout', {
-                    product: product,
-                    price: price
-                });
-            }
-        }
-
-        function joinWaitlist(product) {
-            showToast(`You've been added to the ${product} waitlist! We'll notify you when it's ready.`);
-            
-            // Track event
-            if (typeof trackEvent !== 'undefined') {
-                trackEvent('join_waitlist', {
-                    product: product
-                });
-            }
-        }
-    </script>
 </body>
 </html>

@@ -1,7 +1,15 @@
 /**
  * Sialkot AI Masters - Main JavaScript
- * Handles navigation, interactions, and Stripe payments
+ * Handles navigation, interactions, and WhatsApp checkout
  */
+
+// WhatsApp Configuration
+const WHATSAPP_NUMBER = '923022922242';
+const WHATSAPP_MESSAGE = {
+    flatlaypro: `Hi! I'm interested in buying Flat Lay Pro (PKR 2,000). Please send me payment details.`,
+    ayzelify: `Hi! I'm interested in buying Ayzelify (PKR 5,000 for 200 images). Please send me payment details.`,
+    default: `Hi! I'm interested in your AI tools. Please provide more information.`
+};
 
 // Initialize Lucide icons
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavigation();
     initFAQ();
     initScrollAnimations();
-    initStripeCheckout();
+    initWhatsAppCheckout();
     initSmoothScroll();
 });
 
@@ -136,43 +144,64 @@ function initSmoothScroll() {
 }
 
 // ================================
-// STRIPE CHECKOUT
+// WHATSAPP CHECKOUT
 // ================================
-function initStripeCheckout() {
-    // Initialize Stripe with your publishable key
-    // Replace with your actual Stripe publishable key
-    const stripe = Stripe('pk_test_YOUR_STRIPE_PUBLISHABLE_KEY');
-    
+function initWhatsAppCheckout() {
     const buyButtons = document.querySelectorAll('.btn-buy');
     
     buyButtons.forEach(button => {
-        button.addEventListener('click', async (e) => {
+        button.addEventListener('click', (e) => {
             const product = button.getAttribute('data-product');
-            const price = button.getAttribute('data-price');
             
-            // Show coming soon for products not ready
-            if (button.textContent.trim() === 'Coming Soon') {
-                showToast('This product is coming soon! Join the waitlist.');
-                return;
-            }
+            // Get appropriate message
+            const message = WHATSAPP_MESSAGE[product] || WHATSAPP_MESSAGE.default;
             
-            // For Flat Lay Pro - redirect to checkout
-            if (product === 'flatlaypro') {
-                try {
-                    // Option 1: Redirect to Stripe Payment Link
-                    window.open('https://buy.stripe.com/YOUR_PAYMENT_LINK', '_blank');
-                    
-                    // Option 2: Create checkout session (requires backend)
-                    // const session = await createCheckoutSession(product, price);
-                    // stripe.redirectToCheckout({ sessionId: session.id });
-                    
-                } catch (error) {
-                    console.error('Checkout error:', error);
-                    showToast('Something went wrong. Please try again or contact us on WhatsApp.');
-                }
-            }
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Create WhatsApp link
+            const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            
+            // Track event
+            trackEvent('begin_checkout', {
+                product: product,
+                method: 'whatsapp'
+            });
+            
+            // Open WhatsApp
+            window.open(whatsappLink, '_blank');
         });
     });
+}
+
+// Buy Now function for direct calls
+function buyNow(product, price) {
+    const message = WHATSAPP_MESSAGE[product] || WHATSAPP_MESSAGE.default;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    
+    trackEvent('begin_checkout', {
+        product: product,
+        price: price,
+        method: 'whatsapp'
+    });
+    
+    window.open(whatsappLink, '_blank');
+}
+
+// Join waitlist function
+function joinWaitlist(product) {
+    const message = `Hi! I'm interested in ${product}. Please add me to the waitlist and notify me when it's available.`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    
+    trackEvent('join_waitlist', {
+        product: product
+    });
+    
+    window.open(whatsappLink, '_blank');
+    
+    showToast('Opening WhatsApp to join waitlist...', 'success');
 }
 
 // ================================
@@ -226,13 +255,6 @@ function handleContactForm(e) {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
     }, 1500);
-    
-    // For actual implementation, use:
-    // fetch('/api/contact', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(data)
-    // })
 }
 
 // ================================
@@ -331,5 +353,7 @@ window.SialkotAIMasters = {
     copyToClipboard,
     trackEvent,
     handleContactForm,
-    handleNewsletterSubmit
+    handleNewsletterSubmit,
+    buyNow,
+    joinWaitlist
 };
