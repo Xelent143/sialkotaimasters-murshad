@@ -317,13 +317,34 @@
             border-radius: 24px;
             padding: 2rem;
             display: flex; align-items: center; justify-content: center;
-            min-height: 400px;
+            min-height: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+        .founder-photo::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
         .founder-img {
             width: 100%;
-            max-width: 300px;
+            max-width: 350px;
             border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.3), 0 0 60px rgba(255, 0, 255, 0.2);
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            transition: all 0.4s ease;
+        }
+        .founder-img:hover {
+            box-shadow: 0 0 40px rgba(0, 245, 255, 0.5), 0 0 80px rgba(255, 0, 255, 0.3);
+            border-color: var(--neon-cyan);
+            transform: scale(1.02);
         }
         .founder-content h2 {
             font-family: 'Space Grotesk', sans-serif;
@@ -714,7 +735,7 @@
             <div class="founder-grid reveal">
                 <div class="founder-image">
                     <div class="founder-photo reveal">
-                        <i data-lucide="user" style="width: 120px; height: 120px; color: var(--neon-cyan);"></i>
+                        <img src="images/saad-profile.png" alt="Saad Shakeel - Founder of Sialkot AI Masters" class="founder-img">
                     </div>
                 </div>
                 
