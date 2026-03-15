@@ -11,6 +11,456 @@
     <script src="https://js.stripe.com/v3/"></script>
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Product Carousel Section */
+        .products-carousel-section {
+            padding: var(--space-16) 0;
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+            overflow: hidden;
+        }
+        
+        .carousel-header {
+            text-align: center;
+            margin-bottom: var(--space-10);
+        }
+        
+        .carousel-header h2 {
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-3);
+        }
+        
+        .carousel-header p {
+            color: var(--gray-600);
+            font-size: var(--text-lg);
+        }
+        
+        .products-carousel {
+            display: flex;
+            gap: var(--space-6);
+            padding: var(--space-4) var(--space-6);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .products-carousel::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .product-card-ecom {
+            flex: 0 0 320px;
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            scroll-snap-align: start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--gray-100);
+        }
+        
+        .product-card-ecom:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .product-card-ecom.featured {
+            border: 2px solid var(--primary-500);
+            position: relative;
+        }
+        
+        .product-badge-ecom {
+            position: absolute;
+            top: var(--space-3);
+            right: var(--space-3);
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
+            color: var(--white);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+        
+        .product-thumbnail {
+            height: 180px;
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-thumbnail.flatlay {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        
+        .product-thumbnail.ayzelify {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+        }
+        
+        .product-thumbnail.scraper {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        }
+        
+        .product-thumbnail-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .product-thumbnail-icon i {
+            width: 40px;
+            height: 40px;
+            color: var(--primary-600);
+        }
+        
+        .product-card-content {
+            padding: var(--space-5);
+        }
+        
+        .product-card-content h3 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-2);
+            color: var(--gray-900);
+        }
+        
+        .product-card-content p {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: var(--space-4);
+            min-height: 60px;
+        }
+        
+        .product-price-ecom {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-1);
+            margin-bottom: var(--space-4);
+        }
+        
+        .product-price-ecom .currency {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+        }
+        
+        .product-price-ecom .amount {
+            font-size: var(--text-3xl);
+            font-weight: 800;
+            color: var(--gray-900);
+        }
+        
+        .product-price-ecom .period {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+        }
+        
+        .btn-buy-now {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-4);
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: var(--text-base);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .btn-buy-now:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-3);
+            margin-top: var(--space-8);
+        }
+        
+        .carousel-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .carousel-btn:hover {
+            border-color: var(--primary-500);
+            background: var(--primary-50);
+        }
+        
+        .carousel-btn i {
+            width: 20px;
+            height: 20px;
+            color: var(--gray-700);
+        }
+        
+        .view-all-products {
+            text-align: center;
+            margin-top: var(--space-8);
+        }
+        
+        /* Website Upgrade Section */
+        .website-upgrade-section {
+            padding: var(--space-20) 0;
+            background: linear-gradient(135deg, var(--gray-900) 0%, #1e3a5f 50%, var(--primary-900) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .website-upgrade-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+        }
+        
+        .website-upgrade-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .website-upgrade-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-6);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .website-upgrade-header {
+            max-width: 800px;
+            margin-bottom: var(--space-12);
+        }
+        
+        .website-upgrade-header h2 {
+            font-size: var(--text-4xl);
+            margin-bottom: var(--space-4);
+            color: var(--white);
+        }
+        
+        .website-upgrade-header h2 span {
+            color: var(--primary-400);
+        }
+        
+        .website-upgrade-header p {
+            font-size: var(--text-lg);
+            color: var(--gray-300);
+            line-height: 1.7;
+        }
+        
+        .website-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-6);
+            margin-bottom: var(--space-12);
+        }
+        
+        .website-feature-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-6);
+            transition: all 0.3s ease;
+        }
+        
+        .website-feature-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .website-feature-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-4);
+        }
+        
+        .website-feature-icon i {
+            width: 28px;
+            height: 28px;
+            color: var(--white);
+        }
+        
+        .website-feature-card h3 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-2);
+            color: var(--white);
+        }
+        
+        .website-feature-card p {
+            font-size: var(--text-sm);
+            color: var(--gray-300);
+            line-height: 1.6;
+        }
+        
+        .ai-search-showcase {
+            background: rgba(0,0,0,0.3);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            margin-bottom: var(--space-10);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .ai-search-showcase h3 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-6);
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .ai-search-showcase h3 i {
+            color: var(--primary-400);
+            margin-right: var(--space-2);
+        }
+        
+        .search-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+        }
+        
+        .search-example {
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+        }
+        
+        .search-example.old {
+            border-left: 3px solid var(--gray-500);
+        }
+        
+        .search-example.new {
+            border-left: 3px solid var(--primary-500);
+        }
+        
+        .search-label {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: var(--space-3);
+            color: var(--gray-400);
+        }
+        
+        .search-example.new .search-label {
+            color: var(--primary-400);
+        }
+        
+        .search-query {
+            font-size: var(--text-base);
+            margin-bottom: var(--space-3);
+            color: var(--white);
+        }
+        
+        .search-result {
+            font-size: var(--text-sm);
+            color: var(--gray-300);
+            line-height: 1.6;
+        }
+        
+        .website-upgrade-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            justify-content: center;
+        }
+        
+        .btn-website-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: var(--text-lg);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-website-cta.primary {
+            background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+            color: var(--white);
+        }
+        
+        .btn-website-cta.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.4);
+        }
+        
+        .btn-website-cta.secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .btn-website-cta.secondary:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        @media (max-width: 992px) {
+            .website-features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .search-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .website-features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-card-ecom {
+                flex: 0 0 280px;
+            }
+            
+            .website-upgrade-header h2 {
+                font-size: var(--text-2xl);
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -133,6 +583,228 @@
             <div class="scroll-mouse">
                 <div class="scroll-wheel"></div>
             </div>
+        </div>
+    </section>
+
+    <!-- Products Carousel Section -->
+    <section class="products-carousel-section" id="products">
+        <div class="container">
+            <div class="carousel-header">
+                <span class="section-tag">AI Tools Store</span>
+                <h2>Powerful AI Tools for Your Business</h2>
+                <p>Ready-to-use AI solutions. No subscriptions. Buy once, own forever.</p>
+            </div>
+        </div>
+        
+        <div class="products-carousel" id="productsCarousel">
+            <!-- Product 1: Flat Lay Pro -->
+            <div class="product-card-ecom">
+                <div class="product-thumbnail flatlay">
+                    <div class="product-thumbnail-icon">
+                        <i data-lucide="camera"></i>
+                    </div>
+                </div>
+                <div class="product-card-content">
+                    <h3>Flat Lay Pro</h3>
+                    <p>Generate professional product photos with AI. Flat lay images, model photoshoots, and auto-listings for e-commerce.</p>
+                    <div class="product-price-ecom">
+                        <span class="currency">PKR</span>
+                        <span class="amount">2,000</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in buying Flat Lay Pro (PKR 2,000). Please provide payment details." class="btn-buy-now" target="_blank">
+                        <i data-lucide="shopping-cart"></i>
+                        Buy Now
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Product 2: Ayzelify -->
+            <div class="product-card-ecom featured">
+                <div class="product-badge-ecom">Most Popular</div>
+                <div class="product-thumbnail ayzelify">
+                    <div class="product-thumbnail-icon">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                </div>
+                <div class="product-card-content">
+                    <h3>Ayzelify</h3>
+                    <p>Complete AI fashion studio. Text to 3D designs, AI model photoshoots, ghost mannequin, and automated tech packs.</p>
+                    <div class="product-price-ecom">
+                        <span class="currency">PKR</span>
+                        <span class="amount">5,000</span>
+                        <span class="period">per 200 images</span>
+                    </div>
+                    
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in buying Ayzelify (PKR 5,000 for 200 images). Please provide payment details." class="btn-buy-now" target="_blank">
+                        <i data-lucide="shopping-cart"></i>
+                        Buy Now
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Product 3: Google Maps Scraper -->
+            <div class="product-card-ecom">
+                <div class="product-thumbnail scraper">
+                    <div class="product-thumbnail-icon">
+                        <i data-lucide="map-pin"></i>
+                    </div>
+                </div>
+                <div class="product-card-content">
+                    <h3>Google Maps Scraper</h3>
+                    <p>Extract unlimited business leads from Google Maps. Get emails, phone numbers, addresses — export to CSV for marketing.</p>
+                    <div class="product-price-ecom">
+                        <span class="currency">PKR</span>
+                        <span class="amount">1,000</span>
+                        <span class="period">/month</span>
+                    </div>
+                    
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in the Google Maps Scraper (PKR 1,000/month). Please provide more details." class="btn-buy-now" target="_blank">
+                        <i data-lucide="shopping-cart"></i>
+                        Buy Now
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Product 4: Website Development -->
+            <div class="product-card-ecom">
+                <div class="product-thumbnail" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
+                    <div class="product-thumbnail-icon">
+                        <i data-lucide="globe"></i>
+                    </div>
+                </div>
+                <div class="product-card-content">
+                    <h3>Custom Website</h3>
+                    <p>Professional website development. Mobile-first, SEO-optimized, e-commerce ready. Starting from basic to advanced B2B.</p>
+                    <div class="product-price-ecom">
+                        <span class="currency">PKR</span>
+                        <span class="amount">15,000</span>
+                        <span class="period">starting</span>
+                    </div>
+                    
+                    <a href="website-development.html" class="btn-buy-now" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        <i data-lucide="arrow-right"></i>
+                        View Pricing
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="carousel-controls">
+            <button class="carousel-btn" onclick="scrollCarousel(-1)">
+                <i data-lucide="chevron-left"></i>
+            </button>
+            <button class="carousel-btn" onclick="scrollCarousel(1)">
+                <i data-lucide="chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="view-all-products">
+            <a href="store.html" class="btn btn-outline btn-lg">
+                <i data-lucide="store"></i>
+                View All Products
+            </a>
+        </div>
+    </section>
+
+    <!-- Website Upgrade Section -->
+    <section class="website-upgrade-section" id="website-upgrade">
+        <div class="container website-upgrade-content">
+            
+            <div class="website-upgrade-badge">
+                <i data-lucide="rocket"></i>
+                Future-Ready Websites for the AI Era
+            </div>
+            
+            <div class="website-upgrade-header">
+                <h2>Is Your Website Ready for <span>AI Search</span>?</h2>
+                <p>Google, ChatGPT, and Perplexity are changing how customers find businesses. Old websites get buried. New websites get discovered. Upgrade to a research-based website built for the new era of AI-powered search.</p>
+            </div>
+            
+            <div class="website-features-grid">
+                <div class="website-feature-card">
+                    <div class="website-feature-icon">
+                        <i data-lucide="brain-circuit"></i>
+                    </div>
+                    <h3>AI-Optimized Content</h3>
+                    <p>Structured data and semantic markup that AI search engines understand. Your content gets featured in AI answers, not just search results.</p>
+                </div>
+                
+                <div class="website-feature-card">
+                    <div class="website-feature-icon">
+                        <i data-lucide="search"></i>
+                    </div>
+                    <h3>Research-Based SEO</h3>
+                    <p>Deep keyword research, competitor analysis, and topic clusters. We don't guess — we build based on data that drives traffic.</p>
+                </div>
+                
+                <div class="website-feature-card">
+                    <div class="website-feature-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3>Lightning Fast Speed</h3>
+                    <p>Sub-3-second load times. Core Web Vitals optimized. Fast sites rank higher and convert 2x better than slow ones.</p>
+                </div>
+                
+                <div class="website-feature-card">
+                    <div class="website-feature-icon">
+                        <i data-lucide="smartphone"></i>
+                    </div>
+                    <h3>Mobile-First Design</span>
+                    <p>70% of B2B buyers research on mobile. Your site looks and works perfectly on every device, every screen size.</p>
+                </div>
+                
+                <div class="website-feature-card">
+                    <div class="website-feature-icon">
+                        <i data-lucide="box"></i>
+                    </div>
+                    <h3>3D Product Configurators</h3>
+                    <p>Let customers customize products in real-time. WebGL-powered 3D visualization for manufacturers and exporters.</p>
+                </div>
+                
+                <div class="website-feature-card">
+                    <div class="website-feature-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <h3>Conversion Optimized</h3>
+                    <p>Every element designed to turn visitors into leads. Strategic CTAs, trust signals, and friction-free inquiry flows.</p>
+                </div>
+            </div>
+            
+            <div class="ai-search-showcase">
+                <h3>
+                    <i data-lucide="sparkles"></i>
+                    What AI Search Sees Matters
+                </h3>
+                
+                <div class="search-comparison">
+                    <div class="search-example old">
+                        <div class="search-label">❌ Old Website</div>
+                        <div class="search-query">"custom apparel manufacturers in Sialkot"</div>
+                        <div class="search-result">Generic description. No structured data. AI can't understand what you do or why you're different. Lost in the noise.</div>
+                    </div>
+                    
+                    <div class="search-example new">
+                        <div class="search-label">✅ Research-Based Website</div>
+                        <div class="search-query">"custom apparel manufacturers in Sialkot"</div>
+                        <div class="search-result">AI understands your expertise, services, location, and unique value. Featured in AI-generated answers. More qualified leads.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="website-upgrade-cta">
+                <a href="website-development.html" class="btn-website-cta primary">
+                    <i data-lucide="rocket"></i>
+                    Upgrade Your Website
+                </a>
+                
+                <a href="b2b-websites.html" class="btn-website-cta secondary">
+                    <i data-lucide="eye"></i>
+                    See Advanced B2B Features
+                </a>
+            </div>
+        
         </div>
     </section>
 
@@ -710,5 +1382,50 @@
     </div>
 
     <script src="js/main.js"></script>
+    
+    <!-- Product Carousel JavaScript -->
+    <script>
+        function scrollCarousel(direction) {
+            const carousel = document.getElementById('productsCarousel');
+            const scrollAmount = 340; // card width + gap
+            carousel.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Auto-scroll carousel every 5 seconds
+        let autoScroll = setInterval(() => {
+            const carousel = document.getElementById('productsCarousel');
+            const scrollAmount = 340;
+            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+            
+            if (carousel.scrollLeft >= maxScroll - 10) {
+                carousel.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }, 5000);
+        
+        // Pause auto-scroll on hover
+        document.getElementById('productsCarousel').addEventListener('mouseenter', () => {
+            clearInterval(autoScroll);
+        });
+        
+        // Resume auto-scroll on mouse leave
+        document.getElementById('productsCarousel').addEventListener('mouseleave', () => {
+            autoScroll = setInterval(() => {
+                const carousel = document.getElementById('productsCarousel');
+                const scrollAmount = 340;
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                
+                if (carousel.scrollLeft >= maxScroll - 10) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
