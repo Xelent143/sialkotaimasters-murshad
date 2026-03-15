@@ -93,7 +93,7 @@
             display: flex; align-items: center; justify-content: center;
             box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
         }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
         .nav-links a {
             color: var(--text-secondary); text-decoration: none;
             font-weight: 500; transition: all 0.3s ease;
@@ -102,6 +102,58 @@
         .nav-links a:hover, .nav-links a.active {
             color: var(--neon-cyan);
             text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+
+        /* Dropdown Menu */
+        .dropdown { position: relative; }
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+        }
+        .dropdown-toggle i {
+            width: 16px; height: 16px;
+            transition: transform 0.3s ease;
+        }
+        .dropdown:hover .dropdown-toggle i { transform: rotate(180deg); }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.5rem;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-menu li { margin: 0; }
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .dropdown-menu a:hover {
+            background: rgba(0, 245, 255, 0.1);
+        }
+        .dropdown-menu i {
+            width: 18px; height: 18px;
+            color: var(--neon-cyan);
         }
         .nav-cta {
             padding: 0.75rem 1.5rem;
@@ -452,9 +504,23 @@
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="services.html" class="active">Services</a></li>
-                <li><a href="website-development.html">Web Development</a></li>
+                <li class="dropdown">
+                    <a href="services.html" class="dropdown-toggle active">
+                        Services
+                        <i data-lucide="chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ai-chatbots.html"><i data-lucide="message-square"></i> AI Chatbots</a></li>
+                        <li><a href="whatsapp-automation.html"><i data-lucide="smartphone"></i> WhatsApp Automation</a></li>
+                        <li><a href="seo-services.html"><i data-lucide="search"></i> SEO Services</a></li>
+                        <li><a href="ecommerce-development.html"><i data-lucide="shopping-cart"></i> E-commerce Dev</a></li>
+                        <li><a href="ai-lead-generation.html"><i data-lucide="users"></i> AI Lead Generation</a></li>
+                        <li><a href="website-development.html"><i data-lucide="globe"></i> Web Development</a></li>
+                        <li><a href="services.html"><i data-lucide="grid"></i> View All Services</a></li>
+                    </ul>
+                </li>
                 <li><a href="store.html">AI Tools</a></li>
+                <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -674,6 +740,109 @@
         </div>
     </section>
 
+    <!-- All Services Grid -->
+    <section id="all-services">
+        <div class="container">
+            <div class="reveal">
+                <span class="service-tag">All Services</span>
+                <h2 class="section-title">Explore Our <span class="highlight">Service Portfolio</span></h2>
+                <p class="section-subtitle">Comprehensive AI and digital solutions tailored for Pakistani businesses</p>
+            </div>
+            
+            <div class="services-grid" style="margin-top: 3rem;">
+                <!-- AI Chatbots -->
+                <a href="ai-chatbots.html" class="service-card reveal" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon">
+                        <i data-lucide="message-square" style="color: var(--neon-cyan);"></i>
+                    </div>
+                    <h3>AI Chatbots</h3>
+                    <p>Intelligent conversational AI for customer support, lead qualification, and 24/7 automated assistance.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check"></i> WhatsApp & Website Integration</li>
+                        <li><i data-lucide="check"></i> Custom Knowledge Base</li>
+                        <li><i data-lucide="check"></i> Multilingual Support</li>
+                        <li><i data-lucide="check"></i> Lead Qualification</li>
+                    </ul>
+                </a>
+
+                <!-- WhatsApp Automation -->
+                <a href="whatsapp-automation.html" class="service-card reveal" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="border-color: rgba(57, 255, 20, 0.3); background: linear-gradient(135deg, rgba(57, 255, 20, 0.1), rgba(0, 245, 255, 0.1));">
+                        <i data-lucide="smartphone" style="color: var(--neon-lime);"></i>
+                    </div>
+                    <h3>WhatsApp Automation</h3>
+                    <p>Automated messaging campaigns, order updates, and customer engagement through WhatsApp Business API.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check" style="color: var(--neon-lime);"></i> Broadcast Messaging</li>
+                        <li><i data-lucide="check" style="color: var(--neon-lime);"></i> Order Notifications</li>
+                        <li><i data-lucide="check" style="color: var(--neon-lime);"></i> Auto-Replies & FAQs</li>
+                        <li><i data-lucide="check" style="color: var(--neon-lime);"></i> CRM Integration</li>
+                    </ul>
+                </a>
+
+                <!-- SEO Services -->
+                <a href="seo-services.html" class="service-card reveal" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="border-color: rgba(255, 0, 255, 0.3); background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 245, 255, 0.1));">
+                        <i data-lucide="search" style="color: var(--neon-magenta);"></i>
+                    </div>
+                    <h3>SEO Services</h3>
+                    <p>AI-powered search engine optimization to rank your business higher on Google and attract organic traffic.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check" style="color: var(--neon-magenta);"></i> Technical SEO Audit</li>
+                        <li><i data-lucide="check" style="color: var(--neon-magenta);"></i> Content Optimization</li>
+                        <li><i data-lucide="check" style="color: var(--neon-magenta);"></i> Local SEO for Pakistan</li>
+                        <li><i data-lucide="check" style="color: var(--neon-magenta);"></i> Rank Tracking</li>
+                    </ul>
+                </a>
+
+                <!-- E-commerce Development -->
+                <a href="ecommerce-development.html" class="service-card reveal" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="border-color: rgba(255, 102, 0, 0.3); background: linear-gradient(135deg, rgba(255, 102, 0, 0.1), rgba(255, 0, 255, 0.1));">
+                        <i data-lucide="shopping-cart" style="color: var(--neon-orange);"></i>
+                    </div>
+                    <h3>E-commerce Development</h3>
+                    <p>Custom online stores with payment integration, inventory management, and AI-powered product recommendations.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check" style="color: var(--neon-orange);"></i> Shopify/WooCommerce</li>
+                        <li><i data-lucide="check" style="color: var(--neon-orange);"></i> Payment Gateway Integration</li>
+                        <li><i data-lucide="check" style="color: var(--neon-orange);"></i> Inventory Management</li>
+                        <li><i data-lucide="check" style="color: var(--neon-orange);"></i> AI Product Recommendations</li>
+                    </ul>
+                </a>
+
+                <!-- AI Lead Generation -->
+                <a href="ai-lead-generation.html" class="service-card reveal" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="border-color: rgba(0, 245, 255, 0.3); background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(57, 255, 20, 0.1));">
+                        <i data-lucide="users" style="color: var(--neon-cyan);"></i>
+                    </div>
+                    <h3>AI Lead Generation</h3>
+                    <p>Automated lead scraping, qualification, and nurturing to fill your sales pipeline with quality prospects.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check"></i> Google Maps Scraping</li>
+                        <li><i data-lucide="check"></i> LinkedIn Automation</li>
+                        <li><i data-lucide="check"></i> Email Finder</li>
+                        <li><i data-lucide="check"></i> CRM Enrichment</li>
+                    </ul>
+                </a>
+
+                <!-- Web Development -->
+                <a href="website-development.html" class="service-card reveal" style="text-decoration: none; color: inherit;">
+                    <div class="service-icon" style="border-color: rgba(255, 0, 255, 0.3); background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(255, 102, 0, 0.1));">
+                        <i data-lucide="globe" style="color: var(--neon-magenta);"></i>
+                    </div>
+                    <h3>Website Development</h3>
+                    <p>Professional, fast-loading websites optimized for AI search and designed to convert visitors into customers.</p>
+                    <ul class="service-features">
+                        <li><i data-lucide="check" style="color: var(--neon-magenta);"></i> AI-Optimized Design</li>
+                        <li><i data-lucide="check" style="color: var(--neon-magenta);"></i> Mobile-First Responsive</li>
+                        <li><i data-lucide="check" style="color: var(--neon-magenta);"></i> 3D Product Configurators</li>
+                        <li><i data-lucide="check" style="color: var(--neon-magenta);"></i> B2B Portal Features</li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
@@ -698,14 +867,19 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="store.html">AI Tools Store</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="services.html#ai-solutions">AI Solutions</a></li>
+                    <li><a href="ai-chatbots.html">AI Chatbots</a></li>
+                    <li><a href="whatsapp-automation.html">WhatsApp Automation</a></li>
+                    <li><a href="seo-services.html">SEO Services</a></li>
+                    <li><a href="ecommerce-development.html">E-commerce Dev</a></li>
+                    <li><a href="ai-lead-generation.html">AI Lead Generation</a></li>
                     <li><a href="website-development.html">Web Development</a></li>
-                    <li><a href="services.html#consulting">AI Consulting</a></li>
                 </ul>
             </div>
             <div class="footer-links">
