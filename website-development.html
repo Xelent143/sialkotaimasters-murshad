@@ -491,34 +491,42 @@
         /* Process Section */
         .process-section {
             padding: var(--space-20) 0;
+            background: var(--gray-50);
         }
         
         .process-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-6);
-            margin-top: var(--space-10);
+            gap: var(--space-8);
+            margin-top: var(--space-12);
+            position: relative;
         }
         
         .process-step {
             text-align: center;
             position: relative;
+            background: var(--white);
+            padding: var(--space-8) var(--space-6);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
         }
         
         .process-step:not(:last-child)::after {
             content: '';
             position: absolute;
-            top: 40px;
-            right: -50%;
-            width: 100%;
+            top: 50%;
+            right: -var(--space-4);
+            width: var(--space-8);
             height: 2px;
-            background: var(--gray-200);
+            background: linear-gradient(90deg, var(--primary-300), var(--primary-500));
+            transform: translateY(-50%);
+            z-index: 0;
         }
         
         .process-number {
-            width: 80px;
-            height: 80px;
-            background: var(--primary-600);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
             color: var(--white);
             border-radius: 50%;
             display: flex;
@@ -526,19 +534,20 @@
             justify-content: center;
             font-size: var(--text-2xl);
             font-weight: 800;
-            margin: 0 auto var(--space-4);
-            position: relative;
-            z-index: 1;
+            margin: 0 auto var(--space-5);
+            box-shadow: var(--shadow-lg);
         }
         
         .process-step h4 {
-            font-size: var(--text-lg);
-            margin-bottom: var(--space-2);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-3);
+            color: var(--gray-900);
         }
         
         .process-step p {
             font-size: var(--text-sm);
             color: var(--gray-600);
+            line-height: 1.6;
         }
         
         /* FAQ Section */
@@ -647,6 +656,7 @@
             
             .process-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-6);
             }
             
             .process-step:not(:last-child)::after,
@@ -662,9 +672,16 @@
             }
             
             .trust-grid,
-            .services-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .process-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .process-step:not(:last-child)::after {
+                display: none;
             }
         }
     </style>
@@ -681,6 +698,7 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="website-development.html" class="nav-link active">Web Development</a></li>
                 <li><a href="store.html" class="nav-link">AI Tools Store</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
