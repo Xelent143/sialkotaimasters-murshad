@@ -1,0 +1,432 @@
+{
+  "templates": {
+    "organization": {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AI Masters Sialkot",
+      "alternateName": "Sialkot AI Masters",
+      "url": "https://sialkot.ai.masters",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sialkot.ai.masters/images/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "Premium AI-powered business solutions for Sialkot's exporters and manufacturers. Specializing in AI chatbots, WhatsApp automation, SEO services, and web development.",
+      "foundingDate": "2024",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sialkot",
+        "addressRegion": "Punjab",
+        "addressCountry": "PK"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "availableLanguage": ["English", "Urdu"]
+      },
+      "sameAs": [
+        "https://facebook.com/aimasterssialkot",
+        "https://linkedin.com/company/aimasterssialkot",
+        "https://twitter.com/aimasterssialkot",
+        "https://instagram.com/aimasterssialkot"
+      ]
+    },
+    
+    "localBusiness": {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "AI Masters Sialkot",
+      "image": "https://sialkot.ai.masters/images/office.jpg",
+      "url": "https://sialkot.ai.masters",
+      "telephone": "+92-XXX-XXXXXXX",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Your Street Address",
+        "addressLocality": "Sialkot",
+        "addressRegion": "Punjab",
+        "postalCode": "51310",
+        "addressCountry": "PK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "32.4945",
+        "longitude": "74.5229"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "10:00",
+          "closes": "16:00"
+        }
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "Sialkot"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Chatbot Development"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "WhatsApp Automation"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SEO Services"
+            }
+          }
+        ]
+      }
+    },
+    
+    "serviceAIChatbots": {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "AI Chatbot Development",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Masters Sialkot",
+        "url": "https://sialkot.ai.masters"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Pakistan"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI Chatbot Packages",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Basic Chatbot",
+            "description": "Simple FAQ chatbot for your website",
+            "price": "25000",
+            "priceCurrency": "PKR"
+          },
+          {
+            "@type": "Offer",
+            "name": "Advanced Chatbot",
+            "description": "AI-powered chatbot with custom training",
+            "price": "50000",
+            "priceCurrency": "PKR"
+          }
+        ]
+      },
+      "description": "Custom AI chatbot development services for businesses in Pakistan. WhatsApp chatbots, website chatbots, and business automation solutions.",
+      "url": "https://sialkot.ai.masters/ai-chatbots.html"
+    },
+    
+    "serviceWhatsAppAutomation": {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "WhatsApp Business Automation",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Masters Sialkot",
+        "url": "https://sialkot.ai.masters"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Pakistan"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "20000",
+        "priceCurrency": "PKR"
+      },
+      "description": "Official WhatsApp Business API setup, bulk messaging, chatbots and auto-replies for exporters and e-commerce businesses in Pakistan.",
+      "url": "https://sialkot.ai.masters/whatsapp-automation.html"
+    },
+    
+    "serviceSEOServices": {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "SEO Services",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Masters Sialkot",
+        "url": "https://sialkot.ai.masters"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Pakistan"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "30000",
+        "priceCurrency": "PKR"
+      },
+      "description": "Professional SEO services for Pakistani businesses. On-page SEO, technical SEO, content optimization, and local SEO for Sialkot exporters.",
+      "url": "https://sialkot.ai.masters/seo-services.html"
+    },
+    
+    "serviceEcommerceDevelopment": {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "E-commerce Website Development",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Masters Sialkot",
+        "url": "https://sialkot.ai.masters"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Pakistan"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "75000",
+        "priceCurrency": "PKR"
+      },
+      "description": "Custom e-commerce website development with payment integration, inventory management, and mobile optimization for Pakistani businesses.",
+      "url": "https://sialkot.ai.masters/ecommerce-development.html"
+    },
+    
+    "serviceLeadGeneration": {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "AI Lead Generation",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Masters Sialkot",
+        "url": "https://sialkot.ai.masters"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Pakistan"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "40000",
+        "priceCurrency": "PKR"
+      },
+      "description": "AI-powered lead generation solutions for B2B exporters and manufacturers in Sialkot. Automated prospecting and qualification.",
+      "url": "https://sialkot.ai.masters/ai-lead-generation.html"
+    },
+    
+    "serviceWebsiteDevelopment": {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Website Development",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Masters Sialkot",
+        "url": "https://sialkot.ai.masters"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Pakistan"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "15000",
+        "priceCurrency": "PKR"
+      },
+      "description": "Professional website development services in Sialkot. B2B manufacturing websites, 3D product configurators, tiered pricing systems.",
+      "url": "https://sialkot.ai.masters/website-development.html"
+    },
+    
+    "article": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Article Title Here",
+      "description": "Article description or excerpt here",
+      "image": "https://sialkot.ai.masters/images/article-image.jpg",
+      "author": {
+        "@type": "Organization",
+        "name": "AI Masters Sialkot",
+        "url": "https://sialkot.ai.masters"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "AI Masters Sialkot",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sialkot.ai.masters/images/logo.png"
+        }
+      },
+      "datePublished": "2025-03-16",
+      "dateModified": "2025-03-16",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://sialkot.ai.masters/blog/article-slug.html"
+      }
+    },
+    
+    "faq": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What AI services do you offer in Sialkot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We offer AI chatbot development, WhatsApp Business automation, SEO services, e-commerce development, AI lead generation, and custom website development tailored for Pakistani exporters and manufacturers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does an AI chatbot cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our AI chatbot development starts from PKR 25,000 for basic FAQ bots, with advanced AI-powered solutions starting from PKR 50,000. Pricing depends on complexity and features required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide WhatsApp Business API setup?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we provide official WhatsApp Business API setup for Pakistani businesses. This includes verification, template approval, chatbot integration, and bulk messaging capabilities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you help with SEO for my export business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! We specialize in SEO for Sialkot-based exporters and manufacturers. Our services include on-page SEO, technical optimization, content strategy, and local SEO to help you rank higher on Google."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to develop a website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard business website typically takes 2-3 weeks. E-commerce websites with custom features may take 4-6 weeks depending on complexity and requirements."
+          }
+        }
+      ]
+    },
+    
+    "breadcrumb": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sialkot.ai.masters/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://sialkot.ai.masters/services.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI Chatbots",
+          "item": "https://sialkot.ai.masters/ai-chatbots.html"
+        }
+      ]
+    },
+    
+    "productFlatLayPro": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Flat Lay Pro",
+      "image": "https://sialkot.ai.masters/images/flat-lay-pro.jpg",
+      "description": "AI-powered product photography tool for e-commerce sellers. Create professional flat lay product images instantly.",
+      "brand": {
+        "@type": "Brand",
+        "name": "AI Masters Sialkot"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://sialkot.ai.masters/store.html",
+        "price": "5000",
+        "priceCurrency": "PKR",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "AI Masters Sialkot"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "127"
+      }
+    },
+    
+    "webSite": {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "AI Masters Sialkot",
+      "url": "https://sialkot.ai.masters",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://sialkot.ai.masters/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    
+    "contactPage": {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact AI Masters Sialkot",
+      "description": "Get in touch with Sialkot AI Masters for AI solutions, web development, and business automation services.",
+      "url": "https://sialkot.ai.masters/contact.html",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "AI Masters Sialkot",
+        "telephone": "+92-XXX-XXXXXXX",
+        "email": "contact@sialkotaimasters.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Sialkot",
+          "addressRegion": "Punjab",
+          "addressCountry": "PK"
+        }
+      }
+    }
+  },
+  
+  "usageInstructions": {
+    "howToUse": [
+      "Copy the relevant JSON-LD template from this file",
+      "Customize the values (URLs, descriptions, prices, dates)",
+      "Wrap in a script tag: \u003cscript type='application/ld+json'\u003e...\u003c/script\u003e",
+      "Place in the \u003chead\u003e section of your HTML page",
+      "Validate using Google's Rich Results Test"
+    ],
+    "recommendedPages": {
+      "homepage": ["organization", "localBusiness", "webSite"],
+      "servicesPage": ["serviceAIChatbots", "serviceWhatsAppAutomation", "serviceSEOServices"],
+      "blogPost": ["article", "breadcrumb"],
+      "faqPage": ["faq", "breadcrumb"],
+      "contactPage": ["contactPage", "breadcrumb"],
+      "storePage": ["productFlatLayPro"]
+    },
+    "validationTool": "https://search.google.com/test/rich-results"
+  }
+}

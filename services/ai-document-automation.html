@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Export Document Automation Sialkot | Customs Documentation Pakistan</title>
+    <meta name="description" content="Automate your export documentation with AI. Generate invoices, packing lists, certificates of origin & WeBOC data entry automatically. Save 10+ hours per shipment. Starting PKR 15,000.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #111111;
+            --neon-cyan: #00f5ff;
+            --neon-magenta: #ff00ff;
+            --neon-lime: #39ff14;
+            --neon-orange: #ff6600;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #222222;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px; height: 20px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            position: fixed; pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        .cursor-follower {
+            width: 40px; height: 40px;
+            background: rgba(0, 245, 255, 0.1);
+            border-radius: 50%;
+            position: fixed; pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.3s ease;
+        }
+
+        /* Canvas Background */
+        #bgCanvas {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+        }
+        .grid-overlay {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1; pointer-events: none;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .nav-container {
+            max-width: 1400px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 0.75rem;
+            text-decoration: none; color: var(--text-primary);
+            font-weight: 700; font-size: 1.25rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            font-weight: 500; transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+
+        /* Dropdown Menu */
+        .dropdown { position: relative; }
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+        }
+        .dropdown-toggle i {
+            width: 16px; height: 16px;
+            transition: transform 0.3s ease;
+        }
+        .dropdown:hover .dropdown-toggle i { transform: rotate(180deg); }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.5rem;
+            min-width: 260px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-menu li { margin: 0; }
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .dropdown-menu a:hover {
+            background: rgba(0, 245, 255, 0.1);
+        }
+        .dropdown-menu a.active {
+            background: rgba(0, 245, 255, 0.15);
+            color: var(--neon-cyan);
+        }
+        .dropdown-menu i {
+            width: 18px; height: 18px;
+            color: var(--neon-cyan);
+        }
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            background: transparent; color: var(--neon-cyan);
+            text-decoration: none; border-radius: 8px;
+            font-weight: 600; border: 1px solid var(--neon-cyan);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .nav-cta:hover {
+            background: rgba(0, 245, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--text-primary); cursor: pointer; }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 10rem 2rem 6rem;
+            position: relative; z-index: 2;
+        }
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 102, 0, 0.1);
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem; color: var(--neon-orange);
+            margin-bottom: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 span { color: var(--neon-orange); text-shadow: 0 0 20px rgba(255, 102, 0, 0.5); }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+        .hero-buttons {
+            display: flex; gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--neon-orange); color: #000;
+            text-decoration: none; border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: none; cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.6);
+        }
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none; border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .btn-secondary:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+        .btn-whatsapp {
+            padding: 1rem 2rem;
+            background: #25D366; color: #fff;
+            text-decoration: none; border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Section Styles */
+        section { padding: 6rem 2rem; position: relative; z-index: 2; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .bg-secondary { background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-tag {
+            display: inline-block; padding: 0.5rem 1rem;
+            background: rgba(255, 102, 0, 0.1);
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            border-radius: 4px;
+            font-size: 0.875rem; color: var(--neon-orange);
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .section-title .highlight {
+            color: var(--neon-orange);
+            text-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+        }
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Problem Section - Before/After */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+        .problem-card.before::before {
+            background: linear-gradient(90deg, #ff3333, #ff6666);
+        }
+        .problem-card.after::before {
+            background: linear-gradient(90deg, var(--neon-lime), var(--neon-cyan));
+        }
+        .problem-card.before {
+            border-color: rgba(255, 51, 51, 0.3);
+        }
+        .problem-card.after {
+            border-color: rgba(57, 255, 20, 0.3);
+        }
+        .problem-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .problem-card.before h3 { color: #ff6666; }
+        .problem-card.after h3 { color: var(--neon-lime); }
+        .problem-list {
+            list-style: none;
+        }
+        .problem-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .problem-list li i {
+            width: 20px; height: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .problem-list li .x-icon { color: #ff6666; }
+        .problem-list li .check-icon { color: var(--neon-lime); }
+
+        /* Cost Impact Box */
+        .cost-impact {
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.1), rgba(255, 0, 0, 0.1));
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .cost-impact h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1rem;
+            color: var(--neon-orange);
+        }
+        .cost-impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .cost-item .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon-orange);
+        }
+        .cost-item .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 102, 0, 0.3);
+            box-shadow: 0 0 40px rgba(255, 102, 0, 0.1);
+        }
+        .feature-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.1), rgba(255, 0, 255, 0.1));
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .feature-icon i { color: var(--neon-orange); }
+        .feature-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* How It Works */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-cyan));
+            z-index: 0;
+        }
+        .step-card {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .step-number {
+            width: 80px; height: 80px;
+            background: var(--bg-card);
+            border: 2px solid var(--neon-orange);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--neon-orange);
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.2);
+        }
+        .step-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--neon-orange);
+            box-shadow: 0 0 40px rgba(255, 102, 0, 0.1);
+        }
+        .pricing-card.featured {
+            border-color: var(--neon-orange);
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.05), var(--bg-card));
+        }
+        .pricing-card.featured::before {
+            content: 'RECOMMENDED';
+            position: absolute; top: 0; right: 0;
+            background: var(--neon-orange); color: #000;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem; font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .pricing-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        .pricing-amount {
+            display: flex; align-items: baseline; gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .pricing-amount .currency { color: var(--text-secondary); }
+        .pricing-amount .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem; font-weight: 700;
+            color: var(--neon-orange);
+            text-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
+        }
+        .pricing-amount .period { color: var(--text-secondary); font-size: 0.875rem; }
+        .pricing-features { list-style: none; margin-bottom: 2rem; }
+        .pricing-features li {
+            display: flex; align-items: center; gap: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .pricing-features li i { color: var(--neon-lime); }
+        .btn-pricing {
+            width: 100%; padding: 0.875rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            text-decoration: none;
+        }
+        .btn-pricing:hover {
+            background: var(--neon-orange);
+            color: #000;
+            border-color: var(--neon-orange);
+        }
+        .pricing-card.featured .btn-pricing {
+            background: var(--neon-orange);
+            color: #000;
+        }
+
+        /* FAQ Section */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover { border-color: rgba(255, 102, 0, 0.3); }
+        .faq-question {
+            padding: 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .faq-question i { transition: transform 0.3s ease; color: var(--neon-orange); }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 102, 0, 0.2);
+        }
+        .testimonial-text {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        .testimonial-author { font-weight: 600; color: var(--neon-orange); }
+        .testimonial-company { color: var(--text-secondary); font-size: 0.875rem; }
+
+        /* CTA Section */
+        .cta-section { text-align: center; }
+        .cta-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .cta-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+        .cta-box p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 2rem 2rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            position: relative; z-index: 2;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+        .footer-social { display: flex; gap: 1rem; }
+        .footer-social a {
+            width: 40px; height: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        .footer-social a:hover {
+            background: rgba(0, 245, 255, 0.1);
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+            transform: translateY(-3px);
+        }
+        .footer-links h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--neon-cyan); }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        .footer-bottom a { color: var(--neon-cyan); text-decoration: none; }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1024px) {
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .steps-grid::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { cursor: auto; }
+            .cursor, .cursor-follower { display: none; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .problem-grid { grid-template-columns: 1fr; }
+            .cost-impact-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .trust-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+    <div class="grid-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="brain-circuit" style="width: 24px; height: 24px; color: #000;"></i>
+                </div>
+                Sialkot AI Masters
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../services.html" class="dropdown-toggle active">
+                        Services
+                        <i data-lucide="chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../ai-chatbots.html"><i data-lucide="message-square"></i> AI Chatbots</a></li>
+                        <li><a href="../whatsapp-automation.html"><i data-lucide="smartphone"></i> WhatsApp Automation</a></li>
+                        <li><a href="ai-document-automation.html" class="active"><i data-lucide="file-text"></i> Document Automation</a></li>
+                        <li><a href="../seo-services.html"><i data-lucide="search"></i> SEO Services</a></li>
+                        <li><a href="../ecommerce-development.html"><i data-lucide="shopping-cart"></i> E-commerce Dev</a></li>
+                        <li><a href="../ai-lead-generation.html"><i data-lucide="users"></i> AI Lead Generation</a></li>
+                        <li><a href="../website-development.html"><i data-lucide="globe"></i> Web Development</a></li>
+                        <li><a href="../services.html"><i data-lucide="grid"></i> View All Services</a></li>
+                    </ul>
+                </li>
+                <li><a href="../store.html">AI Tools</a></li>
+                <li><a href="../blog.html">Blog</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <a href="https://wa.me/923022922242" class="nav-cta" target="_blank">
+                <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                WhatsApp
+            </a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i data-lucide="file-check" style="width: 16px; height: 16px;"></i>
+                AI Document Automation for Exporters
+            </div>
+            <h1>Automate Your Export<br><span>Documentation</span></h1>
+            <p class="hero-subtitle">
+                Save 10+ hours per shipment. Eliminate manual data entry, reduce errors, and never miss a customs deadline again. Built specifically for Sialkot exporters dealing with WeBOC, ANF, and complex EFS documentation requirements.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/923022922242?text=Hi! I'm interested in AI Document Automation (PKR 15,000 setup)." class="btn-primary" target="_blank">
+                    <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
+                    Get Started - PKR 15,000
+                </a>
+                <a href="https://wa.me/923022922242" class="btn-secondary" target="_blank">
+                    <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                    Get Custom Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="bg-secondary" id="problem">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">The Problem</span>
+                <h2 class="section-title">The Export Documentation <span class="highlight">Nightmare</span></h2>
+                <p class="section-subtitle">Every Sialkot exporter knows the pain of manual documentation</p>
+            </div>
+            
+            <div class="problem-grid">
+                <div class="problem-card before reveal">
+                    <h3><i data-lucide="x-circle"></i> Before AI Automation</h3>
+                    <ul class="problem-list">
+                        <li><i data-lucide="x" class="x-icon"></i> Hours spent manually creating invoices and packing lists</li>
+                        <li><i data-lucide="x" class="x-icon"></i> Document attestation requires travel to Lahore</li>
+                        <li><i data-lucide="x" class="x-icon"></i> WeBOC system glitches causing delays</li>
+                        <li><i data-lucide="x" class="x-icon"></i> Double documentation (ANF + Customs)</li>
+                        <li><i data-lucide="x" class="x-icon"></i> Complex EFS scheme requirements</li>
+                        <li><i data-lucide="x" class="x-icon"></i> Risk of errors leading to shipment holds</li>
+                        <li><i data-lucide="x" class="x-icon"></i> Missing deadlines and paying penalties</li>
+                    </ul>
+                </div>
+                
+                <div class="problem-card after reveal">
+                    <h3><i data-lucide="check-circle"></i> With AI Automation</h3>
+                    <ul class="problem-list">
+                        <li><i data-lucide="check" class="check-icon"></i> Documents generated in seconds, not hours</li>
+                        <li><i data-lucide="check" class="check-icon"></i> Electronic attestation where possible</li>
+                        <li><i data-lucide="check" class="check-icon"></i> Automated WeBOC data entry</li>
+                        <li><i data-lucide="check" class="check-icon"></i> Single-entry, multi-system output</li>
+                        <li><i data-lucide="check" class="check-icon"></i> EFS compliance pre-checks built-in</li>
+                        <li><i data-lucide="check" class="check-icon"></i> 99.9% accuracy, zero data entry errors</li>
+                        <li><i data-lucide="check" class="check-icon"></i> Never miss a deadline again</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cost-impact reveal">
+                <h4><i data-lucide="alert-triangle" style="vertical-align: middle; margin-right: 0.5rem;"></i> Cost of Documentation Delays</h4>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Every delayed shipment costs you money. Here's what Sialkot exporters lose:</p>
+                <div class="cost-impact-grid">
+                    <div class="cost-item">
+                        <span class="number">PKR 50K+</span>
+                        <span class="label">Average penalty per missed deadline</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="number">10-15 hrs</span>
+                        <span class="label">Time spent per shipment manually</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="number">30%</span>
+                        <span class="label">Orders lost due to slow documentation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Features -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Solution</span>
+                <h2 class="section-title">AI-Powered <span class="highlight">Document Automation</span></h2>
+                <p class="section-subtitle">Everything you need to streamline your export documentation workflow</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i data-lucide="file-text" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>Auto-Generate Invoices</h3>
+                    <p>Generate professional export invoices automatically from your order data. Supports multiple formats, currencies, and includes all required fields for customs clearance.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i data-lucide="package" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>Auto-Generate Packing Lists</h3>
+                    <p>Create detailed packing lists with weights, dimensions, HS codes, and carton details. Automatically calculates total weight and volume for shipping.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i data-lucide="award" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>Certificate of Origin</h3>
+                    <p>Automate Certificate of Origin generation with pre-filled exporter details, product descriptions, and chamber of commerce requirements.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i data-lucide="database" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>WeBOC Data Entry Automation</h3>
+                    <p>Automatically populate WeBOC (Web-Based One Customs) system fields. Export GD (Goods Declaration) data in the exact format required by Pakistan Customs.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i data-lucide="layout-template" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>Document Templates Library</h3>
+                    <p>Access pre-built templates for common export documents. Customize with your company branding, signatures, and specific requirements.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i data-lucide="shield-check" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3>Compliance Pre-Check</h3>
+                    <p>Validate documents before submission. Check for missing fields, incorrect HS codes, and compliance issues with ANF, WeBOC, and EFS requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="bg-secondary" id="how-it-works">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">How It Works</span>
+                <h2 class="section-title">Simple <span class="highlight">4-Step Process</span></h2>
+                <p class="section-subtitle">From order to customs submission in minutes, not hours</p>
+            </div>
+            
+            <div class="steps-grid reveal">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Upload Order Details</h3>
+                    <p>Upload your order via Excel, CSV, or connect directly from your ERP/CRM system. Our AI reads and understands your order data.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>AI Generates Documents</h3>
+                    <p>Our AI automatically generates all required export documents - invoice, packing list, certificate of origin, and WeBOC data in the correct format.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Review & Download</h3>
+                    <p>Review generated documents in our preview interface. Make quick edits if needed, then download in PDF, Excel, or Word formats.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Submit to Customs</h3>
+                    <p>Export WeBOC-compatible files and submit directly. Print physical documents for attestation if required. Done in minutes!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Pricing</span>
+                <h2 class="section-title">Simple, Transparent <span class="highlight">Pricing</span></h2>
+                <p class="section-subtitle">Affordable automation for every exporter in Sialkot</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card reveal">
+                    <div class="pricing-name">Starter</div>
+                    <div class="pricing-desc">Perfect for small exporters getting started</div>
+                    <div class="pricing-amount">
+                        <span class="currency">PKR</span>
+                        <span class="number">15,000</span>
+                        <span class="period">one-time setup</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Invoice automation</li>
+                        <li><i data-lucide="check"></i> Packing list generation</li>
+                        <li><i data-lucide="check"></i> 5 document templates</li>
+                        <li><i data-lucide="check"></i> Excel/CSV upload</li>
+                        <li><i data-lucide="check"></i> Email support</li>
+                    </ul>
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in the Starter Document Automation package (PKR 15,000)." class="btn-pricing" target="_blank">
+                        Get Started
+                    </a>
+                </div>
+
+                <div class="pricing-card featured reveal">
+                    <div class="pricing-name">Business</div>
+                    <div class="pricing-desc">For growing export businesses</div>
+                    <div class="pricing-amount">
+                        <span class="currency">PKR</span>
+                        <span class="number">15,000</span>
+                        <span class="period">setup + PKR 5,000/mo</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Everything in Starter</li>
+                        <li><i data-lucide="check"></i> Certificate of Origin automation</li>
+                        <li><i data-lucide="check"></i> WeBOC data export</li>
+                        <li><i data-lucide="check"></i> Compliance pre-check</li>
+                        <li><i data-lucide="check"></i> 20+ document templates</li>
+                        <li><i data-lucide="check"></i> Priority WhatsApp support</li>
+                    </ul>
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in the Business Document Automation package (PKR 15,000 + PKR 5,000/mo)." class="btn-pricing" target="_blank">
+                        Get Started
+                    </a>
+                </div>
+
+                <div class="pricing-card reveal">
+                    <div class="pricing-name">Enterprise</div>
+                    <div class="pricing-desc">Custom solution for large exporters</div>
+                    <div class="pricing-amount">
+                        <span class="currency">Custom</span>
+                        <span class="number">Quote</span>
+                        <span class="period">contact us</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Everything in Business</li>
+                        <li><i data-lucide="check"></i> ERP integration (SAP, Oracle, etc.)</li>
+                        <li><i data-lucide="check"></i> Multi-user team access</li>
+                        <li><i data-lucide="check"></i> Custom document templates</li>
+                        <li><i data-lucide="check"></i> API access</li>
+                        <li><i data-lucide="check"></i> Dedicated account manager</li>
+                    </ul>
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in the Enterprise Document Automation package. Please send me a custom quote." class="btn-pricing" target="_blank">
+                        Get Custom Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="bg-secondary" id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">What Sialkot Exporters <span class="highlight">Say</span></h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">"We used to spend 2-3 hours on documentation for every shipment. With this AI tool, it's down to 15 minutes. The WeBOC integration alone saved us countless hours of data entry."</p>
+                    <div class="testimonial-author">Ahmed Hassan</div>
+                    <div class="testimonial-company">Sports Goods Exporter, Sialkot</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">"The compliance pre-check feature caught an error in our HS codes that would have caused a customs delay. This tool paid for itself in the first week just by preventing one penalty."</p>
+                    <div class="testimonial-author">Farhan Ali</div>
+                    <div class="testimonial-company">Surgical Instruments Manufacturer</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">"Finally, a solution built specifically for Pakistani exporters. The EFS scheme support and ANF compliance features are exactly what we needed. Highly recommended!"</p>
+                    <div class="testimonial-author">Usman Tariq</div>
+                    <div class="testimonial-company">Leather Goods Exporter</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Frequently Asked <span class="highlight">Questions</span></h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        Is this legal for customs and WeBOC submission?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, absolutely. Our system generates documents in the standard formats accepted by Pakistan Customs and WeBOC. The documents are legally valid - our AI simply automates the data entry and formatting process that you would otherwise do manually. You remain responsible for the accuracy of the data you input.
+                    </div>
+                </div>
+                
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        What documents are supported?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We support all major export documents including: Commercial Invoices, Packing Lists, Certificates of Origin, Proforma Invoices, Shipping Instructions, WeBOC Goods Declaration (GD) data export, ANF-required documentation, and EFS scheme forms. We can also create custom templates for specific buyer requirements or destination countries.
+                    </div>
+                </div>
+                
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        How long does setup take?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Standard setup takes 2-3 business days. This includes configuring your company details, document templates, and initial training. For Enterprise plans with ERP integration, setup typically takes 1-2 weeks depending on the complexity of your existing systems.
+                    </div>
+                </div>
+                
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        Can it integrate with my existing ERP?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Our Business and Enterprise plans support integration with popular ERP systems including SAP, Oracle, Microsoft Dynamics, and custom-built solutions. We can also work with simpler systems like Excel-based order management through CSV uploads. Contact us for a custom integration assessment.
+                    </div>
+                </div>
+                
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        Do I need technical knowledge to use this?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Not at all. If you can use Excel, you can use our system. The interface is designed for export documentation staff - no IT background required. We provide training and ongoing support to ensure your team is comfortable with the system.
+                    </div>
+                </div>
+                
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        What happens if customs requirements change?
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We actively monitor changes in Pakistan Customs regulations, WeBOC updates, and EFS scheme requirements. When changes occur, we update our templates and notify all customers. Monthly subscribers receive priority updates and template changes at no additional cost.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section bg-secondary">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2>Ready to Automate Your Export Documentation?</h2>
+                <p>Join Sialkot exporters saving 10+ hours per shipment. Get started for just PKR 15,000.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/923022922242?text=Hi! I'm interested in AI Document Automation (PKR 15,000 setup)." class="btn-primary" target="_blank">
+                        <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
+                        Get Started - PKR 15,000
+                    </a>
+                    <a href="https://wa.me/923022922242" class="btn-whatsapp" target="_blank">
+                        <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                        WhatsApp: 0302-2922242
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="../index.html" class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="brain-circuit" style="width: 24px; height: 24px; color: #000;"></i>
+                    </div>
+                    Sialkot AI Masters
+                </a>
+                <p>AI solutions built for Pakistani businesses. From Sialkot to the world.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width: 18px; height: 18px;"></i></a>
+                    <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../store.html">AI Tools Store</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="ai-document-automation.html">Document Automation</a></li>
+                    <li><a href="../ai-chatbots.html">AI Chatbots</a></li>
+                    <li><a href="../whatsapp-automation.html">WhatsApp Automation</a></li>
+                    <li><a href="../seo-services.html">SEO Services</a></li>
+                    <li><a href="../ecommerce-development.html">E-commerce Development</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:saad@sialkotaimasters.com">saad@sialkotaimasters.com</a></li>
+                    <li><a href="tel:+923022922242">0302-2922242</a></li>
+                    <li><a href="https://wa.me/923022922242" target="_blank">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sialkot AI Masters. All rights reserved. A division of <a href="https://www.sialkotsamplemasters.com" target="_blank">Sialkot Sample Masters</a></p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorFollower = document.getElementById('cursorFollower');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            cursorFollower.style.left = followerX - 20 + 'px';
+            cursorFollower.style.top = followerY - 20 + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.borderColor = 'var(--neon-orange)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.borderColor = 'var(--neon-cyan)';
+            });
+        });
+
+        // Background Canvas - Simplified particle network
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = 50;
+        const connectionDistance = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.radius = Math.random() * 2 + 1;
+            }
+
+            update() {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 150) {
+                    const force = (150 - distance) / 150;
+                    const angle = Math.atan2(dy, dx);
+                    this.vx -= Math.cos(angle) * force * 1.5;
+                    this.vy -= Math.sin(angle) * force * 1.5;
+                }
+
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 102, 0, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((particle, i) => {
+                particles.slice(i + 1).forEach(other => {
+                    const dx = particle.x - other.x;
+                    const dy = particle.y - other.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particle.x, particle.y);
+                        ctx.lineTo(other.x, other.y);
+                        ctx.strokeStyle = `rgba(255, 102, 0, ${0.15 * (1 - dist / connectionDistance)})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
