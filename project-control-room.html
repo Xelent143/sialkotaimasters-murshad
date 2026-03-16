@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Command Center | Sialkot AI Masters</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #111111;
+            --bg-hover: #1a1a1a;
+            --neon-cyan: #00f5ff;
+            --neon-magenta: #ff00ff;
+            --neon-lime: #39ff14;
+            --neon-orange: #ff6600;
+            --neon-yellow: #ffff00;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --border-color: #222222;
+            --status-pending: #ffaa00;
+            --status-progress: #00f5ff;
+            --status-done: #39ff14;
+            --status-cancelled: #ff4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 245, 255, 0.02) 2px,
+                rgba(0, 245, 255, 0.02) 4px
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .app-container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-text span {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-tab {
+            padding: 0.6rem 1.25rem;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-tab:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .nav-tab.active {
+            color: var(--neon-cyan);
+            border-color: var(--neon-cyan);
+            background: rgba(0, 245, 255, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Overview Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .stat-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+        }
+
+        .stat-icon.blue { background: rgba(0, 245, 255, 0.1); color: var(--neon-cyan); }
+        .stat-icon.purple { background: rgba(255, 0, 255, 0.1); color: var(--neon-magenta); }
+        .stat-icon.green { background: rgba(57, 255, 20, 0.1); color: var(--neon-lime); }
+        .stat-icon.orange { background: rgba(255, 102, 0, 0.1); color: var(--neon-orange); }
+
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .project-header {
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-color {
+            width: 50px; height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .project-color.cyan { background: linear-gradient(135deg, var(--neon-cyan), rgba(0,245,255,0.3)); color: #000; }
+        .project-color.magenta { background: linear-gradient(135deg, var(--neon-magenta), rgba(255,0,255,0.3)); color: #fff; }
+        .project-color.lime { background: linear-gradient(135deg, var(--neon-lime), rgba(57,255,20,0.3)); color: #000; }
+        .project-color.orange { background: linear-gradient(135deg, var(--neon-orange), rgba(255,102,0,0.3)); color: #fff; }
+
+        .project-title-group {
+            flex: 1;
+        }
+
+        .project-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .project-menu {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+        }
+
+        .project-menu:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .project-body {
+            padding: 1.25rem;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-value {
+            font-weight: 600;
+            color: var(--neon-lime);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.cyan { background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta)); }
+        .progress-fill.magenta { background: linear-gradient(90deg, var(--neon-magenta), var(--neon-orange)); }
+        .progress-fill.lime { background: linear-gradient(90deg, var(--neon-lime), var(--neon-cyan)); }
+        .progress-fill.orange { background: linear-gradient(90deg, var(--neon-orange), var(--neon-magenta)); }
+
+        /* Task Stats Grid */
+        .task-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .task-stat {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+        }
+
+        .task-stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .task-stat-value.pending { color: var(--status-pending); }
+        .task-stat-value.progress { color: var(--status-progress); }
+        .task-stat-value.done { color: var(--status-done); }
+        .task-stat-value.cancelled { color: var(--status-cancelled); }
+
+        .task-stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Recent Tasks */
+        .recent-tasks {
+            margin-top: 1rem;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border-left: 3px solid transparent;
+        }
+
+        .task-item.priority-high { border-left-color: var(--neon-magenta); }
+        .task-item.priority-medium { border-left-color: var(--neon-orange); }
+        .task-item.priority-low { border-left-color: var(--neon-lime); }
+
+        .task-status-icon {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .task-status-icon.pending { background: rgba(255, 170, 0, 0.2); color: var(--status-pending); }
+        .task-status-icon.progress { background: rgba(0, 245, 255, 0.2); color: var(--status-progress); }
+        .task-status-icon.done { background: rgba(57, 255, 20, 0.2); color: var(--status-done); }
+        .task-status-icon.cancelled { background: rgba(255, 68, 68, 0.2); color: var(--status-cancelled); }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .task-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .task-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Activity Log */
+        .activity-log {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .log-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .log-filters {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .log-filter {
+            padding: 0.4rem 0.75rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .log-filter:hover, .log-filter.active {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+
+        .log-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .log-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .log-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .log-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .log-icon.created { background: rgba(0, 245, 255, 0.1); color: var(--neon-cyan); }
+        .log-icon.moved { background: rgba(255, 170, 0, 0.1); color: var(--status-pending); }
+        .log-icon.completed { background: rgba(57, 255, 20, 0.1); color: var(--status-done); }
+        .log-icon.cancelled { background: rgba(255, 68, 68, 0.1); color: var(--status-cancelled); }
+
+        .log-content {
+            flex: 1;
+        }
+
+        .log-text {
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .log-text strong {
+            color: var(--neon-cyan);
+        }
+
+        .log-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .log-project {
+            color: var(--neon-magenta);
+        }
+
+        /* Suggestions Panel */
+        .suggestions-panel {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.05), rgba(255, 0, 255, 0.05));
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .suggestions-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .suggestions-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .suggestions-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .suggestions-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .suggestion-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid var(--neon-cyan);
+        }
+
+        .suggestion-priority {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .suggestion-priority.high {
+            background: rgba(255, 0, 255, 0.2);
+            color: var(--neon-magenta);
+        }
+
+        .suggestion-priority.medium {
+            background: rgba(255, 102, 0, 0.2);
+            color: var(--neon-orange);
+        }
+
+        .suggestion-content {
+            flex: 1;
+        }
+
+        .suggestion-text {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .suggestion-reason {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .suggestion-action {
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--neon-cyan);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .suggestion-action:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 245, 255, 0.1);
+        }
+
+        /* Export Section */
+        .export-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .export-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .export-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .export-desc {
+            color: var(--text-secondary);
+        }
+
+        .export-preview {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .export-preview pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+        }
+
+        .export-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-column { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 1rem; }
+            .nav-tabs { flex-wrap: wrap; justify-content: center; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-grid { grid-template-columns: 1fr; }
+            .task-stats { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="scanlines"></div>
+
+    <div class="app-container">
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="cpu" style="width: 20px; height: 20px; color: #000;"></i>
+                    </div>
+                    <div class="logo-text">Project <span>Command</span> Center</div>
+                </div>
+
+                <nav class="nav-tabs">
+                    <button class="nav-tab active" data-tab="overview">
+                        <i data-lucide="layout-grid" style="width: 16px; height: 16px;"></i>
+                        Overview
+                    </button>
+                    <button class="nav-tab" data-tab="projects">
+                        <i data-lucide="folder" style="width: 16px; height: 16px;"></i>
+                        Projects
+                    </button>
+                    <button class="nav-tab" data-tab="activity">
+                        <i data-lucide="activity" style="width: 16px; height: 16px;"></i>
+                        Activity
+                    </button>
+                    <button class="nav-tab" data-tab="suggestions">
+                        <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+                        Suggestions
+                    </button>
+                    <button class="nav-tab" data-tab="export">
+                        <i data-lucide="file-text" style="width: 16px; height: 16px;"></i>
+                        Export
+                    </button>
+                </nav>
+            </div>
+
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="refreshData()">
+                    <i data-lucide="refresh-cw" style="width: 16px; height: 16px;"></i>
+                    Refresh
+                </button>
+                <button class="btn btn-primary" onclick="exportMarkdown()">
+                    <i data-lucide="download" style="width: 16px; height: 16px;"></i>
+                    Export Report
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Overview Tab -->
+            <div class="tab-content active" id="tab-overview">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i data-lucide="layers" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="stat-value" id="statTotalProjects">0</div>
+                        <div class="stat-label">Total Projects</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i data-lucide="check-square" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="stat-value" id="statTotalTasks">0</div>
+                        <div class="stat-label">Total Tasks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i data-lucide="check-circle" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="stat-value" id="statCompleted">0</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i data-lucide="clock" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="stat-value" id="statPending">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i data-lucide="loader" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="stat-value" id="statInProgress">0</div>
+                        <div class="stat-label">In Progress</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i data-lucide="zap" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="stat-value" id="statCompletionRate">0%</div>
+                        <div class="stat-label">Completion Rate</div>
+                    </div>
+                </div>
+
+                <div class="two-column">
+                    <div class="suggestions-panel">
+                        <div class="suggestions-header">
+                            <div class="suggestions-icon">
+                                <i data-lucide="sparkles" style="width: 20px; height: 20px; color: #fff;"></i>
+                            </div>
+                            <div>
+                                <div class="suggestions-title">AI Suggestions</div>
+                                <div class="suggestions-subtitle">Based on your project activity</div>
+                            </div>
+                        </div>
+                        <div id="suggestionsList">
+                            <!-- Suggestions populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="activity-log">
+                        <div class="log-header">
+                            <div class="log-title">Recent Activity</div>
+                            <div class="log-filters">
+                                <button class="log-filter active" data-filter="all">All</button>
+                                <button class="log-filter" data-filter="created">Created</button>
+                                <button class="log-filter" data-filter="completed">Completed</button>
+                            </div>
+                        </div>
+                        <div class="log-list" id="recentActivityList">
+                            <!-- Activity populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Tab -->
+            <div class="tab-content" id="tab-projects">
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects populated by JS -->
+                </div>
+            </div>
+
+            <!-- Activity Tab -->
+            <div class="tab-content" id="tab-activity">
+                <div class="activity-log">
+                    <div class="log-header">
+                        <div class="log-title">Complete Activity History</div>
+                        <div class="log-filters">
+                            <button class="log-filter active" data-filter="all">All</button>
+                            <button class="log-filter" data-filter="created">Created</button>
+                            <button class="log-filter" data-filter="moved">Moved</button>
+                            <button class="log-filter" data-filter="completed">Completed</button>
+                            <button class="log-filter" data-filter="cancelled">Cancelled</button>
+                        </div>
+                    </div>
+                    <div class="log-list" id="fullActivityList">
+                        <!-- Full activity populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suggestions Tab -->
+            <div class="tab-content" id="tab-suggestions">
+                <div class="suggestions-panel" style="max-width: 800px; margin: 0 auto;">
+                    <div class="suggestions-header">
+                        <div class="suggestions-icon">
+                            <i data-lucide="sparkles" style="width: 20px; height: 20px; color: #fff;"></i>
+                        </div>
+                        <div>
+                            <div class="suggestions-title">All AI Suggestions</div>
+                            <div class="suggestions-subtitle">Prioritized recommendations for your projects</div>
+                        </div>
+                    </div>
+                    <div id="allSuggestionsList">
+                        <!-- All suggestions populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export Tab -->
+            <div class="tab-content" id="tab-export">
+                <div class="export-section" style="max-width: 900px; margin: 0 auto;">
+                    <div class="export-header">
+                        <div class="export-title">Grand Markdown Report</div>
+                        <div class="export-desc">Generate a comprehensive markdown report of all projects, tasks, and activity</div>
+                    </div>
+
+                    <div class="export-preview">
+                        <pre id="markdownPreview">Click "Generate Report" to preview...</pre>
+                    </div>
+
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" onclick="generateMarkdown()">
+                            <i data-lucide="refresh-cw" style="width: 16px; height: 16px;"></i>
+                            Generate Report
+                        </button>
+                        <button class="btn btn-primary" onclick="downloadMarkdown()">
+                            <i data-lucide="download" style="width: 16px; height: 16px;"></i>
+                            Download .md
+                        </button>
+                        <button class="btn btn-secondary" onclick="copyMarkdown()">
+                            <i data-lucide="copy" style="width: 16px; height: 16px;"></i>
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Data Management
+        let projects = JSON.parse(localStorage.getItem('pcc_projects')) || [
+            {
+                id: 'website',
+                name: 'Website Redesign',
+                color: 'cyan',
+                desc: 'Sialkot AI Masters website with neon theme',
+                created: '2026-03-10'
+            },
+            {
+                id: 'flatlay',
+                name: 'Flat Lay Pro',
+                color: 'magenta',
+                desc: 'AI product photography tool for exporters',
+                created: '2026-03-12'
+            },
+            {
+                id: 'crm',
+                name: 'CRM System',
+                color: 'lime',
+                desc: 'Lead management and sales tracking',
+                created: '2026-03-14'
+            },
+            {
+                id: 'content',
+                name: 'Content Strategy',
+                color: 'orange',
+                desc: 'Blog, SEO, and marketing content',
+                created: '2026-03-15'
+            }
+        ];
+
+        let tasks = JSON.parse(localStorage.getItem('pcc_tasks')) || [
+            { id: 1, title: 'Design neon theme homepage', project: 'website', status: 'done', priority: 'high', dueDate: '2026-03-12', created: '2026-03-10' },
+            { id: 2, title: 'Add particle animation', project: 'website', status: 'done', priority: 'medium', dueDate: '2026-03-13', created: '2026-03-11' },
+            { id: 3, title: 'Create service pages', project: 'website', status: 'progress', priority: 'high', dueDate: '2026-03-18', created: '2026-03-12' },
+            { id: 4, title: 'Build AI photoshoot feature', project: 'flatlay', status: 'done', priority: 'high', dueDate: '2026-03-15', created: '2026-03-12' },
+            { id: 5, title: 'Add model selection', project: 'flatlay', status: 'progress', priority: 'medium', dueDate: '2026-03-20', created: '2026-03-14' },
+            { id: 6, title: 'Create pricing page', project: 'flatlay', status: 'pending', priority: 'high', dueDate: '2026-03-22', created: '2026-03-15' },
+            { id: 7, title: 'Import leads from WhatsApp', project: 'crm', status: 'cancelled', priority: 'low', dueDate: '2026-03-16', created: '2026-03-14' },
+            { id: 8, title: 'Set up lead scoring', project: 'crm', status: 'pending', priority: 'medium', dueDate: '2026-03-25', created: '2026-03-15' },
+            { id: 9, title: 'Write export documentation guide', project: 'content', status: 'progress', priority: 'high', dueDate: '2026-03-18', created: '2026-03-16' },
+            { id: 10, title: 'Create SEO keyword clusters', project: 'content', status: 'done', priority: 'high', dueDate: '2026-03-17', created: '2026-03-15' }
+        ];
+
+        let activityLog = JSON.parse(localStorage.getItem('pcc_activity')) || [];
+
+        // Initialize with sample activity if empty
+        if (activityLog.length === 0) {
+            generateSampleActivity();
+        }
+
+        // Tab Navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(`tab-${tab.dataset.tab}`).classList.add('active');
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateOverviewStats();
+            renderProjects();
+            renderSuggestions();
+            renderActivity();
+            generateMarkdown();
+        });
+
+        // Update Overview Stats
+        function updateOverviewStats() {
+            const totalProjects = projects.length;
+            const totalTasks = tasks.length;
+            const completed = tasks.filter(t => t.status === 'done').length;
+            const pending = tasks.filter(t => t.status === 'pending').length;
+            const inProgress = tasks.filter(t => t.status === 'progress').length;
+            const completionRate = totalTasks > 0 ? Math.round((completed / totalTasks) * 100) : 0;
+
+            document.getElementById('statTotalProjects').textContent = totalProjects;
+            document.getElementById('statTotalTasks').textContent = totalTasks;
+            document.getElementById('statCompleted').textContent = completed;
+            document.getElementById('statPending').textContent = pending;
+            document.getElementById('statInProgress').textContent = inProgress;
+            document.getElementById('statCompletionRate').textContent = completionRate + '%';
+        }
+
+        // Render Projects
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            
+            grid.innerHTML = projects.map(project => {
+                const projectTasks = tasks.filter(t => t.project === project.id);
+                const total = projectTasks.length;
+                const completed = projectTasks.filter(t => t.status === 'done').length;
+                const pending = projectTasks.filter(t => t.status === 'pending').length;
+                const inProgress = projectTasks.filter(t => t.status === 'progress').length;
+                const cancelled = projectTasks.filter(t => t.status === 'cancelled').length;
+                const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+                
+                const recentTasks = projectTasks
+                    .sort((a, b) => new Date(b.created) - new Date(a.created))
+                    .slice(0, 3);
+
+                return `
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-color ${project.color}">${project.name.charAt(0)}</div>
+                            <div class="project-title-group">
+                                <div class="project-name">${project.name}</div>
+                                <div class="project-desc">${project.desc}</div>
+                            </div>
+                            <button class="project-menu">
+                                <i data-lucide="more-vertical" style="width: 18px; height: 18px;"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="project-body">
+                            <div class="progress-section">
+                                <div class="progress-header">
+                                    <span class="progress-label">Progress</span>
+                                    <span class="progress-value">${progress}%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill ${project.color}" style="width: ${progress}%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-stats">
+                                <div class="task-stat">
+                                    <div class="task-stat-value pending">${pending}</div>
+                                    <div class="task-stat-label">Pending</div>
+                                </div>
+                                <div class="task-stat">
+                                    <div class="task-stat-value progress">${inProgress}</div>
+                                    <div class="task-stat-label">Progress</div>
+                                </div>
+                                <div class="task-stat">
+                                    <div class="task-stat-value done">${completed}</div>
+                                    <div class="task-stat-label">Done</div>
+                                </div>
+                                <div class="task-stat">
+                                    <div class="task-stat-value cancelled">${cancelled}></div>
+                                    <div class="task-stat-label">Cancelled</div>
+                                </div>
+                            </div>
+                            
+                            ${recentTasks.length > 0 ? `
+                                <div class="recent-tasks">
+                                    <div class="section-title">
+                                        <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+                                        Recent Tasks
+                                    </div>
+                                    <div class="task-list">
+                                        ${recentTasks.map(task => `
+                                            <div class="task-item priority-${task.priority}">
+                                                <div class="task-status-icon ${task.status}">
+                                                    <i data-lucide="${getStatusIcon(task.status)}" style="width: 12px; height: 12px;"></i>
+                                                </div>
+                                                <div class="task-content">
+                                                    <div class="task-title">${task.title}</div>
+                                                    <div class="task-meta">${formatDate(task.dueDate)} • ${task.priority} priority</div>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        // Render Suggestions
+        function renderSuggestions() {
+            const suggestions = generateSuggestions();
+            
+            // Overview suggestions (top 3)
+            const overviewList = document.getElementById('suggestionsList');
+            overviewList.innerHTML = suggestions.slice(0, 3).map(s => `
+                <div class="suggestion-item">
+                    <span class="suggestion-priority ${s.priority}">${s.priority}</span>
+                    <div class="suggestion-content">
+                        <div class="suggestion-text">${s.text}</div>
+                        <div class="suggestion-reason">${s.reason}</div>
+                    </div>
+                    <button class="suggestion-action" onclick="${s.action}">${s.actionText}</button>
+                </div>
+            `).join('');
+
+            // All suggestions
+            const allList = document.getElementById('allSuggestionsList');
+            allList.innerHTML = suggestions.map(s => `
+                <div class="suggestion-item">
+                    <span class="suggestion-priority ${s.priority}">${s.priority}</span>
+                    <div class="suggestion-content">
+                        <div class="suggestion-text">${s.text}</div>
+                        <div class="suggestion-reason">${s.reason}</div>
+                    </div>
+                    <button class="suggestion-action" onclick="${s.action}">${s.actionText}</button>
+                </div>
+            `).join('');
+        }
+
+        // Generate AI Suggestions
+        function generateSuggestions() {
+            const suggestions = [];
+            
+            // Check for overdue tasks
+            const overdue = tasks.filter(t => {
+                if (t.status === 'done' || t.status === 'cancelled') return false;
+                const due = new Date(t.dueDate);
+                const today = new Date();
+                return due < today;
+            });
+            
+            if (overdue.length > 0) {
+                suggestions.push({
+                    priority: 'high',
+                    text: `You have ${overdue.length} overdue task${overdue.length > 1 ? 's' : ''}`,
+                    reason: `Including: ${overdue[0].title}`,
+                    action: "switchTab('projects')",
+                    actionText: 'View Tasks'
+                });
+            }
+            
+            // Check for high priority pending
+            const highPriorityPending = tasks.filter(t => t.status === 'pending' && t.priority === 'high');
+            if (highPriorityPending.length > 0) {
+                suggestions.push({
+                    priority: 'high',
+                    text: `${highPriorityPending.length} high priority tasks pending`,
+                    reason: 'Start with: ' + highPriorityPending[0].title,
+                    action: "switchTab('projects')",
+                    actionText: 'Start Now'
+                });
+            }
+            
+            // Check completion rate
+            const total = tasks.length;
+            const completed = tasks.filter(t => t.status === 'done').length;
+            const rate = total > 0 ? (completed / total) : 0;
+            
+            if (rate < 0.3 && total > 5) {
+                suggestions.push({
+                    priority: 'medium',
+                    text: 'Completion rate is below 30%',
+                    reason: 'Consider breaking down large tasks',
+                    action: "alert('Try splitting large tasks into smaller ones')",
+                    actionText: 'Learn More'
+                });
+            }
+            
+            // Project-specific suggestions
+            const projectsWithNoTasks = projects.filter(p => !tasks.some(t => t.project === p.id));
+            if (projectsWithNoTasks.length > 0) {
+                suggestions.push({
+                    priority: 'low',
+                    text: `${projectsWithNoTasks[0].name} has no tasks`,
+                    reason: 'Add tasks to get started',
+                    action: `addTaskToProject('${projectsWithNoTasks[0].id}')`,
+                    actionText: 'Add Task'
+                });
+            }
+            
+            // Default suggestions
+            if (suggestions.length === 0) {
+                suggestions.push({
+                    priority: 'medium',
+                    text: 'Review completed tasks',
+                    reason: 'Good time to reflect on progress',
+                    action: "switchTab('activity')",
+                    actionText: 'View Activity'
+                });
+            }
+            
+            return suggestions;
+        }
+
+        // Render Activity
+        function renderActivity() {
+            const sortedActivity = activityLog.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            // Recent activity (overview - top 5)
+            const recentList = document.getElementById('recentActivityList');
+            recentList.innerHTML = sortedActivity.slice(0, 5).map(log => createLogItem(log)).join('');
+            
+            // Full activity list
+            const fullList = document.getElementById('fullActivityList');
+            fullList.innerHTML = sortedActivity.map(log => createLogItem(log)).join('');
+
+            lucide.createIcons();
+        }
+
+        function createLogItem(log) {
+            const project = projects.find(p => p.id === log.projectId);
+            const task = tasks.find(t => t.id === log.taskId);
+            
+            const icons = {
+                created: 'plus',
+                moved: 'arrow-right',
+                completed: 'check-circle',
+                cancelled: 'x-circle',
+                edited: 'edit'
+            };
+            
+            const texts = {
+                created: `Created task "${task?.title || 'Unknown'}"`,
+                moved: `Moved "${task?.title || 'Unknown'}" from ${log.fromStatus} to ${log.toStatus}`,
+                completed: `Completed "${task?.title || 'Unknown'}"`,
+                cancelled: `Cancelled "${task?.title || 'Unknown'}"`,
+                edited: `Edited "${task?.title || 'Unknown'}"`
+            };
+
+            return `
+                <div class="log-item" data-type="${log.type}">
+                    <div class="log-icon ${log.type}">
+                        <i data-lucide="${icons[log.type] || 'circle'}" style="width: 18px; height: 18px;"></i>
+                    </div>
+                    <div class="log-content">
+                        <div class="log-text">${texts[log.type] || log.type}</div>
+                        <div class="log-meta">
+                            <span class="log-project">@${project?.id || 'unknown'}</span>
+                            <span>${formatDateTime(log.timestamp)}</span>
+                            <span>by ${log.user}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Generate Markdown Report
+        function generateMarkdown() {
+            const now = new Date().toLocaleString();
+            const totalTasks = tasks.length;
+            const completed = tasks.filter(t => t.status === 'done').length;
+            const completionRate = totalTasks > 0 ? Math.round((completed / totalTasks) * 100) : 0;
+            
+            let markdown = `# Project Command Center Report\n\n`;
+            markdown += `**Generated:** ${now}\n\n`;
+            markdown += `---\n\n`;
+            
+            // Executive Summary
+            markdown += `## Executive Summary\n\n`;
+            markdown += `- **Total Projects:** ${projects.length}\n`;
+            markdown += `- **Total Tasks:** ${totalTasks}\n`;
+            markdown += `- **Completed:** ${completed} (${completionRate}%)\n`;
+            markdown += `- **Pending:** ${tasks.filter(t => t.status === 'pending').length}\n`;
+            markdown += `- **In Progress:** ${tasks.filter(t => t.status === 'progress').length}\n`;
+            markdown += `- **Cancelled:** ${tasks.filter(t => t.status === 'cancelled').length}\n\n`;
+            
+            // Project Details
+            markdown += `## Project Details\n\n`;
+            projects.forEach(project => {
+                const projectTasks = tasks.filter(t => t.project === project.id);
+                const pTotal = projectTasks.length;
+                const pCompleted = projectTasks.filter(t => t.status === 'done').length;
+                const pRate = pTotal > 0 ? Math.round((pCompleted / pTotal) * 100) : 0;
+                
+                markdown += `### ${project.name}\n\n`;
+                markdown += `${project.desc}\n\n`;
+                markdown += `- **Progress:** ${pRate}%\n`;
+                markdown += `- **Total Tasks:** ${pTotal}\n`;
+                markdown += `- **Completed:** ${pCompleted}\n`;
+                markdown += `- **Pending:** ${projectTasks.filter(t => t.status === 'pending').length}\n`;
+                markdown += `- **In Progress:** ${projectTasks.filter(t => t.status === 'progress').length}\n\n`;
+                
+                if (projectTasks.length > 0) {
+                    markdown += `#### Tasks\n\n`;
+                    markdown += `| Task | Status | Priority | Due Date |\n`;
+                    markdown += `|------|--------|----------|----------|\n`;
+                    projectTasks.forEach(task => {
+                        const status = task.status === 'done' ? '✅ Done' : 
+                                      task.status === 'progress' ? '🔄 In Progress' :
+                                      task.status === 'cancelled' ? '❌ Cancelled' : '⏳ Pending';
+                        markdown += `| ${task.title} | ${status} | ${task.priority} | ${task.dueDate} |\n`;
+                    });
+                    markdown += `\n`;
+                }
+            });
+            
+            // Activity History
+            markdown += `## Activity History\n\n`;
+            markdown += `| Action | Task | Project | Date |\n`;
+            markdown += `|--------|------|---------|------|\n`;
+            activityLog.slice(0, 20).forEach(log => {
+                const task = tasks.find(t => t.id === log.taskId);
+                markdown += `| ${log.type} | ${task?.title || 'Unknown'} | ${log.projectId} | ${formatDate(log.timestamp)} |\n`;
+            });
+            markdown += `\n`;
+            
+            // Pending Tasks Summary
+            const pendingTasks = tasks.filter(t => t.status === 'pending');
+            if (pendingTasks.length > 0) {
+                markdown += `## Pending Tasks\n\n`;
+                pendingTasks.forEach(task => {
+                    markdown += `- [ ] ${task.title} (${projects.find(p => p.id === task.project)?.name || 'Unknown'})\n`;
+                });
+                markdown += `\n`;
+            }
+            
+            document.getElementById('markdownPreview').textContent = markdown;
+            return markdown;
+        }
+
+        function downloadMarkdown() {
+            const markdown = generateMarkdown();
+            const blob = new Blob([markdown], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `project-report-${new Date().toISOString().split('T')[0]}.md`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function copyMarkdown() {
+            const markdown = generateMarkdown();
+            navigator.clipboard.writeText(markdown).then(() => {
+                alert('Markdown copied to clipboard!');
+            });
+        }
+
+        // Helper Functions
+        function getStatusIcon(status) {
+            const icons = {
+                pending: 'circle',
+                progress: 'loader',
+                done: 'check',
+                cancelled: 'x'
+            };
+            return icons[status] || 'circle';
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return 'No date';
+            const date = new Date(dateStr);
+            const today = new Date();
+            const diff = Math.ceil((date - today) / (1000 * 60 * 60 * 24));
+            
+            if (diff === 0) return 'Today';
+            if (diff === 1) return 'Tomorrow';
+            if (diff < 0) return `${Math.abs(diff)}d overdue`;
+            if (diff <= 7) return `${diff}d left`;
+            
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        function formatDateTime(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.toLocaleString('en-US', { 
+                month: 'short', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function generateSampleActivity() {
+            const sampleLogs = [
+                { type: 'created', taskId: 1, projectId: 'website', timestamp: '2026-03-10T10:00:00', user: 'Saad' },
+                { type: 'completed', taskId: 1, projectId: 'website', timestamp: '2026-03-12T14:30:00', user: 'Saad' },
+                { type: 'created', taskId: 9, projectId: 'content', timestamp: '2026-03-16T09:00:00', user: 'Saad' },
+                { type: 'moved', taskId: 9, projectId: 'content', fromStatus: 'pending', toStatus: 'progress', timestamp: '2026-03-16T10:00:00', user: 'Saad' },
+                { type: 'completed', taskId: 10, projectId: 'content', timestamp: '2026-03-17T16:00:00', user: 'Saad' },
+                { type: 'created', taskId: 6, projectId: 'flatlay', timestamp: '2026-03-15T11:00:00', user: 'Saad' },
+                { type: 'cancelled', taskId: 7, projectId: 'crm', timestamp: '2026-03-16T08:00:00', user: 'Saad' }
+            ];
+            
+            activityLog = sampleLogs;
+            localStorage.setItem('pcc_activity', JSON.stringify(activityLog));
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        function addTaskToProject(projectId) {
+            alert(`Opening task creation for ${projectId}...`);
+        }
+
+        function refreshData() {
+            updateOverviewStats();
+            renderProjects();
+            renderSuggestions();
+            renderActivity();
+            lucide.createIcons();
+        }
+
+        function exportMarkdown() {
+            downloadMarkdown();
+        }
+
+        // Log activity helper
+        function logActivity(type, taskId, projectId, details = {}) {
+            const log = {
+                id: Date.now().toString(),
+                type,
+                taskId,
+                projectId,
+                timestamp: new Date().toISOString(),
+                user: 'Saad',
+                ...details
+            };
+            activityLog.unshift(log);
+            localStorage.setItem('pcc_activity', JSON.stringify(activityLog));
+            renderActivity();
+        }
+    </script>
+</body>
+</html>
