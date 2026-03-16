@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | NOVA Fashion</title>
+  <meta name="description" content="Shop the latest fashion trends at NOVA. Browse our collection of clothing, accessories, and more.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo">NOVA<span>.</span></a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="shop.html" class="nav-link active">Shop</a></li>
+          <li><a href="index.html#categories" class="nav-link">Collections</a></li>
+          <li><a href="index.html#new" class="nav-link">New Arrivals</a></li>
+          <li><a href="#" class="nav-link">Sale</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="nav-btn" aria-label="Search"><i data-lucide="search" style="width: 22px; height: 22px;"></i></button>
+          <a href="account.html" class="nav-btn" aria-label="Account"><i data-lucide="user" style="width: 22px; height: 22px;"></i></a>
+          <button class="nav-btn" aria-label="Wishlist"><i data-lucide="heart" style="width: 22px; height: 22px;"></i></button>
+          <a href="cart.html" class="nav-btn" aria-label="Cart">
+            <i data-lucide="shopping-bag" style="width: 22px; height: 22px;"></i>
+            <span class="cart-badge">3</span>
+          </a>
+          <button class="mobile-menu-btn nav-btn" aria-label="Menu" onclick="toggleMobileMenu()"><i data-lucide="menu" style="width: 24px; height: 24px;"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html" class="mobile-menu-link">Home</a></li>
+      <li><a href="shop.html" class="mobile-menu-link">Shop</a></li>
+      <li><a href="index.html#categories" class="mobile-menu-link">Collections</a></li>
+      <li><a href="index.html#new" class="mobile-menu-link">New Arrivals</a></li>
+      <li><a href="#" class="mobile-menu-link">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1 class="page-title">Shop All</h1>
+      <nav class="breadcrumbs">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Shop</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Shop Layout -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="shop-layout">
+        <!-- Sidebar Filters -->
+        <aside class="sidebar" id="sidebar">
+          <div class="filter-section">
+            <h3 class="filter-title">Categories</h3>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox" checked><span>All Products</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Women's Fashion</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Men's Fashion</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Accessories</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Footwear</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Jewelry</span></label>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <h3 class="filter-title">Price Range</h3>
+            <div class="price-range">
+              <div class="price-range-slider">
+                <div class="price-range-track" style="left: 0%; width: 70%;"></div>
+                <div class="price-range-thumb" style="left: 0%;"></div>
+                <div class="price-range-thumb" style="left: 70%;"></div>
+              </div>
+              <div class="price-values">
+                <span>$0</span>
+                <span>$500</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <h3 class="filter-title">Size</h3>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox"><span>XS</span></label>
+              <label class="filter-option"><input type="checkbox"><span>S</span></label>
+              <label class="filter-option"><input type="checkbox" checked><span>M</span></label>
+              <label class="filter-option"><input type="checkbox"><span>L</span></label>
+              <label class="filter-option"><input type="checkbox"><span>XL</span></label>
+              <label class="filter-option"><input type="checkbox"><span>XXL</span></label>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <h3 class="filter-title">Color</h3>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox"><span>Black</span></label>
+              <label class="filter-option"><input type="checkbox"><span>White</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Beige</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Pink</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Blue</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Green</span></label>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <h3 class="filter-title">Availability</h3>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox" checked><span>In Stock</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Out of Stock</span></label>
+              <label class="filter-option"><input type="checkbox"><span>Pre-order</span></label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Product Grid -->
+        <div class="shop-content">
+          <div class="shop-toolbar">
+            <button class="mobile-filter-toggle" onclick="toggleSidebar()">
+              <i data-lucide="filter" style="width: 16px; height: 16px;"></i>
+              Filters
+            </button>
+            <span class="results-count">Showing 1-12 of 156 products</span>
+            <select class="sort-select">
+              <option>Sort by: Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Newest First</option>
+              <option>Best Selling</option>
+            </select>
+          </div>
+
+          <div class="masonry-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80" alt="Silk Evening Dress" class="product-image">
+                <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80" alt="Silk Evening Dress Alt" class="product-image-secondary">
+                <div class="product-badges"><span class="badge badge-new">New</span></div>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Silk Evening Dress', 189)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Studio</span>
+                <h3 class="product-name"><a href="product.html">Silk Evening Dress</a></h3>
+                <div class="product-price"><span class="price-current">$189.00</span></div>
+                <div class="product-colors">
+                  <span class="color-swatch" style="background: #1a1a1a;" title="Black"></span>
+                  <span class="color-swatch" style="background: #c4a77d;" title="Champagne"></span>
+                  <span class="color-swatch" style="background: #8b0000;" title="Burgundy"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80" alt="Oversized Blazer" class="product-image">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" alt="Oversized Blazer Alt" class="product-image-secondary">
+                <div class="product-badges"><span class="badge badge-sale">-30%</span></div>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Oversized Blazer', 149)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Studio</span>
+                <h3 class="product-name"><a href="product.html">Oversized Blazer</a></h3>
+                <div class="product-price"><span class="price-current price-sale">$149.00</span><span class="price-original">$215.00</span></div>
+                <div class="product-colors">
+                  <span class="color-swatch" style="background: #2c2c2c;" title="Charcoal"></span>
+                  <span class="color-swatch" style="background: #d4af37;" title="Camel"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80" alt="Leather Tote Bag" class="product-image">
+                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80" alt="Leather Tote Bag Alt" class="product-image-secondary">
+                <div class="product-badges"><span class="badge badge-limited">Limited</span></div>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Leather Tote Bag', 245)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Accessories</span>
+                <h3 class="product-name"><a href="product.html">Leather Tote Bag</a></h3>
+                <div class="product-price"><span class="price-current">$245.00</span></div>
+                <div class="product-colors">
+                  <span class="color-swatch" style="background: #3d2b1f;" title="Brown"></span>
+                  <span class="color-swatch" style="background: #1a1a1a;" title="Black"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80" alt="Knit Cardigan" class="product-image">
+                <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80" alt="Knit Cardigan Alt" class="product-image-secondary">
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Knit Cardigan', 89)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Studio</span>
+                <h3 class="product-name"><a href="product.html">Knit Cardigan</a></h3>
+                <div class="product-price"><span class="price-current">$89.00</span></div>
+                <div class="product-colors">
+                  <span class="color-swatch" style="background: #e8dcc4;" title="Cream"></span>
+                  <span class="color-swatch" style="background: #9ca3af;" title="Grey"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1515347619252-60a6bf4fffce?w=600&q=80" alt="Designer Sunglasses" class="product-image">
+                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80" alt="Designer Sunglasses Alt" class="product-image-secondary">
+                <div class="product-badges"><span class="badge badge-new">New</span></div>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Designer Sunglasses', 175)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Accessories</span>
+                <h3 class="product-name"><a href="product.html">Designer Sunglasses</a></h3>
+                <div class="product-price"><span class="price-current">$175.00</span></div>
+              </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" alt="Graphic Tee" class="product-image">
+                <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600&q=80" alt="Graphic Tee Alt" class="product-image-secondary">
+                <div class="product-badges"><span class="badge badge-sale">-20%</span></div>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Graphic Tee', 45)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Studio</span>
+                <h3 class="product-name"><a href="product.html">Graphic Tee</a></h3>
+                <div class="product-price"><span class="price-current price-sale">$45.00</span><span class="price-original">$56.00</span></div>
+              </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80" alt="Platform Boots" class="product-image">
+                <img src="https://images.unsplash.com/photo-1605812860427-4024433a70fd?w=600&q=80" alt="Platform Boots Alt" class="product-image-secondary">
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Platform Boots', 198)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Footwear</span>
+                <h3 class="product-name"><a href="product.html">Platform Boots</a></h3>
+                <div class="product-price"><span class="price-current">$198.00</span></div>
+              </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Gold Necklace" class="product-image">
+                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80" alt="Gold Necklace Alt" class="product-image-secondary">
+                <div class="product-badges"><span class="badge badge-limited">Limited</span></div>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Gold Necklace', 125)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Jewelry</span>
+                <h3 class="product-name"><a href="product.html">Gold Necklace</a></h3>
+                <div class="product-price"><span class="price-current">$125.00</span></div>
+              </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1551028919-ac76c9028d1e?w=600&q=80" alt="Pleated Skirt" class="product-image">
+                <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0b92d?w=600&q=80" alt="Pleated Skirt Alt" class="product-image-secondary">
+                <div class="product-badges"><span class="badge badge-new">New</span></div>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Pleated Skirt', 78)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Studio</span>
+                <h3 class="product-name"><a href="product.html">Pleated Skirt</a></h3>
+                <div class="product-price"><span class="price-current">$78.00</span></div>
+              </div>
+            </div>
+
+            <!-- Product 10 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&q=80" alt="High-Waist Jeans" class="product-image">
+                <img src="https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&q=80" alt="High-Waist Jeans Alt" class="product-image-secondary">
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('High-Waist Jeans', 95)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Studio</span>
+                <h3 class="product-name"><a href="product.html">High-Waist Jeans</a></h3>
+                <div class="product-price"><span class="price-current">$95.00</span></div>
+              </div>
+            </div>
+
+            <!-- Product 11 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80" alt="Cotton T-Shirt" class="product-image">
+                <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80" alt="Cotton T-Shirt Alt" class="product-image-secondary">
+                <div class="product-badges"><span class="badge badge-sale">-15%</span></div>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Cotton T-Shirt', 35)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Basics</span>
+                <h3 class="product-name"><a href="product.html">Cotton T-Shirt</a></h3>
+                <div class="product-price"><span class="price-current price-sale">$35.00</span><span class="price-original">$42.00</span></div>
+              </div>
+            </div>
+
+            <!-- Product 12 -->
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&q=80" alt="Crossbody Bag" class="product-image">
+                <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80" alt="Crossbody Bag Alt" class="product-image-secondary">
+                <div class="product-badges"><span class="badge badge-new">New</span></div>
+                <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+                <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Crossbody Bag', 165)">Quick Add</button></div>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">NOVA Accessories</span>
+                <h3 class="product-name"><a href="product.html">Crossbody Bag</a></h3>
+                <div class="product-price"><span class="price-current">$165.00</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination" style="display: flex; justify-content: center; gap: var(--space-sm); margin-top: var(--space-3xl);">
+            <a href="#" class="btn btn-outline btn-sm" style="min-width: 40px;"><i data-lucide="chevron-left" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="btn btn-primary btn-sm" style="min-width: 40px;">1</a>
+            <a href="#" class="btn btn-outline btn-sm" style="min-width: 40px;">2</a>
+            <a href="#" class="btn btn-outline btn-sm" style="min-width: 40px;">3</a>
+            <span style="display: flex; align-items: center; padding: 0 var(--space-sm);">...</span>
+            <a href="#" class="btn btn-outline btn-sm" style="min-width: 40px;">13</a>
+            <a href="#" class="btn btn-outline btn-sm" style="min-width: 40px;"><i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick View Modal Placeholder -->
+  <div class="modal-overlay" id="quickViewModal" onclick="closeQuickView(event)">
+    <div class="modal" style="max-width: 900px;" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeQuickView()" aria-label="Close"><i data-lucide="x" style="width: 20px; height: 20px;"></i></button>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl);">
+        <div class="gallery-main" style="height: 400px;">
+          <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80" alt="Product" id="quickViewImage">
+        </div>
+        <div>
+          <span class="product-detail-brand">NOVA Studio</span>
+          <h2 class="product-detail-name" id="quickViewTitle">Silk Evening Dress</h2>
+          <div class="product-detail-price"><span class="price-current" id="quickViewPrice">$189.00</span></div>
+          <p class="product-description">Elegant silk evening dress with a flattering silhouette. Perfect for special occasions and formal events.</p>
+          <div class="product-option">
+            <div class="option-label">Size <span>Size Guide</span></div>
+            <div class="size-options">
+              <button class="size-option">XS</button>
+              <button class="size-option">S</button>
+              <button class="size-option active">M</button>
+              <button class="size-option">L</button>
+              <button class="size-option">XL</button>
+            </div>
+          </div>
+          <div class="product-actions">
+            <div class="quantity-selector">
+              <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+              <input type="number" class="quantity-input" value="1" min="1" id="quickViewQuantity">
+              <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+            </div>
+            <button class="btn btn-primary add-to-cart-btn" onclick="addToCartFromModal()">Add to Cart</button>
+          </div>
+          <a href="product.html" class="view-all" style="margin-top: var(--space-lg); display: inline-block;">View Full Details <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">NOVA<span>.</span></a>
+          <p class="footer-description">Bold, trendy fashion for the modern lifestyle. Express yourself with confidence.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Shop</h4>
+          <ul class="footer-links">
+            <li><a href="shop.html" class="footer-link">All Products</a></li>
+            <li><a href="#" class="footer-link">New Arrivals</a></li>
+            <li><a href="#" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Help</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">FAQs</a></li>
+            <li><a href="#" class="footer-link">Shipping & Returns</a></li>
+            <li><a href="#" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">2025 NOVA Fashion. All rights reserved.</p>
+        <div class="footer-payment">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">PP</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    function toggleWishlist(btn) {
+      btn.classList.toggle('active');
+      const isActive = btn.classList.contains('active');
+      showToast(isActive ? 'Added to wishlist!' : 'Removed from wishlist', isActive ? 'success' : 'default');
+    }
+
+    function quickAdd(productName, price) {
+      showToast(`${productName} added to cart!`, 'success');
+      updateCartBadge(1);
+    }
+
+    function updateCartBadge(change) {
+      const badge = document.querySelector('.cart-badge');
+      badge.textContent = parseInt(badge.textContent) + change;
+    }
+
+    function showToast(message, type = 'default') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle' : 'info'}" style="width: 18px; height: 18px;"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      lucide.createIcons();
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    function updateQuantity(change) {
+      const input = document.getElementById('quickViewQuantity');
+      input.value = Math.max(1, parseInt(input.value) + change);
+    }
+
+    function addToCartFromModal() {
+      showToast('Added to cart!', 'success');
+      closeQuickView();
+      updateCartBadge(1);
+    }
+
+    function closeQuickView(e) {
+      if (!e || e.target.id === 'quickViewModal') {
+        document.getElementById('quickViewModal').classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>

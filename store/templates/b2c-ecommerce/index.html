@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOVA Fashion | Bold & Trendy Lifestyle Brand</title>
+  <meta name="description" content="Discover the latest fashion trends at NOVA. Shop bold, trendy clothing, accessories, and lifestyle products.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo">NOVA<span>.</span></a>
+        
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="shop.html" class="nav-link">Shop</a></li>
+          <li><a href="#categories" class="nav-link">Collections</a></li>
+          <li><a href="#new" class="nav-link">New Arrivals</a></li>
+          <li><a href="#" class="nav-link">Sale</a></li>
+        </ul>
+        
+        <div class="nav-actions">
+          <button class="nav-btn" aria-label="Search">
+            <i data-lucide="search" style="width: 22px; height: 22px;"></i>
+          </button>
+          <button class="nav-btn" aria-label="Account">
+            <i data-lucide="user" style="width: 22px; height: 22px;"></i>
+          </button>
+          <button class="nav-btn" aria-label="Wishlist">
+            <i data-lucide="heart" style="width: 22px; height: 22px;"></i>
+          </button>
+          <a href="cart.html" class="nav-btn" aria-label="Cart">
+            <i data-lucide="shopping-bag" style="width: 22px; height: 22px;"></i>
+            <span class="cart-badge">3</span>
+          </a>
+          <button class="mobile-menu-btn nav-btn" aria-label="Menu" onclick="toggleMobileMenu()">
+            <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html" class="mobile-menu-link">Home</a></li>
+      <li><a href="shop.html" class="mobile-menu-link">Shop</a></li>
+      <li><a href="#categories" class="mobile-menu-link">Collections</a></li>
+      <li><a href="#new" class="mobile-menu-link">New Arrivals</a></li>
+      <li><a href="#" class="mobile-menu-link">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Carousel -->
+  <section class="hero">
+    <!-- Slide 1 -->
+    <div class="hero-slide active">
+      <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&q=80" alt="Fashion Model" class="hero-image">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-subtitle">New Collection 2025</p>
+          <h1 class="hero-title">Define Your Style</h1>
+          <p class="hero-description">Discover bold, trendy pieces that express your unique personality. Shop the latest arrivals now.</p>
+          <div class="hero-cta">
+            <a href="shop.html" class="btn btn-secondary btn-lg">Shop Now</a>
+            <a href="#categories" class="btn btn-outline-light btn-lg">Explore</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&q=80" alt="Fashion Collection" class="hero-image">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-subtitle">Limited Edition</p>
+          <h1 class="hero-title">Spring Essentials</h1>
+          <p class="hero-description">Elevate your wardrobe with our curated selection of must-have pieces for the season.</p>
+          <div class="hero-cta">
+            <a href="shop.html" class="btn btn-secondary btn-lg">Shop Collection</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80" alt="Accessories" class="hero-image">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-subtitle">Accessorize</p>
+          <h1 class="hero-title">Complete The Look</h1>
+          <p class="hero-description">From statement jewelry to designer bags, find the perfect accessories to match your style.</p>
+          <div class="hero-cta">
+            <a href="shop.html" class="btn btn-secondary btn-lg">Shop Accessories</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel Navigation -->
+    <div class="hero-arrows">
+      <button class="hero-arrow" onclick="changeSlide(-1)" aria-label="Previous slide">
+        <i data-lucide="chevron-left" style="width: 24px; height: 24px;"></i>
+      </button>
+      <button class="hero-arrow" onclick="changeSlide(1)" aria-label="Next slide">
+        <i data-lucide="chevron-right" style="width: 24px; height: 24px;"></i>
+      </button>
+    </div>
+
+    <div class="hero-nav">
+      <button class="hero-dot active" onclick="goToSlide(0)" aria-label="Go to slide 1"></button>
+      <button class="hero-dot" onclick="goToSlide(1)" aria-label="Go to slide 2"></button>
+      <button class="hero-dot" onclick="goToSlide(2)" aria-label="Go to slide 3"></button>
+    </div>
+
+    <div class="scroll-indicator">
+      <i data-lucide="chevron-down" style="width: 24px; height: 24px;"></i>
+    </div>
+  </section>
+
+  <!-- Categories (Bento Grid) -->
+  <section class="section categories" id="categories">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Shop by Category</span>
+        <h2 class="text-title">Explore Collections</h2>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Large Item -->
+        <a href="shop.html" class="bento-item large">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" alt="Women's Fashion">
+          <div class="bento-overlay">
+            <h3 class="bento-title">Women's Fashion</h3>
+            <span class="bento-count">248 Products</span>
+          </div>
+        </a>
+
+        <a href="shop.html" class="bento-item wide">
+          <img src="https://images.unsplash.com/photo-1490367532201-b9bc1dc483f6?w=800&q=80" alt="Accessories">
+          <div class="bento-overlay">
+            <h3 class="bento-title">Accessories</h3>
+            <span class="bento-count">126 Products</span>
+          </div>
+        </a>
+
+        <a href="shop.html" class="bento-item">
+          <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&q=80" alt="Men's Fashion">
+          <div class="bento-overlay">
+            <h3 class="bento-title">Men's Fashion</h3>
+            <span class="bento-count">185 Products</span>
+          </div>
+        </a>
+
+        <a href="shop.html" class="bento-item">
+          <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&q=80" alt="Footwear">
+          <div class="bento-overlay">
+            <h3 class="bento-title">Footwear</h3>
+            <span class="bento-count">92 Products</span>
+          </div>
+        </a>
+
+        <a href="shop.html" class="bento-item wide">
+          <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80" alt="Sale">
+          <div class="bento-overlay">
+            <h3 class="bento-title">Sale</h3>
+            <span class="bento-count">Up to 70% Off</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="section" id="new">
+    <div class="container">
+      <div class="products-header">
+        <div>
+          <span class="section-tag">Trending Now</span>
+          <h2 class="text-title">Featured Products</h2>
+        </div>
+        <a href="shop.html" class="view-all">
+          View All <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+        </a>
+      </div>
+
+      <div class="masonry-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80" alt="Silk Evening Dress" class="product-image">
+            <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80" alt="Silk Evening Dress Alt" class="product-image-secondary">
+            
+            <div class="product-badges">
+              <span class="badge badge-new">New</span>
+            </div>
+            
+            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+              <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+            </button>
+            
+            <div class="quick-add">
+              <button class="quick-add-btn" onclick="quickAdd('Silk Evening Dress', 189)">Quick Add</button>
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <span class="product-brand">NOVA Studio</span>
+            <h3 class="product-name"><a href="product.html">Silk Evening Dress</a></h3>
+            <div class="product-price">
+              <span class="price-current">$189.00</span>
+            </div>
+            <div class="product-colors">
+              <span class="color-swatch" style="background: #1a1a1a;" title="Black"></span>
+              <span class="color-swatch" style="background: #c4a77d;" title="Champagne"></span>
+              <span class="color-swatch" style="background: #8b0000;" title="Burgundy"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80" alt="Oversized Blazer" class="product-image">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" alt="Oversized Blazer Alt" class="product-image-secondary">
+            
+            <div class="product-badges">
+              <span class="badge badge-sale">-30%</span>
+            </div>
+            
+            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+              <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+            </button>
+            
+            <div class="quick-add">
+              <button class="quick-add-btn" onclick="quickAdd('Oversized Blazer', 149)">Quick Add</button>
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <span class="product-brand">NOVA Studio</span>
+            <h3 class="product-name"><a href="product.html">Oversized Blazer</a></h3>
+            <div class="product-price">
+              <span class="price-current price-sale">$149.00</span>
+              <span class="price-original">$215.00</span>
+            </div>
+            <div class="product-colors">
+              <span class="color-swatch" style="background: #2c2c2c;" title="Charcoal"></span>
+              <span class="color-swatch" style="background: #d4af37;" title="Camel"></span>
+              <span class="color-swatch" style="background: #4a6741;" title="Sage"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80" alt="Leather Tote Bag" class="product-image">
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80" alt="Leather Tote Bag Alt" class="product-image-secondary">
+            
+            <div class="product-badges">
+              <span class="badge badge-limited">Limited</span>
+            </div>
+            
+            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+              <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+            </button>
+            
+            <div class="quick-add">
+              <button class="quick-add-btn" onclick="quickAdd('Leather Tote Bag', 245)">Quick Add</button>
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <span class="product-brand">NOVA Accessories</span>
+            <h3 class="product-name"><a href="product.html">Leather Tote Bag</a></h3>
+            <div class="product-price">
+              <span class="price-current">$245.00</span>
+            </div>
+            <div class="product-colors">
+              <span class="color-swatch" style="background: #3d2b1f;" title="Brown"></span>
+              <span class="color-swatch" style="background: #1a1a1a;" title="Black"></span>
+              <span class="color-swatch" style="background: #8b4513;" title="Tan"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80" alt="Knit Cardigan" class="product-image">
+            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80" alt="Knit Cardigan Alt" class="product-image-secondary">
+            
+            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+              <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+            </button>
+            
+            <div class="quick-add">
+              <button class="quick-add-btn" onclick="quickAdd('Knit Cardigan', 89)">Quick Add</button>
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <span class="product-brand">NOVA Studio</span>
+            <h3 class="product-name"><a href="product.html">Knit Cardigan</a></h3>
+            <div class="product-price">
+              <span class="price-current">$89.00</span>
+            </div>
+            <div class="product-colors">
+              <span class="color-swatch" style="background: #e8dcc4;" title="Cream"></span>
+              <span class="color-swatch" style="background: #9ca3af;" title="Grey"></span>
+              <span class="color-swatch" style="background: #d4a574;" title="Beige"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1515347619252-60a6bf4fffce?w=600&q=80" alt="Designer Sunglasses" class="product-image">
+            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80" alt="Designer Sunglasses Alt" class="product-image-secondary">
+            
+            <div class="product-badges">
+              <span class="badge badge-new">New</span>
+            </div>
+            
+            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+              <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+            </button>
+            
+            <div class="quick-add">
+              <button class="quick-add-btn" onclick="quickAdd('Designer Sunglasses', 175)">Quick Add</button>
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <span class="product-brand">NOVA Accessories</span>
+            <h3 class="product-name"><a href="product.html">Designer Sunglasses</a></h3>
+            <div class="product-price">
+              <span class="price-current">$175.00</span>
+            </div>
+            <div class="product-colors">
+              <span class="color-swatch" style="background: #1a1a1a;" title="Black"></span>
+              <span class="color-swatch" style="background: #d4af37;" title="Gold"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" alt="Graphic Tee" class="product-image">
+            <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600&q=80" alt="Graphic Tee Alt" class="product-image-secondary">
+            
+            <div class="product-badges">
+              <span class="badge badge-sale">-20%</span>
+            </div>
+            
+            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+              <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+            </button>
+            
+            <div class="quick-add">
+              <button class="quick-add-btn" onclick="quickAdd('Graphic Tee', 45)">Quick Add</button>
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <span class="product-brand">NOVA Studio</span>
+            <h3 class="product-name"><a href="product.html">Graphic Tee</a></h3>
+            <div class="product-price">
+              <span class="price-current price-sale">$45.00</span>
+              <span class="price-original">$56.00</span>
+            </div>
+            <div class="product-colors">
+              <span class="color-swatch" style="background: #ffffff; border: 1px solid #ddd;" title="White"></span>
+              <span class="color-swatch" style="background: #1a1a1a;" title="Black"></span>
+              <span class="color-swatch" style="background: #ec4899;" title="Pink"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80" alt="Platform Boots" class="product-image">
+            <img src="https://images.unsplash.com/photo-1605812860427-4024433a70fd?w=600&q=80" alt="Platform Boots Alt" class="product-image-secondary">
+            
+            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+              <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+            </button>
+            
+            <div class="quick-add">
+              <button class="quick-add-btn" onclick="quickAdd('Platform Boots', 198)">Quick Add</button>
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <span class="product-brand">NOVA Footwear</span>
+            <h3 class="product-name"><a href="product.html">Platform Boots</a></h3>
+            <div class="product-price">
+              <span class="price-current">$198.00</span>
+            </div>
+            <div class="product-colors">
+              <span class="color-swatch" style="background: #1a1a1a;" title="Black"></span>
+              <span class="color-swatch" style="background: #5c3a21;" title="Brown"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Gold Necklace" class="product-image">
+            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80" alt="Gold Necklace Alt" class="product-image-secondary">
+            
+            <div class="product-badges">
+              <span class="badge badge-limited">Limited</span>
+            </div>
+            
+            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+              <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+            </button>
+            
+            <div class="quick-add">
+              <button class="quick-add-btn" onclick="quickAdd('Gold Necklace', 125)">Quick Add</button>
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <span class="product-brand">NOVA Jewelry</span>
+            <h3 class="product-name"><a href="product.html">Gold Necklace</a></h3>
+            <div class="product-price">
+              <span class="price-current">$125.00</span>
+            </div>
+            <div class="product-colors">
+              <span class="color-swatch" style="background: #d4af37;" title="Gold"></span>
+              <span class="color-swatch" style="background: #c0c0c0;" title="Silver"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram Section -->
+  <section class="section instagram">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">@novafashion</span>
+        <h2 class="text-title">Follow Us on Instagram</h2>
+      </div>
+
+      <div class="instagram-grid">
+        <a href="#" class="instagram-item">
+          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80" alt="Instagram 1">
+          <div class="instagram-overlay">
+            <i data-lucide="instagram" class="instagram-icon" style="width: 32px; height: 32px;"></i>
+          </div>
+        </a>
+        <a href="#" class="instagram-item">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&q=80" alt="Instagram 2">
+          <div class="instagram-overlay">
+            <i data-lucide="instagram" class="instagram-icon" style="width: 32px; height: 32px;"></i>
+          </div>
+        </a>
+        <a href="#" class="instagram-item">
+          <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=400&q=80" alt="Instagram 3">
+          <div class="instagram-overlay">
+            <i data-lucide="instagram" class="instagram-icon" style="width: 32px; height: 32px;"></i>
+          </div>
+        </a>
+        <a href="#" class="instagram-item">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&q=80" alt="Instagram 4">
+          <div class="instagram-overlay">
+            <i data-lucide="instagram" class="instagram-icon" style="width: 32px; height: 32px;"></i>
+          </div>
+        </a>
+        <a href="#" class="instagram-item">
+          <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&q=80" alt="Instagram 5">
+          <div class="instagram-overlay">
+            <i data-lucide="instagram" class="instagram-icon" style="width: 32px; height: 32px;"></i>
+          </div>
+        </a>
+        <a href="#" class="instagram-item">
+          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=400&q=80" alt="Instagram 6">
+          <div class="instagram-overlay">
+            <i data-lucide="instagram" class="instagram-icon" style="width: 32px; height: 32px;"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="instagram-cta">
+        <p class="instagram-handle">@novafashion</p>
+        <a href="#" class="btn btn-outline">Follow Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section newsletter">
+    <div class="container-narrow">
+      <span class="section-tag" style="color: var(--secondary);">Stay Updated</span>
+      <h2 class="newsletter-title">Join the NOVA Community</h2>
+      <p class="newsletter-description">Subscribe to receive exclusive offers, early access to new collections, and styling tips.</p>
+      
+      <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+        <input type="email" class="newsletter-input" placeholder="Enter your email" required aria-label="Email address">
+        <button type="submit" class="btn btn-secondary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">NOVA<span>.</span></a>
+          <p class="footer-description">Bold, trendy fashion for the modern lifestyle. Express yourself with confidence.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Pinterest"><i data-lucide="pin" style="width: 18px; height: 18px;"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Shop</h4>
+          <ul class="footer-links">
+            <li><a href="shop.html" class="footer-link">All Products</a></li>
+            <li><a href="#" class="footer-link">New Arrivals</a></li>
+            <li><a href="#" class="footer-link">Best Sellers</a></li>
+            <li><a href="#" class="footer-link">Sale</a></li>
+            <li><a href="#" class="footer-link">Collections</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Help</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">FAQs</a></li>
+            <li><a href="#" class="footer-link">Shipping & Returns</a></li>
+            <li><a href="#" class="footer-link">Size Guide</a></li>
+            <li><a href="#" class="footer-link">Track Order</a></li>
+            <li><a href="#" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press</a></li>
+            <li><a href="#" class="footer-link">Sustainability</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 NOVA Fashion. All rights reserved.</p>
+        <div class="footer-payment">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">PP</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Social Proof Notifications -->
+  <div class="social-proof" id="socialProof">
+    <!-- Populated by JavaScript -->
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
+    }
+
+    // Hero Carousel
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      currentSlide = index;
+    }
+    
+    function changeSlide(direction) {
+      const newIndex = (currentSlide + direction + slides.length) % slides.length;
+      showSlide(newIndex);
+    }
+    
+    function goToSlide(index) {
+      showSlide(index);
+    }
+    
+    // Auto-advance carousel
+    setInterval(() => {
+      changeSlide(1);
+    }, 6000);
+
+    // Wishlist Toggle
+    function toggleWishlist(btn) {
+      btn.classList.toggle('active');
+      const isActive = btn.classList.contains('active');
+      showToast(isActive ? 'Added to wishlist!' : 'Removed from wishlist', isActive ? 'success' : 'default');
+    }
+
+    // Quick Add to Cart
+    function quickAdd(productName, price) {
+      updateCartBadge(1);
+      showToast(`${productName} added to cart!`, 'success');
+    }
+
+    // Update Cart Badge
+    function updateCartBadge(change) {
+      const badge = document.querySelector('.cart-badge');
+      let count = parseInt(badge.textContent) + change;
+      badge.textContent = count;
+    }
+
+    // Toast Notification
+    function showToast(message, type = 'default') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <i data-lucide="${type === 'success' ? 'check-circle' : 'info'}" style="width: 18px; height: 18px;"></i>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      lucide.createIcons();
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Newsletter Subscribe
+    function subscribeNewsletter(e) {
+      e.preventDefault();
+      showToast('Thank you for subscribing!', 'success');
+      e.target.reset();
+    }
+
+    // Social Proof Notifications
+    const socialProofData = [
+      { name: 'Sarah M.', product: 'Silk Evening Dress', time: '2 minutes ago', image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=100&q=80' },
+      { name: 'Emma L.', product: 'Oversized Blazer', time: '5 minutes ago', image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=100&q=80' },
+      { name: 'Jessica K.', product: 'Leather Tote Bag', time: '8 minutes ago', image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=100&q=80' },
+      { name: 'Maria R.', product: 'Gold Necklace', time: '12 minutes ago', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=100&q=80' },
+    ];
+
+    function showSocialProof() {
+      const container = document.getElementById('socialProof');
+      const data = socialProofData[Math.floor(Math.random() * socialProofData.length)];
+      
+      const item = document.createElement('div');
+      item.className = 'social-proof-item';
+      item.innerHTML = `
+        <img src="${data.image}" alt="${data.product}" class="social-proof-image">
+        <div class="social-proof-content">
+          <p class="social-proof-text"><strong>${data.name}</strong> just purchased</p>
+          <p class="social-proof-product">${data.product}</p>
+          <p class="social-proof-time">${data.time}</p>
+        </div>
+      `;
+      
+      container.appendChild(item);
+      
+      setTimeout(() => {
+        item.classList.add('hiding');
+        setTimeout(() => item.remove(), 300);
+      }, 5000);
+    }
+
+    // Show social proof every 30-60 seconds
+    setInterval(() => {
+      if (Math.random() > 0.3) {
+        showSocialProof();
+      }
+    }, 35000);
+
+    // Initial social proof
+    setTimeout(showSocialProof, 5000);
+
+    // Parallax Effect for Hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const heroImage = document.querySelector('.hero-slide.active .hero-image');
+      if (heroImage && scrolled < window.innerHeight) {
+        heroImage.style.transform = `translateY(${scrolled * 0.4}px)`;
+      }
+    });
+  </script>
+</body>
+</html>

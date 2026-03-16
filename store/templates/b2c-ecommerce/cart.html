@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart | NOVA Fashion</title>
+  <meta name="description" content="Review your items and proceed to checkout at NOVA Fashion.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .trust-badges-cart {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xl);
+      padding: var(--space-lg) 0;
+      margin-top: var(--space-xl);
+      flex-wrap: wrap;
+    }
+    .trust-badge-cart {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .trust-badge-cart i {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo">NOVA<span>.</span></a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="shop.html" class="nav-link">Shop</a></li>
+          <li><a href="index.html#categories" class="nav-link">Collections</a></li>
+          <li><a href="index.html#new" class="nav-link">New Arrivals</a></li>
+          <li><a href="#" class="nav-link">Sale</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="nav-btn" aria-label="Search"><i data-lucide="search" style="width: 22px; height: 22px;"></i></button>
+          <a href="account.html" class="nav-btn" aria-label="Account"><i data-lucide="user" style="width: 22px; height: 22px;"></i></a>
+          <button class="nav-btn" aria-label="Wishlist"><i data-lucide="heart" style="width: 22px; height: 22px;"></i></button>
+          <a href="cart.html" class="nav-btn" aria-label="Cart">
+            <i data-lucide="shopping-bag" style="width: 22px; height: 22px;"></i>
+            <span class="cart-badge">3</span>
+          </a>
+          <button class="mobile-menu-btn nav-btn" aria-label="Menu" onclick="toggleMobileMenu()"><i data-lucide="menu" style="width: 24px; height: 24px;"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html" class="mobile-menu-link">Home</a></li>
+      <li><a href="shop.html" class="mobile-menu-link">Shop</a></li>
+      <li><a href="index.html#categories" class="mobile-menu-link">Collections</a></li>
+      <li><a href="index.html#new" class="mobile-menu-link">New Arrivals</a></li>
+      <li><a href="#" class="mobile-menu-link">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- Cart Page -->
+  <section class="cart-page">
+    <div class="container">
+      <!-- Cart Header -->
+      <div class="cart-header">
+        <h1 class="cart-title">Shopping Cart</h1>
+        <span class="cart-count">3 items</span>
+      </div>
+
+      <div class="cart-layout">
+        <!-- Cart Items -->
+        <div class="cart-items-container">
+          <div class="cart-items">
+            <!-- Cart Item 1 -->
+            <div class="cart-item" data-item="1">
+              <div class="cart-item-image">
+                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=200&q=80" alt="Silk Evening Dress">
+              </div>
+              <div class="cart-item-details">
+                <span class="cart-item-brand">NOVA Studio</span>
+                <h3 class="cart-item-name"><a href="product.html">Silk Evening Dress</a></h3>
+                <p class="cart-item-variant">Color: Black / Size: M</p>
+                <div class="cart-item-actions">
+                  <div class="quantity-selector" style="width: fit-content;">
+                    <button class="quantity-btn" onclick="updateCartItemQuantity(1, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1" style="width: 50px;" id="qty-1">
+                    <button class="quantity-btn" onclick="updateCartItemQuantity(1, 1)">+</button>
+                  </div>
+                  <button class="cart-item-action" onclick="removeCartItem(1)">Remove</button>
+                  <button class="cart-item-action" onclick="moveToWishlist(1)">Move to Wishlist</button>
+                </div>
+              </div>
+              <div class="cart-item-price">
+                <span class="price-current">$189.00</span>
+              </div>
+            </div>
+
+            <!-- Cart Item 2 -->
+            <div class="cart-item" data-item="2">
+              <div class="cart-item-image">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=200&q=80" alt="Oversized Blazer">
+              </div>
+              <div class="cart-item-details">
+                <span class="cart-item-brand">NOVA Studio</span>
+                <h3 class="cart-item-name"><a href="product.html">Oversized Blazer</a></h3>
+                <p class="cart-item-variant">Color: Charcoal / Size: S</p>
+                <div class="cart-item-actions">
+                  <div class="quantity-selector" style="width: fit-content;">
+                    <button class="quantity-btn" onclick="updateCartItemQuantity(2, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1" style="width: 50px;" id="qty-2">
+                    <button class="quantity-btn" onclick="updateCartItemQuantity(2, 1)">+</button>
+                  </div>
+                  <button class="cart-item-action" onclick="removeCartItem(2)">Remove</button>
+                  <button class="cart-item-action" onclick="moveToWishlist(2)">Move to Wishlist</button>
+                </div>
+              </div>
+              <div class="cart-item-price">
+                <span class="price-current price-sale">$149.00</span>
+                <span class="price-original" style="font-size: 0.85rem;">$215.00</span>
+              </div>
+            </div>
+
+            <!-- Cart Item 3 -->
+            <div class="cart-item" data-item="3">
+              <div class="cart-item-image">
+                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80" alt="Leather Tote Bag">
+              </div>
+              <div class="cart-item-details">
+                <span class="cart-item-brand">NOVA Accessories</span>
+                <h3 class="cart-item-name"><a href="product.html">Leather Tote Bag</a></h3>
+                <p class="cart-item-variant">Color: Brown</p>
+                <div class="cart-item-actions">
+                  <div class="quantity-selector" style="width: fit-content;">
+                    <button class="quantity-btn" onclick="updateCartItemQuantity(3, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1" style="width: 50px;" id="qty-3">
+                    <button class="quantity-btn" onclick="updateCartItemQuantity(3, 1)">+</button>
+                  </div>
+                  <button class="cart-item-action" onclick="removeCartItem(3)">Remove</button>
+                  <button class="cart-item-action" onclick="moveToWishlist(3)">Move to Wishlist</button>
+                </div>
+              </div>
+              <div class="cart-item-price">
+                <span class="price-current">$245.00</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="shop.html" class="continue-shopping" style="text-align: left; margin-top: var(--space-xl);">
+            <i data-lucide="arrow-left" style="width: 16px; height: 16px; display: inline;"></i> Continue Shopping
+          </a>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart-summary">
+          <h2 class="summary-title">Order Summary</h2>
+          
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="subtotal">$583.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span id="shipping">Free</span>
+          </div>
+          <div class="summary-row">
+            <span>Estimated Tax</span>
+            <span>Calculated at checkout</span>
+          </div>
+          <div class="summary-row total">
+            <span>Estimated Total</span>
+            <span id="total">$583.00</span>
+          </div>
+
+          <a href="checkout.html" class="btn btn-primary btn-lg checkout-btn">Proceed to Checkout</a>
+
+          <!-- Trust Badges -->
+          <div class="trust-badges-cart">
+            <div class="trust-badge-cart">
+              <i data-lucide="shield-check" style="width: 16px; height: 16px;"></i>
+              <span>Secure</span>
+            </div>
+            <div class="trust-badge-cart">
+              <i data-lucide="truck" style="width: 16px; height: 16px;"></i>
+              <span>Free Shipping</span>
+            </div>
+            <div class="trust-badge-cart">
+              <i data-lucide="refresh-ccw" style="width: 16px; height: 16px;"></i>
+              <span>30-Day Returns</span>
+            </div>
+          </div>
+
+          <!-- Promo Code -->
+          <div class="promo-code">
+            <p class="promo-label">Promo Code</p>
+            <div class="promo-input-group">
+              <input type="text" class="promo-input" placeholder="Enter code" id="promoInput">
+              <button class="promo-btn" onclick="applyPromo()">Apply</button>
+            </div>
+            <p id="promoMessage" style="font-size: 0.85rem; margin-top: var(--space-sm); color: var(--success); display: none;">Promo code applied! You saved $50.</p>
+          </div>
+
+          <div style="margin-top: var(--space-xl); padding-top: var(--space-xl); border-top: 1px solid var(--border);">
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: var(--space-md);">We Accept:</p>
+            <div class="footer-payment">
+              <span class="payment-icon">VISA</span>
+              <span class="payment-icon">MC</span>
+              <span class="payment-icon">AMEX</span>
+              <span class="payment-icon">PP</span>
+              <span class="payment-icon">AP</span>
+              <span class="payment-icon">GP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">NOVA<span>.</span></a>
+          <p class="footer-description">Bold, trendy fashion for the modern lifestyle. Express yourself with confidence.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Shop</h4>
+          <ul class="footer-links">
+            <li><a href="shop.html" class="footer-link">All Products</a></li>
+            <li><a href="#" class="footer-link">New Arrivals</a></li>
+            <li><a href="#" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Help</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">FAQs</a></li>
+            <li><a href="#" class="footer-link">Shipping & Returns</a></li>
+            <li><a href="#" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">2025 NOVA Fashion. All rights reserved.</p>
+        <div class="footer-payment">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">PP</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    const prices = { 1: 189, 2: 149, 3: 245 };
+    let discount = 0;
+
+    lucide.createIcons();
+
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    function updateCartItemQuantity(itemId, change) {
+      const input = document.getElementById(`qty-${itemId}`);
+      const newQty = Math.max(1, parseInt(input.value) + change);
+      input.value = newQty;
+      updateCartTotals();
+    }
+
+    function removeCartItem(itemId) {
+      const item = document.querySelector(`.cart-item[data-item="${itemId}"]`);
+      item.style.opacity = '0';
+      setTimeout(() => {
+        item.remove();
+        updateCartCount();
+        updateCartTotals();
+        showToast('Item removed from cart', 'default');
+      }, 300);
+    }
+
+    function moveToWishlist(itemId) {
+      removeCartItem(itemId);
+      showToast('Item moved to wishlist', 'success');
+    }
+
+    function updateCartCount() {
+      const count = document.querySelectorAll('.cart-item').length;
+      document.querySelector('.cart-count').textContent = `${count} item${count !== 1 ? 's' : ''}`;
+      document.querySelector('.cart-badge').textContent = count;
+    }
+
+    function updateCartTotals() {
+      let subtotal = 0;
+      document.querySelectorAll('.cart-item').forEach(item => {
+        const itemId = item.dataset.item;
+        const qty = parseInt(document.getElementById(`qty-${itemId}`).value);
+        subtotal += prices[itemId] * qty;
+      });
+
+      const total = subtotal - discount;
+      document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function applyPromo() {
+      const input = document.getElementById('promoInput');
+      const message = document.getElementById('promoMessage');
+      
+      if (input.value.toUpperCase() === 'NOVA50') {
+        discount = 50;
+        message.style.display = 'block';
+        message.style.color = 'var(--success)';
+        message.textContent = 'Promo code applied! You saved $50.';
+        updateCartTotals();
+        showToast('Promo code applied!', 'success');
+      } else {
+        message.style.display = 'block';
+        message.style.color = 'var(--error)';
+        message.textContent = 'Invalid promo code.';
+        showToast('Invalid promo code', 'error');
+      }
+    }
+
+    function showToast(message, type = 'default') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle' : type === 'error' ? 'alert-circle' : 'info'}" style="width: 18px; height: 18px;"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      lucide.createIcons();
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

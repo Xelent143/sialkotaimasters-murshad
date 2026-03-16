@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Studio Vanguard</title>
+  <meta name="description" content="Learn about Studio Vanguard's story, our team of creative experts, and our commitment to pushing creative boundaries.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <canvas class="webgl-canvas" id="webgl-canvas"></canvas>
+
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-content">
+        <a href="index.html" class="nav-logo">STUDIO VANGUARD</a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-hero-grid">
+        <div class="reveal">
+          <span class="hero-label">Our Story</span>
+          <h1 class="display-1">We Are Studio Vanguard</h1>
+          <p class="lead" style="margin-top: var(--space-6);">A collective of designers, strategists, and technologists united by a shared passion for creating work that matters.</p>
+        </div>
+        <div class="about-hero-stats reveal">
+          <div class="about-stat">
+            <span class="about-stat-number">8</span>
+            <span class="about-stat-label">Years of Excellence</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-number">50+</span>
+            <span class="about-stat-label">Global Clients</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-number">12</span>
+            <span class="about-stat-label">Industry Awards</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-number">24</span>
+            <span class="about-stat-label">Team Members</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section story-section">
+    <div class="container">
+      <div class="grid-asymmetric">
+        <div class="story-image reveal">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800" alt="Our Studio">
+          <div class="story-image-accent"></div>
+        </div>
+        <div class="story-content reveal">
+          <span class="section-label">The Beginning</span>
+          <h2 class="display-2">From Humble Beginnings</h2>
+          <p>Founded in 2016, Studio Vanguard began as a small team of three designers working out of a Brooklyn loft. We believed that great design could transform businesses, and we set out to prove it.</p>
+          <p>Today, we've grown into a full-service creative agency, but our core mission remains unchanged: to craft digital experiences that captivate, engage, and deliver real results for our clients.</p>
+          <p>Our approach combines strategic thinking with creative excellence. We don't just make things beautiful—we make them work. Every project begins with deep research and ends with measurable impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section values-section">
+    <div class="container">
+      <div class="text-center mb-12 reveal">
+        <span class="hero-label">What Drives Us</span>
+        <h2 class="display-2">Our Values</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-icon"><i data-lucide="star" style="width: 28px; height: 28px;"></i></div>
+          <h3>Excellence</h3>
+          <p>We never compromise on quality. Every pixel, every interaction, every line of code is crafted with intention and care.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-icon"><i data-lucide="users" style="width: 28px; height: 28px;"></i></div>
+          <h3>Collaboration</h3>
+          <p>The best work comes from diverse perspectives. We partner closely with our clients, treating their goals as our own.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-icon"><i data-lucide="zap" style="width: 28px; height: 28px;"></i></div>
+          <h3>Innovation</h3>
+          <p>We push boundaries and challenge conventions. Status quo is never good enough when better is possible.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-icon"><i data-lucide="heart" style="width: 28px; height: 28px;"></i></div>
+          <h3>Integrity</h3>
+          <p>We believe in honest communication, fair pricing, and doing what's right—even when no one's watching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section team-section">
+    <div class="container">
+      <div class="text-center mb-12 reveal">
+        <span class="hero-label">The People</span>
+        <h2 class="display-2">Meet Our Team</h2>
+        <p class="lead" style="max-width: 600px; margin: var(--space-4) auto 0;">A diverse group of creative minds dedicated to your success.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-member-card reveal">
+          <div class="team-member-image-wrap">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400" alt="Alex Rivera" class="team-member-photo">
+            <div class="team-member-social">
+              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+              <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+            </div>
+          </div>
+          <div class="team-member-info">
+            <h4>Alex Rivera</h4>
+            <span class="team-role">Founder & Creative Director</span>
+            <p>Visionary leader with 15 years of experience shaping brands for Fortune 500 companies.</p>
+          </div>
+        </div>
+        <div class="team-member-card reveal">
+          <div class="team-member-image-wrap">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400" alt="Maya Chen" class="team-member-photo">
+            <div class="team-member-social">
+              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+              <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+            </div>
+          </div>
+          <div class="team-member-info">
+            <h4>Maya Chen</h4>
+            <span class="team-role">Design Director</span>
+            <p>Award-winning designer specializing in brand identity and visual systems.</p>
+          </div>
+        </div>
+        <div class="team-member-card reveal">
+          <div class="team-member-image-wrap">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400" alt="James Okonkwo" class="team-member-photo">
+            <div class="team-member-social">
+              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+              <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+            </div>
+          </div>
+          <div class="team-member-info">
+            <h4>James Okonkwo</h4>
+            <span class="team-role">Technical Director</span>
+            <p>Full-stack developer passionate about creating seamless digital experiences.</p>
+          </div>
+        </div>
+        <div class="team-member-card reveal">
+          <div class="team-member-image-wrap">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400" alt="Sofia Martinez" class="team-member-photo">
+            <div class="team-member-social">
+              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+              <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+            </div>
+          </div>
+          <div class="team-member-info">
+            <h4>Sofia Martinez</h4>
+            <span class="team-role">Strategy Director</span>
+            <p>Strategic thinker who translates business goals into creative solutions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section awards-section">
+    <div class="container">
+      <div class="grid-asymmetric-reverse">
+        <div class="awards-content reveal">
+          <span class="section-label">Recognition</span>
+          <h2 class="display-2">Awards & Honors</h2>
+          <p class="lead">Our work has been recognized by the industry's most prestigious organizations, but what matters most is the success of our clients.</p>
+          <div class="awards-list">
+            <div class="award-item">
+              <i data-lucide="award" style="width: 24px; height: 24px;"></i>
+              <div>
+                <span class="award-name">Awwwards Site of the Year</span>
+                <span class="award-year">2024</span>
+              </div>
+            </div>
+            <div class="award-item">
+              <i data-lucide="award" style="width: 24px; height: 24px;"></i>
+              <div>
+                <span class="award-name">CSS Design Awards</span>
+                <span class="award-year">2023, 2024</span>
+              </div>
+            </div>
+            <div class="award-item">
+              <i data-lucide="award" style="width: 24px; height: 24px;"></i>
+              <div>
+                <span class="award-name">Webby Awards - Best Visual Design</span>
+                <span class="award-year">2023</span>
+              </div>
+            </div>
+            <div class="award-item">
+              <i data-lucide="award" style="width: 24px; height: 24px;"></i>
+              <div>
+                <span class="award-name">FWA of the Day</span>
+                <span class="award-year">12x Winner</span>
+              </div>
+            </div>
+            <div class="award-item">
+              <i data-lucide="award" style="width: 24px; height: 24px;"></i>
+              <div>
+                <span class="award-name">D&AD Pencil</span>
+                <span class="award-year">2022</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="awards-visual reveal">
+          <div class="awards-grid-visual">
+            <div class="award-badge"><i data-lucide="trophy" style="width: 40px; height: 40px;"></i></div>
+            <div class="award-badge secondary"><i data-lucide="medal" style="width: 32px; height: 32px;"></i></div>
+            <div class="award-badge secondary"><i data-lucide="crown" style="width: 32px; height: 32px;"></i></div>
+            <div class="award-badge"><i data-lucide="gem" style="width: 40px; height: 40px;"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section timeline-section">
+    <div class="container">
+      <div class="text-center mb-12 reveal">
+        <span class="hero-label">Our Journey</span>
+        <h2 class="display-2">Timeline</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <span class="timeline-year">2016</span>
+          <h3>The Beginning</h3>
+          <p>Studio Vanguard founded in Brooklyn with a team of three and a bold vision.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <span class="timeline-year">2018</span>
+          <h3>First Major Win</h3>
+          <p>Landed our first Fortune 500 client and moved to a larger studio space.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <span class="timeline-year">2020</span>
+          <h3>Going Global</h3>
+          <p>Expanded our team to 12 and opened our London office.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <span class="timeline-year">2022</span>
+          <h3>Award Recognition</h3>
+          <p>Won our first D&AD Pencil and were named Agency of the Year.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <span class="timeline-year">2024</span>
+          <h3>Today & Beyond</h3>
+          <p>A team of 24, working with clients worldwide, pushing creative boundaries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section culture-section">
+    <div class="container">
+      <div class="text-center mb-12 reveal">
+        <span class="hero-label">Work Environment</span>
+        <h2 class="display-2">Studio Culture</h2>
+      </div>
+      <div class="culture-grid">
+        <div class="culture-card large reveal">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800" alt="Team Collaboration">
+          <div class="culture-card-overlay">
+            <h3>Collaborative Spirit</h3>
+            <p>Great ideas come from everywhere. Our open studio layout encourages spontaneous collaboration and creative exchange.</p>
+          </div>
+        </div>
+        <div class="culture-card reveal">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600" alt="Learning Environment">
+          <div class="culture-card-overlay">
+            <h3>Continuous Learning</h3>
+            <p>Weekly workshops and conference budgets for every team member.</p>
+          </div>
+        </div>
+        <div class="culture-card reveal">
+          <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600" alt="Team Events">
+          <div class="culture-card-overlay">
+            <h3>Work-Life Balance</h3>
+            <p>Flexible schedules and regular team retreats keep us energized.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="cta-title display-2">Join Our <span class="text-gradient">Team</span></h2>
+        <p class="cta-description lead">We're always looking for talented individuals who share our passion for exceptional work.</p>
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          View Open Positions
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">STUDIO VANGUARD</a>
+          <p class="footer-description">Award-winning creative agency crafting immersive digital experiences that captivate audiences and drive results.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Dribbble"><i data-lucide="dribbble" style="width: 18px; height: 18px;"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Services</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Brand Identity</a></li>
+            <li><a href="services.html">Web Design</a></li>
+            <li><a href="services.html">UI/UX Design</a></li>
+            <li><a href="services.html">Development</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@studiovanguard.com">hello@studiovanguard.com</a></li>
+            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+            <li>123 Creative Street<br>New York, NY 10001</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Studio Vanguard. All rights reserved.</p>
+        <p class="footer-credits">Designed with passion</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .about-hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding-top: 140px;
+      padding-bottom: var(--space-16);
+    }
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+    }
+    @media (max-width: 1024px) {
+      .about-hero-grid { grid-template-columns: 1fr; }
+    }
+    .about-hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+    }
+    .about-stat {
+      text-align: center;
+      padding: var(--space-8);
+      background: var(--surface);
+      border-radius: var(--border-radius-lg);
+    }
+    .about-stat-number {
+      font-family: var(--font-heading);
+      font-size: var(--text-5xl);
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+    .about-stat-label {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .story-section { background: var(--surface); }
+    .story-image {
+      position: relative;
+      border-radius: var(--border-radius-xl);
+      overflow: hidden;
+    }
+    .story-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .story-image-accent {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      border: 2px solid var(--accent);
+      border-radius: var(--border-radius-xl);
+      z-index: -1;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: var(--space-4);
+    }
+    .story-content h2 { margin-bottom: var(--space-6); }
+    .story-content p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--space-4);
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+    }
+    @media (max-width: 1024px) {
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+    .value-card {
+      padding: var(--space-8);
+      background: var(--surface);
+      border-radius: var(--border-radius-lg);
+      text-align: center;
+      transition: transform var(--transition-base);
+    }
+    .value-card:hover { transform: translateY(-8px); }
+    .value-icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--background);
+      border-radius: 50%;
+      margin: 0 auto var(--space-6);
+      color: var(--accent);
+    }
+    .value-card h3 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-3);
+    }
+    .value-card p {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    .team-section { background: var(--surface); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+    }
+    @media (max-width: 1024px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+    .team-member-card {
+      background: var(--background);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: transform var(--transition-base);
+    }
+    .team-member-card:hover { transform: translateY(-8px); }
+    .team-member-image-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .team-member-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+    .team-member-card:hover .team-member-photo { transform: scale(1.05); }
+    .team-member-social {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--space-4);
+      display: flex;
+      gap: var(--space-3);
+      background: linear-gradient(transparent, rgba(10,10,10,0.9));
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+    .team-member-card:hover .team-member-social { opacity: 1; }
+    .team-member-social a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      border-radius: 50%;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+    .team-member-social a:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+    .team-member-info { padding: var(--space-6); }
+    .team-member-info h4 {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-1);
+    }
+    .team-role {
+      display: block;
+      font-size: var(--text-sm);
+      color: var(--accent);
+      margin-bottom: var(--space-3);
+    }
+    .team-member-info p {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    .awards-section { background: var(--surface); }
+    .awards-content h2 { margin-bottom: var(--space-4); }
+    .awards-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-top: var(--space-8);
+    }
+    .award-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-4);
+      background: var(--background);
+      border-radius: var(--border-radius);
+    }
+    .award-item i { color: var(--accent); }
+    .award-item > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .award-name { font-weight: 500; }
+    .award-year {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+    .awards-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .awards-grid-visual {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+    .award-badge {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      border-radius: var(--border-radius-lg);
+      color: var(--primary);
+    }
+    .award-badge.secondary {
+      width: 80px;
+      height: 80px;
+      background: var(--surface-lighter);
+      color: var(--secondary);
+    }
+    .timeline-section { background: var(--background); }
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--surface-lighter);
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: var(--space-12);
+      padding-bottom: var(--space-12);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .timeline-year {
+      font-family: var(--font-heading);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: var(--space-1);
+      display: block;
+    }
+    .timeline-item h3 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-2);
+    }
+    .timeline-item p {
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+    .culture-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      grid-template-rows: repeat(2, 280px);
+      gap: var(--space-4);
+    }
+    @media (max-width: 768px) {
+      .culture-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+    }
+    .culture-card {
+      position: relative;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+    }
+    .culture-card.large {
+      grid-row: span 2;
+    }
+    .culture-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .culture-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 30%, rgba(10,10,10,0.95) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-6);
+    }
+    .culture-card-overlay h3 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-2);
+    }
+    .culture-card-overlay p {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+  </style>
+
+  <script>
+    lucide.createIcons();
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        setTimeout(() => {
+          cursorFollower.style.left = e.clientX + 'px';
+          cursorFollower.style.top = e.clientY + 'px';
+        }, 100);
+      });
+      const hoverElements = document.querySelectorAll('a, button, .team-member-card, .culture-card');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.add('hover');
+          cursorFollower.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('hover');
+          cursorFollower.classList.remove('hover');
+        });
+      });
+    }
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 100));
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    const canvas = document.getElementById('webgl-canvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    const particles = [];
+    for (let i = 0; i < 25; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.1
+      });
+    }
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 107, 107, ${p.opacity})`;
+        ctx.fill();
+      });
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 107, 107, ${0.1 * (1 - distance / 150)})`;
+            ctx.stroke();
+          }
+        });
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  </script>
+</body>
+</html>

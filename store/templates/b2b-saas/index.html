@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Example SaaS - Enterprise-grade B2B solutions for modern businesses. Scale faster with our powerful platform.">
+  <title>Example SaaS - Enterprise Solutions for Modern Business</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo" aria-label="Example SaaS Home">
+        <div class="logo-icon">
+          <i data-lucide="zap"></i>
+        </div>
+        <span>Example SaaS</span>
+      </a>
+      
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-ghost">Sign In</a>
+        <a href="pricing.html" class="btn btn-primary btn-magnetic">Get Started</a>
+      </div>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="menu">
+      <div class="container">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+          <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <!-- Hero Section with Bento Grid -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg"></div>
+      <div class="container">
+        <div class="hero-content reveal">
+          <div class="badge">
+            <i data-lucide="sparkles"></i>
+            <span>New: AI-Powered Analytics</span>
+          </div>
+          
+          <h1 id="hero-title" class="hero-title">
+            Scale Your Business with Enterprise-Grade Solutions
+          </h1>
+          
+          <p class="hero-description">
+            Streamline operations, boost productivity, and drive growth with our comprehensive B2B platform. Trusted by 500+ enterprises worldwide.
+          </p>
+          
+          <div class="hero-cta">
+            <a href="pricing.html" class="btn btn-primary btn-lg btn-magnetic btn-icon">
+              Start Free Trial
+              <i data-lucide="arrow-right"></i>
+            </a>
+            <a href="features.html" class="btn btn-secondary btn-lg">
+              Explore Features
+            </a>
+          </div>
+          
+          <div class="hero-stats stagger-children">
+            <div class="hero-stat">
+              <div class="hero-stat-value">500+</div>
+              <div class="hero-stat-label">Enterprise Clients</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">99.9%</div>
+              <div class="hero-stat-label">Uptime SLA</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">$2B+</div>
+              <div class="hero-stat-label">Revenue Processed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Grid Feature Showcase -->
+    <section class="section" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Features</span>
+          <h2 id="features-title" class="section-title">Everything You Need to Succeed</h2>
+          <p class="section-description">
+            Powerful tools designed to transform how your business operates, collaborates, and grows.
+          </p>
+        </div>
+        
+        <div class="bento-grid bento-hero reveal">
+          <!-- Main Feature Card -->
+          <div class="bento-item bento-item-featured">
+            <div class="bento-icon">
+              <i data-lucide="bar-chart-3"></i>
+            </div>
+            <h3 class="bento-title">Advanced Analytics Dashboard</h3>
+            <p class="bento-description">
+              Get real-time insights into your business performance with our AI-powered analytics. Track KPIs, visualize trends, and make data-driven decisions with confidence.
+            </p>
+            <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: var(--radius-xl);">
+              <!-- Analytics Preview Placeholder -->
+              <div style="display: flex; gap: 1rem; align-items: flex-end; height: 100px;">
+                <div style="flex: 1; height: 40%; background: var(--primary-200); border-radius: 4px;"></div>
+                <div style="flex: 1; height: 70%; background: var(--primary); border-radius: 4px;"></div>
+                <div style="flex: 1; height: 55%; background: var(--primary-300); border-radius: 4px;"></div>
+                <div style="flex: 1; height: 85%; background: var(--accent); border-radius: 4px;"></div>
+                <div style="flex: 1; height: 60%; background: var(--primary-400); border-radius: 4px;"></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Feature Card 2 -->
+          <div class="bento-item">
+            <div class="bento-icon bento-icon-secondary">
+              <i data-lucide="shield-check"></i>
+            </div>
+            <h3 class="bento-title">Enterprise Security</h3>
+            <p class="bento-description">
+              Bank-grade encryption, SOC 2 compliance, and advanced threat protection keep your data safe.
+            </p>
+          </div>
+          
+          <!-- Feature Card 3 -->
+          <div class="bento-item">
+            <div class="bento-icon bento-icon-accent">
+              <i data-lucide="workflow"></i>
+            </div>
+            <h3 class="bento-title">Workflow Automation</h3>
+            <p class="bento-description">
+              Automate repetitive tasks and streamline processes with our intuitive workflow builder.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Secondary Bento Grid -->
+        <div class="bento-grid bento-4-col reveal" style="margin-top: 1.5rem;">
+          <div class="bento-item">
+            <div class="bento-icon" style="width: 40px; height: 40px;">
+              <i data-lucide="users" style="width: 20px; height: 20px;"></i>
+            </div>
+            <h4 class="bento-title" style="font-size: 1rem;">Team Collaboration</h4>
+            <p class="bento-description" style="font-size: 0.8125rem;">Real-time collaboration tools for distributed teams.</p>
+          </div>
+          
+          <div class="bento-item">
+            <div class="bento-icon bento-icon-secondary" style="width: 40px; height: 40px;">
+              <i data-lucide="plug" style="width: 20px; height: 20px;"></i>
+            </div>
+            <h4 class="bento-title" style="font-size: 1rem;">200+ Integrations</h4>
+            <p class="bento-description" style="font-size: 0.8125rem;">Connect with your favorite tools seamlessly.</p>
+          </div>
+          
+          <div class="bento-item">
+            <div class="bento-icon bento-icon-accent" style="width: 40px; height: 40px;">
+              <i data-lucide="globe" style="width: 20px; height: 20px;"></i>
+            </div>
+            <h4 class="bento-title" style="font-size: 1rem;">Global Infrastructure</h4>
+            <p class="bento-description" style="font-size: 0.8125rem;">Deploy across 50+ regions worldwide.</p>
+          </div>
+          
+          <div class="bento-item">
+            <div class="bento-icon" style="width: 40px; height: 40px; background: var(--secondary);">
+              <i data-lucide="headphones" style="width: 20px; height: 20px;"></i>
+            </div>
+            <h4 class="bento-title" style="font-size: 1rem;">24/7 Support</h4>
+            <p class="bento-description" style="font-size: 0.8125rem;">Dedicated support team always available.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Signals Section -->
+    <section class="trust-section" aria-label="Trust and compliance badges">
+      <div class="container">
+        <p class="trust-header reveal">Trusted by Industry Leaders</p>
+        
+        <div class="trust-badges reveal stagger-children">
+          <div class="trust-badge">
+            <i data-lucide="badge-check"></i>
+            <span>SOC 2 Type II</span>
+          </div>
+          <div class="trust-badge">
+            <i data-lucide="badge-check"></i>
+            <span>GDPR Compliant</span>
+          </div>
+          <div class="trust-badge">
+            <i data-lucide="badge-check"></i>
+            <span>ISO 27001</span>
+          </div>
+          <div class="trust-badge">
+            <i data-lucide="badge-check"></i>
+            <span>Gartner Leader</span>
+          </div>
+          <div class="trust-badge">
+            <i data-lucide="badge-check"></i>
+            <span>HIPAA Ready</span>
+          </div>
+        </div>
+        
+        <!-- Logo Cloud -->
+        <div style="margin-top: 4rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; opacity: 0.5;" class="reveal">
+          <div style="font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--text-secondary);">ACME Corp</div>
+          <div style="font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--text-secondary);">TechFlow</div>
+          <div style="font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--text-secondary);">DataSync</div>
+          <div style="font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--text-secondary);">CloudNine</div>
+          <div style="font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--text-secondary);">NexGen</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Study Carousel -->
+    <section class="section" aria-labelledby="case-studies-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Case Studies</span>
+          <h2 id="case-studies-title" class="section-title">Customer Success Stories</h2>
+          <p class="section-description">
+            See how leading companies transform their operations with Example SaaS.
+          </p>
+        </div>
+        
+        <div class="carousel reveal" role="region" aria-label="Case study carousel">
+          <div class="carousel-track" id="carouselTrack">
+            <!-- Case Study 1 -->
+            <div class="carousel-slide">
+              <article class="case-study-card">
+                <div class="case-study-logo">ACME Corp</div>
+                <blockquote class="case-study-quote">
+                  "Example SaaS reduced our operational costs by 40% while improving team productivity. The ROI was evident within the first quarter."
+                </blockquote>
+                <div class="case-study-metrics">
+                  <div class="case-study-metric">
+                    <div class="case-study-metric-value">40%</div>
+                    <div class="case-study-metric-label">Cost Reduction</div>
+                  </div>
+                  <div class="case-study-metric">
+                    <div class="case-study-metric-value">3x</div>
+                    <div class="case-study-metric-label">Faster Deployment</div>
+                  </div>
+                </div>
+                <footer class="case-study-author">
+                  <div class="case-study-author-avatar" role="img" aria-label="Sarah Johnson"></div>
+                  <div class="case-study-author-info">
+                    <div class="case-study-author-name">Sarah Johnson</div>
+                    <div class="case-study-author-role">CTO, ACME Corp</div>
+                  </div>
+                </footer>
+              </article>
+            </div>
+            
+            <!-- Case Study 2 -->
+            <div class="carousel-slide">
+              <article class="case-study-card">
+                <div class="case-study-logo">TechFlow</div>
+                <blockquote class="case-study-quote">
+                  "The integration capabilities are unmatched. We connected our entire tech stack in days, not months."
+                </blockquote>
+                <div class="case-study-metrics">
+                  <div class="case-study-metric">
+                    <div class="case-study-metric-value">50+</div>
+                    <div class="case-study-metric-label">Integrations</div>
+                  </div>
+                  <div class="case-study-metric">
+                    <div class="case-study-metric-value">99.9%</div>
+                    <div class="case-study-metric-label">Uptime</div>
+                  </div>
+                </div>
+                <footer class="case-study-author">
+                  <div class="case-study-author-avatar" style="background: linear-gradient(135deg, var(--secondary), var(--primary);" role="img" aria-label="Michael Chen"></div>
+                  <div class="case-study-author-info">
+                    <div class="case-study-author-name">Michael Chen</div>
+                    <div class="case-study-author-role">VP Engineering, TechFlow</div>
+                  </div>
+                </footer>
+              </article>
+            </div>
+            
+            <!-- Case Study 3 -->
+            <div class="carousel-slide">
+              <article class="case-study-card">
+                <div class="case-study-logo">DataSync</div>
+                <blockquote class="case-study-quote">
+                  "Security was our top priority. Example SaaS exceeded our compliance requirements and gave us peace of mind."
+                </blockquote>
+                <div class="case-study-metrics">
+                  <div class="case-study-metric">
+                    <div class="case-study-metric-value">100%</div>
+                    <div class="case-study-metric-label">SOC 2</div>
+                  </div>
+                  <div class="case-study-metric">
+                    <div class="case-study-metric-value">0</div>
+                    <div class="case-study-metric-label">Breaches</div>
+                  </div>
+                </div>
+                <footer class="case-study-author">
+                  <div class="case-study-author-avatar" style="background: linear-gradient(135deg, var(--accent), var(--secondary);" role="img" aria-label="Emily Rodriguez"></div>
+                  <div class="case-study-author-info">
+                    <div class="case-study-author-name">Emily Rodriguez</div>
+                    <div class="case-study-author-role">CISO, DataSync</div>
+                  </div>
+                </footer>
+              </article>
+            </div>
+            
+            <!-- Case Study 4 -->
+            <div class="carousel-slide">
+              <article class="case-study-card">
+                <div class="case-study-logo">CloudNine</div>
+                <blockquote class="case-study-quote">
+                  "Our team collaboration improved dramatically. Projects that took weeks now take days."
+                </blockquote>
+                <div class="case-study-metrics">
+                  <div class="case-study-metric">
+                    <div class="case-study-metric-value">60%</div>
+                    <div class="case-study-metric-label">Faster Delivery</div>
+                  </div>
+                  <div class="case-study-metric">
+                    <div class="case-study-metric-value">200+</div>
+                    <div class="case-study-metric-label">Team Members</div>
+                  </div>
+                </div>
+                <footer class="case-study-author">
+                  <div class="case-study-author-avatar" style="background: linear-gradient(135deg, var(--primary), var(--accent);" role="img" aria-label="David Kim"></div>
+                  <div class="case-study-author-info">
+                    <div class="case-study-author-name">David Kim</div>
+                    <div class="case-study-author-role">Product Lead, CloudNine</div>
+                  </div>
+                </footer>
+              </article>
+            </div>
+          </div>
+          
+          <!-- Carousel Controls -->
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="carouselPrev" aria-label="Previous slide">
+              <i data-lucide="chevron-left"></i>
+            </button>
+            <div class="carousel-dots" id="carouselDots" role="tablist">
+              <button class="carousel-dot active" aria-label="Go to slide 1" role="tab" aria-selected="true"></button>
+              <button class="carousel-dot" aria-label="Go to slide 2" role="tab" aria-selected="false"></button>
+              <button class="carousel-dot" aria-label="Go to slide 3" role="tab" aria-selected="false"></button>
+              <button class="carousel-dot" aria-label="Go to slide 4" role="tab" aria-selected="false"></button>
+            </div>
+            <button class="carousel-btn" id="carouselNext" aria-label="Next slide">
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Pricing</span>
+          <h2 id="pricing-title" class="section-title">Simple, Transparent Pricing</h2>
+          <p class="section-description">
+            Choose the plan that fits your business. All plans include a 14-day free trial.
+          </p>
+        </div>
+        
+        <div class="pricing-grid reveal">
+          <!-- Starter Plan -->
+          <article class="pricing-card">
+            <h3 class="pricing-name">Starter</h3>
+            <p class="pricing-description">Perfect for small teams getting started.</p>
+            <div class="pricing-price">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-amount">29</span>
+              <span class="pricing-period">/month</span>
+            </div>
+            <ul class="pricing-features">
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Up to 10 team members</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Basic analytics</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>10 integrations</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Email support</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>5GB storage</span>
+              </li>
+            </ul>
+            <a href="contact.html" class="btn btn-secondary pricing-cta">Start Free Trial</a>
+          </article>
+          
+          <!-- Professional Plan (Featured) -->
+          <article class="pricing-card pricing-card-featured">
+            <span class="pricing-badge">Most Popular</span>
+            <h3 class="pricing-name">Professional</h3>
+            <p class="pricing-description">For growing businesses with advanced needs.</p>
+            <div class="pricing-price">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-amount">99</span>
+              <span class="pricing-period">/month</span>
+            </div>
+            <ul class="pricing-features">
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Up to 50 team members</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Advanced analytics & AI</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Unlimited integrations</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Priority support</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>100GB storage</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Workflow automation</span>
+              </li>
+            </ul>
+            <a href="contact.html" class="btn pricing-cta">Start Free Trial</a>
+          </article>
+          
+          <!-- Enterprise Plan -->
+          <article class="pricing-card">
+            <h3 class="pricing-name">Enterprise</h3>
+            <p class="pricing-description">Custom solutions for large organizations.</p>
+            <div class="pricing-price">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-amount">299</span>
+              <span class="pricing-period">/month</span>
+            </div>
+            <ul class="pricing-features">
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Unlimited team members</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Custom analytics & AI</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Dedicated infrastructure</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>24/7 phone support</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>Unlimited storage</span>
+              </li>
+              <li class="pricing-feature">
+                <i data-lucide="check"></i>
+                <span>SSO & advanced security</span>
+              </li>
+            </ul>
+            <a href="contact.html" class="btn btn-secondary pricing-cta">Contact Sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">FAQ</span>
+          <h2 id="faq-title" class="section-title">Frequently Asked Questions</h2>
+          <p class="section-description">
+            Everything you need to know about Example SaaS.
+          </p>
+        </div>
+        
+        <div class="faq-list reveal" role="list">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+              <span>How does the 14-day free trial work?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-1" class="faq-answer">
+              <p>Start your free trial with full access to all Professional features. No credit card required. At the end of 14 days, choose a plan that works for you or continue with our free tier.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ Item 2 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+              <span>Can I change my plan later?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-2" class="faq-answer">
+              <p>Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any differences in billing.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ Item 3 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+              <span>What security certifications do you have?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-3" class="faq-answer">
+              <p>We're SOC 2 Type II certified, GDPR compliant, and ISO 27001 certified. Enterprise plans include additional security features like SSO, audit logs, and custom data retention policies.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ Item 4 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+              <span>Do you offer custom integrations?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-4" class="faq-answer">
+              <p>Yes, Enterprise customers can request custom integrations. Our team will work with you to connect Example SaaS with your existing tools and workflows.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ Item 5 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+              <span>What kind of support do you offer?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-5" class="faq-answer">
+              <p>All plans include email support. Professional plans get priority support with faster response times. Enterprise plans include 24/7 phone support and a dedicated account manager.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div class="cta-content">
+            <h2 id="cta-title" class="cta-title">Ready to Transform Your Business?</h2>
+            <p class="cta-description">
+              Join 500+ enterprises already using Example SaaS to scale their operations.
+            </p>
+            <div class="cta-buttons">
+              <a href="pricing.html" class="btn btn-lg cta-btn-primary btn-magnetic">
+                Start Free Trial
+              </a>
+              <a href="contact.html" class="btn btn-lg cta-btn-secondary">
+                Talk to Sales
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <div class="logo-icon" style="width: 28px; height: 28px;">
+              <i data-lucide="zap" style="width: 16px; height: 16px;"></i>
+            </div>
+            <span>Example SaaS</span>
+          </a>
+          <p class="footer-description">
+            Empowering businesses with enterprise-grade solutions. Scale faster, work smarter, and achieve more with our comprehensive B2B platform.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" aria-label="Twitter">
+              <i data-lucide="twitter" style="width: 16px; height: 16px;"></i>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="LinkedIn">
+              <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="GitHub">
+              <i data-lucide="github" style="width: 16px; height: 16px;"></i>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="YouTube">
+              <i data-lucide="youtube" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Product Links -->
+        <div>
+          <h4 class="footer-heading">Product</h4>
+          <ul class="footer-links">
+            <li><a href="features.html" class="footer-link">Features</a></li>
+            <li><a href="pricing.html" class="footer-link">Pricing</a></li>
+            <li><a href="#" class="footer-link">Integrations</a></li>
+            <li><a href="#" class="footer-link">Changelog</a></li>
+            <li><a href="#" class="footer-link">Roadmap</a></li>
+          </ul>
+        </div>
+        
+        <!-- Company Links -->
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="#" class="footer-link">Blog</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        
+        <!-- Resources Links -->
+        <div>
+          <h4 class="footer-heading">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Documentation</a></li>
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Community</a></li>
+            <li><a href="#" class="footer-link">API Reference</a></li>
+            <li><a href="#" class="footer-link">Status</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          © 2024 Example SaaS. All rights reserved.
+        </p>
+        <div class="footer-legal">
+          <a href="#" class="footer-legal-link">Privacy Policy</a>
+          <a href="#" class="footer-legal-link">Terms of Service</a>
+          <a href="#" class="footer-legal-link">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+      mobileMenuBtn.innerHTML = isOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Scroll-triggered animations using Intersection Observer
+    const revealElements = document.querySelectorAll('.reveal, .stagger-children');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    
+    revealElements.forEach(el => revealObserver.observe(el));
+    
+    // Carousel functionality
+    const carouselTrack = document.getElementById('carouselTrack');
+    const carouselDots = document.getElementById('carouselDots');
+    const carouselPrev = document.getElementById('carouselPrev');
+    const carouselNext = document.getElementById('carouselNext');
+    const slides = carouselTrack.querySelectorAll('.carousel-slide');
+    const dots = carouselDots.querySelectorAll('.carousel-dot');
+    
+    let currentSlide = 0;
+    let slidesPerView = getSlidesPerView();
+    
+    function getSlidesPerView() {
+      if (window.innerWidth >= 1024) return 3;
+      if (window.innerWidth >= 768) return 2;
+      return 1;
+    }
+    
+    function updateCarousel() {
+      const slideWidth = 100 / slidesPerView;
+      const maxSlide = slides.length - slidesPerView;
+      const clampedSlide = Math.min(currentSlide, maxSlide);
+      carouselTrack.style.transform = `translateX(-${clampedSlide * slideWidth}%)`;
+      
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === clampedSlide);
+        dot.setAttribute('aria-selected', index === clampedSlide);
+      });
+    }
+    
+    carouselPrev.addEventListener('click', () => {
+      currentSlide = Math.max(0, currentSlide - 1);
+      updateCarousel();
+    });
+    
+    carouselNext.addEventListener('click', () => {
+      const maxSlide = slides.length - slidesPerView;
+      currentSlide = Math.min(maxSlide, currentSlide + 1);
+      updateCarousel();
+    });
+    
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentSlide = index;
+        updateCarousel();
+      });
+    });
+    
+    window.addEventListener('resize', () => {
+      slidesPerView = getSlidesPerView();
+      updateCarousel();
+    });
+    
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all other items
+        faqItems.forEach(otherItem => {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        
+        // Toggle current item
+        if (!isActive) {
+          item.classList.add('active');
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    
+    // Magnetic button effect
+    const magneticButtons = document.querySelectorAll('.btn-magnetic');
+    
+    magneticButtons.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
+      
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about Example SaaS - our story, mission, and the team behind enterprise-grade B2B solutions.">
+  <title>About Us - Example SaaS</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    /* Timeline Styles */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--primary), var(--accent));
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2.5rem;
+    }
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 0.25rem;
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+      border-radius: 50%;
+      margin-left: -5px;
+      border: 3px solid var(--background);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .timeline-year {
+      font-family: var(--font-heading);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-title {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-description {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+    
+    /* Office Cards */
+    .office-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-6);
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+    .office-card:hover {
+      border-color: var(--primary-200);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .office-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--primary-50), var(--accent-50));
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      margin: 0 auto var(--space-4);
+    }
+    .office-city {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+    .office-address {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-6);
+    }
+    .breadcrumb a {
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+    .breadcrumb a:hover {
+      color: var(--primary);
+    }
+    .breadcrumb-separator {
+      color: var(--text-tertiary);
+    }
+    .breadcrumb-current {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo" aria-label="Example SaaS Home">
+        <div class="logo-icon">
+          <i data-lucide="zap"></i>
+        </div>
+        <span>Example SaaS</span>
+      </a>
+      
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-ghost">Sign In</a>
+        <a href="pricing.html" class="btn btn-primary btn-magnetic">Get Started</a>
+      </div>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="menu">
+      <div class="container">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+          <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <!-- About Hero -->
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="container">
+        <nav class="breadcrumb reveal">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-separator"><i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></span>
+          <span class="breadcrumb-current">About</span>
+        </nav>
+        
+        <div class="reveal">
+          <span class="section-label">About Us</span>
+          <h1 id="about-title" class="section-title" style="font-size: var(--text-5xl);">Building the Future of Business</h1>
+          <p class="section-description" style="max-width: 700px; margin: 0 auto;">
+            From a small startup idea to a global enterprise platform, our journey has been defined by innovation, customer obsession, and a relentless pursuit of excellence.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Story -->
+    <section class="section" style="padding-top: 0;" aria-labelledby="story-title">
+      <div class="container">
+        <div class="feature-detail reveal">
+          <div class="feature-detail-content">
+            <span class="section-label">Our Story</span>
+            <h2 id="story-title" class="feature-detail-title">It Started With a Simple Question</h2>
+            <p class="feature-detail-description">
+              In 2018, our founders asked: "Why is enterprise software so complicated?" They believed businesses deserved better—tools that were powerful yet intuitive, enterprise-grade yet accessible.
+            </p>
+            <p class="feature-detail-description">
+              What began as a weekend project in a San Francisco garage has grown into a platform serving 500+ enterprises across 40 countries. But our mission remains unchanged: to democratize enterprise technology and empower businesses of all sizes to compete on a global scale.
+            </p>
+            <ul class="feature-detail-list">
+              <li><i data-lucide="check-circle"></i> Founded in 2018 in San Francisco</li>
+              <li><i data-lucide="check-circle"></i> First customer signed within 3 months</li>
+              <li><i data-lucide="check-circle"></i> Series B funding in 2022</li>
+              <li><i data-lucide="check-circle"></i> Global expansion to 5 continents</li>
+            </ul>
+          </div>
+          <div class="feature-detail-visual">
+            <div style="text-align: center;">
+              <div style="width: 200px; height: 200px; background: linear-gradient(135deg, var(--primary-100), var(--accent-100)); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center;">
+                <i data-lucide="rocket" style="width: 80px; height: 80px; color: var(--primary);"></i>
+              </div>
+              <p style="font-family: var(--font-heading); font-size: var(--text-2xl); font-weight: 700; color: var(--primary);">2018 - 2024</p>
+              <p style="color: var(--text-secondary);">Six years of innovation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="section" style="background: var(--surface);" aria-labelledby="mission-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Mission & Vision</span>
+          <h2 id="mission-title" class="section-title">What Drives Us Forward</h2>
+        </div>
+        
+        <div class="bento-grid bento-2-col reveal">
+          <div class="bento-item bento-item-featured">
+            <div class="bento-icon">
+              <i data-lucide="target"></i>
+            </div>
+            <h3 class="bento-title" style="font-size: var(--text-2xl);">Our Mission</h3>
+            <p class="bento-description" style="font-size: var(--text-base);">
+              To empower businesses with intelligent, accessible technology that drives growth, efficiency, and innovation. We believe every organization deserves tools that work as hard as they do.
+            </p>
+            <div style="margin-top: 2rem; display: flex; gap: 2rem;">
+              <div>
+                <div style="font-family: var(--font-heading); font-size: var(--text-3xl); font-weight: 700; color: var(--primary);">500+</div>
+                <div style="font-size: var(--text-sm); color: var(--text-secondary);">Enterprise Clients</div>
+              </div>
+              <div>
+                <div style="font-family: var(--font-heading); font-size: var(--text-3xl); font-weight: 700; color: var(--secondary);">40+</div>
+                <div style="font-size: var(--text-sm); color: var(--text-secondary);">Countries</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bento-item">
+            <div class="bento-icon bento-icon-accent">
+              <i data-lucide="telescope"></i>
+            </div>
+            <h3 class="bento-title" style="font-size: var(--text-2xl);">Our Vision</h3>
+            <p class="bento-description" style="font-size: var(--text-base);">
+              A world where technology is a great equalizer—where startups can compete with enterprises, where ideas matter more than resources, and where every business has the tools to succeed on a global stage.
+            </p>
+            <div style="margin-top: 2rem; padding: 1rem; background: var(--accent-50); border-radius: var(--radius-lg);">
+              <p style="font-style: italic; color: var(--accent-700);">"The future belongs to those who believe in the beauty of their dreams."</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Values Grid -->
+        <div class="values-grid" style="margin-top: 3rem;">
+          <div class="value-card reveal">
+            <div class="value-icon">
+              <i data-lucide="users" style="width: 28px; height: 28px;"></i>
+            </div>
+            <h4 class="value-title">Customer First</h4>
+            <p class="value-description">Every decision starts with our customers' success. Their wins are our wins.</p>
+          </div>
+          
+          <div class="value-card reveal">
+            <div class="value-icon" style="background: var(--secondary-50); color: var(--secondary);">
+              <i data-lucide="lightbulb" style="width: 28px; height: 28px;"></i>
+            </div>
+            <h4 class="value-title">Innovation</h4>
+            <p class="value-description">We challenge the status quo and constantly seek better ways to solve problems.</p>
+          </div>
+          
+          <div class="value-card reveal">
+            <div class="value-icon" style="background: var(--accent-50); color: var(--accent);">
+              <i data-lucide="shield" style="width: 28px; height: 28px;"></i>
+            </div>
+            <h4 class="value-title">Trust & Security</h4>
+            <p class="value-description">We protect our customers' data like it's our own. Security is never compromised.</p>
+          </div>
+          
+          <div class="value-card reveal">
+            <div class="value-icon" style="background: linear-gradient(135deg, var(--primary-50), var(--accent-50)); color: var(--primary);">
+              <i data-lucide="globe" style="width: 28px; height: 28px;"></i>
+            </div>
+            <h4 class="value-title">Global Impact</h4>
+            <p class="value-description">We build for the world, considering diverse needs and perspectives.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Our Team</span>
+          <h2 id="team-title" class="section-title">Meet the Leaders</h2>
+          <p class="section-description">
+            A diverse team of experts passionate about building the future of enterprise technology.
+          </p>
+        </div>
+        
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <div class="team-avatar" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);"></div>
+            <h3 class="team-name">Sarah Chen</h3>
+            <p class="team-role">Chief Executive Officer</p>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: 1rem;">Former VP at Salesforce, 15+ years in enterprise SaaS</p>
+            <div class="team-social">
+              <a href="#" class="team-social-link" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 16px; height: 16px;"></i></a>
+              <a href="#" class="team-social-link" aria-label="Twitter"><i data-lucide="twitter" style="width: 16px; height: 16px;"></i></a>
+            </div>
+          </div>
+          
+          <div class="team-card reveal">
+            <div class="team-avatar" style="background: linear-gradient(135deg, #10b981, #3b82f6);"></div>
+            <h3 class="team-name">Michael Rodriguez</h3>
+            <p class="team-role">Chief Technology Officer</p>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: 1rem;">Ex-Google engineer, systems architecture expert</p>
+            <div class="team-social">
+              <a href="#" class="team-social-link" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 16px; height: 16px;"></i></a>
+              <a href="#" class="team-social-link" aria-label="GitHub"><i data-lucide="github" style="width: 16px; height: 16px;"></i></a>
+            </div>
+          </div>
+          
+          <div class="team-card reveal">
+            <div class="team-avatar" style="background: linear-gradient(135deg, #f59e0b, #ef4444);"></div>
+            <h3 class="team-name">Emily Watson</h3>
+            <p class="team-role">Chief Product Officer</p>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: 1rem;">Former Product Lead at Stripe, UX evangelist</p>
+            <div class="team-social">
+              <a href="#" class="team-social-link" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 16px; height: 16px;"></i></a>
+              <a href="#" class="team-social-link" aria-label="Twitter"><i data-lucide="twitter" style="width: 16px; height: 16px;"></i></a>
+            </div>
+          </div>
+          
+          <div class="team-card reveal">
+            <div class="team-avatar" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);"></div>
+            <h3 class="team-name">David Kim</h3>
+            <p class="team-role">Chief Operating Officer</p>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: 1rem;">McKinsey alum, operations and scaling specialist</p>
+            <div class="team-social">
+              <a href="#" class="team-social-link" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 16px; height: 16px;"></i></a>
+              <a href="#" class="team-social-link" aria-label="Twitter"><i data-lucide="twitter" style="width: 16px; height: 16px;"></i></a>
+            </div>
+          </div>
+          
+          <div class="team-card reveal">
+            <div class="team-avatar" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);"></div>
+            <h3 class="team-name">Amanda Foster</h3>
+            <p class="team-role">VP of Engineering</p>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: 1rem;">Ex-Netflix, distributed systems expert</p>
+            <div class="team-social">
+              <a href="#" class="team-social-link" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 16px; height: 16px;"></i></a>
+              <a href="#" class="team-social-link" aria-label="GitHub"><i data-lucide="github" style="width: 16px; height: 16px;"></i></a>
+            </div>
+          </div>
+          
+          <div class="team-card reveal">
+            <div class="team-avatar" style="background: linear-gradient(135deg, #84cc16, #10b981);"></div>
+            <h3 class="team-name">James Thompson</h3>
+            <p class="team-role">VP of Sales</p>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: 1rem;">Former Oracle exec, enterprise sales veteran</p>
+            <div class="team-social">
+              <a href="#" class="team-social-link" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 16px; height: 16px;"></i></a>
+              <a href="#" class="team-social-link" aria-label="Twitter"><i data-lucide="twitter" style="width: 16px; height: 16px;"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="section" style="background: var(--surface);" aria-labelledby="timeline-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Our Journey</span>
+          <h2 id="timeline-title" class="section-title">Key Milestones</h2>
+        </div>
+        
+        <div style="max-width: 600px; margin: 0 auto;">
+          <div class="timeline reveal">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2018</div>
+              <h4 class="timeline-title">The Beginning</h4>
+              <p class="timeline-description">Example SaaS founded in San Francisco with a vision to simplify enterprise software.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot" style="background: var(--secondary);"></div>
+              <div class="timeline-year">2019</div>
+              <h4 class="timeline-title">First Enterprise Client</h4>
+              <p class="timeline-description">Signed first Fortune 500 customer and raised Seed round of $2M.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot" style="background: var(--accent);"></div>
+              <div class="timeline-year">2020</div>
+              <h4 class="timeline-title">Series A & Global Expansion</h4>
+              <p class="timeline-description">Raised $15M Series A. Opened offices in London and Singapore.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2021</div>
+              <h4 class="timeline-title">100+ Enterprise Customers</h4>
+              <p class="timeline-description">Reached milestone of 100 enterprise clients and achieved profitability.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot" style="background: var(--secondary);"></div>
+              <div class="timeline-year">2022</div>
+              <h4 class="timeline-title">Series B & AI Platform</h4>
+              <p class="timeline-description">Raised $50M Series B. Launched AI-powered analytics platform.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot" style="background: var(--accent);"></div>
+              <div class="timeline-year">2023</div>
+              <h4 class="timeline-title">500+ Customers & 5 Continents</h4>
+              <p class="timeline-description">Expanded to 40+ countries and opened offices in Sydney and São Paulo.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2024</div>
+              <h4 class="timeline-title">The Future</h4>
+              <p class="timeline-description">Continuing to innovate and expand our global footprint.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Office Locations -->
+    <section class="section" aria-labelledby="offices-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Global Presence</span>
+          <h2 id="offices-title" class="section-title">Our Offices</h2>
+          <p class="section-description">
+            Serving customers worldwide with local expertise and global reach.
+          </p>
+        </div>
+        
+        <div class="bento-grid bento-4-col reveal">
+          <div class="office-card">
+            <div class="office-icon">
+              <i data-lucide="map-pin" style="width: 28px; height: 28px;"></i>
+            </div>
+            <h4 class="office-city">San Francisco</h4>
+            <p class="office-address">HQ<br>123 Tech Street<br>San Francisco, CA 94105</p>
+          </div>
+          
+          <div class="office-card">
+            <div class="office-icon" style="background: linear-gradient(135deg, var(--secondary-50), var(--primary-50));">
+              <i data-lucide="map-pin" style="width: 28px; height: 28px;"></i>
+            </div>
+            <h4 class="office-city">New York</h4>
+            <p class="office-address">East Coast Hub<br>456 Broadway<br>New York, NY 10013</p>
+          </div>
+          
+          <div class="office-card">
+            <div class="office-icon" style="background: linear-gradient(135deg, var(--accent-50), var(--primary-50));">
+              <i data-lucide="map-pin" style="width: 28px; height: 28px;"></i>
+            </div>
+            <h4 class="office-city">London</h4>
+            <p class="office-address">EMEA HQ<br>78 Farringdon Road<br>London, EC1M 3JQ</p>
+          </div>
+          
+          <div class="office-card">
+            <div class="office-icon" style="background: linear-gradient(135deg, var(--primary-50), var(--secondary-50));">
+              <i data-lucide="map-pin" style="width: 28px; height: 28px;"></i>
+            </div>
+            <h4 class="office-city">Singapore</h4>
+            <p class="office-address">APAC Hub<br>1 Raffles Place<br>Singapore 048616</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div class="cta-content">
+            <h2 id="cta-title" class="cta-title">Join Our Growing Team</h2>
+            <p class="cta-description">
+              We're always looking for talented individuals who share our passion for innovation.
+            </p>
+            <div class="cta-buttons">
+              <a href="contact.html" class="btn btn-lg cta-btn-primary btn-magnetic">
+                View Open Positions
+              </a>
+              <a href="contact.html" class="btn btn-lg cta-btn-secondary">
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <div class="logo-icon" style="width: 28px; height: 28px;">
+              <i data-lucide="zap" style="width: 16px; height: 16px;"></i>
+            </div>
+            <span>Example SaaS</span>
+          </a>
+          <p class="footer-description">
+            Empowering businesses with enterprise-grade solutions. Scale faster, work smarter, and achieve more with our comprehensive B2B platform.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" aria-label="Twitter"><i data-lucide="twitter" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-link" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-link" aria-label="GitHub"><i data-lucide="github" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-link" aria-label="YouTube"><i data-lucide="youtube" style="width: 16px; height: 16px;"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Product</h4>
+          <ul class="footer-links">
+            <li><a href="features.html" class="footer-link">Features</a></li>
+            <li><a href="pricing.html" class="footer-link">Pricing</a></li>
+            <li><a href="#" class="footer-link">Integrations</a></li>
+            <li><a href="#" class="footer-link">Changelog</a></li>
+            <li><a href="#" class="footer-link">Roadmap</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="blog.html" class="footer-link">Blog</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Documentation</a></li>
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Community</a></li>
+            <li><a href="#" class="footer-link">API Reference</a></li>
+            <li><a href="#" class="footer-link">Status</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Example SaaS. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#" class="footer-legal-link">Privacy Policy</a>
+          <a href="#" class="footer-legal-link">Terms of Service</a>
+          <a href="#" class="footer-legal-link">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    lucide.createIcons();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+      mobileMenuBtn.innerHTML = isOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Scroll-triggered animations
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simple, transparent pricing for Example SaaS. Choose from Starter, Professional, or Enterprise plans.">
+  <title>Pricing - Example SaaS</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-6);
+    }
+    .breadcrumb a {
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+    .breadcrumb a:hover {
+      color: var(--primary);
+    }
+    .breadcrumb-separator {
+      color: var(--text-tertiary);
+    }
+    .breadcrumb-current {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    
+    /* Pricing Hero */
+    .pricing-hero {
+      padding-top: calc(72px + var(--space-20));
+      padding-bottom: var(--space-16);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    /* Pricing Toggle */
+    .pricing-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-4);
+      background: var(--surface);
+      padding: var(--space-2);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-8);
+    }
+    .pricing-toggle-btn {
+      padding: var(--space-2) var(--space-6);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      transition: all var(--transition-fast);
+    }
+    .pricing-toggle-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+    .pricing-toggle-btn:not(.active) {
+      color: var(--text-secondary);
+    }
+    .pricing-toggle-btn:not(.active):hover {
+      color: var(--text-primary);
+    }
+    .pricing-save-badge {
+      font-size: var(--text-xs);
+      color: var(--secondary);
+      font-weight: 600;
+    }
+    
+    /* Pricing Cards Extended */
+    .pricing-feature-list {
+      list-style: none;
+      margin-bottom: var(--space-8);
+    }
+    .pricing-feature-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-2) 0;
+      font-size: var(--text-sm);
+    }
+    .pricing-feature-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--secondary);
+      flex-shrink: 0;
+    }
+    .pricing-feature-item.disabled {
+      color: var(--text-tertiary);
+    }
+    .pricing-feature-item.disabled svg {
+      color: var(--text-tertiary);
+    }
+    .pricing-feature-divider {
+      height: 1px;
+      background: var(--border);
+      margin: var(--space-4) 0;
+    }
+    
+    /* Enterprise CTA Card */
+    .enterprise-card {
+      background: linear-gradient(135deg, var(--text-primary) 0%, #1e293b 100%);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-12);
+      color: white;
+      display: grid;
+      gap: var(--space-8);
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .enterprise-card {
+        grid-template-columns: 1fr auto;
+      }
+    }
+    .enterprise-title {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+    }
+    .enterprise-description {
+      color: var(--text-tertiary);
+      margin-bottom: var(--space-6);
+    }
+    .enterprise-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+    .enterprise-feature {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+    }
+    .enterprise-feature svg {
+      color: var(--secondary);
+    }
+    
+    /* FAQ Accordion (Pricing Specific) */
+    .faq-section {
+      background: var(--surface);
+    }
+    
+    /* Money Back Guarantee */
+    .guarantee-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-4);
+      padding: var(--space-6);
+      background: var(--secondary-50);
+      border-radius: var(--radius-xl);
+      margin-top: var(--space-8);
+    }
+    .guarantee-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--secondary);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .guarantee-text {
+      font-weight: 600;
+      color: var(--secondary-700);
+    }
+    .guarantee-subtext {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo" aria-label="Example SaaS Home">
+        <div class="logo-icon">
+          <i data-lucide="zap"></i>
+        </div>
+        <span>Example SaaS</span>
+      </a>
+      
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link active">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-ghost">Sign In</a>
+        <a href="pricing.html" class="btn btn-primary btn-magnetic">Get Started</a>
+      </div>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="menu">
+      <div class="container">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link active">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+          <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <!-- Pricing Hero -->
+    <section class="pricing-hero" aria-labelledby="pricing-title">
+      <div class="container">
+        <nav class="breadcrumb reveal">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-separator"><i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></span>
+          <span class="breadcrumb-current">Pricing</span>
+        </nav>
+        
+        <div class="reveal">
+          <span class="section-label">Pricing</span>
+          <h1 id="pricing-title" class="section-title" style="font-size: var(--text-5xl);">Simple, Transparent Pricing</h1>
+          <p class="section-description" style="max-width: 600px; margin: 0 auto;">
+            Choose the plan that fits your business. All plans include a 14-day free trial. No credit card required.
+          </p>
+          
+          <!-- Billing Toggle -->
+          <div class="pricing-toggle reveal">
+            <button class="pricing-toggle-btn active" id="monthlyBtn">Monthly</button>
+            <button class="pricing-toggle-btn" id="yearlyBtn">Yearly <span class="pricing-save-badge">Save 20%</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="section" style="padding-top: 0;" aria-labelledby="plans-title">
+      <div class="container">
+        <h2 id="plans-title" class="sr-only">Pricing Plans</h2>
+        
+        <div class="pricing-grid reveal">
+          <!-- Starter Plan -->
+          <article class="pricing-card">
+            <h3 class="pricing-name">Starter</h3>
+            <p class="pricing-description">Perfect for small teams getting started.</p>
+            <div class="pricing-price">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-amount" data-monthly="29" data-yearly="23">29</span>
+              <span class="pricing-period">/month</span>
+            </div>
+            
+            <div class="pricing-feature-divider"></div>
+            
+            <ul class="pricing-feature-list">
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Up to 10 team members</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Basic analytics dashboard</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>10 integrations</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Email support</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>5GB storage</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>5 automated workflows</span>
+              </li>
+              <li class="pricing-feature-item disabled">
+                <i data-lucide="x"></i>
+                <span>AI-powered insights</span>
+              </li>
+              <li class="pricing-feature-item disabled">
+                <i data-lucide="x"></i>
+                <span>SSO & advanced security</span>
+              </li>
+            </ul>
+            
+            <a href="contact.html" class="btn btn-secondary pricing-cta">Start Free Trial</a>
+          </article>
+          
+          <!-- Professional Plan (Featured) -->
+          <article class="pricing-card pricing-card-featured">
+            <span class="pricing-badge">Most Popular</span>
+            <h3 class="pricing-name">Professional</h3>
+            <p class="pricing-description">For growing businesses with advanced needs.</p>
+            <div class="pricing-price">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-amount" data-monthly="99" data-yearly="79">99</span>
+              <span class="pricing-period">/month</span>
+            </div>
+            
+            <div class="pricing-feature-divider" style="background: rgba(255,255,255,0.1);"></div>
+            
+            <ul class="pricing-feature-list">
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Up to 50 team members</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Advanced analytics & AI insights</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Unlimited integrations</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Priority support (4hr response)</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>100GB storage</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Unlimited workflows</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Predictive analytics</span>
+              </li>
+              <li class="pricing-feature-item disabled">
+                <i data-lucide="x"></i>
+                <span>SSO & advanced security</span>
+              </li>
+            </ul>
+            
+            <a href="contact.html" class="btn pricing-cta">Start Free Trial</a>
+          </article>
+          
+          <!-- Enterprise Plan -->
+          <article class="pricing-card">
+            <h3 class="pricing-name">Enterprise</h3>
+            <p class="pricing-description">Custom solutions for large organizations.</p>
+            <div class="pricing-price">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-amount" data-monthly="299" data-yearly="239">299</span>
+              <span class="pricing-period">/month</span>
+            </div>
+            
+            <div class="pricing-feature-divider"></div>
+            
+            <ul class="pricing-feature-list">
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Unlimited team members</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Custom analytics & AI models</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Dedicated infrastructure</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>24/7 phone & email support</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Unlimited storage</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Custom workflow development</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>SSO, SAML & advanced security</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check"></i>
+                <span>Dedicated account manager</span>
+              </li>
+            </ul>
+            
+            <a href="contact.html" class="btn btn-secondary pricing-cta">Contact Sales</a>
+          </article>
+        </div>
+        
+        <!-- Money Back Guarantee -->
+        <div class="guarantee-banner reveal">
+          <div class="guarantee-icon">
+            <i data-lucide="shield-check" style="width: 24px; height: 24px;"></i>
+          </div>
+          <div>
+            <div class="guarantee-text">30-Day Money-Back Guarantee</div>
+            <div class="guarantee-subtext">Not satisfied? Get a full refund, no questions asked.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enterprise CTA -->
+    <section class="section" style="background: var(--surface);" aria-labelledby="enterprise-title">
+      <div class="container">
+        <div class="enterprise-card reveal">
+          <div>
+            <h2 id="enterprise-title" class="enterprise-title">Need a Custom Solution?</h2>
+            <p class="enterprise-description">
+              Our enterprise plans are tailored to your specific needs. Get dedicated infrastructure, custom integrations, and white-glove support.
+            </p>
+            <div class="enterprise-features">
+              <div class="enterprise-feature">
+                <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+                <span>Custom SLAs</span>
+              </div>
+              <div class="enterprise-feature">
+                <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+                <span>On-premise deployment</span>
+              </div>
+              <div class="enterprise-feature">
+                <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+                <span>Custom integrations</span>
+              </div>
+              <div class="enterprise-feature">
+                <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+                <span>Training & onboarding</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <a href="contact.html" class="btn btn-lg" style="background: white; color: var(--text-primary);">
+              Talk to Sales
+              <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">FAQ</span>
+          <h2 id="faq-title" class="section-title">Frequently Asked Questions</h2>
+          <p class="section-description">
+            Everything you need to know about our pricing and plans.
+          </p>
+        </div>
+        
+        <div class="faq-list reveal" role="list">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+              <span>How does the 14-day free trial work?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-1" class="faq-answer">
+              <p>Start your free trial with full access to all Professional features. No credit card required. At the end of 14 days, choose a plan that works for you or continue with our free tier. You can cancel anytime during the trial with no obligation.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ Item 2 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+              <span>Can I change my plan later?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-2" class="faq-answer">
+              <p>Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any differences in billing. Upgrading gives you instant access to new features, while downgrading takes effect at the end of your billing cycle.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ Item 3 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+              <span>What payment methods do you accept?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-3" class="faq-answer">
+              <p>We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers for annual enterprise plans. For Enterprise customers, we also offer invoice-based billing with Net 30 terms.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ Item 4 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+              <span>Is there a discount for non-profits or education?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-4" class="faq-answer">
+              <p>Yes! We offer 50% off for registered non-profits and educational institutions. Contact our sales team with your organization details to apply for the discount. We also have special programs for startups in their first year.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ Item 5 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+              <span>What happens if I exceed my plan limits?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-5" class="faq-answer">
+              <p>We'll notify you when you're approaching your limits. You can either upgrade to a higher plan or purchase add-ons for specific features. We never lock you out of your account - you'll always have time to make a decision.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ Item 6 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
+              <span>Do you offer refunds?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div id="faq-answer-6" class="faq-answer">
+              <p>We offer a 30-day money-back guarantee for all paid plans. If you're not satisfied for any reason, contact our support team within 30 days of your purchase for a full refund. For annual plans, we also offer prorated refunds if you cancel after the first 30 days.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div class="cta-content">
+            <h2 id="cta-title" class="cta-title">Still Have Questions?</h2>
+            <p class="cta-description">
+              Our team is here to help you find the perfect plan for your business.
+            </p>
+            <div class="cta-buttons">
+              <a href="contact.html" class="btn btn-lg cta-btn-primary btn-magnetic">
+                Contact Sales
+              </a>
+              <a href="contact.html" class="btn btn-lg cta-btn-secondary">
+                Schedule a Demo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <div class="logo-icon" style="width: 28px; height: 28px;">
+              <i data-lucide="zap" style="width: 16px; height: 16px;"></i>
+            </div>
+            <span>Example SaaS</span>
+          </a>
+          <p class="footer-description">
+            Empowering businesses with enterprise-grade solutions. Scale faster, work smarter, and achieve more with our comprehensive B2B platform.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" aria-label="Twitter"><i data-lucide="twitter" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-link" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-link" aria-label="GitHub"><i data-lucide="github" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-link" aria-label="YouTube"><i data-lucide="youtube" style="width: 16px; height: 16px;"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Product</h4>
+          <ul class="footer-links">
+            <li><a href="features.html" class="footer-link">Features</a></li>
+            <li><a href="pricing.html" class="footer-link">Pricing</a></li>
+            <li><a href="#" class="footer-link">Integrations</a></li>
+            <li><a href="#" class="footer-link">Changelog</a></li>
+            <li><a href="#" class="footer-link">Roadmap</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="blog.html" class="footer-link">Blog</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Documentation</a></li>
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Community</a></li>
+            <li><a href="#" class="footer-link">API Reference</a></li>
+            <li><a href="#" class="footer-link">Status</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Example SaaS. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#" class="footer-legal-link">Privacy Policy</a>
+          <a href="#" class="footer-legal-link">Terms of Service</a>
+          <a href="#" class="footer-legal-link">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    lucide.createIcons();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+      mobileMenuBtn.innerHTML = isOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Scroll-triggered animations
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    revealElements.forEach(el => revealObserver.observe(el));
+    
+    // Pricing toggle
+    const monthlyBtn = document.getElementById('monthlyBtn');
+    const yearlyBtn = document.getElementById('yearlyBtn');
+    const priceAmounts = document.querySelectorAll('.pricing-amount');
+    
+    monthlyBtn.addEventListener('click', () => {
+      monthlyBtn.classList.add('active');
+      yearlyBtn.classList.remove('active');
+      priceAmounts.forEach(price => {
+        price.textContent = price.dataset.monthly;
+      });
+    });
+    
+    yearlyBtn.addEventListener('click', () => {
+      yearlyBtn.classList.add('active');
+      monthlyBtn.classList.remove('active');
+      priceAmounts.forEach(price => {
+        price.textContent = price.dataset.yearly;
+      });
+    });
+    
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all other items
+        faqItems.forEach(otherItem => {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        
+        // Toggle current item
+        if (!isActive) {
+          item.classList.add('active');
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

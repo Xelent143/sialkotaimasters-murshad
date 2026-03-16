@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal | Studio Vanguard</title>
+  <meta name="description" content="Insights, case studies, and creative inspiration from the Studio Vanguard team.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <canvas class="webgl-canvas" id="webgl-canvas"></canvas>
+
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-content">
+        <a href="index.html" class="nav-logo">STUDIO VANGUARD</a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="journal-hero">
+    <div class="container">
+      <div class="journal-hero-content reveal">
+        <span class="page-header-label">Our Journal</span>
+        <h1 class="display-1">Insights & Ideas</h1>
+        <p class="lead" style="max-width: 600px;">Thoughts on design, strategy, and the creative process from our team.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-sm">
+    <div class="container">
+      <div class="journal-categories reveal">
+        <a href="#" class="category-pill active">All</a>
+        <a href="#" class="category-pill">Design</a>
+        <a href="#" class="category-pill">Strategy</a>
+        <a href="#" class="category-pill">Development</a>
+        <a href="#" class="category-pill">Culture</a>
+        <a href="#" class="category-pill">Case Studies</a>
+      </div>
+
+      <article class="featured-post reveal">
+        <a href="#" class="featured-post-image">
+          <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1600" alt="Featured Post">
+        </a>
+        <div class="featured-post-content">
+          <div class="post-meta">
+            <span class="post-category">Design</span>
+            <span class="post-date">March 10, 2024</span>
+          </div>
+          <h2 class="featured-post-title"><a href="#">The Future of Brand Design: Trends Shaping 2024</a></h2>
+          <p class="featured-post-excerpt">Exploring the emerging trends that are redefining how brands connect with their audiences in an increasingly digital world. From AI-generated visuals to sustainable design practices, we break down what's next.</p>
+          <a href="#" class="read-more">
+            Read Article
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+      </article>
+
+      <div class="journal-grid">
+        <article class="journal-card reveal">
+          <a href="#" class="journal-card-image">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800" alt="Blog Post">
+          </a>
+          <div class="journal-card-content">
+            <div class="post-meta">
+              <span class="post-category">Strategy</span>
+              <span class="post-date">March 5, 2024</span>
+            </div>
+            <h3><a href="#">Building a Brand That Resonates</a></h3>
+            <p>How to create meaningful connections with your audience through strategic brand positioning.</p>
+            <a href="#" class="read-more-sm">Read More <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+        </article>
+
+        <article class="journal-card reveal">
+          <a href="#" class="journal-card-image">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800" alt="Blog Post">
+          </a>
+          <div class="journal-card-content">
+            <div class="post-meta">
+              <span class="post-category">Development</span>
+              <span class="post-date">February 28, 2024</span>
+            </div>
+            <h3><a href="#">Performance-First Web Development</a></h3>
+            <p>Why speed matters and how we optimize for Core Web Vitals on every project.</p>
+            <a href="#" class="read-more-sm">Read More <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+        </article>
+
+        <article class="journal-card reveal">
+          <a href="#" class="journal-card-image">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800" alt="Blog Post">
+          </a>
+          <div class="journal-card-content">
+            <div class="post-meta">
+              <span class="post-category">Culture</span>
+              <span class="post-date">February 20, 2024</span>
+            </div>
+            <h3><a href="#">Remote-First: Lessons from 4 Years</a></h3>
+            <p>How we've built a thriving creative culture while working from anywhere.</p>
+            <a href="#" class="read-more-sm">Read More <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+        </article>
+
+        <article class="journal-card reveal">
+          <a href="#" class="journal-card-image">
+            <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800" alt="Blog Post">
+          </a>
+          <div class="journal-card-content">
+            <div class="post-meta">
+              <span class="post-category">Case Study</span>
+              <span class="post-date">February 15, 2024</span>
+            </div>
+            <h3><a href="#">Behind the Scenes: Nexus Rebrand</a></h3>
+            <p>A deep dive into our process for transforming a legacy tech brand.</p>
+            <a href="#" class="read-more-sm">Read More <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+        </article>
+
+        <article class="journal-card reveal">
+          <a href="#" class="journal-card-image">
+            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800" alt="Blog Post">
+          </a>
+          <div class="journal-card-content">
+            <div class="post-meta">
+              <span class="post-category">Design</span>
+              <span class="post-date">February 8, 2024</span>
+            </div>
+            <h3><a href="#">Typography in Digital Spaces</a></h3>
+            <p>Choosing the right typefaces for readability and brand expression online.</p>
+            <a href="#" class="read-more-sm">Read More <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+        </article>
+
+        <article class="journal-card reveal">
+          <a href="#" class="journal-card-image">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Blog Post">
+          </a>
+          <div class="journal-card-content">
+            <div class="post-meta">
+              <span class="post-category">Strategy</span>
+              <span class="post-date">January 30, 2024</span>
+            </div>
+            <h3><a href="#">Data-Driven Design Decisions</a></h3>
+            <p>How we use analytics and user research to inform our creative process.</p>
+            <a href="#" class="read-more-sm">Read More <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="pagination reveal">
+        <a href="#" class="pagination-link active">1</a>
+        <a href="#" class="pagination-link">2</a>
+        <a href="#" class="pagination-link">3</a>
+        <span class="pagination-dots">...</span>
+        <a href="#" class="pagination-link">8</a>
+        <a href="#" class="pagination-next">
+          Next
+          <i data-lucide="chevron-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section newsletter-section">
+    <div class="container">
+      <div class="newsletter-box reveal">
+        <div class="newsletter-content">
+          <h2 class="display-2" style="font-size: var(--text-3xl);">Subscribe to Our Newsletter</h2>
+          <p class="lead">Get weekly insights on design, strategy, and creative leadership delivered to your inbox.</p>
+        </div>
+        <form class="newsletter-form">
+          <input type="email" class="form-input" placeholder="Enter your email" required>
+          <button type="submit" class="btn btn-primary">
+            Subscribe
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="cta-title display-2">Have a Story to Tell?</h2>
+        <p class="cta-description lead">We're always looking for collaboration opportunities and guest contributors.</p>
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          Get in Touch
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">STUDIO VANGUARD</a>
+          <p class="footer-description">Award-winning creative agency crafting immersive digital experiences that captivate audiences and drive results.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Dribbble"><i data-lucide="dribbble" style="width: 18px; height: 18px;"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Services</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Brand Identity</a></li>
+            <li><a href="services.html">Web Design</a></li>
+            <li><a href="services.html">UI/UX Design</a></li>
+            <li><a href="services.html">Development</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@studiovanguard.com">hello@studiovanguard.com</a></li>
+            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+            <li>123 Creative Street<br>New York, NY 10001</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Studio Vanguard. All rights reserved.</p>
+        <p class="footer-credits">Designed with passion</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .journal-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      padding-top: 140px;
+      padding-bottom: var(--space-8);
+      text-align: center;
+    }
+    .journal-hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .journal-categories {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-12);
+    }
+    .category-pill {
+      padding: var(--space-3) var(--space-5);
+      background: var(--surface);
+      border-radius: 100px;
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all var(--transition-base);
+    }
+    .category-pill:hover {
+      background: var(--surface-lighter);
+      color: var(--text-primary);
+    }
+    .category-pill.active {
+      background: var(--accent);
+      color: var(--primary);
+    }
+    .featured-post {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-10);
+      align-items: center;
+      padding: var(--space-10);
+      background: var(--surface);
+      border-radius: var(--border-radius-xl);
+      margin-bottom: var(--space-12);
+    }
+    @media (max-width: 1024px) {
+      .featured-post { grid-template-columns: 1fr; }
+    }
+    .featured-post-image {
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      display: block;
+    }
+    .featured-post-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 16/10;
+      transition: transform var(--transition-slow);
+    }
+    .featured-post-image:hover img { transform: scale(1.05); }
+    .featured-post-content { padding: var(--space-4) 0; }
+    .post-meta {
+      display: flex;
+      gap: var(--space-4);
+      margin-bottom: var(--space-4);
+      font-size: var(--text-sm);
+    }
+    .post-category {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .post-date { color: var(--text-muted); }
+    .featured-post-title {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-4);
+      line-height: 1.2;
+    }
+    .featured-post-title a {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    .featured-post-title a:hover { color: var(--accent); }
+    .featured-post-excerpt {
+      font-size: var(--text-lg);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--space-6);
+    }
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-heading);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .read-more:hover { gap: var(--space-3); }
+    .journal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    @media (max-width: 1024px) {
+      .journal-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .journal-grid { grid-template-columns: 1fr; }
+    }
+    .journal-card {
+      background: var(--surface);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: transform var(--transition-base);
+    }
+    .journal-card:hover { transform: translateY(-8px); }
+    .journal-card-image {
+      display: block;
+      overflow: hidden;
+    }
+    .journal-card-image img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+    .journal-card:hover .journal-card-image img { transform: scale(1.05); }
+    .journal-card-content { padding: var(--space-6); }
+    .journal-card-content h3 {
+      font-size: var(--text-xl);
+      margin: var(--space-3) 0;
+    }
+    .journal-card-content h3 a {
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .journal-card-content h3 a:hover { color: var(--accent); }
+    .journal-card-content > p {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-4);
+    }
+    .read-more-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-2);
+      margin-top: var(--space-12);
+    }
+    .pagination-link {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      border-radius: var(--border-radius);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    .pagination-link:hover,
+    .pagination-link.active {
+      background: var(--accent);
+      color: var(--primary);
+    }
+    .pagination-dots { color: var(--text-muted); }
+    .pagination-next {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-5);
+      background: var(--surface);
+      border-radius: var(--border-radius);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    .pagination-next:hover { background: var(--surface-lighter); }
+    .newsletter-section { background: var(--surface); }
+    .newsletter-box {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
+      padding: var(--space-12);
+      background: var(--background);
+      border-radius: var(--border-radius-xl);
+    }
+    @media (max-width: 768px) {
+      .newsletter-box { grid-template-columns: 1fr; }
+    }
+    .newsletter-form {
+      display: flex;
+      gap: var(--space-4);
+    }
+    .newsletter-form .form-input { flex: 1; }
+  </style>
+
+  <script>
+    lucide.createIcons();
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        setTimeout(() => {
+          cursorFollower.style.left = e.clientX + 'px';
+          cursorFollower.style.top = e.clientY + 'px';
+        }, 100);
+      });
+      const hoverElements = document.querySelectorAll('a, button, .journal-card');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.add('hover');
+          cursorFollower.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('hover');
+          cursorFollower.classList.remove('hover');
+        });
+      });
+    }
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 100));
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    const canvas = document.getElementById('webgl-canvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    const particles = [];
+    for (let i = 0; i < 25; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.1
+      });
+    }
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 107, 107, ${p.opacity})`;
+        ctx.fill();
+      });
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 107, 107, ${0.1 * (1 - distance / 150)})`;
+            ctx.stroke();
+          }
+        });
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  </script>
+</body>
+</html>

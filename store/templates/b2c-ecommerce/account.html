@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account | NOVA Fashion</title>
+  <meta name="description" content="Manage your account, orders, and preferences at NOVA Fashion.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .account-sidebar {
+      background: var(--surface);
+      padding: var(--space-xl);
+      border-radius: var(--border-radius-lg);
+      height: fit-content;
+    }
+    .account-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 0 auto var(--space-md);
+    }
+    .account-nav {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      margin-top: var(--space-xl);
+    }
+    .account-nav-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--border-radius);
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+    .account-nav-item:hover,
+    .account-nav-item.active {
+      background: white;
+      color: var(--text-primary);
+    }
+    .account-nav-item.active {
+      font-weight: 600;
+    }
+    .account-content {
+      display: none;
+    }
+    .account-content.active {
+      display: block;
+    }
+    .order-status {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .order-status.delivered { background: rgba(34, 197, 94, 0.1); color: var(--success); }
+    .order-status.shipped { background: rgba(249, 115, 22, 0.1); color: var(--secondary); }
+    .order-status.processing { background: rgba(236, 72, 153, 0.1); color: var(--accent); }
+    .wishlist-item {
+      display: flex;
+      gap: var(--space-lg);
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .wishlist-item-image {
+      width: 100px;
+      height: 125px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    .wishlist-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .auth-tabs {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      border-bottom: 2px solid var(--border);
+    }
+    .auth-tab {
+      padding: var(--space-md) var(--space-lg);
+      font-weight: 600;
+      color: var(--text-secondary);
+      position: relative;
+    }
+    .auth-tab.active {
+      color: var(--text-primary);
+    }
+    .auth-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+    }
+    .auth-content {
+      display: none;
+    }
+    .auth-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo">NOVA<span>.</span></a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="shop.html" class="nav-link">Shop</a></li>
+          <li><a href="index.html#categories" class="nav-link">Collections</a></li>
+          <li><a href="index.html#new" class="nav-link">New Arrivals</a></li>
+          <li><a href="#" class="nav-link">Sale</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="nav-btn" aria-label="Search"><i data-lucide="search" style="width: 22px; height: 22px;"></i></button>
+          <a href="account.html" class="nav-btn" aria-label="Account"><i data-lucide="user" style="width: 22px; height: 22px;"></i></a>
+          <button class="nav-btn" aria-label="Wishlist"><i data-lucide="heart" style="width: 22px; height: 22px;"></i></button>
+          <a href="cart.html" class="nav-btn" aria-label="Cart">
+            <i data-lucide="shopping-bag" style="width: 22px; height: 22px;"></i>
+            <span class="cart-badge">3</span>
+          </a>
+          <button class="mobile-menu-btn nav-btn" aria-label="Menu" onclick="toggleMobileMenu()"><i data-lucide="menu" style="width: 24px; height: 24px;"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html" class="mobile-menu-link">Home</a></li>
+      <li><a href="shop.html" class="mobile-menu-link">Shop</a></li>
+      <li><a href="index.html#categories" class="mobile-menu-link">Collections</a></li>
+      <li><a href="index.html#new" class="mobile-menu-link">New Arrivals</a></li>
+      <li><a href="#" class="mobile-menu-link">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1 class="page-title">My Account</h1>
+      <nav class="breadcrumbs">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Account</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Account Section -->
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 280px 1fr; gap: var(--space-3xl);">
+        <!-- Sidebar -->
+        <aside class="account-sidebar">
+          <div style="text-align: center;">
+            <div class="account-avatar">JD</div>
+            <h3 style="font-size: 1.125rem;">John Doe</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">john@example.com</p>
+          </div>
+
+          <nav class="account-nav">
+            <a href="#orders" class="account-nav-item active" onclick="showSection('orders', this)">
+              <i data-lucide="shopping-bag" style="width: 18px; height: 18px;"></i>
+              Order History
+            </a>
+            <a href="#wishlist" class="account-nav-item" onclick="showSection('wishlist', this)">
+              <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+              Wishlist
+            </a>
+            <a href="#addresses" class="account-nav-item" onclick="showSection('addresses', this)">
+              <i data-lucide="map-pin" style="width: 18px; height: 18px;"></i>
+              Saved Addresses
+            </a>
+            <a href="#settings" class="account-nav-item" onclick="showSection('settings', this)">
+              <i data-lucide="settings" style="width: 18px; height: 18px;"></i>
+              Account Settings
+            </a>
+            <a href="#" class="account-nav-item" style="color: var(--error);">
+              <i data-lucide="log-out" style="width: 18px; height: 18px;"></i>
+              Sign Out
+            </a>
+          </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div>
+          <!-- Order History -->
+          <div class="account-content active" id="orders">
+            <h2 style="margin-bottom: var(--space-xl);">Order History</h2>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
+              <!-- Order 1 -->
+              <div style="border: 1px solid var(--border); border-radius: var(--border-radius-lg); overflow: hidden;">
+                <div style="padding: var(--space-lg); background: var(--surface); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+                  <div style="display: flex; gap: var(--space-xl); flex-wrap: wrap;">
+                    <div>
+                      <p style="font-size: 0.8rem; color: var(--text-secondary);">Order Number</p>
+                      <p style="font-weight: 600;">#NOVA-2025-7841</p>
+                    </div>
+                    <div>
+                      <p style="font-size: 0.8rem; color: var(--text-secondary);">Date</p>
+                      <p style="font-weight: 600;">Mar 10, 2025</p>
+                    </div>
+                    <div>
+                      <p style="font-size: 0.8rem; color: var(--text-secondary);">Total</p>
+                      <p style="font-weight: 600;">$342.00</p>
+                    </div>
+                  </div>
+                  <span class="order-status delivered">
+                    <i data-lucide="check-circle" style="width: 14px; height: 14px;"></i>
+                    Delivered
+                  </span>
+                </div>
+                <div style="padding: var(--space-lg);">
+                  <div style="display: flex; gap: var(--space-lg); align-items: center;">
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=100&q=80" alt="Product" style="width: 60px; height: 75px; object-fit: cover; border-radius: var(--border-radius);">
+                    <div style="flex: 1;">
+                      <p style="font-weight: 600;">Silk Evening Dress</p>
+                      <p style="font-size: 0.85rem; color: var(--text-secondary);">+ 1 more item</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm">View Order</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Order 2 -->
+              <div style="border: 1px solid var(--border); border-radius: var(--border-radius-lg); overflow: hidden;">
+                <div style="padding: var(--space-lg); background: var(--surface); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+                  <div style="display: flex; gap: var(--space-xl); flex-wrap: wrap;">
+                    <div>
+                      <p style="font-size: 0.8rem; color: var(--text-secondary);">Order Number</p>
+                      <p style="font-weight: 600;">#NOVA-2025-7654</p>
+                    </div>
+                    <div>
+                      <p style="font-size: 0.8rem; color: var(--text-secondary);">Date</p>
+                      <p style="font-weight: 600;">Feb 28, 2025</p>
+                    </div>
+                    <div>
+                      <p style="font-size: 0.8rem; color: var(--text-secondary);">Total</p>
+                      <p style="font-weight: 600;">$189.00</p>
+                    </div>
+                  </div>
+                  <span class="order-status shipped">
+                    <i data-lucide="truck" style="width: 14px; height: 14px;"></i>
+                    Shipped
+                  </span>
+                </div>
+                <div style="padding: var(--space-lg);">
+                  <div style="display: flex; gap: var(--space-lg); align-items: center;">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=100&q=80" alt="Product" style="width: 60px; height: 75px; object-fit: cover; border-radius: var(--border-radius);">
+                    <div style="flex: 1;">
+                      <p style="font-weight: 600;">Oversized Blazer</p>
+                      <p style="font-size: 0.85rem; color: var(--text-secondary);">Qty: 1</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm">Track Order</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Order 3 -->
+              <div style="border: 1px solid var(--border); border-radius: var(--border-radius-lg); overflow: hidden;">
+                <div style="padding: var(--space-lg); background: var(--surface); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+                  <div style="display: flex; gap: var(--space-xl); flex-wrap: wrap;">
+                    <div>
+                      <p style="font-size: 0.8rem; color: var(--text-secondary);">Order Number</p>
+                      <p style="font-weight: 600;">#NOVA-2025-7234</p>
+                    </div>
+                    <div>
+                      <p style="font-size: 0.8rem; color: var(--text-secondary);">Date</p>
+                      <p style="font-weight: 600;">Jan 15, 2025</p>
+                    </div>
+                    <div>
+                      <p style="font-size: 0.8rem; color: var(--text-secondary);">Total</p>
+                      <p style="font-weight: 600;">$415.00</p>
+                    </div>
+                  </div>
+                  <span class="order-status delivered">
+                    <i data-lucide="check-circle" style="width: 14px; height: 14px;"></i>
+                    Delivered
+                  </span>
+                </div>
+                <div style="padding: var(--space-lg);">
+                  <div style="display: flex; gap: var(--space-lg); align-items: center;">
+                    <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=100&q=80" alt="Product" style="width: 60px; height: 75px; object-fit: cover; border-radius: var(--border-radius);">
+                    <div style="flex: 1;">
+                      <p style="font-weight: 600;">Leather Tote Bag</p>
+                      <p style="font-size: 0.85rem; color: var(--text-secondary);">+ 2 more items</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm">View Order</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wishlist -->
+          <div class="account-content" id="wishlist">
+            <h2 style="margin-bottom: var(--space-xl);">My Wishlist</h2>
+
+            <div>
+              <!-- Wishlist Item 1 -->
+              <div class="wishlist-item">
+                <div class="wishlist-item-image">
+                  <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&q=80" alt="Gold Necklace">
+                </div>
+                <div style="flex: 1;">
+                  <span style="font-size: 0.8rem; color: var(--text-secondary);">NOVA Jewelry</span>
+                  <h3 style="font-size: 1.125rem; margin: var(--space-xs) 0;">Gold Necklace</h3>
+                  <p style="font-size: 1.25rem; font-weight: 700; color: var(--accent);">$125.00</p>
+                  <p style="font-size: 0.85rem; color: var(--success); margin-top: var(--space-xs);"><i data-lucide="check" style="width: 14px; height: 14px; display: inline;"></i> In Stock</p>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                  <button class="btn btn-primary btn-sm" onclick="showToast('Added to cart!', 'success')">Add to Cart</button>
+                  <button class="btn btn-outline btn-sm" onclick="removeWishlistItem(this)">Remove</button>
+                </div>
+              </div>
+
+              <!-- Wishlist Item 2 -->
+              <div class="wishlist-item">
+                <div class="wishlist-item-image">
+                  <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=200&q=80" alt="Platform Boots">
+                </div>
+                <div style="flex: 1;">
+                  <span style="font-size: 0.8rem; color: var(--text-secondary);">NOVA Footwear</span>
+                  <h3 style="font-size: 1.125rem; margin: var(--space-xs) 0;">Platform Boots</h3>
+                  <p style="font-size: 1.25rem; font-weight: 700; color: var(--accent);">$198.00</p>
+                  <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-xs);">Only 2 left</p>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                  <button class="btn btn-primary btn-sm" onclick="showToast('Added to cart!', 'success')">Add to Cart</button>
+                  <button class="btn btn-outline btn-sm" onclick="removeWishlistItem(this)">Remove</button>
+                </div>
+              </div>
+
+              <!-- Wishlist Item 3 -->
+              <div class="wishlist-item">
+                <div class="wishlist-item-image">
+                  <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&q=80" alt="Summer Dress">
+                </div>
+                <div style="flex: 1;">
+                  <span style="font-size: 0.8rem; color: var(--text-secondary);">NOVA Studio</span>
+                  <h3 style="font-size: 1.125rem; margin: var(--space-xs) 0;">Summer Floral Dress</h3>
+                  <p style="font-size: 1.25rem; font-weight: 700; color: var(--accent);">$145.00</p>
+                  <p style="font-size: 0.85rem; color: var(--error); margin-top: var(--space-xs);">Out of Stock</p>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                  <button class="btn btn-outline btn-sm" disabled>Notify Me</button>
+                  <button class="btn btn-outline btn-sm" onclick="removeWishlistItem(this)">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Saved Addresses -->
+          <div class="account-content" id="addresses">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xl);">
+              <h2>Saved Addresses</h2>
+              <button class="btn btn-primary btn-sm" onclick="showToast('Add address feature coming soon!', 'default')">+ Add New Address</button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg);">
+              <!-- Address 1 -->
+              <div style="border: 2px solid var(--accent); border-radius: var(--border-radius-lg); padding: var(--space-lg); position: relative;">
+                <span style="position: absolute; top: var(--space-md); right: var(--space-md); font-size: 0.75rem; background: var(--accent); color: white; padding: var(--space-xs) var(--space-sm); border-radius: 4px;">Default</span>
+                <h4 style="margin-bottom: var(--space-md);">Home</h4>
+                <p>John Doe</p>
+                <p style="color: var(--text-secondary); margin-top: var(--space-sm);">123 Main Street, Apt 4B</p>
+                <p style="color: var(--text-secondary);">New York, NY 10001</p>
+                <p style="color: var(--text-secondary);">United States</p>
+                <p style="color: var(--text-secondary); margin-top: var(--space-sm);">+1 (555) 123-4567</p>
+                <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-lg);">
+                  <button class="btn btn-outline btn-sm" style="flex: 1;">Edit</button>
+                  <button class="btn btn-outline btn-sm" style="flex: 1; color: var(--error);">Delete</button>
+                </div>
+              </div>
+
+              <!-- Address 2 -->
+              <div style="border: 1px solid var(--border); border-radius: var(--border-radius-lg); padding: var(--space-lg);">
+                <h4 style="margin-bottom: var(--space-md);">Office</h4>
+                <p>John Doe</p>
+                <p style="color: var(--text-secondary); margin-top: var(--space-sm);">456 Business Ave, Suite 200</p>
+                <p style="color: var(--text-secondary);">New York, NY 10018</p>
+                <p style="color: var(--text-secondary);">United States</p>
+                <p style="color: var(--text-secondary); margin-top: var(--space-sm);">+1 (555) 987-6543</p>
+                <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-lg);">
+                  <button class="btn btn-outline btn-sm" style="flex: 1;">Edit</button>
+                  <button class="btn btn-outline btn-sm" style="flex: 1;">Set as Default</button>
+                  <button class="btn btn-outline btn-sm" style="color: var(--error);">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Account Settings -->
+          <div class="account-content" id="settings">
+            <h2 style="margin-bottom: var(--space-xl);">Account Settings</h2>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-xl);">
+              <!-- Profile Info -->
+              <div style="border: 1px solid var(--border); border-radius: var(--border-radius-lg); padding: var(--space-xl);">
+                <h3 style="font-size: 1.125rem; margin-bottom: var(--space-lg);">Profile Information</h3>
+                
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-input" value="John">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-input" value="Doe">
+                  </div>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: var(--space-lg);">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-input" value="john@example.com">
+                </div>
+
+                <div class="form-group full-width" style="margin-top: var(--space-lg);">
+                  <label class="form-label">Phone</label>
+                  <input type="tel" class="form-input" value="+1 (555) 123-4567">
+                </div>
+
+                <button class="btn btn-primary" style="margin-top: var(--space-lg);" onclick="showToast('Profile updated!', 'success')">Save Changes</button>
+              </div>
+
+              <!-- Password -->
+              <div style="border: 1px solid var(--border); border-radius: var(--border-radius-lg); padding: var(--space-xl);">
+                <h3 style="font-size: 1.125rem; margin-bottom: var(--space-lg);">Change Password</h3>
+                
+                <div class="form-group full-width">
+                  <label class="form-label">Current Password</label>
+                  <input type="password" class="form-input" placeholder="••••••••">
+                </div>
+
+                <div class="form-group full-width" style="margin-top: var(--space-lg);">
+                  <label class="form-label">New Password</label>
+                  <input type="password" class="form-input" placeholder="••••••••">
+                </div>
+
+                <div class="form-group full-width" style="margin-top: var(--space-lg);">
+                  <label class="form-label">Confirm New Password</label>
+                  <input type="password" class="form-input" placeholder="••••••••">
+                </div>
+
+                <button class="btn btn-primary" style="margin-top: var(--space-lg);" onclick="showToast('Password updated!', 'success')">Update Password</button>
+              </div>
+
+              <!-- Preferences -->
+              <div style="border: 1px solid var(--border); border-radius: var(--border-radius-lg); padding: var(--space-xl);">
+                <h3 style="font-size: 1.125rem; margin-bottom: var(--space-lg);">Email Preferences</h3>
+                
+                <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+                  <label style="display: flex; align-items: center; gap: var(--space-md); cursor: pointer;">
+                    <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--accent);">
+                    <span>Order updates and tracking information</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: var(--space-md); cursor: pointer;">
+                    <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--accent);">
+                    <span>New arrivals and promotions</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: var(--space-md); cursor: pointer;">
+                    <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--accent);">
+                    <span>Style tips and fashion news</span>
+                  </label>
+                </div>
+
+                <button class="btn btn-primary" style="margin-top: var(--space-lg);" onclick="showToast('Preferences saved!', 'success')">Save Preferences</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login/Register Modal (shown if not logged in) -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal" style="max-width: 450px;">
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="showAuthTab('login')">Login</button>
+        <button class="auth-tab" onclick="showAuthTab('register')">Create Account</button>
+      </div>
+
+      <div class="auth-content active" id="loginTab">
+        <form onsubmit="event.preventDefault(); closeAuthModal();">
+          <div class="form-group full-width">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group full-width" style="margin-top: var(--space-lg);">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-input" placeholder="••••••••" required>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: var(--space-md);">
+            <label style="display: flex; align-items: center; gap: var(--space-sm); font-size: 0.85rem;">
+              <input type="checkbox"> Remember me
+            </label>
+            <a href="#" style="font-size: 0.85rem; color: var(--accent);">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-full" style="margin-top: var(--space-xl);">Login</button>
+        </form>
+        
+        <p style="text-align: center; margin-top: var(--space-xl); font-size: 0.85rem; color: var(--text-secondary);">Or continue with</p>
+        
+        <div style="display: flex; gap: var(--space-md); margin-top: var(--space-md);">
+          <button class="btn btn-outline" style="flex: 1;">Google</button>
+          <button class="btn btn-outline" style="flex: 1;">Apple</button>
+        </div>
+      </div>
+
+      <div class="auth-content" id="registerTab">
+        <form onsubmit="event.preventDefault(); closeAuthModal();">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-input" required>
+            </div>
+          </div>
+          <div class="form-group full-width" style="margin-top: var(--space-lg);">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group full-width" style="margin-top: var(--space-lg);">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-input" placeholder="••••••••" required>
+          </div>
+          <label style="display: flex; align-items: center; gap: var(--space-sm); font-size: 0.85rem; margin-top: var(--space-lg);">
+            <input type="checkbox" required> I agree to the <a href="#" style="color: var(--accent);">Terms of Service</a> and <a href="#" style="color: var(--accent);">Privacy Policy</a>
+          </label>
+          <button type="submit" class="btn btn-primary btn-lg btn-full" style="margin-top: var(--space-xl);">Create Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    function showSection(sectionId, navItem) {
+      document.querySelectorAll('.account-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.querySelectorAll('.account-nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      document.getElementById(sectionId).classList.add('active');
+      navItem.classList.add('active');
+    }
+
+    function removeWishlistItem(btn) {
+      const item = btn.closest('.wishlist-item');
+      item.style.opacity = '0';
+      setTimeout(() => {
+        item.remove();
+        showToast('Removed from wishlist', 'default');
+      }, 300);
+    }
+
+    function showAuthTab(tab) {
+      document.querySelectorAll('.auth-content').forEach(content => content.classList.remove('active'));
+      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+      
+      document.getElementById(`${tab}Tab`).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.remove('active');
+    }
+
+    function showToast(message, type = 'default') {
+      const container = document.createElement('div');
+      container.className = 'toast-container';
+      container.id = 'toastContainer';
+      document.body.appendChild(container);
+      
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle' : 'info'}" style="width: 18px; height: 18px;"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      lucide.createIcons();
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => container.remove(), 300);
+      }, 3000);
+    }
+
+    document.getElementById('authModal').classList.add('active');
+  </script>
+</body>
+</html>

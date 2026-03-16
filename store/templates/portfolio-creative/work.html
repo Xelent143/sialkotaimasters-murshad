@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work | Studio Vanguard</title>
+  <meta name="description" content="Explore our portfolio of award-winning creative projects spanning brand identity, web design, motion graphics, and photography.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <canvas class="webgl-canvas" id="webgl-canvas"></canvas>
+
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-content">
+        <a href="index.html" class="nav-logo">STUDIO VANGUARD</a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="work.html" class="nav-link active">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="work-hero">
+    <div class="container">
+      <span class="page-header-label">Our Portfolio</span>
+      <h1 class="page-header-title display-1">Selected Work</h1>
+      <p class="page-header-description lead">A curated collection of projects that push creative boundaries and deliver exceptional results.</p>
+    </div>
+  </section>
+
+  <section class="section section-sm">
+    <div class="container">
+      <div class="work-filter reveal">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="branding">Branding</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="motion">Motion</button>
+        <button class="filter-btn" data-filter="photography">Photography</button>
+      </div>
+
+      <div class="work-grid" id="work-grid">
+        <article class="work-item large" data-category="branding">
+          <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1600" alt="Nexus Rebrand" class="work-item-image">
+          <a href="case-study.html" class="work-item-overlay">
+            <span class="work-item-category">Brand Identity</span>
+            <h3 class="work-item-title">Nexus Tech Rebrand</h3>
+            <p class="work-item-description">Complete brand transformation for a leading technology company, resulting in 200% increase in brand recognition.</p>
+          </a>
+        </article>
+
+        <article class="work-item" data-category="web">
+          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=800" alt="Ethereal Platform" class="work-item-image">
+          <a href="case-study.html" class="work-item-overlay">
+            <span class="work-item-category">Web Design</span>
+            <h3 class="work-item-title">Ethereal Platform</h3>
+            <p class="work-item-description">Immersive web experience for a digital art marketplace.</p>
+          </a>
+        </article>
+
+        <article class="work-item" data-category="motion">
+          <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800" alt="Velocity Campaign" class="work-item-image">
+          <a href="case-study.html" class="work-item-overlay">
+            <span class="work-item-category">Motion</span>
+            <h3 class="work-item-title">Velocity Campaign</h3>
+            <p class="work-item-description">Dynamic video series for automotive launch.</p>
+          </a>
+        </article>
+
+        <article class="work-item" data-category="photography">
+          <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=800" alt="Horizon Editorial" class="work-item-image">
+          <a href="case-study.html" class="work-item-overlay">
+            <span class="work-item-category">Photography</span>
+            <h3 class="work-item-title">Horizon Editorial</h3>
+            <p class="work-item-description">Fashion editorial for luxury brand campaign.</p>
+          </a>
+        </article>
+
+        <article class="work-item large" data-category="web">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600" alt="Summit Dashboard" class="work-item-image">
+          <a href="case-study.html" class="work-item-overlay">
+            <span class="work-item-category">Web / UI</span>
+            <h3 class="work-item-title">Summit Analytics</h3>
+            <p class="work-item-description">Enterprise dashboard redesign improving workflow efficiency by 45% through intuitive data visualization and streamlined user experience.</p>
+          </a>
+        </article>
+
+        <article class="work-item" data-category="branding">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800" alt="Pulse Fitness" class="work-item-image">
+          <a href="case-study.html" class="work-item-overlay">
+            <span class="work-item-category">Branding</span>
+            <h3 class="work-item-title">Pulse Fitness</h3>
+            <p class="work-item-description">Bold identity system for wellness startup.</p>
+          </a>
+        </article>
+
+        <article class="work-item" data-category="motion">
+          <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800" alt="Prism Animation" class="work-item-image">
+          <a href="case-study.html" class="work-item-overlay">
+            <span class="work-item-category">Motion</span>
+            <h3 class="work-item-title">Prism Studios</h3>
+            <p class="work-item-description">Title sequence and brand animation.</p>
+          </a>
+        </article>
+
+        <article class="work-item" data-category="photography">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800" alt="Aurora Campaign" class="work-item-image">
+          <a href="case-study.html" class="work-item-overlay">
+            <span class="work-item-category">Photography</span>
+            <h3 class="work-item-title">Aurora Lifestyle</h3>
+            <p class="work-item-description">Product photography for retail brand.</p>
+          </a>
+        </article>
+
+        <article class="work-item" data-category="web">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="Zenith App" class="work-item-image">
+          <a href="case-study.html" class="work-item-overlay">
+            <span class="work-item-category">Web / App</span>
+            <h3 class="work-item-title">Zenith Finance</h3>
+            <p class="work-item-description">Mobile-first fintech experience.</p>
+          </a>
+        </article>
+
+        <article class="work-item" data-category="branding">
+          <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=800" alt="Flux Identity" class="work-item-image">
+          <a href="case-study.html" class="work-item-overlay">
+            <span class="work-item-category">Branding</span>
+            <h3 class="work-item-title">Flux Collective</h3>
+            <p class="work-item-description">Minimalist identity for design studio.</p>
+          </a>
+        </article>
+      </div>
+
+      <div class="text-center mt-12 reveal">
+        <button class="btn btn-outline" id="load-more">
+          Load More Projects
+          <i data-lucide="chevron-down"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="cta-title display-2">Have a Project in Mind?</h2>
+        <p class="cta-description lead">Let's collaborate to bring your vision to life with creative excellence.</p>
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          Start a Conversation
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">STUDIO VANGUARD</a>
+          <p class="footer-description">Award-winning creative agency crafting immersive digital experiences that captivate audiences and drive results.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Dribbble"><i data-lucide="dribbble" style="width: 18px; height: 18px;"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Services</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Brand Identity</a></li>
+            <li><a href="services.html">Web Design</a></li>
+            <li><a href="services.html">UI/UX Design</a></li>
+            <li><a href="services.html">Development</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@studiovanguard.com">hello@studiovanguard.com</a></li>
+            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+            <li>123 Creative Street<br>New York, NY 10001</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Studio Vanguard. All rights reserved.</p>
+        <p class="footer-credits">Designed with passion</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Custom Cursor
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        setTimeout(() => {
+          cursorFollower.style.left = e.clientX + 'px';
+          cursorFollower.style.top = e.clientY + 'px';
+        }, 100);
+      });
+      const hoverElements = document.querySelectorAll('a, button, .work-item');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.add('hover');
+          cursorFollower.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('hover');
+          cursorFollower.classList.remove('hover');
+        });
+      });
+    }
+
+    // Navigation scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 100);
+    });
+
+    // Mobile menu
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal, .stagger-children, .work-item');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Portfolio Filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const workItems = document.querySelectorAll('.work-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        workItems.forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = 'block';
+            setTimeout(() => item.classList.add('visible'), 50);
+          } else {
+            item.style.display = 'none';
+            item.classList.remove('visible');
+          }
+        });
+      });
+    });
+
+    // Particle animation
+    const canvas = document.getElementById('webgl-canvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const particles = [];
+    for (let i = 0; i < 25; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.1
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 107, 107, ${p.opacity})`;
+        ctx.fill();
+      });
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 107, 107, ${0.1 * (1 - distance / 150)})`;
+            ctx.stroke();
+          }
+        });
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Load More
+    document.getElementById('load-more').addEventListener('click', function() {
+      this.innerHTML = 'Loading...';
+      setTimeout(() => {
+        this.innerHTML = 'No More Projects <i data-lucide="check"></i>';
+        lucide.createIcons();
+        this.disabled = true;
+        this.style.opacity = '0.5';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

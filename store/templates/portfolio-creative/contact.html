@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Studio Vanguard</title>
+  <meta name="description" content="Get in touch with Studio Vanguard. Let's discuss your next project and create something amazing together.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <canvas class="webgl-canvas" id="webgl-canvas"></canvas>
+
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-content">
+        <a href="index.html" class="nav-logo">STUDIO VANGUARD</a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="contact-hero">
+    <div class="container">
+      <div class="contact-hero-content reveal">
+        <span class="page-header-label">Get In Touch</span>
+        <h1 class="display-1">Let's Create<br><span class="text-gradient">Together</span></h1>
+        <p class="lead" style="max-width: 600px;">Have a project in mind? We'd love to hear about it. Drop us a line and let's start the conversation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-section">
+    <div class="container">
+      <div class="contact-layout">
+        <div class="contact-info-panel reveal">
+          <div class="contact-info-block">
+            <span class="contact-label">Email</span>
+            <a href="mailto:hello@studiovanguard.com" class="contact-value">hello@studiovanguard.com</a>
+          </div>
+          <div class="contact-info-block">
+            <span class="contact-label">Phone</span>
+            <a href="tel:+1234567890" class="contact-value">+1 (234) 567-890</a>
+          </div>
+          <div class="contact-info-block">
+            <span class="contact-label">Office</span>
+            <address class="contact-value">
+              123 Creative Street<br>
+              New York, NY 10001
+            </address>
+          </div>
+          <div class="contact-info-block">
+            <span class="contact-label">Follow Us</span>
+            <div class="contact-social-large">
+              <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 20px; height: 20px;"></i></a>
+              <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 20px; height: 20px;"></i></a>
+              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 20px; height: 20px;"></i></a>
+              <a href="#" aria-label="Dribbble"><i data-lucide="dribbble" style="width: 20px; height: 20px;"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-forms-panel">
+          <div class="form-tabs reveal">
+            <button class="form-tab active" data-tab="general">General Inquiry</button>
+            <button class="form-tab" data-tab="project">Project Request</button>
+          </div>
+
+          <div class="form-content active" id="general-form">
+            <form class="contact-form-large reveal">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-input" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-input" placeholder="your@email.com" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Subject</label>
+                <input type="text" class="form-input" placeholder="What's this about?" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea class="form-textarea" rows="5" placeholder="Tell us more..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                Send Message
+                <i data-lucide="send"></i>
+              </button>
+            </form>
+          </div>
+
+          <div class="form-content" id="project-form">
+            <form class="contact-form-large reveal">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-input" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Company</label>
+                  <input type="text" class="form-input" placeholder="Company name">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-input" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phone</label>
+                  <input type="tel" class="form-input" placeholder="+1 (234) 567-890">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Project Type</label>
+                <select class="form-input form-select">
+                  <option value="">Select a service...</option>
+                  <option value="branding">Brand Identity</option>
+                  <option value="web">Web Design</option>
+                  <option value="uiux">UI/UX Design</option>
+                  <option value="motion">Motion Design</option>
+                  <option value="development">Development</option>
+                  <option value="strategy">Digital Strategy</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Budget Range</label>
+                <select class="form-input form-select">
+                  <option value="">Select budget...</option>
+                  <option value="5k-15k">$5,000 - $15,000</option>
+                  <option value="15k-35k">$15,000 - $35,000</option>
+                  <option value="35k-75k">$35,000 - $75,000</option>
+                  <option value="75k+">$75,000+</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tell Us About Your Project</label>
+                <textarea class="form-textarea" rows="5" placeholder="Describe your project, goals, and timeline..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                Submit Request
+                <i data-lucide="arrow-right"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section map-section">
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878428698!3d40.74076684379132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sGoogle!5e0!3m2!1sen!2sus!4v1584484523418!5m2!1sen!2sus" 
+        width="100%" 
+        height="100%" 
+        style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+      <div class="map-overlay">
+        <div class="map-card reveal">
+          <i data-lucide="map-pin" style="width: 32px; height: 32px; color: var(--accent);"></i>
+          <h3>Visit Our Studio</h3>
+          <p>123 Creative Street<br>New York, NY 10001</p>
+          <a href="#" class="btn btn-outline btn-sm">Get Directions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section newsletter-section">
+    <div class="container">
+      <div class="newsletter-box reveal">
+        <div class="newsletter-content">
+          <h2 class="display-2" style="font-size: var(--text-3xl);">Stay in the Loop</h2>
+          <p class="lead">Subscribe to our newsletter for insights, case studies, and creative inspiration delivered to your inbox.</p>
+        </div>
+        <form class="newsletter-form">
+          <input type="email" class="form-input" placeholder="Enter your email" required>
+          <button type="submit" class="btn btn-primary">
+            Subscribe
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="cta-title display-2">Ready to Start?</h2>
+        <p class="cta-description lead">Let's create something extraordinary together.</p>
+        <a href="tel:+1234567890" class="btn btn-secondary btn-lg">
+          <i data-lucide="phone"></i>
+          Call Us Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">STUDIO VANGUARD</a>
+          <p class="footer-description">Award-winning creative agency crafting immersive digital experiences that captivate audiences and drive results.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Dribbble"><i data-lucide="dribbble" style="width: 18px; height: 18px;"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Services</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Brand Identity</a></li>
+            <li><a href="services.html">Web Design</a></li>
+            <li><a href="services.html">UI/UX Design</a></li>
+            <li><a href="services.html">Development</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@studiovanguard.com">hello@studiovanguard.com</a></li>
+            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+            <li>123 Creative Street<br>New York, NY 10001</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Studio Vanguard. All rights reserved.</p>
+        <p class="footer-credits">Designed with passion</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .contact-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      padding-top: 140px;
+      padding-bottom: var(--space-12);
+      text-align: center;
+    }
+    .contact-hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .contact-section { padding-top: var(--space-8); }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: var(--space-16);
+    }
+    @media (max-width: 1024px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+    .contact-info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      padding: var(--space-8);
+      background: var(--surface);
+      border-radius: var(--border-radius-xl);
+      height: fit-content;
+    }
+    .contact-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .contact-label {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+    }
+    .contact-value {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-style: normal;
+      transition: color var(--transition-fast);
+    }
+    .contact-value:hover { color: var(--accent); }
+    .contact-social-large {
+      display: flex;
+      gap: var(--space-3);
+    }
+    .contact-social-large a {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--background);
+      border-radius: var(--border-radius);
+      color: var(--text-secondary);
+      transition: all var(--transition-base);
+    }
+    .contact-social-large a:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-4px);
+    }
+    .form-tabs {
+      display: flex;
+      gap: var(--space-2);
+      margin-bottom: var(--space-8);
+    }
+    .form-tab {
+      flex: 1;
+      padding: var(--space-4) var(--space-6);
+      background: transparent;
+      border: 2px solid var(--surface);
+      border-radius: var(--border-radius);
+      color: var(--text-secondary);
+      font-family: var(--font-heading);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: none;
+      transition: all var(--transition-base);
+    }
+    .form-tab:hover { border-color: var(--surface-lighter); color: var(--text-primary); }
+    .form-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--primary);
+    }
+    .form-content { display: none; }
+    .form-content.active { display: block; }
+    .contact-form-large {
+      background: var(--surface);
+      padding: var(--space-10);
+      border-radius: var(--border-radius-xl);
+    }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1rem;
+    }
+    .map-section { padding: 0; }
+    .map-container {
+      position: relative;
+      height: 500px;
+    }
+    .map-container iframe { width: 100%; height: 100%; }
+    .map-overlay {
+      position: absolute;
+      top: 50%;
+      left: var(--space-12);
+      transform: translateY(-50%);
+    }
+    @media (max-width: 768px) {
+      .map-overlay { left: 50%; transform: translate(-50%, -50%); }
+    }
+    .map-card {
+      background: var(--surface);
+      padding: var(--space-8);
+      border-radius: var(--border-radius-xl);
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .map-card i { margin-bottom: var(--space-4); }
+    .map-card h3 { margin-bottom: var(--space-2); }
+    .map-card p {
+      color: var(--text-secondary);
+      margin-bottom: var(--space-4);
+    }
+    .newsletter-section { background: var(--surface); }
+    .newsletter-box {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
+      padding: var(--space-12);
+      background: var(--background);
+      border-radius: var(--border-radius-xl);
+    }
+    @media (max-width: 768px) {
+      .newsletter-box { grid-template-columns: 1fr; }
+    }
+    .newsletter-form {
+      display: flex;
+      gap: var(--space-4);
+    }
+    .newsletter-form .form-input { flex: 1; }
+  </style>
+
+  <script>
+    lucide.createIcons();
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        setTimeout(() => {
+          cursorFollower.style.left = e.clientX + 'px';
+          cursorFollower.style.top = e.clientY + 'px';
+        }, 100);
+      });
+      const hoverElements = document.querySelectorAll('a, button, .form-tab');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.add('hover');
+          cursorFollower.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('hover');
+          cursorFollower.classList.remove('hover');
+        });
+      });
+    }
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 100));
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Form tabs
+    document.querySelectorAll('.form-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.form-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab + '-form').classList.add('active');
+      });
+    });
+
+    const canvas = document.getElementById('webgl-canvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    const particles = [];
+    for (let i = 0; i < 25; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.1
+      });
+    }
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 107, 107, ${p.opacity})`;
+        ctx.fill();
+      });
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 107, 107, ${0.1 * (1 - distance / 150)})`;
+            ctx.stroke();
+          }
+        });
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  </script>
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | NOVA Fashion</title>
+  <meta name="description" content="Discover the story behind NOVA Fashion - bold, trendy fashion for the modern lifestyle.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .about-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .about-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    }
+    .about-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      padding: var(--space-xl);
+    }
+    .value-card {
+      text-align: center;
+      padding: var(--space-2xl);
+    }
+    .value-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--surface);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-lg);
+      color: var(--accent);
+    }
+    .team-card {
+      text-align: center;
+    }
+    .team-image {
+      width: 200px;
+      height: 250px;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      margin: 0 auto var(--space-lg);
+    }
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: var(--space-2xl);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .store-card {
+      border: 1px solid var(--border);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+    }
+    .store-image {
+      height: 200px;
+    }
+    .store-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .store-info {
+      padding: var(--space-lg);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+    .contact-item {
+      text-align: center;
+      padding: var(--space-xl);
+      background: var(--surface);
+      border-radius: var(--border-radius-lg);
+    }
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo">NOVA<span>.</span></a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="shop.html" class="nav-link">Shop</a></li>
+          <li><a href="index.html#categories" class="nav-link">Collections</a></li>
+          <li><a href="index.html#new" class="nav-link">New Arrivals</a></li>
+          <li><a href="#" class="nav-link">Sale</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="nav-btn" aria-label="Search"><i data-lucide="search" style="width: 22px; height: 22px;"></i></button>
+          <a href="account.html" class="nav-btn" aria-label="Account"><i data-lucide="user" style="width: 22px; height: 22px;"></i></a>
+          <button class="nav-btn" aria-label="Wishlist"><i data-lucide="heart" style="width: 22px; height: 22px;"></i></button>
+          <a href="cart.html" class="nav-btn" aria-label="Cart">
+            <i data-lucide="shopping-bag" style="width: 22px; height: 22px;"></i>
+            <span class="cart-badge">3</span>
+          </a>
+          <button class="mobile-menu-btn nav-btn" aria-label="Menu" onclick="toggleMobileMenu()"><i data-lucide="menu" style="width: 24px; height: 24px;"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html" class="mobile-menu-link">Home</a></li>
+      <li><a href="shop.html" class="mobile-menu-link">Shop</a></li>
+      <li><a href="index.html#categories" class="mobile-menu-link">Collections</a></li>
+      <li><a href="index.html#new" class="mobile-menu-link">New Arrivals</a></li>
+      <li><a href="#" class="mobile-menu-link">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- About Hero -->
+  <section class="about-hero">
+    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&q=80" alt="NOVA Fashion">
+    <div class="about-hero-overlay"></div>
+    <div class="about-hero-content">
+      <span class="section-tag" style="color: var(--secondary);">Our Story</span>
+      <h1 class="text-display" style="margin: var(--space-md) 0;">Define Your Style</h1>
+      <p style="font-size: 1.125rem; opacity: 0.9;">Bold, trendy fashion for the modern lifestyle. Born from a passion for self-expression and quality craftsmanship.</p>
+    </div>
+  </section>
+
+  <!-- Brand Story -->
+  <section class="section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4xl); align-items: center;">
+        <div>
+          <span class="section-tag">Our Story</span>
+          <h2 class="text-title" style="margin: var(--space-md) 0 var(--space-lg);">From Dream to Reality</h2>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: var(--space-lg);">
+            NOVA was founded in 2020 with a simple mission: to create fashion that empowers individuals to express their unique personalities. 
+            What started as a small studio in New York City has grown into a global brand, but our core values remain the same.
+          </p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: var(--space-lg);">
+            We believe that fashion is more than just clothing—it's a form of self-expression, a way to show the world who you are 
+            without saying a word. Every piece we create is designed with intention, crafted with care, and made to last.
+          </p>
+          <p style="color: var(--text-secondary); line-height: 1.8;">
+            Our team of designers draws inspiration from art, architecture, and the vibrant energy of city life to create 
+            collections that are both timeless and on-trend. We don't follow fashion—we define it.
+          </p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+          <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&q=80" alt="Fashion Design" style="border-radius: var(--border-radius-lg); width: 100%; height: 300px; object-fit: cover;">
+          <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&q=80" alt="Fashion Studio" style="border-radius: var(--border-radius-lg); width: 100%; height: 300px; object-fit: cover; margin-top: var(--space-xl);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section" style="background: var(--surface);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What We Stand For</span>
+        <h2 class="text-title">Our Values</h2>
+      </div>
+
+      <div class="grid grid-4">
+        <div class="value-card">
+          <div class="value-icon"><i data-lucide="heart" style="width: 28px; height: 28px;"></i></div>
+          <h3 style="font-size: 1.25rem; margin-bottom: var(--space-sm);">Passion</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">We pour our hearts into every design, ensuring each piece reflects our love for fashion.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon"><i data-lucide="gem" style="width: 28px; height: 28px;"></i></div>
+          <h3 style="font-size: 1.25rem; margin-bottom: var(--space-sm);">Quality</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Premium materials and expert craftsmanship ensure our pieces stand the test of time.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon"><i data-lucide="users" style="width: 28px; height: 28px;"></i></div>
+          <h3 style="font-size: 1.25rem; margin-bottom: var(--space-sm);">Community</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">We celebrate diversity and create fashion for every body, every style, every person.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon"><i data-lucide="zap" style="width: 28px; height: 28px;"></i></div>
+          <h3 style="font-size: 1.25rem; margin-bottom: var(--space-sm);">Innovation</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Constantly pushing boundaries to bring you the latest trends and cutting-edge designs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sustainability -->
+  <section class="section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4xl); align-items: center;">
+        <div style="border-radius: var(--border-radius-lg); overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80" alt="Sustainability" style="width: 100%; height: 500px; object-fit: cover;">
+        </div>
+        
+        <div>
+          <span class="section-tag">Sustainability</span>
+          <h2 class="text-title" style="margin: var(--space-md) 0 var(--space-lg);">Fashion with a Conscience</h2>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: var(--space-lg);">
+            We're committed to reducing our environmental impact while creating beautiful fashion. From sourcing sustainable 
+            materials to minimizing waste in our production process, every decision we make considers our planet.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: var(--space-lg); margin-top: var(--space-xl);">
+            <div style="display: flex; gap: var(--space-md);">
+              <div style="width: 48px; height: 48px; background: rgba(34, 197, 94, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="leaf" style="width: 24px; height: 24px; color: var(--success);"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1rem; margin-bottom: var(--space-xs);">Sustainable Materials</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">We use organic cotton, recycled fabrics, and eco-friendly dyes in our collections.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: var(--space-md);">
+              <div style="width: 48px; height: 48px; background: rgba(34, 197, 94, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="recycle" style="width: 24px; height: 24px; color: var(--success);"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1rem; margin-bottom: var(--space-xs);">Recycling Program</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Return your old NOVA pieces for recycling and receive store credit.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: var(--space-md);">
+              <div style="width: 48px; height: 48px; background: rgba(34, 197, 94, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="package" style="width: 24px; height: 24px; color: var(--success);"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1rem; margin-bottom: var(--space-xs);">Eco Packaging</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">All our packaging is 100% recyclable and made from recycled materials.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section" style="background: var(--surface);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Journey</span>
+        <h2 class="text-title">The NOVA Story</h2>
+      </div>
+
+      <div style="max-width: 600px; margin: 0 auto;">
+        <div class="timeline">
+          <div class="timeline-item">
+            <span style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">2020</span>
+            <h3 style="font-size: 1.25rem; margin: var(--space-xs) 0;">The Beginning</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">NOVA was founded in a small studio in New York City with just three employees and a dream.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">2021</span>
+            <h3 style="font-size: 1.25rem; margin: var(--space-xs) 0;">First Collection Launch</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Our debut collection sold out within 48 hours, confirming our vision resonated with fashion lovers.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">2022</span>
+            <h3 style="font-size: 1.25rem; margin: var(--space-xs) 0;">Going Global</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Expanded to international markets, opening our first flagship stores in London and Paris.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">2023</span>
+            <h3 style="font-size: 1.25rem; margin: var(--space-xs) 0;">Sustainability Initiative</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Launched our comprehensive sustainability program, committing to 100% sustainable materials by 2025.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">2025</span>
+            <h3 style="font-size: 1.25rem; margin: var(--space-xs) 0;">Today</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">A global brand with over 50 stores worldwide, continuing to push boundaries and inspire confidence.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">The Team</span>
+        <h2 class="text-title">Meet the Founders</h2>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="team-card">
+          <div class="team-image">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Sarah Mitchell">
+          </div>
+          <h3 style="font-size: 1.25rem;">Sarah Mitchell</h3>
+          <p style="color: var(--accent); font-size: 0.9rem; margin: var(--space-xs) 0;">Co-Founder & CEO</p>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Former fashion editor with a vision for accessible luxury.</p>
+        </div>
+
+        <div class="team-card">
+          <div class="team-image">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="James Chen">
+          </div>
+          <h3 style="font-size: 1.25rem;">James Chen</h3>
+          <p style="color: var(--accent); font-size: 0.9rem; margin: var(--space-xs) 0;">Co-Founder & Creative Director</p>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Award-winning designer with 15 years of industry experience.</p>
+        </div>
+
+        <div class="team-card">
+          <div class="team-image">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Elena Rodriguez">
+          </div>
+          <h3 style="font-size: 1.25rem;">Elena Rodriguez</h3>
+          <p style="color: var(--accent); font-size: 0.9rem; margin: var(--space-xs) 0;">Head of Sustainability</p>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Environmental scientist leading our green initiatives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store Locations -->
+  <section class="section" style="background: var(--surface);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Visit Us</span>
+        <h2 class="text-title">Our Flagship Stores</h2>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="store-card">
+          <div class="store-image">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80" alt="New York Store">
+          </div>
+          <div class="store-info">
+            <h3 style="font-size: 1.25rem; margin-bottom: var(--space-sm);">New York</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;"><i data-lucide="map-pin" style="width: 14px; height: 14px; display: inline;"></i> 456 Fashion Ave, NY 10018</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: var(--space-xs);"><i data-lucide="clock" style="width: 14px; height: 14px; display: inline;"></i> Mon-Sat: 10AM-9PM, Sun: 11AM-7PM</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: var(--space-xs);"><i data-lucide="phone" style="width: 14px; height: 14px; display: inline;"></i> +1 (555) 123-4567</p>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <div class="store-image">
+            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=400&q=80" alt="London Store">
+          </div>
+          <div class="store-info">
+            <h3 style="font-size: 1.25rem; margin-bottom: var(--space-sm);">London</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;"><i data-lucide="map-pin" style="width: 14px; height: 14px; display: inline;"></i> 12 Regent Street, London W1B 5AH</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: var(--space-xs);"><i data-lucide="clock" style="width: 14px; height: 14px; display: inline;"></i> Mon-Sat: 10AM-8PM, Sun: 12PM-6PM</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: var(--space-xs);"><i data-lucide="phone" style="width: 14px; height: 14px; display: inline;"></i> +44 20 7123 4567</p>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <div class="store-image">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Paris Store">
+          </div>
+          <div class="store-info">
+            <h3 style="font-size: 1.25rem; margin-bottom: var(--space-sm);">Paris</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;"><i data-lucide="map-pin" style="width: 14px; height: 14px; display: inline;"></i> 89 Avenue des Champs-Élysées</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: var(--space-xs);"><i data-lucide="clock" style="width: 14px; height: 14px; display: inline;"></i> Tue-Sat: 10AM-8PM, Closed Sun-Mon</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: var(--space-xs);"><i data-lucide="phone" style="width: 14px; height: 14px; display: inline;"></i> +33 1 23 45 67 89</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get in Touch</span>
+        <h2 class="text-title">Contact Us</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div style="width: 64px; height: 64px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md);">
+            <i data-lucide="mail" style="width: 28px; height: 28px; color: white;"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; margin-bottom: var(--space-sm);">Email</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">hello@novafashion.com</p>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: var(--space-xs);">24-48 hour response time</p>
+        </div>
+
+        <div class="contact-item">
+          <div style="width: 64px; height: 64px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md);">
+            <i data-lucide="phone" style="width: 28px; height: 28px; color: white;"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; margin-bottom: var(--space-sm);">Phone</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">+1 (800) 555-NOVA</p>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: var(--space-xs);">Mon-Fri: 9AM-6PM EST</p>
+        </div>
+
+        <div class="contact-item">
+          <div style="width: 64px; height: 64px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md);">
+            <i data-lucide="message-circle" style="width: 28px; height: 28px; color: white;"></i>
+          </div>
+          <h3 style="font-size: 1.125rem; margin-bottom: var(--space-sm);">Live Chat</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Available on our website</p>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: var(--space-xs);">Mon-Sat: 8AM-10PM EST</p>
+        </div>
+      </div>
+
+      <div style="max-width: 600px; margin: var(--space-3xl) auto 0; text-align: center;">
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">Follow us on social media for the latest updates, behind-the-scenes content, and exclusive offers.</p>
+        
+        <div class="footer-social" style="justify-content: center;">
+          <a href="#" aria-label="Instagram" style="width: 50px; height: 50px;"><i data-lucide="instagram" style="width: 22px; height: 22px;"></i></a>
+          <a href="#" aria-label="Facebook" style="width: 50px; height: 50px;"><i data-lucide="facebook" style="width: 22px; height: 22px;"></i></a>
+          <a href="#" aria-label="Twitter" style="width: 50px; height: 50px;"><i data-lucide="twitter" style="width: 22px; height: 22px;"></i></a>
+          <a href="#" aria-label="TikTok" style="width: 50px; height: 50px;"><i data-lucide="music" style="width: 22px; height: 22px;"></i></a>
+          <a href="#" aria-label="Pinterest" style="width: 50px; height: 50px;"><i data-lucide="pin" style="width: 22px; height: 22px;"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section newsletter">
+    <div class="container-narrow">
+      <span class="section-tag" style="color: var(--secondary);">Join the Family</span>
+      <h2 class="newsletter-title">Be Part of Our Story</h2>
+      <p class="newsletter-description">Subscribe to receive exclusive offers, early access to new collections, and be the first to know about our latest adventures.</p>
+      
+      <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Welcome to the NOVA family!', 'success');">
+        <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+        <button type="submit" class="btn btn-secondary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">NOVA<span>.</span></a>
+          <p class="footer-description">Bold, trendy fashion for the modern lifestyle. Express yourself with confidence.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Shop</h4>
+          <ul class="footer-links">
+            <li><a href="shop.html" class="footer-link">All Products</a></li>
+            <li><a href="#" class="footer-link">New Arrivals</a></li>
+            <li><a href="#" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Help</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">FAQs</a></li>
+            <li><a href="#" class="footer-link">Shipping & Returns</a></li>
+            <li><a href="#" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">2025 NOVA Fashion. All rights reserved.</p>
+        <div class="footer-payment">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">PP</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    function showToast(message, type = 'default') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle' : 'info'}" style="width: 18px; height: 18px;"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      lucide.createIcons();
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

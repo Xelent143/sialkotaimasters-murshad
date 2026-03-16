@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Northgate Advisory for strategic consulting services. Multiple office locations across North America, Europe, and Asia-Pacific.">
+  <title>Contact Us | Northgate Advisory</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <header class="nav" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">Northgate Advisory</a>
+      <nav class="nav-links" role="navigation" aria-label="Main navigation">
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="team.html" class="nav-link">Team</a>
+        <a href="resources.html" class="nav-link">Resources</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="tel:+15551234567" class="nav-link" aria-label="Call us">
+          <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
+        </a>
+        <a href="contact.html" class="btn btn-primary">Get Started</a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+      </button>
+    </div>
+  </header>
+  
+  <div class="mobile-menu">
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="team.html">Team</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  
+  <main id="main-content">
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs" style="justify-content: center; margin-bottom: var(--space-6);">
+          <a href="index.html">Home</a>
+          <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i>
+          <span class="current">Contact</span>
+        </nav>
+        <h1>Contact Us</h1>
+        <p>Ready to discuss your strategic challenges? Our team is here to help. Reach out for a confidential consultation.</p>
+      </div>
+    </section>
+    
+    <!-- Contact Form & Info -->
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-2" style="gap: var(--space-16); align-items: start;">
+          <!-- Contact Form -->
+          <div class="card" style="padding: var(--space-8);">
+            <h2 style="margin-bottom: var(--space-2);">Request a Consultation</h2>
+            <p style="color: var(--text-secondary); margin-bottom: var(--space-6);">Fill out the form below and a member of our team will contact you within 24 hours.</p>
+            
+            <form>
+              <div class="grid grid-2" style="gap: var(--space-4);">
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label for="first-name" class="form-label">First Name <span class="required">*</span></label>
+                  <input type="text" id="first-name" class="form-input" placeholder="John" required>
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label for="last-name" class="form-label">Last Name <span class="required">*</span></label>
+                  <input type="text" id="last-name" class="form-input" placeholder="Smith" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" class="form-input" placeholder="john.smith@company.com" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 123-4567">
+              </div>
+              
+              <div class="form-group">
+                <label for="company" class="form-label">Company Name <span class="required">*</span></label>
+                <input type="text" id="company" class="form-input" placeholder="Acme Corporation" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="job-title" class="form-label">Job Title</label>
+                <input type="text" id="job-title" class="form-input" placeholder="Chief Financial Officer">
+              </div>
+              
+              <div class="form-group">
+                <label for="industry" class="form-label">Industry</label>
+                <select id="industry" class="form-select">
+                  <option value="">Select Industry</option>
+                  <option value="financial">Financial Services</option>
+                  <option value="healthcare">Healthcare</option>
+                  <option value="manufacturing">Manufacturing</option>
+                  <option value="technology">Technology</option>
+                  <option value="energy">Energy & Utilities</option>
+                  <option value="retail">Retail & Consumer</option>
+                  <option value="transportation">Transportation</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="service-interest" class="form-label">Service of Interest <span class="required">*</span></label>
+                <select id="service-interest" class="form-select" required>
+                  <option value="">Select a Service</option>
+                  <option value="strategy">Strategy & Growth</option>
+                  <option value="compliance">Risk & Compliance</option>
+                  <option value="financial">Financial Advisory</option>
+                  <option value="digital">Digital Transformation</option>
+                  <option value="operations">Operational Excellence</option>
+                  <option value="governance">Governance & Legal</option>
+                  <option value="multiple">Multiple Services</option>
+                  <option value="unsure">Not Sure / Need Guidance</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="message" class="form-label">How Can We Help? <span class="required">*</span></label>
+                <textarea id="message" class="form-textarea" placeholder="Please describe your project, challenges, or questions..." required></textarea>
+              </div>
+              
+              <div class="checkbox-group" style="margin-bottom: var(--space-6);">
+                <input type="checkbox" id="consent">
+                <label for="consent" style="font-size: var(--text-sm); color: var(--text-secondary);">I consent to Northgate Advisory processing my personal data in accordance with the <a href="privacy-policy.html" style="color: var(--primary);">Privacy Policy</a>.</label>
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Submit Request</button>
+              
+              <p style="font-size: var(--text-xs); color: var(--text-muted); text-align: center; margin-top: var(--space-4); margin-bottom: 0;">Your information is confidential and will never be shared with third parties.</p>
+            </form>
+          </div>
+          
+          <!-- Contact Info -->
+          <div>
+            <div style="margin-bottom: var(--space-8);">
+              <h3 style="margin-bottom: var(--space-6);">Contact Information</h3>
+              
+              <div class="contact-info-item">
+                <i data-lucide="phone" class="icon"></i>
+                <div>
+                  <h4>General Inquiries</h4>
+                  <p>+1 (555) 123-4567</p>
+                </div>
+              </div>
+              
+              <div class="contact-info-item">
+                <i data-lucide="mail" class="icon"></i>
+                <div>
+                  <h4>Email</h4>
+                  <p>contact@northgate-advisory.com</p>
+                </div>
+              </div>
+              
+              <div class="contact-info-item">
+                <i data-lucide="clock" class="icon"></i>
+                <div>
+                  <h4>Business Hours</h4>
+                  <p>Monday – Friday: 8:00 AM – 6:00 PM EST</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Support Hours -->
+            <div class="card" style="padding: var(--space-6); margin-bottom: var(--space-8); background-color: var(--surface);">
+              <h4 style="margin-bottom: var(--space-4);">Client Support Hours</h4>
+              
+              <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="font-size: var(--text-sm);">North America (EST)</span>
+                  <span style="font-size: var(--text-sm); font-weight: 500;">24/7</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="font-size: var(--text-sm);">Europe (GMT)</span>
+                  <span style="font-size: var(--text-sm); font-weight: 500;">24/7</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="font-size: var(--text-sm);">Asia-Pacific (SGT)</span>
+                  <span style="font-size: var(--text-sm); font-weight: 500;">24/7</span>
+                </div>
+              </div>
+              
+              <div style="margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--border);">
+                <p style="font-size: var(--text-sm); color: var(--text-muted); margin: 0;">Client support line: <strong>+1 (555) 123-HELP</strong></p>
+              </div>
+            </div>
+            
+            <!-- Emergency Contact -->
+            <div class="card" style="padding: var(--space-6); border-left: 4px solid var(--error);">
+              <div style="display: flex; gap: var(--space-4); align-items: flex-start;">
+                <i data-lucide="alert-circle" style="width: 24px; height: 24px; color: var(--error); flex-shrink: 0;"></i>
+                <div>
+                  <h4 style="margin-bottom: var(--space-2);">Emergency Contact</h4>
+                  <p style="font-size: var(--text-sm); margin-bottom: var(--space-3);">For urgent matters requiring immediate attention outside business hours:</p>
+                  <p style="font-weight: 600; margin: 0;">+1 (555) 123-9111</p>
+                  <p style="font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-2);">Available 24/7 for existing clients</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Department Contacts -->
+    <section class="section bg-surface">
+      <div class="container">
+        <div class="section-header">
+          <h2>Department Contacts</h2>
+          <p>Connect directly with the right team for your specific needs.</p>
+        </div>
+        
+        <div class="grid grid-3">
+          <div class="card" style="padding: var(--space-8);">
+            <div style="width: 56px; height: 56px; background-color: var(--surface-dark); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+              <i data-lucide="briefcase" style="width: 28px; height: 28px; color: var(--primary);"></i>
+            </div>
+            <h3 style="margin-bottom: var(--space-2);">Strategy & Growth</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">For inquiries regarding corporate strategy, M&A advisory, and market expansion.</p>
+            <div style="font-size: var(--text-sm);">
+              <p style="margin-bottom: var(--space-2);"><strong>Jennifer Martinez</strong><br>Practice Lead</p>
+              <a href="mailto:strategy@northgate.com" style="color: var(--primary);">strategy@northgate.com</a><br>
+              <span style="color: var(--text-muted);">+1 (555) 123-4568</span>
+            </div>
+          </div>
+          
+          <div class="card" style="padding: var(--space-8);">
+            <div style="width: 56px; height: 56px; background-color: var(--surface-dark); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+              <i data-lucide="shield" style="width: 28px; height: 28px; color: var(--primary);"></i>
+            </div>
+            <h3 style="margin-bottom: var(--space-2);">Risk & Compliance</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">For regulatory compliance, cybersecurity, and enterprise risk management inquiries.</p>
+            <div style="font-size: var(--text-sm);">
+              <p style="margin-bottom: var(--space-2);"><strong>Robert Thompson</strong><br>Practice Lead</p>
+              <a href="mailto:compliance@northgate.com" style="color: var(--primary);">compliance@northgate.com</a><br>
+              <span style="color: var(--text-muted);">+1 (555) 123-4569</span>
+            </div>
+          </div>
+          
+          <div class="card" style="padding: var(--space-8);">
+            <div style="width: 56px; height: 56px; background-color: var(--surface-dark); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+              <i data-lucide="trending-up" style="width: 28px; height: 28px; color: var(--primary);"></i>
+            </div>
+            <h3 style="margin-bottom: var(--space-2);">Financial Advisory</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">For due diligence, valuation, and financial restructuring inquiries.</p>
+            <div style="font-size: var(--text-sm);">
+              <p style="margin-bottom: var(--space-2);"><strong>James Wilson</strong><br>Practice Lead</p>
+              <a href="mailto:financial@northgate.com" style="color: var(--primary);">financial@northgate.com</a><br>
+              <span style="color: var(--text-muted);">+1 (555) 123-4570</span>
+            </div>
+          </div>
+          
+          <div class="card" style="padding: var(--space-8);">
+            <div style="width: 56px; height: 56px; background-color: var(--surface-dark); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+              <i data-lucide="cpu" style="width: 28px; height: 28px; color: var(--primary);"></i>
+            </div>
+            <h3 style="margin-bottom: var(--space-2);">Digital Transformation</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">For technology strategy, data analytics, and AI implementation inquiries.</p>
+            <div style="font-size: var(--text-sm);">
+              <p style="margin-bottom: var(--space-2);"><strong>Amanda Foster</strong><br>Practice Lead</p>
+              <a href="mailto:digital@northgate.com" style="color: var(--primary);">digital@northgate.com</a><br>
+              <span style="color: var(--text-muted);">+1 (555) 123-4571</span>
+            </div>
+          </div>
+          
+          <div class="card" style="padding: var(--space-8);">
+            <div style="width: 56px; height: 56px; background-color: var(--surface-dark); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+              <i data-lucide="leaf" style="width: 28px; height: 28px; color: var(--primary);"></i>
+            </div>
+            <h3 style="margin-bottom: var(--space-2);">ESG & Sustainability</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">For ESG strategy, sustainability reporting, and climate risk inquiries.</p>
+            <div style="font-size: var(--text-sm);">
+              <p style="margin-bottom: var(--space-2);"><strong>Sarah Williams</strong><br>Practice Lead</p>
+              <a href="mailto:esg@northgate.com" style="color: var(--primary);">esg@northgate.com</a><br>
+              <span style="color: var(--text-muted);">+1 (555) 123-4572</span>
+            </div>
+          </div>
+          
+          <div class="card" style="padding: var(--space-8);">
+            <div style="width: 56px; height: 56px; background-color: var(--surface-dark); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+              <i data-lucide="users" style="width: 28px; height: 28px; color: var(--primary);"></i>
+            </div>
+            <h3 style="margin-bottom: var(--space-2);">Careers</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">For employment opportunities and recruitment inquiries.</p>
+            <div style="font-size: var(--text-sm);">
+              <p style="margin-bottom: var(--space-2);"><strong>Human Resources</strong></p>
+              <a href="mailto:careers@northgate.com" style="color: var(--primary);">careers@northgate.com</a><br>
+              <a href="careers.html" style="color: var(--primary);">View Open Positions →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Office Locations -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Offices</h2>
+          <p>Global presence with local expertise across North America, Europe, and Asia-Pacific.</p>
+        </div>
+        
+        <div class="grid grid-3">
+          <!-- New York -->
+          <div class="card" style="overflow: hidden;">
+            <div style="height: 200px; background: linear-gradient(135deg, #1e3a5f 0%, #2d4a73 100%); display: flex; align-items: center; justify-content: center;">
+              <div style="text-align: center; color: white;">
+                <img src="https://flagcdn.com/w80/us.png" alt="USA" style="width: 60px; border-radius: var(--radius-sm); margin-bottom: var(--space-3);">
+                <h3 style="color: white; margin: 0;">New York</h3>
+                <p style="color: rgba(255,255,255,0.8); margin: 0; font-size: var(--text-sm);">Global Headquarters</p>
+              </div>
+            </div>
+            <div style="padding: var(--space-6);">
+              <address style="font-style: normal; margin-bottom: var(--space-4);">
+                <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-3);">
+                  <i data-lucide="map-pin" style="width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0;"></i>
+                  <span style="font-size: var(--text-sm); color: var(--text-secondary);">350 Park Avenue, Suite 2100<br>New York, NY 10022</span>
+                </div>
+                <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-3);">
+                  <i data-lucide="phone" style="width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0;"></i>
+                  <span style="font-size: var(--text-sm);">+1 (555) 123-4567</span>
+                </div>
+                <div style="display: flex; gap: var(--space-3);">
+                  <i data-lucide="mail" style="width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0;"></i>
+                  <a href="mailto:ny@northgate.com" style="font-size: var(--text-sm);">ny@northgate.com</a>
+                </div>
+              </address>
+              
+              <div style="padding-top: var(--space-4); border-top: 1px solid var(--border);">
+                <p style="font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-2);">Hours: Mon-Fri, 8:00 AM - 6:00 PM EST</p>
+                <a href="https://maps.google.com/?q=350+Park+Avenue+New+York+NY" target="_blank" class="btn btn-outline btn-sm" style="width: 100%;">View on Map</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- London -->
+          <div class="card" style="overflow: hidden;">
+            <div style="height: 200px; background: linear-gradient(135deg, #1e3a5f 0%, #2d4a73 100%); display: flex; align-items: center; justify-content: center;">
+              <div style="text-align: center; color: white;">
+                <img src="https://flagcdn.com/w80/gb.png" alt="UK" style="width: 60px; border-radius: var(--radius-sm); margin-bottom: var(--space-3);">
+                <h3 style="color: white; margin: 0;">London</h3>
+                <p style="color: rgba(255,255,255,0.8); margin: 0; font-size: var(--text-sm);">EMEA Regional Office</p>
+              </div>
+            </div>
+            <div style="padding: var(--space-6);">
+              <address style="font-style: normal; margin-bottom: var(--space-4);">
+                <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-3);">
+                  <i data-lucide="map-pin" style="width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0;"></i>
+                  <span style="font-size: var(--text-sm); color: var(--text-secondary);">25 Canada Square, Level 18<br>London E14 5LQ</span>
+                </div>
+                <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-3);">
+                  <i data-lucide="phone" style="width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0;"></i>
+                  <span style="font-size: var(--text-sm);">+44 20 7946 0958</span>
+                </div>
+                <div style="display: flex; gap: var(--space-3);">
+                  <i data-lucide="mail" style="width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0;"></i>
+                  <a href="mailto:london@northgate.com" style="font-size: var(--text-sm);">london@northgate.com</a>
+                </div>
+              </address>
+              
+              <div style="padding-top: var(--space-4); border-top: 1px solid var(--border);">
+                <p style="font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-2);">Hours: Mon-Fri, 8:00 AM - 6:00 PM GMT</p>
+                <a href="https://maps.google.com/?q=25+Canada+Square+London" target="_blank" class="btn btn-outline btn-sm" style="width: 100%;">View on Map</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Singapore -->
+          <div class="card" style="overflow: hidden;">
+            <div style="height: 200px; background: linear-gradient(135deg, #1e3a5f 0%, #2d4a73 100%); display: flex; align-items: center; justify-content: center;">
+              <div style="text-align: center; color: white;">
+                <img src="https://flagcdn.com/w80/sg.png" alt="Singapore" style="width: 60px; border-radius: var(--radius-sm); margin-bottom: var(--space-3);">
+                <h3 style="color: white; margin: 0;">Singapore</h3>
+                <p style="color: rgba(255,255,255,0.8); margin: 0; font-size: var(--text-sm);">APAC Regional Office</p>
+              </div>
+            </div>
+            <div style="padding: var(--space-6);">
+              <address style="font-style: normal; margin-bottom: var(--space-4);">
+                <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-3);">
+                  <i data-lucide="map-pin" style="width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0;"></i>
+                  <span style="font-size: var(--text-sm); color: var(--text-secondary);">1 Raffles Place, #44-01<br>Singapore 048616</span>
+                </div>
+                <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-3);">
+                  <i data-lucide="phone" style="width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0;"></i>
+                  <span style="font-size: var(--text-sm);">+65 6123 4567</span>
+                </div>
+                <div style="display: flex; gap: var(--space-3);">
+                  <i data-lucide="mail" style="width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0;"></i>
+                  <a href="mailto:singapore@northgate.com" style="font-size: var(--text-sm);">singapore@northgate.com</a>
+                </div>
+              </address>
+              
+              <div style="padding-top: var(--space-4); border-top: 1px solid var(--border);">
+                <p style="font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-2);">Hours: Mon-Fri, 8:00 AM - 6:00 PM SGT</p>
+                <a href="https://maps.google.com/?q=1+Raffles+Place+Singapore" target="_blank" class="btn btn-outline btn-sm" style="width: 100%;">View on Map</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">Northgate Advisory</div>
+          <p>Strategic advisory services for complex challenges.</p>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading">Services</h4>
+          <a href="services.html">Strategy</a>
+          <a href="services.html">Compliance</a>
+          <a href="services.html">Financial</a>
+          <a href="services.html">Digital</a>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading">Company</h4>
+          <a href="about.html">About</a>
+          <a href="team.html">Team</a>
+          <a href="resources.html">Resources</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading">Legal</h4>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="privacy-policy.html#terms">Terms of Service</a>
+          <a href="privacy-policy.html#cookies">Cookie Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Northgate Advisory LLC. All rights reserved.</p>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn">
+            <i data-lucide="linkedin" style="width: 20px; height: 20px; color: white;"></i>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <i data-lucide="twitter" style="width: 20px; height: 20px; color: white;"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    lucide.createIcons();
+    
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+      mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

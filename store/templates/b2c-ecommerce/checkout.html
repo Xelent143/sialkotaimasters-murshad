@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | NOVA Fashion</title>
+  <meta name="description" content="Complete your purchase securely at NOVA Fashion.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .checkout-step-content { display: none; }
+    .checkout-step-content.active { display: block; }
+    .secure-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.85rem;
+      color: var(--success);
+      background: rgba(34, 197, 94, 0.1);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--border-radius);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo">NOVA<span>.</span></a>
+        <div class="secure-badge">
+          <i data-lucide="lock" style="width: 16px; height: 16px;"></i>
+          Secure Checkout
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Checkout Page -->
+  <section class="checkout-page">
+    <div class="container">
+      <!-- Progress Steps -->
+      <div class="checkout-steps">
+        <div class="step active" id="step1-indicator">
+          <div class="step-number">1</div>
+          <span>Shipping</span>
+        </div>
+        <div class="step" id="step2-indicator">
+          <div class="step-number">2</div>
+          <span>Payment</span>
+        </div>
+        <div class="step" id="step3-indicator">
+          <div class="step-number">3</div>
+          <span>Review</span>
+        </div>
+      </div>
+
+      <div class="checkout-layout">
+        <!-- Checkout Form -->
+        <div class="checkout-form">
+          <!-- Step 1: Shipping Info -->
+          <div class="checkout-step-content active" id="step1">
+            <div class="checkout-section">
+              <h2 class="checkout-section-title">
+                <i data-lucide="truck" style="width: 20px; height: 20px;"></i>
+                Shipping Information
+              </h2>
+              
+              <form id="shippingForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label">First Name <span>*</span></label>
+                    <input type="text" class="form-input" placeholder="John" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Last Name <span>*</span></label>
+                    <input type="text" class="form-input" placeholder="Doe" required>
+                  </div>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: var(--space-lg);">
+                  <label class="form-label">Email <span>*</span></label>
+                  <input type="email" class="form-input" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: var(--space-lg);">
+                  <label class="form-label">Phone <span>*</span></label>
+                  <input type="tel" class="form-input" placeholder="+1 (555) 123-4567" required>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: var(--space-lg);">
+                  <label class="form-label">Address <span>*</span></label>
+                  <input type="text" class="form-input" placeholder="123 Main Street" required>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: var(--space-lg);">
+                  <label class="form-label">Apartment, Suite, etc. (optional)</label>
+                  <input type="text" class="form-input" placeholder="Apt 4B">
+                </div>
+
+                <div class="form-grid" style="margin-top: var(--space-lg);">
+                  <div class="form-group">
+                    <label class="form-label">City <span>*</span></label>
+                    <input type="text" class="form-input" placeholder="New York" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Postal Code <span>*</span></label>
+                    <input type="text" class="form-input" placeholder="10001" required>
+                  </div>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: var(--space-lg);">
+                  <label class="form-label">Country <span>*</span></label>
+                  <select class="form-select" required>
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>United Kingdom</option>
+                    <option>Australia</option>
+                    <option>Germany</option>
+                    <option>France</option>
+                  </select>
+                </div>
+
+                <div style="margin-top: var(--space-xl); padding-top: var(--space-xl); border-top: 1px solid var(--border);">
+                  <h3 style="font-size: 1rem; margin-bottom: var(--space-md);">Shipping Method</h3>
+                  <div class="payment-methods">
+                    <label class="payment-method">
+                      <input type="radio" name="shipping" value="standard" checked>
+                      <div style="flex: 1;">
+                        <div style="font-weight: 600;">Standard Shipping</div>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary);">3-5 business days</div>
+                      </div>
+                      <span style="font-weight: 600;">Free</span>
+                    </label>
+                    <label class="payment-method">
+                      <input type="radio" name="shipping" value="express">
+                      <div style="flex: 1;">
+                        <div style="font-weight: 600;">Express Shipping</div>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary);">1-2 business days</div>
+                      </div>
+                      <span style="font-weight: 600;">$15.00</span>
+                    </label>
+                  </div>
+                </div>
+              </form>
+
+              <button class="btn btn-primary btn-lg" style="width: 100%; margin-top: var(--space-xl);" onclick="goToStep(2)">Continue to Payment</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Payment -->
+          <div class="checkout-step-content" id="step2">
+            <div class="checkout-section">
+              <h2 class="checkout-section-title">
+                <i data-lucide="credit-card" style="width: 20px; height: 20px;"></i>
+                Payment Method
+              </h2>
+
+              <div class="payment-methods">
+                <label class="payment-method active">
+                  <input type="radio" name="payment" value="card" checked>
+                  <div class="payment-icon">CC</div>
+                  <span class="payment-label">Credit/Debit Card</span>
+                </label>
+                <label class="payment-method">
+                  <input type="radio" name="payment" value="paypal">
+                  <div class="payment-icon">PP</div>
+                  <span class="payment-label">PayPal</span>
+                </label>
+                <label class="payment-method">
+                  <input type="radio" name="payment" value="apple">
+                  <div class="payment-icon">AP</div>
+                  <span class="payment-label">Apple Pay</span>
+                </label>
+              </div>
+
+              <form id="paymentForm" style="margin-top: var(--space-xl);">
+                <div class="form-group full-width">
+                  <label class="form-label">Card Number <span>*</span></label>
+                  <input type="text" class="form-input" placeholder="1234 5678 9012 3456" required>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: var(--space-lg);">
+                  <label class="form-label">Cardholder Name <span>*</span></label>
+                  <input type="text" class="form-input" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-grid" style="margin-top: var(--space-lg);">
+                  <div class="form-group">
+                    <label class="form-label">Expiry Date <span>*</span></label>
+                    <input type="text" class="form-input" placeholder="MM/YY" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">CVC <span>*</span></label>
+                    <input type="text" class="form-input" placeholder="123" required>
+                  </div>
+                </div>
+              </form>
+
+              <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: rgba(34, 197, 94, 0.05); border-radius: var(--border-radius); display: flex; align-items: center; gap: var(--space-md);">
+                <i data-lucide="shield-check" style="width: 24px; height: 24px; color: var(--success);"></i>
+                <div>
+                  <p style="font-weight: 600; font-size: 0.9rem;">Secure Payment</p>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary);">Your payment information is encrypted and secure.</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: var(--space-md); margin-top: var(--space-xl);">
+                <button class="btn btn-outline" style="flex: 1;" onclick="goToStep(1)">Back</button>
+                <button class="btn btn-primary" style="flex: 2;" onclick="goToStep(3)">Review Order</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Review -->
+          <div class="checkout-step-content" id="step3">
+            <div class="checkout-section">
+              <h2 class="checkout-section-title">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Review Your Order
+              </h2>
+
+              <div style="margin-bottom: var(--space-xl);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
+                  <h3 style="font-size: 1rem;">Shipping Address</h3>
+                  <button style="font-size: 0.85rem; color: var(--accent);" onclick="goToStep(1)">Edit</button>
+                </div>
+                <div style="padding: var(--space-md); background: var(--surface); border-radius: var(--border-radius); font-size: 0.9rem; color: var(--text-secondary);">
+                  <p style="color: var(--text-primary); font-weight: 600;">John Doe</p>
+                  <p>123 Main Street, Apt 4B</p>
+                  <p>New York, NY 10001</p>
+                  <p>United States</p>
+                </div>
+              </div>
+
+              <div style="margin-bottom: var(--space-xl);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
+                  <h3 style="font-size: 1rem;">Payment Method</h3>
+                  <button style="font-size: 0.85rem; color: var(--accent);" onclick="goToStep(2)">Edit</button>
+                </div>
+                <div style="padding: var(--space-md); background: var(--surface); border-radius: var(--border-radius); display: flex; align-items: center; gap: var(--space-md);">
+                  <div class="payment-icon">VISA</div>
+                  <div>
+                    <p style="font-weight: 600; font-size: 0.9rem;">Visa ending in 3456</p>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Expires 12/26</p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: var(--space-md); margin-top: var(--space-xl);">
+                <button class="btn btn-outline" style="flex: 1;" onclick="goToStep(2)">Back</button>
+                <button class="btn btn-primary" style="flex: 2;" onclick="placeOrder()">Place Order</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+          <h2 class="summary-title">Order Summary</h2>
+
+          <div class="order-items">
+            <div class="order-item">
+              <div class="order-item-image">
+                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=100&q=80" alt="Silk Evening Dress">
+              </div>
+              <div class="order-item-details">
+                <p class="order-item-name">Silk Evening Dress</p>
+                <p class="order-item-variant">Black / M / Qty: 1</p>
+              </div>
+              <span class="order-item-price">$189.00</span>
+            </div>
+
+            <div class="order-item">
+              <div class="order-item-image">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=100&q=80" alt="Oversized Blazer">
+              </div>
+              <div class="order-item-details">
+                <p class="order-item-name">Oversized Blazer</p>
+                <p class="order-item-variant">Charcoal / S / Qty: 1</p>
+              </div>
+              <span class="order-item-price">$149.00</span>
+            </div>
+
+            <div class="order-item">
+              <div class="order-item-image">
+                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=100&q=80" alt="Leather Tote Bag">
+              </div>
+              <div class="order-item-details">
+                <p class="order-item-name">Leather Tote Bag</p>
+                <p class="order-item-variant">Brown / Qty: 1</p>
+              </div>
+              <span class="order-item-price">$245.00</span>
+            </div>
+          </div>
+
+          <div class="order-totals">
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span>$583.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping</span>
+              <span>Free</span>
+            </div>
+            <div class="summary-row">
+              <span>Tax</span>
+              <span>$52.47</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span>$635.47</span>
+            </div>
+          </div>
+
+          <div class="secure-checkout">
+            <i data-lucide="lock" style="width: 16px; height: 16px;"></i>
+            Secure SSL Encryption
+          </div>
+
+          <div style="margin-top: var(--space-xl); padding-top: var(--space-xl); border-top: 1px solid var(--border);">
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: var(--space-md);">We Accept:</p>
+            <div class="footer-payment">
+              <span class="payment-icon">VISA</span>
+              <span class="payment-icon">MC</span>
+              <span class="payment-icon">AMEX</span>
+              <span class="payment-icon">PP</span>
+              <span class="payment-icon">AP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Confirmation Modal -->
+  <div class="modal-overlay" id="confirmationModal">
+    <div class="modal" style="text-align: center; max-width: 450px;">
+      <div style="width: 80px; height: 80px; background: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-xl);">
+        <i data-lucide="check" style="width: 40px; height: 40px; color: white;"></i>
+      </div>
+      <h2 style="margin-bottom: var(--space-md);">Order Confirmed!</h2>
+      <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">Thank you for your purchase. Your order #NOVA-2025-7842 has been placed successfully.</p>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-xl);">A confirmation email has been sent to john@example.com</p>
+      <a href="index.html" class="btn btn-primary btn-full">Continue Shopping</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    let currentStep = 1;
+
+    lucide.createIcons();
+
+    function goToStep(step) {
+      document.querySelectorAll('.checkout-step-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(`step${step}`).classList.add('active');
+
+      for (let i = 1; i <= 3; i++) {
+        const indicator = document.getElementById(`step${i}-indicator`);
+        indicator.classList.remove('active', 'completed');
+        if (i < step) {
+          indicator.classList.add('completed');
+        } else if (i === step) {
+          indicator.classList.add('active');
+        }
+      }
+
+      currentStep = step;
+      window.scrollTo(0, 0);
+    }
+
+    function placeOrder() {
+      document.getElementById('confirmationModal').classList.add('active');
+    }
+
+    document.querySelectorAll('.payment-method').forEach(method => {
+      method.addEventListener('click', function() {
+        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+        this.classList.add('active');
+        this.querySelector('input').checked = true;
+      });
+    });
+  </script>
+</body>
+</html>

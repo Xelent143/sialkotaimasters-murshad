@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with Example SaaS. Contact our sales team, support, or find our office locations.">
+  <title>Contact Us - Example SaaS</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-6);
+    }
+    .breadcrumb a {
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+    .breadcrumb a:hover {
+      color: var(--primary);
+    }
+    .breadcrumb-separator {
+      color: var(--text-tertiary);
+    }
+    .breadcrumb-current {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    
+    /* Contact Hero */
+    .contact-hero {
+      padding-top: calc(72px + var(--space-20));
+      padding-bottom: var(--space-16);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    /* Support Options */
+    .support-grid {
+      display: grid;
+      gap: var(--space-6);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .support-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+    .support-card:hover {
+      border-color: var(--primary-200);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .support-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-2xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+    }
+    .support-title {
+      font-size: var(--text-xl);
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .support-description {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-4);
+    }
+    .support-cta {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    
+    /* Contact Form Enhanced */
+    .contact-form-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+    }
+    .contact-form-title {
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .contact-form-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: var(--space-8);
+    }
+    
+    /* Office Locations */
+    .office-location-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      transition: all var(--transition-base);
+    }
+    .office-location-card:hover {
+      border-color: var(--primary-200);
+      box-shadow: var(--shadow-lg);
+    }
+    .office-map {
+      height: 160px;
+      background: linear-gradient(135deg, var(--primary-50), var(--accent-50));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .office-info {
+      padding: var(--space-6);
+    }
+    .office-city {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+    .office-address {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-4);
+    }
+    .office-contact {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .office-contact-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+    .office-contact-item svg {
+      color: var(--primary);
+      width: 16px;
+      height: 16px;
+    }
+    
+    /* Social Links Section */
+    .social-section {
+      text-align: center;
+    }
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+    .social-link-large {
+      width: 64px;
+      height: 64px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-2xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: all var(--transition-base);
+    }
+    .social-link-large:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      transform: translateY(-4px);
+    }
+    
+    /* Form Success Message */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: var(--space-12);
+    }
+    .form-success.show {
+      display: block;
+    }
+    .form-success-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--secondary-50);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+      margin: 0 auto var(--space-6);
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo" aria-label="Example SaaS Home">
+        <div class="logo-icon">
+          <i data-lucide="zap"></i>
+        </div>
+        <span>Example SaaS</span>
+      </a>
+      
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </div>
+      
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-ghost">Sign In</a>
+        <a href="pricing.html" class="btn btn-primary btn-magnetic">Get Started</a>
+      </div>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="menu">
+      <div class="container">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+          <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <!-- Contact Hero -->
+    <section class="contact-hero" aria-labelledby="contact-title">
+      <div class="container">
+        <nav class="breadcrumb reveal">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-separator"><i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></span>
+          <span class="breadcrumb-current">Contact</span>
+        </nav>
+        
+        <div class="reveal">
+          <span class="section-label">Contact Us</span>
+          <h1 id="contact-title" class="section-title" style="font-size: var(--text-5xl);">Let's Start a Conversation</h1>
+          <p class="section-description" style="max-width: 600px; margin: 0 auto;">
+            Whether you have a question about features, pricing, need a demo, or anything else, our team is ready to answer all your questions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Options -->
+    <section class="section" style="padding-top: 0;" aria-labelledby="support-title">
+      <div class="container">
+        <h2 id="support-title" class="sr-only">Support Options</h2>
+        
+        <div class="support-grid reveal">
+          <div class="support-card">
+            <div class="support-icon" style="background: var(--primary-50); color: var(--primary);">
+              <i data-lucide="message-circle" style="width: 32px; height: 32px;"></i>
+            </div>
+            <h3 class="support-title">Live Chat</h3>
+            <p class="support-description">Chat with our support team in real-time for quick answers to your questions.</p>
+            <a href="#" class="support-cta">
+              Start Chat
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+          
+          <div class="support-card">
+            <div class="support-icon" style="background: var(--secondary-50); color: var(--secondary);">
+              <i data-lucide="mail" style="width: 32px; height: 32px;"></i>
+            </div>
+            <h3 class="support-title">Email Support</h3>
+            <p class="support-description">Send us an email and we'll get back to you within 24 hours.</p>
+            <a href="mailto:support@examplesaas.com" class="support-cta">
+              support@examplesaas.com
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+          
+          <div class="support-card">
+            <div class="support-icon" style="background: var(--accent-50); color: var(--accent);">
+              <i data-lucide="phone" style="width: 32px; height: 32px;"></i>
+            </div>
+            <h3 class="support-title">Phone Support</h3>
+            <p class="support-description">Call us directly for Enterprise support and sales inquiries.</p>
+            <a href="tel:+1-800-555-0123" class="support-cta">
+              +1 (800) 555-0123
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="section" style="background: var(--surface);" aria-labelledby="form-title">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="reveal">
+            <h2 id="form-title" class="contact-info-title">Send Us a Message</h2>
+            <p class="contact-info-description">
+              Fill out the form and our team will get back to you within 24 hours.
+            </p>
+            
+            <div class="contact-methods">
+              <div class="contact-method">
+                <div class="contact-method-icon">
+                  <i data-lucide="mail" style="width: 24px; height: 24px;"></i>
+                </div>
+                <div>
+                  <div class="contact-method-title">Email Us</div>
+                  <div class="contact-method-value">hello@examplesaas.com</div>
+                </div>
+              </div>
+              
+              <div class="contact-method">
+                <div class="contact-method-icon">
+                  <i data-lucide="phone" style="width: 24px; height: 24px;"></i>
+                </div>
+                <div>
+                  <div class="contact-method-title">Call Us</div>
+                  <div class="contact-method-value">+1 (800) 555-0123</div>
+                </div>
+              </div>
+              
+              <div class="contact-method">
+                <div class="contact-method-icon">
+                  <i data-lucide="clock" style="width: 24px; height: 24px;"></i>
+                </div>
+                <div>
+                  <div class="contact-method-title">Business Hours</div>
+                  <div class="contact-method-value">Mon-Fri: 9AM - 6PM PST</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-form-wrapper reveal">
+            <!-- Form View -->
+            <form id="contactForm" class="contact-form">
+              <h3 class="contact-form-title">Get in Touch</h3>
+              <p class="contact-form-subtitle">Have a question or want to learn more? We'd love to hear from you.</p>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name" class="form-label form-label-required">Full Name</label>
+                  <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="form-label form-label-required">Email Address</label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="john@company.com" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="company" class="form-label">Company Name</label>
+                <input type="text" id="company" name="company" class="form-input" placeholder="Acme Inc.">
+              </div>
+              
+              <div class="form-group">
+                <label for="subject" class="form-label form-label-required">Subject</label>
+                <select id="subject" name="subject" class="form-select" required>
+                  <option value="">Select a subject...</option>
+                  <option value="sales">Sales Inquiry</option>
+                  <option value="support">Technical Support</option>
+                  <option value="demo">Request a Demo</option>
+                  <option value="partners">Partnerships</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="message" class="form-label form-label-required">Message</label>
+                <textarea id="message" name="message" class="form-textarea" placeholder="Tell us how we can help you..." required></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" style="display: flex; align-items: center; gap: var(--space-3); font-weight: 400;">
+                  <input type="checkbox" name="newsletter" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                  <span>Subscribe to our newsletter for product updates and tips</span>
+                </label>
+              </div>
+              
+              <button type="submit" class="btn btn-primary form-submit">
+                Send Message
+                <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+              </button>
+            </form>
+            
+            <!-- Success View -->
+            <div id="formSuccess" class="form-success">
+              <div class="form-success-icon">
+                <i data-lucide="check" style="width: 40px; height: 40px;"></i>
+              </div>
+              <h3 class="contact-form-title">Message Sent!</h3>
+              <p class="contact-form-subtitle">Thank you for reaching out. We'll get back to you within 24 hours.</p>
+              <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                Send Another Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Office Locations -->
+    <section class="section" aria-labelledby="offices-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Our Offices</span>
+          <h2 id="offices-title" class="section-title">Visit Us</h2>
+          <p class="section-description">
+            We have offices around the world. Come say hello!
+          </p>
+        </div>
+        
+        <div class="bento-grid bento-3-col reveal">
+          <div class="office-location-card">
+            <div class="office-map">
+              <i data-lucide="map-pin" style="width: 40px; height: 40px; color: var(--primary);"></i>
+            </div>
+            <div class="office-info">
+              <h3 class="office-city">San Francisco (HQ)</h3>
+              <p class="office-address">123 Tech Street, Suite 400<br>San Francisco, CA 94105</p>
+              <div class="office-contact">
+                <div class="office-contact-item">
+                  <i data-lucide="phone"></i>
+                  <span>+1 (415) 555-0100</span>
+                </div>
+                <div class="office-contact-item">
+                  <i data-lucide="mail"></i>
+                  <span>sf@examplesaas.com</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="office-location-card">
+            <div class="office-map" style="background: linear-gradient(135deg, var(--secondary-50), var(--primary-50));">
+              <i data-lucide="map-pin" style="width: 40px; height: 40px; color: var(--secondary);"></i>
+            </div>
+            <div class="office-info">
+              <h3 class="office-city">New York</h3>
+              <p class="office-address">456 Broadway, Floor 12<br>New York, NY 10013</p>
+              <div class="office-contact">
+                <div class="office-contact-item">
+                  <i data-lucide="phone"></i>
+                  <span>+1 (212) 555-0200</span>
+                </div>
+                <div class="office-contact-item">
+                  <i data-lucide="mail"></i>
+                  <span>ny@examplesaas.com</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="office-location-card">
+            <div class="office-map" style="background: linear-gradient(135deg, var(--accent-50), var(--primary-50));">
+              <i data-lucide="map-pin" style="width: 40px; height: 40px; color: var(--accent);"></i>
+            </div>
+            <div class="office-info">
+              <h3 class="office-city">London</h3>
+              <p class="office-address">78 Farringdon Road<br>London, EC1M 3JQ, UK</p>
+              <div class="office-contact">
+                <div class="office-contact-item">
+                  <i data-lucide="phone"></i>
+                  <span>+44 20 7123 4567</span>
+                </div>
+                <div class="office-contact-item">
+                  <i data-lucide="mail"></i>
+                  <span>london@examplesaas.com</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Links -->
+    <section class="section social-section" style="background: var(--surface);" aria-labelledby="social-title">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">Connect</span>
+          <h2 id="social-title" class="section-title">Follow Us</h2>
+          <p class="section-description">
+            Stay updated with our latest news, tips, and insights.
+          </p>
+          
+          <div class="social-grid">
+            <a href="#" class="social-link-large" aria-label="Twitter">
+              <i data-lucide="twitter" style="width: 28px; height: 28px;"></i>
+            </a>
+            <a href="#" class="social-link-large" aria-label="LinkedIn">
+              <i data-lucide="linkedin" style="width: 28px; height: 28px;"></i>
+            </a>
+            <a href="#" class="social-link-large" aria-label="GitHub">
+              <i data-lucide="github" style="width: 28px; height: 28px;"></i>
+            </a>
+            <a href="#" class="social-link-large" aria-label="YouTube">
+              <i data-lucide="youtube" style="width: 28px; height: 28px;"></i>
+            </a>
+            <a href="#" class="social-link-large" aria-label="Instagram">
+              <i data-lucide="instagram" style="width: 28px; height: 28px;"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div class="cta-content">
+            <h2 id="cta-title" class="cta-title">Ready to Get Started?</h2>
+            <p class="cta-description">
+              Join 500+ enterprises already using Example SaaS to scale their operations.
+            </p>
+            <div class="cta-buttons">
+              <a href="pricing.html" class="btn btn-lg cta-btn-primary btn-magnetic">
+                Start Free Trial
+              </a>
+              <a href="features.html" class="btn btn-lg cta-btn-secondary">
+                Explore Features
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <div class="logo-icon" style="width: 28px; height: 28px;">
+              <i data-lucide="zap" style="width: 16px; height: 16px;"></i>
+            </div>
+            <span>Example SaaS</span>
+          </a>
+          <p class="footer-description">
+            Empowering businesses with enterprise-grade solutions. Scale faster, work smarter, and achieve more with our comprehensive B2B platform.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" aria-label="Twitter"><i data-lucide="twitter" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-link" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-link" aria-label="GitHub"><i data-lucide="github" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-link" aria-label="YouTube"><i data-lucide="youtube" style="width: 16px; height: 16px;"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Product</h4>
+          <ul class="footer-links">
+            <li><a href="features.html" class="footer-link">Features</a></li>
+            <li><a href="pricing.html" class="footer-link">Pricing</a></li>
+            <li><a href="#" class="footer-link">Integrations</a></li>
+            <li><a href="#" class="footer-link">Changelog</a></li>
+            <li><a href="#" class="footer-link">Roadmap</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="blog.html" class="footer-link">Blog</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Documentation</a></li>
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Community</a></li>
+            <li><a href="#" class="footer-link">API Reference</a></li>
+            <li><a href="#" class="footer-link">Status</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Example SaaS. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#" class="footer-legal-link">Privacy Policy</a>
+          <a href="#" class="footer-legal-link">Terms of Service</a>
+          <a href="#" class="footer-legal-link">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    lucide.createIcons();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+      mobileMenuBtn.innerHTML = isOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Scroll-triggered animations
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    revealElements.forEach(el => revealObserver.observe(el));
+    
+    // Form handling
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Simulate form submission
+      contactForm.style.display = 'none';
+      formSuccess.classList.add('show');
+    });
+    
+    function resetForm() {
+      contactForm.reset();
+      contactForm.style.display = 'block';
+      formSuccess.classList.remove('show');
+    }
+  </script>
+</body>
+</html>

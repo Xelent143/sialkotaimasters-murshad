@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Vanguard | Creative Digital Agency</title>
+  <meta name="description" content="Award-winning creative agency crafting immersive digital experiences that captivate audiences and drive results.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  
+  <!-- WebGL Canvas (for future effects) -->
+  <canvas class="webgl-canvas" id="webgl-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-content">
+        <a href="index.html" class="nav-logo">STUDIO VANGUARD</a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-video-bg">
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1920">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-futuristic-devices-99786-large.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-label">Creative Digital Agency</span>
+        <h1 class="hero-title display-1">
+          <span class="line">We Craft</span>
+          <span class="line text-gradient">Digital</span>
+          <span class="line">Experiences</span>
+        </h1>
+        <p class="hero-description lead">
+          Award-winning creative agency specializing in immersive web experiences, 
+          brand identities, and digital innovation that pushes boundaries.
+        </p>
+        <div class="hero-cta">
+          <a href="work.html" class="btn btn-primary btn-lg">
+            View Our Work
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="contact.html" class="btn btn-secondary btn-lg">
+            Get in Touch
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value">150+</div>
+          <div class="hero-stat-label">Projects</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">50+</div>
+          <div class="hero-stat-label">Clients</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">12</div>
+          <div class="hero-stat-label">Awards</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Work Section -->
+  <section class="section portfolio-section">
+    <div class="container">
+      <div class="portfolio-header reveal">
+        <div>
+          <span class="hero-label">Selected Work</span>
+          <h2 class="display-2">Featured Projects</h2>
+        </div>
+        <a href="work.html" class="btn btn-outline">
+          View All Work
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="portfolio-grid">
+        <article class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200" alt="Nexus Brand Identity" class="portfolio-item-image">
+          <div class="portfolio-item-overlay">
+            <span class="portfolio-item-category">Brand Identity</span>
+            <h3 class="portfolio-item-title">Nexus Tech</h3>
+          </div>
+        </article>
+        
+        <article class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800" alt="Pulse App Design" class="portfolio-item-image">
+          <div class="portfolio-item-overlay">
+            <span class="portfolio-item-category">UI/UX Design</span>
+            <h3 class="portfolio-item-title">Pulse Fitness</h3>
+          </div>
+        </article>
+        
+        <article class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800" alt="Velocity Campaign" class="portfolio-item-image">
+          <div class="portfolio-item-overlay">
+            <span class="portfolio-item-category">Digital Campaign</span>
+            <h3 class="portfolio-item-title">Velocity Auto</h3>
+          </div>
+        </article>
+        
+        <article class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1200" alt="Ethereal Website" class="portfolio-item-image">
+          <div class="portfolio-item-overlay">
+            <span class="portfolio-item-category">Web Design</span>
+            <h3 class="portfolio-item-title">Ethereal Gallery</h3>
+          </div>
+        </article>
+        
+        <article class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800" alt="Summit Platform" class="portfolio-item-image">
+          <div class="portfolio-item-overlay">
+            <span class="portfolio-item-category">Web Development</span>
+            <h3 class="portfolio-item-title">Summit Platform</h3>
+          </div>
+        </article>
+        
+        <article class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=800" alt="Horizon Rebrand" class="portfolio-item-image">
+          <div class="portfolio-item-overlay">
+            <span class="portfolio-item-category">Rebrand</span>
+            <h3 class="portfolio-item-title">Horizon Corp</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section services-section">
+    <div class="container">
+      <div class="text-center mb-12 reveal">
+        <span class="hero-label">What We Do</span>
+        <h2 class="display-2">Our Services</h2>
+        <p class="lead" style="max-width: 600px; margin: var(--space-4) auto 0;">
+          We offer comprehensive creative solutions tailored to elevate your brand 
+          and deliver exceptional digital experiences.
+        </p>
+      </div>
+      
+      <div class="services-grid stagger-children">
+        <article class="service-card">
+          <div class="service-icon">
+            <i data-lucide="palette" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="service-title">Brand Identity</h3>
+          <p class="service-description">
+            Strategic brand development that captures your essence and resonates 
+            with your target audience through compelling visual storytelling.
+          </p>
+          <a href="services.html" class="service-link">
+            Learn More
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </article>
+        
+        <article class="service-card">
+          <div class="service-icon">
+            <i data-lucide="layout" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="service-title">Web Design</h3>
+          <p class="service-description">
+            Immersive, responsive websites that combine stunning aesthetics with 
+            intuitive user experiences and cutting-edge technology.
+          </p>
+          <a href="services.html" class="service-link">
+            Learn More
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </article>
+        
+        <article class="service-card">
+          <div class="service-icon">
+            <i data-lucide="smartphone" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="service-title">UI/UX Design</h3>
+          <p class="service-description">
+            User-centered design solutions that balance beauty with functionality, 
+            creating seamless digital products people love to use.
+          </p>
+          <a href="services.html" class="service-link">
+            Learn More
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </article>
+        
+        <article class="service-card">
+          <div class="service-icon">
+            <i data-lucide="play-circle" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="service-title">Motion Design</h3>
+          <p class="service-description">
+            Dynamic animations and video content that bring your brand to life 
+            and engage audiences across all platforms.
+          </p>
+          <a href="services.html" class="service-link">
+            Learn More
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </article>
+        
+        <article class="service-card">
+          <div class="service-icon">
+            <i data-lucide="code" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="service-title">Development</h3>
+          <p class="service-description">
+            Custom web and app development with clean code, optimized performance, 
+            and scalable architecture for long-term success.
+          </p>
+          <a href="services.html" class="service-link">
+            Learn More
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </article>
+        
+        <article class="service-card">
+          <div class="service-icon">
+            <i data-lucide="trending-up" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="service-title">Digital Strategy</h3>
+          <p class="service-description">
+            Data-driven strategies that align your digital presence with business 
+            goals and maximize ROI across all channels.
+          </p>
+          <a href="services.html" class="service-link">
+            Learn More
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients Marquee -->
+  <section class="marquee-section">
+    <div class="container">
+      <div class="marquee-header reveal">
+        <span class="hero-label">Trusted By</span>
+        <h3 class="text-muted">Industry Leaders</h3>
+      </div>
+    </div>
+    
+    <div class="marquee">
+      <div class="marquee-content">
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">TECHCORP</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">NEXUS</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">PULSE</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">VERTEX</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">AURORA</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">ZENITH</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">PRISM</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">FLUX</text>
+          </svg>
+        </div>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">TECHCORP</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">NEXUS</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">PULSE</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">VERTEX</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">AURORA</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">ZENITH</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">PRISM</text>
+          </svg>
+        </div>
+        <div class="marquee-item">
+          <svg viewBox="0 0 120 40" fill="currentColor">
+            <text x="10" y="28" font-family="Space Grotesk" font-weight="700" font-size="20">FLUX</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="text-center mb-12 reveal">
+        <span class="hero-label">Testimonials</span>
+        <h2 class="display-2">Client Stories</h2>
+      </div>
+      
+      <div class="testimonials-grid stagger-children">
+        <article class="testimonial-card">
+          <p class="testimonial-content">
+            "Studio Vanguard transformed our brand identity completely. Their attention 
+            to detail and creative vision exceeded all our expectations. The results 
+            speak for themselves—our engagement increased by 300%."
+          </p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Michael Chen" class="testimonial-avatar">
+            <div class="testimonial-info">
+              <span class="testimonial-name">Michael Chen</span>
+              <span class="testimonial-role">CEO, Nexus Tech</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="testimonial-card">
+          <p class="testimonial-content">
+            "Working with this team was an absolute pleasure. They understood our 
+            vision from day one and delivered a website that's not just beautiful, 
+            but also drives real business results."
+          </p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Sarah Williams" class="testimonial-avatar">
+            <div class="testimonial-info">
+              <span class="testimonial-name">Sarah Williams</span>
+              <span class="testimonial-role">Marketing Director, Pulse</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="testimonial-card">
+          <p class="testimonial-content">
+            "The level of creativity and technical expertise is unmatched. They 
+            brought our digital campaign to life in ways we never imagined. A 
+            truly world-class agency."
+          </p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100" alt="David Park" class="testimonial-avatar">
+            <div class="testimonial-info">
+              <span class="testimonial-name">David Park</span>
+              <span class="testimonial-role">Founder, Velocity Auto</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="cta-title display-2">
+          Ready to Create<br>
+          <span class="text-gradient">Something Amazing?</span>
+        </h2>
+        <p class="cta-description lead">
+          Let's collaborate to bring your vision to life. Whether you're starting 
+          from scratch or looking to elevate your existing brand, we're here to help.
+        </p>
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          Start a Project
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">STUDIO VANGUARD</a>
+          <p class="footer-description">
+            Award-winning creative agency crafting immersive digital experiences 
+            that captivate audiences and drive results.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter">
+              <i data-lucide="twitter" style="width: 18px; height: 18px;"></i>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <i data-lucide="instagram" style="width: 18px; height: 18px;"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <i data-lucide="linkedin" style="width: 18px; height: 18px;"></i>
+            </a>
+            <a href="#" aria-label="Dribbble">
+              <i data-lucide="dribbble" style="width: 18px; height: 18px;"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Services</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Brand Identity</a></li>
+            <li><a href="services.html">Web Design</a></li>
+            <li><a href="services.html">UI/UX Design</a></li>
+            <li><a href="services.html">Development</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@studiovanguard.com">hello@studiovanguard.com</a></li>
+            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+            <li>123 Creative Street<br>New York, NY 10001</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Studio Vanguard. All rights reserved.</p>
+        <p class="footer-credits">Designed with passion</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+    
+    // Custom Cursor
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        
+        setTimeout(() => {
+          cursorFollower.style.left = e.clientX + 'px';
+          cursorFollower.style.top = e.clientY + 'px';
+        }, 100);
+      });
+      
+      // Hover effects
+      const hoverElements = document.querySelectorAll('a, button, .portfolio-item, .service-card, .testimonial-card');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.add('hover');
+          cursorFollower.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('hover');
+          cursorFollower.classList.remove('hover');
+        });
+      });
+    }
+    
+    // Navigation scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile menu toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal, .stagger-children');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    revealElements.forEach(el => revealObserver.observe(el));
+    portfolioItems.forEach(el => revealObserver.observe(el));
+    
+    // WebGL Background (simplified particle effect)
+    const canvas = document.getElementById('webgl-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Simple particle system
+    const particles = [];
+    const particleCount = 25;
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.1
+      });
+    }
+    
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 107, 107, ${p.opacity})`;
+        ctx.fill();
+      });
+      
+      // Draw connections
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 107, 107, ${0.1 * (1 - distance / 150)})`;
+            ctx.stroke();
+          }
+        });
+      });
+      
+      requestAnimationFrame(animateParticles);
+    }
+    
+    animateParticles();
+  </script>
+</body>
+</html>

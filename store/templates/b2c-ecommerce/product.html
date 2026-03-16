@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silk Evening Dress | NOVA Fashion</title>
+  <meta name="description" content="Elegant silk evening dress with a flattering silhouette. Shop now at NOVA Fashion.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .trust-badges-bar {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3xl);
+      padding: var(--space-lg) 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-top: var(--space-xl);
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .trust-badge i {
+      color: var(--accent);
+    }
+    @media (max-width: 768px) {
+      .trust-badges-bar {
+        flex-wrap: wrap;
+        gap: var(--space-md);
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo">NOVA<span>.</span></a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="shop.html" class="nav-link">Shop</a></li>
+          <li><a href="index.html#categories" class="nav-link">Collections</a></li>
+          <li><a href="index.html#new" class="nav-link">New Arrivals</a></li>
+          <li><a href="#" class="nav-link">Sale</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="nav-btn" aria-label="Search"><i data-lucide="search" style="width: 22px; height: 22px;"></i></button>
+          <a href="account.html" class="nav-btn" aria-label="Account"><i data-lucide="user" style="width: 22px; height: 22px;"></i></a>
+          <button class="nav-btn" aria-label="Wishlist"><i data-lucide="heart" style="width: 22px; height: 22px;"></i></button>
+          <a href="cart.html" class="nav-btn" aria-label="Cart">
+            <i data-lucide="shopping-bag" style="width: 22px; height: 22px;"></i>
+            <span class="cart-badge">3</span>
+          </a>
+          <button class="mobile-menu-btn nav-btn" aria-label="Menu" onclick="toggleMobileMenu()"><i data-lucide="menu" style="width: 24px; height: 24px;"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html" class="mobile-menu-link">Home</a></li>
+      <li><a href="shop.html" class="mobile-menu-link">Shop</a></li>
+      <li><a href="index.html#categories" class="mobile-menu-link">Collections</a></li>
+      <li><a href="index.html#new" class="mobile-menu-link">New Arrivals</a></li>
+      <li><a href="#" class="mobile-menu-link">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- Breadcrumbs -->
+  <div class="section-sm" style="background: var(--surface);">
+    <div class="container">
+      <nav class="breadcrumbs" style="justify-content: flex-start;">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="shop.html">Shop</a>
+        <span>/</span>
+        <a href="shop.html">Women's Fashion</a>
+        <span>/</span>
+        <span>Silk Evening Dress</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Product Detail -->
+  <section class="product-detail">
+    <div class="container">
+      <div class="product-detail-grid">
+        <!-- Product Gallery -->
+        <div class="product-gallery">
+          <div class="gallery-thumbnails">
+            <div class="gallery-thumb active" onclick="changeImage(0)"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=200&q=80" alt="Front"></div>
+            <div class="gallery-thumb" onclick="changeImage(1)"><img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=200&q=80" alt="Back"></div>
+            <div class="gallery-thumb" onclick="changeImage(2)"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=200&q=80" alt="Detail"></div>
+            <div class="gallery-thumb" onclick="changeImage(3)"><img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=200&q=80" alt="Model"></div>
+          </div>
+          <div class="gallery-main" onclick="openZoom()">
+            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80" alt="Silk Evening Dress" id="mainImage">
+            <div style="position: absolute; bottom: var(--space-md); right: var(--space-md); background: white; padding: var(--space-sm); border-radius: var(--border-radius);">
+              <i data-lucide="zoom-in" style="width: 20px; height: 20px;"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info-wrapper">
+          <div class="product-meta">
+            <span class="product-detail-brand">NOVA Studio</span>
+            <h1 class="product-detail-name">Silk Evening Dress</h1>
+            <div class="product-detail-price">
+              <span class="price-current">$189.00</span>
+              <span class="badge badge-new">New Arrival</span>
+            </div>
+            <div class="product-rating">
+              <div class="stars">
+                <i data-lucide="star" style="width: 18px; height: 18px; fill: currentColor;"></i>
+                <i data-lucide="star" style="width: 18px; height: 18px; fill: currentColor;"></i>
+                <i data-lucide="star" style="width: 18px; height: 18px; fill: currentColor;"></i>
+                <i data-lucide="star" style="width: 18px; height: 18px; fill: currentColor;"></i>
+                <i data-lucide="star" style="width: 18px; height: 18px; fill: currentColor;"></i>
+              </div>
+              <span class="rating-count">48 Reviews</span>
+            </div>
+          </div>
+
+          <p class="product-description">
+            Elegant silk evening dress with a flattering silhouette. Crafted from premium silk with a subtle sheen, 
+            this dress features a flowing A-line cut, delicate spaghetti straps, and a graceful floor-length hem. 
+            Perfect for galas, weddings, and special occasions.
+          </p>
+
+          <div class="product-option">
+            <div class="option-label">Color <span>Black</span></div>
+            <div class="color-options">
+              <button class="color-option active" style="background: #1a1a1a;" title="Black" onclick="selectColor(this, 'Black')"></button>
+              <button class="color-option" style="background: #c4a77d;" title="Champagne" onclick="selectColor(this, 'Champagne')"></button>
+              <button class="color-option" style="background: #8b0000;" title="Burgundy" onclick="selectColor(this, 'Burgundy')"></button>
+            </div>
+          </div>
+
+          <div class="product-option">
+            <div class="option-label">Size <span><a href="#" style="text-decoration: underline;">Size Guide</a></span></div>
+            <div class="size-options">
+              <button class="size-option">XS</button>
+              <button class="size-option">S</button>
+              <button class="size-option active">M</button>
+              <button class="size-option">L</button>
+              <button class="size-option">XL</button>
+              <button class="size-option disabled">XXL</button>
+            </div>
+          </div>
+
+          <div class="product-actions">
+            <div class="quantity-selector">
+              <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+              <input type="number" class="quantity-input" value="1" min="1" id="quantity">
+              <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+            </div>
+            <button class="btn btn-primary add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+            <button class="wishlist-action-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+              <i data-lucide="heart" style="width: 22px; height: 22px;"></i>
+            </button>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="trust-badges-bar">
+            <div class="trust-badge">
+              <i data-lucide="truck" style="width: 20px; height: 20px;"></i>
+              <span>Free Shipping Over $100</span>
+            </div>
+            <div class="trust-badge">
+              <i data-lucide="refresh-ccw" style="width: 20px; height: 20px;"></i>
+              <span>30-Day Returns</span>
+            </div>
+            <div class="trust-badge">
+              <i data-lucide="shield-check" style="width: 20px; height: 20px;"></i>
+              <span>Secure Checkout</span>
+            </div>
+          </div>
+
+          <!-- Shipping Info -->
+          <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: var(--surface); border-radius: var(--border-radius);">
+            <h4 style="font-size: 0.9rem; margin-bottom: var(--space-md);"><i data-lucide="info" style="width: 16px; height: 16px; display: inline;"></i> Shipping Information</h4>
+            <ul style="font-size: 0.9rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: var(--space-sm);">
+              <li>Free standard shipping on orders over $100</li>
+              <li>Express shipping available at checkout</li>
+              <li>Estimated delivery: 3-5 business days</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Tabs -->
+      <div class="product-tabs">
+        <div class="tabs-header">
+          <button class="tab-btn active" onclick="showTab('details')">Details</button>
+          <button class="tab-btn" onclick="showTab('shipping')">Shipping & Returns</button>
+          <button class="tab-btn" onclick="showTab('reviews')">Reviews (48)</button>
+        </div>
+
+        <div id="tab-details" class="tab-content active">
+          <div class="grid grid-2" style="gap: var(--space-3xl);">
+            <div>
+              <h3>Product Details</h3>
+              <ul style="margin-top: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-sm); color: var(--text-secondary);">
+                <li>100% Mulberry Silk</li>
+                <li>A-line silhouette with flowing hem</li>
+                <li>Spaghetti straps</li>
+                <li>Concealed back zipper</li>
+                <li>Fully lined</li>
+                <li>Dry clean only</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Size & Fit</h3>
+              <ul style="margin-top: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-sm); color: var(--text-secondary);">
+                <li>Model is 5'9" and wears size S</li>
+                <li>Fits true to size, take your normal size</li>
+                <li>Floor-length design</li>
+                <li>Lightweight, non-stretchy fabric</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-shipping" class="tab-content">
+          <div class="grid grid-2" style="gap: var(--space-3xl);">
+            <div>
+              <h3>Shipping Options</h3>
+              <ul style="margin-top: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-sm); color: var(--text-secondary);">
+                <li><strong>Standard Shipping (Free over $100):</strong> 3-5 business days</li>
+                <li><strong>Express Shipping ($15):</strong> 1-2 business days</li>
+                <li><strong>Next Day Delivery ($25):</strong> Order by 2pm</li>
+                <li>International shipping available</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Returns Policy</h3>
+              <ul style="margin-top: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-sm); color: var(--text-secondary);">
+                <li>30-day return window</li>
+                <li>Items must be unworn with tags attached</li>
+                <li>Free returns on all orders</li>
+                <li>Exchanges available for different sizes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-reviews" class="tab-content">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xl);">
+            <div>
+              <h3>Customer Reviews</h3>
+              <div class="product-rating" style="margin-top: var(--space-sm);">
+                <div class="stars">
+                  <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                </div>
+                <span>4.9 out of 5 (48 reviews)</span>
+              </div>
+            </div>
+            <button class="btn btn-outline">Write a Review</button>
+          </div>
+
+          <div class="review">
+            <div class="review-header">
+              <div>
+                <span class="review-author">Sarah M.</span>
+                <div class="stars" style="margin-top: var(--space-xs);">
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                </div>
+              </div>
+              <span class="review-date">2 weeks ago</span>
+            </div>
+            <p class="review-text">Absolutely stunning dress! The silk is so luxurious and the fit is perfect. I wore it to a gala and received so many compliments. Will definitely be ordering in another color!</p>
+          </div>
+
+          <div class="review">
+            <div class="review-header">
+              <div>
+                <span class="review-author">Emily R.</span>
+                <div class="stars" style="margin-top: var(--space-xs);">
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                </div>
+              </div>
+              <span class="review-date">1 month ago</span>
+            </div>
+            <p class="review-text">Beautiful quality and elegant design. The champagne color is even more gorgeous in person. Sizing is accurate - I'm usually a medium and it fits perfectly.</p>
+          </div>
+
+          <div class="review">
+            <div class="review-header">
+              <div>
+                <span class="review-author">Jessica K.</span>
+                <div class="stars" style="margin-top: var(--space-xs);">
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>
+                  <i data-lucide="star" style="width: 14px; height: 14px;"></i>
+                </div>
+              </div>
+              <span class="review-date">2 months ago</span>
+            </div>
+            <p class="review-text">Love this dress! The only reason I'm giving 4 stars is because it took a bit longer to arrive than expected. But the dress itself is beautiful and well-made.</p>
+          </div>
+
+          <a href="#" class="view-all" style="margin-top: var(--space-lg); display: inline-block;">View All 48 Reviews <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></a>
+        </div>
+      </div>
+
+      <!-- Related Products -->
+      <div style="margin-top: var(--space-4xl);">
+        <div class="products-header">
+          <div>
+            <span class="section-tag">You May Also Like</span>
+            <h2 class="text-title">Related Products</h2>
+          </div>
+          <a href="shop.html" class="view-all">View All <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></a>
+        </div>
+
+        <div class="masonry-grid">
+          <div class="product-card">
+            <div class="product-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=600&q=80" alt="Satin Slip Dress" class="product-image">
+              <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+              <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Satin Slip Dress', 145)">Quick Add</button></div>
+            </div>
+            <div class="product-info">
+              <span class="product-brand">NOVA Studio</span>
+              <h3 class="product-name"><a href="product.html">Satin Slip Dress</a></h3>
+              <div class="product-price"><span class="price-current">$145.00</span></div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&q=80" alt="Lace Cocktail Dress" class="product-image">
+              <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+              <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Lace Cocktail Dress', 225)">Quick Add</button></div>
+            </div>
+            <div class="product-info">
+              <span class="product-brand">NOVA Studio</span>
+              <h3 class="product-name"><a href="product.html">Lace Cocktail Dress</a></h3>
+              <div class="product-price"><span class="price-current">$225.00</span></div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600&q=80" alt="Velvet Midi Dress" class="product-image">
+              <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+              <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Velvet Midi Dress', 175)">Quick Add</button></div>
+            </div>
+            <div class="product-info">
+              <span class="product-brand">NOVA Studio</span>
+              <h3 class="product-name"><a href="product.html">Velvet Midi Dress</a></h3>
+              <div class="product-price"><span class="price-current">$175.00</span></div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&q=80" alt="Crossbody Bag" class="product-image">
+              <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist"><i data-lucide="heart" style="width: 18px; height: 18px;"></i></button>
+              <div class="quick-add"><button class="quick-add-btn" onclick="quickAdd('Crossbody Bag', 165)">Quick Add</button></div>
+            </div>
+            <div class="product-info">
+              <span class="product-brand">NOVA Accessories</span>
+              <h3 class="product-name"><a href="product.html">Crossbody Bag</a></h3>
+              <div class="product-price"><span class="price-current">$165.00</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zoom Modal -->
+  <div class="modal-overlay" id="zoomModal" onclick="closeZoom()">
+    <div class="modal zoom-modal">
+      <button class="modal-close" onclick="closeZoom()" style="position: fixed; top: var(--space-xl); right: var(--space-xl); background: white;">
+        <i data-lucide="x" style="width: 24px; height: 24px;"></i>
+      </button>
+      <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=1200&q=80" alt="Zoomed Product" id="zoomedImage">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">NOVA<span>.</span></a>
+          <p class="footer-description">Bold, trendy fashion for the modern lifestyle. Express yourself with confidence.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Shop</h4>
+          <ul class="footer-links">
+            <li><a href="shop.html" class="footer-link">All Products</a></li>
+            <li><a href="#" class="footer-link">New Arrivals</a></li>
+            <li><a href="#" class="footer-link">Sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Help</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">FAQs</a></li>
+            <li><a href="#" class="footer-link">Shipping & Returns</a></li>
+            <li><a href="#" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">2025 NOVA Fashion. All rights reserved.</p>
+        <div class="footer-payment">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">PP</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    const images = [
+      'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80',
+      'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&q=80',
+      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
+      'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&q=80'
+    ];
+
+    lucide.createIcons();
+
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    function changeImage(index) {
+      document.getElementById('mainImage').src = images[index];
+      document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === index);
+      });
+    }
+
+    function openZoom() {
+      document.getElementById('zoomModal').classList.add('active');
+      document.getElementById('zoomedImage').src = document.getElementById('mainImage').src.replace('w=800', 'w=1200');
+    }
+
+    function closeZoom() {
+      document.getElementById('zoomModal').classList.remove('active');
+    }
+
+    function selectColor(btn, colorName) {
+      document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector('.option-label span').textContent = colorName;
+    }
+
+    function updateQuantity(change) {
+      const input = document.getElementById('quantity');
+      input.value = Math.max(1, parseInt(input.value) + change);
+    }
+
+    function addToCart() {
+      showToast('Silk Evening Dress added to cart!', 'success');
+      const badge = document.querySelector('.cart-badge');
+      badge.textContent = parseInt(badge.textContent) + parseInt(document.getElementById('quantity').value);
+    }
+
+    function toggleWishlist(btn) {
+      btn.classList.toggle('active');
+      const isActive = btn.classList.contains('active');
+      showToast(isActive ? 'Added to wishlist!' : 'Removed from wishlist', isActive ? 'success' : 'default');
+    }
+
+    function quickAdd(productName, price) {
+      showToast(`${productName} added to cart!`, 'success');
+      const badge = document.querySelector('.cart-badge');
+      badge.textContent = parseInt(badge.textContent) + 1;
+    }
+
+    function showToast(message, type = 'default') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle' : 'info'}" style="width: 18px; height: 18px;"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      lucide.createIcons();
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`tab-${tabName}`).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    document.querySelectorAll('.size-option:not(.disabled)').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.size-option').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

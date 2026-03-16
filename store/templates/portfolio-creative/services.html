@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Studio Vanguard</title>
+  <meta name="description" content="Comprehensive creative services including brand identity, web design, UI/UX, motion design, development, and digital strategy.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <canvas class="webgl-canvas" id="webgl-canvas"></canvas>
+
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-content">
+        <a href="index.html" class="nav-logo">STUDIO VANGUARD</a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link active">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="services-hero">
+    <div class="services-hero-bg"></div>
+    <div class="container">
+      <div class="reveal">
+        <span class="page-header-label">What We Do</span>
+        <h1 class="display-1">Services</h1>
+        <p class="lead" style="max-width: 700px; margin: var(--space-6) auto 0;">We blend strategic thinking with creative excellence to deliver comprehensive solutions that elevate brands and drive measurable business results.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="services-detailed">
+        
+        <div class="service-detail-item reveal" id="branding">
+          <div class="service-detail-visual">
+            <div class="service-icon-large">
+              <i data-lucide="palette" style="width: 48px; height: 48px;"></i>
+            </div>
+          </div>
+          <div class="service-detail-content">
+            <span class="service-number">01</span>
+            <h2>Brand Identity</h2>
+            <p>We craft distinctive brand identities that capture your essence and resonate with your audience. From strategic positioning to visual systems, we build brands that stand out and stand for something.</p>
+            <ul class="service-features-list">
+              <li><i data-lucide="check"></i> Brand Strategy & Positioning</li>
+              <li><i data-lucide="check"></i> Visual Identity Design</li>
+              <li><i data-lucide="check"></i> Logo & Wordmark Development</li>
+              <li><i data-lucide="check"></i> Brand Guidelines</li>
+              <li><i data-lucide="check"></i> Brand Architecture</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-detail-item reveal" id="web">
+          <div class="service-detail-visual">
+            <div class="service-icon-large secondary">
+              <i data-lucide="layout" style="width: 48px; height: 48px;"></i>
+            </div>
+          </div>
+          <div class="service-detail-content">
+            <span class="service-number">02</span>
+            <h2>Web Design</h2>
+            <p>We design immersive digital experiences that captivate audiences and drive conversions. Our websites combine stunning aesthetics with intuitive navigation to tell your story effectively.</p>
+            <ul class="service-features-list">
+              <li><i data-lucide="check"></i> Custom Website Design</li>
+              <li><i data-lucide="check"></i> Responsive Development</li>
+              <li><i data-lucide="check"></i> E-commerce Solutions</li>
+              <li><i data-lucide="check"></i> CMS Integration</li>
+              <li><i data-lucide="check"></i> Performance Optimization</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-detail-item reveal" id="uiux">
+          <div class="service-detail-visual">
+            <div class="service-icon-large">
+              <i data-lucide="smartphone" style="width: 48px; height: 48px;"></i>
+            </div>
+          </div>
+          <div class="service-detail-content">
+            <span class="service-number">03</span>
+            <h2>UI/UX Design</h2>
+            <p>We create user-centered digital products that balance beauty with functionality. Our design process ensures every interaction feels intuitive and every screen serves a purpose.</p>
+            <ul class="service-features-list">
+              <li><i data-lucide="check"></i> User Research</li>
+              <li><i data-lucide="check"></i> Wireframing & Prototyping</li>
+              <li><i data-lucide="check"></i> Interface Design</li>
+              <li><i data-lucide="check"></i> Usability Testing</li>
+              <li><i data-lucide="check"></i> Design Systems</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-detail-item reveal" id="motion">
+          <div class="service-detail-visual">
+            <div class="service-icon-large secondary">
+              <i data-lucide="play-circle" style="width: 48px; height: 48px;"></i>
+            </div>
+          </div>
+          <div class="service-detail-content">
+            <span class="service-number">04</span>
+            <h2>Motion Design</h2>
+            <p>We bring brands to life through dynamic animations and video content. From micro-interactions to full campaigns, motion adds emotion and engagement to every touchpoint.</p>
+            <ul class="service-features-list">
+              <li><i data-lucide="check"></i> Brand Animations</li>
+              <li><i data-lucide="check"></i> Video Production</li>
+              <li><i data-lucide="check"></i> 3D Animation</li>
+              <li><i data-lucide="check"></i> Motion Graphics</li>
+              <li><i data-lucide="check"></i> Interactive Experiences</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-detail-item reveal" id="development">
+          <div class="service-detail-visual">
+            <div class="service-icon-large">
+              <i data-lucide="code" style="width: 48px; height: 48px;"></i>
+            </div>
+          </div>
+          <div class="service-detail-content">
+            <span class="service-number">05</span>
+            <h2>Development</h2>
+            <p>We build robust digital solutions with clean code and scalable architecture. Our development team brings designs to life with performance and maintainability at the core.</p>
+            <ul class="service-features-list">
+              <li><i data-lucide="check"></i> Frontend Development</li>
+              <li><i data-lucide="check"></i> Backend Systems</li>
+              <li><i data-lucide="check"></i> API Integration</li>
+              <li><i data-lucide="check"></i> Web Applications</li>
+              <li><i data-lucide="check"></i> Technical Consulting</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-detail-item reveal" id="strategy">
+          <div class="service-detail-visual">
+            <div class="service-icon-large secondary">
+              <i data-lucide="trending-up" style="width: 48px; height: 48px;"></i>
+            </div>
+          </div>
+          <div class="service-detail-content">
+            <span class="service-number">06</span>
+            <h2>Digital Strategy</h2>
+            <p>We develop data-driven strategies that align your digital presence with business objectives. Our approach combines market insight with creative thinking to maximize ROI.</p>
+            <ul class="service-features-list">
+              <li><i data-lucide="check"></i> Market Research</li>
+              <li><i data-lucide="check"></i> Competitive Analysis</li>
+              <li><i data-lucide="check"></i> Content Strategy</li>
+              <li><i data-lucide="check"></i> SEO Optimization</li>
+              <li><i data-lucide="check"></i> Analytics & Reporting</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section process-section">
+    <div class="container">
+      <div class="text-center mb-12 reveal">
+        <span class="hero-label">How We Work</span>
+        <h2 class="display-2">Our Process</h2>
+        <p class="lead" style="max-width: 600px; margin: var(--space-4) auto 0;">A proven methodology that ensures every project delivers exceptional results.</p>
+      </div>
+
+      <div class="process-flow">
+        <div class="process-flow-item reveal">
+          <div class="process-flow-number">01</div>
+          <div class="process-flow-icon"><i data-lucide="search" style="width: 28px; height: 28px;"></i></div>
+          <h3>Discovery</h3>
+          <p>We dive deep into understanding your business, audience, and objectives through research and stakeholder interviews.</p>
+        </div>
+        <div class="process-flow-connector"></div>
+        <div class="process-flow-item reveal">
+          <div class="process-flow-number">02</div>
+          <div class="process-flow-icon"><i data-lucide="lightbulb" style="width: 28px; height: 28px;"></i></div>
+          <h3>Strategy</h3>
+          <p>We develop a comprehensive strategy and creative direction that aligns with your goals and sets the foundation for success.</p>
+        </div>
+        <div class="process-flow-connector"></div>
+        <div class="process-flow-item reveal">
+          <div class="process-flow-number">03</div>
+          <div class="process-flow-icon"><i data-lucide="pen-tool" style="width: 28px; height: 28px;"></i></div>
+          <h3>Design</h3>
+          <p>We create and refine visual solutions through an iterative process, ensuring every detail meets our high standards.</p>
+        </div>
+        <div class="process-flow-connector"></div>
+        <div class="process-flow-item reveal">
+          <div class="process-flow-number">04</div>
+          <div class="process-flow-icon"><i data-lucide="rocket" style="width: 28px; height: 28px;"></i></div>
+          <h3>Launch</h3>
+          <p>We bring everything to life with meticulous implementation and ongoing support to ensure long-term success.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pricing-section">
+    <div class="container">
+      <div class="text-center mb-12 reveal">
+        <span class="hero-label">Investment</span>
+        <h2 class="display-2">Pricing Packages</h2>
+        <p class="lead" style="max-width: 600px; margin: var(--space-4) auto 0;">Flexible solutions tailored to your needs and budget.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <h3 class="pricing-name">Starter</h3>
+          <p class="pricing-description">Perfect for startups and small projects</p>
+          <div class="pricing-price">
+            <span class="pricing-amount">$5k</span>
+            <span class="pricing-period">starting</span>
+          </div>
+          <ul class="pricing-features">
+            <li class="included"><i data-lucide="check"></i> Brand Strategy Session</li>
+            <li class="included"><i data-lucide="check"></i> Logo Design</li>
+            <li class="included"><i data-lucide="check"></i> Color & Typography</li>
+            <li class="included"><i data-lucide="check"></i> Basic Brand Guidelines</li>
+            <li><i data-lucide="x"></i> Website Design</li>
+            <li><i data-lucide="x"></i> Motion Graphics</li>
+          </ul>
+          <a href="contact.html" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+        </div>
+
+        <div class="pricing-card featured reveal">
+          <span class="pricing-badge">Most Popular</span>
+          <h3 class="pricing-name">Professional</h3>
+          <p class="pricing-description">Complete brand and web solution</p>
+          <div class="pricing-price">
+            <span class="pricing-amount">$15k</span>
+            <span class="pricing-period">starting</span>
+          </div>
+          <ul class="pricing-features">
+            <li class="included"><i data-lucide="check"></i> Everything in Starter</li>
+            <li class="included"><i data-lucide="check"></i> Full Visual Identity</li>
+            <li class="included"><i data-lucide="check"></i> Website Design (5 pages)</li>
+            <li class="included"><i data-lucide="check"></i> Brand Applications</li>
+            <li class="included"><i data-lucide="check"></i> Social Media Kit</li>
+            <li><i data-lucide="x"></i> Motion Graphics</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get Started</a>
+        </div>
+
+        <div class="pricing-card reveal">
+          <h3 class="pricing-name">Enterprise</h3>
+          <p class="pricing-description">Comprehensive transformation</p>
+          <div class="pricing-price">
+            <span class="pricing-amount">$35k</span>
+            <span class="pricing-period">starting</span>
+          </div>
+          <ul class="pricing-features">
+            <li class="included"><i data-lucide="check"></i> Everything in Professional</li>
+            <li class="included"><i data-lucide="check"></i> Unlimited Pages</li>
+            <li class="included"><i data-lucide="check"></i> Motion Design</li>
+            <li class="included"><i data-lucide="check"></i> Custom Development</li>
+            <li class="included"><i data-lucide="check"></i> Priority Support</li>
+            <li class="included"><i data-lucide="check"></i> Brand Workshop</li>
+          </ul>
+          <a href="contact.html" class="btn btn-secondary" style="width: 100%;">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="container">
+      <div class="grid-asymmetric">
+        <div class="reveal">
+          <span class="hero-label">FAQ</span>
+          <h2 class="display-2">Common Questions</h2>
+          <p class="lead" style="margin-top: var(--space-4);">Have more questions? <a href="contact.html" style="color: var(--accent);">Get in touch</a> with our team.</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span>How long does a typical project take?</span>
+              <i data-lucide="plus" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Project timelines vary based on scope and complexity. A brand identity typically takes 6-8 weeks, while a full website project ranges from 8-12 weeks. We provide detailed timelines during our proposal phase.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span>What is your design process?</span>
+              <i data-lucide="plus" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Our process follows four key phases: Discovery (research and strategy), Design (creative exploration and refinement), Development (building and testing), and Launch (deployment and support). We collaborate closely with clients throughout each phase.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span>Do you work with international clients?</span>
+              <i data-lucide="plus" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely! We work with clients globally and have experience collaborating across time zones. Our digital workflow ensures seamless communication regardless of location.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span>What industries do you specialize in?</span>
+              <i data-lucide="plus" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We have experience across technology, healthcare, finance, consumer goods, and hospitality. Our diverse portfolio allows us to bring cross-industry insights to every project while tailoring solutions to specific market needs.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span>How do you handle revisions?</span>
+              <i data-lucide="plus" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Our proposals include a defined number of revision rounds for each phase. We believe in collaborative iteration and work to ensure you're completely satisfied with the final result while maintaining project momentum.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="cta-title display-2">Ready to <span class="text-gradient">Get Started?</span></h2>
+        <p class="cta-description lead">Let's discuss your project and how we can help bring your vision to life.</p>
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          Start a Project
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">STUDIO VANGUARD</a>
+          <p class="footer-description">Award-winning creative agency crafting immersive digital experiences that captivate audiences and drive results.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+            <a href="#" aria-label="Dribbble"><i data-lucide="dribbble" style="width: 18px; height: 18px;"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Services</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Brand Identity</a></li>
+            <li><a href="services.html">Web Design</a></li>
+            <li><a href="services.html">UI/UX Design</a></li>
+            <li><a href="services.html">Development</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@studiovanguard.com">hello@studiovanguard.com</a></li>
+            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+            <li>123 Creative Street<br>New York, NY 10001</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Studio Vanguard. All rights reserved.</p>
+        <p class="footer-credits">Designed with passion</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .services-hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 140px;
+      padding-bottom: var(--space-16);
+    }
+    .services-hero-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(255, 107, 107, 0.08) 0%, transparent 60%);
+      z-index: -1;
+    }
+    .services-detailed { display: flex; flex-direction: column; gap: var(--space-24); }
+    .service-detail-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-12);
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .service-detail-item { grid-template-columns: 1fr; gap: var(--space-6); }
+    }
+    .service-detail-item:nth-child(even) { direction: rtl; }
+    .service-detail-item:nth-child(even) > * { direction: ltr; }
+    .service-icon-large {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      border-radius: var(--border-radius-lg);
+      color: var(--accent);
+    }
+    .service-icon-large.secondary { color: var(--secondary); }
+    .service-number {
+      font-family: var(--font-heading);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: var(--space-2);
+      display: block;
+    }
+    .service-detail-content h2 {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-4);
+    }
+    .service-detail-content > p {
+      color: var(--text-secondary);
+      font-size: var(--text-lg);
+      line-height: 1.7;
+      margin-bottom: var(--space-6);
+    }
+    .service-features-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+    }
+    @media (max-width: 768px) {
+      .service-features-list { grid-template-columns: 1fr; }
+    }
+    .service-features-list li {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      color: var(--text-primary);
+    }
+    .service-features-list li i {
+      color: var(--secondary);
+      flex-shrink: 0;
+    }
+    .process-section { background: var(--surface); }
+    .process-flow {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+    .process-flow-item {
+      flex: 1;
+      min-width: 200px;
+      max-width: 280px;
+      text-align: center;
+      padding: var(--space-8);
+      background: var(--background);
+      border-radius: var(--border-radius-lg);
+      position: relative;
+    }
+    .process-flow-number {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 30px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .process-flow-icon {
+      color: var(--accent);
+      margin-bottom: var(--space-4);
+    }
+    .process-flow-item h3 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-3);
+    }
+    .process-flow-item p {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    .process-flow-connector {
+      width: 40px;
+      height: 2px;
+      background: var(--surface-lighter);
+      margin-top: 60px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 1024px) {
+      .process-flow-connector { display: none; }
+    }
+    .pricing-section { background: var(--surface); }
+    .faq-list { display: flex; flex-direction: column; gap: var(--space-4); }
+    .faq-item {
+      background: var(--surface);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-6);
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      text-align: left;
+      cursor: none;
+      transition: color var(--transition-fast);
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-icon {
+      flex-shrink: 0;
+      transition: transform var(--transition-base);
+    }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-base);
+    }
+    .faq-item.active .faq-answer { max-height: 300px; }
+    .faq-answer p {
+      padding: 0 var(--space-6) var(--space-6);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin: 0;
+    }
+  </style>
+
+  <script>
+    lucide.createIcons();
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        setTimeout(() => {
+          cursorFollower.style.left = e.clientX + 'px';
+          cursorFollower.style.top = e.clientY + 'px';
+        }, 100);
+      });
+      const hoverElements = document.querySelectorAll('a, button, .faq-question');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.add('hover');
+          cursorFollower.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('hover');
+          cursorFollower.classList.remove('hover');
+        });
+      });
+    }
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 100));
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+    });
+
+    const canvas = document.getElementById('webgl-canvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    const particles = [];
+    for (let i = 0; i < 25; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.1
+      });
+    }
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 107, 107, ${p.opacity})`;
+        ctx.fill();
+      });
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 107, 107, ${0.1 * (1 - distance / 150)})`;
+            ctx.stroke();
+          }
+        });
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  </script>
+</body>
+</html>
