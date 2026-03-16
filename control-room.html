@@ -995,9 +995,27 @@
             0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
             30% { transform: translateY(-10px); opacity: 1; }
         }
+
+        /* Error message */
+        .error-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ff4444;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            z-index: 9999;
+            display: none;
+        }
+        .error-banner.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
+    <div class="error-banner" id="errorBanner"></div>
     <div class="bg-grid"></div>
     <div class="scanlines"></div>
 
@@ -1263,7 +1281,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Priority</label>
-                    <div class="priority-options">
+                    <div class="priority-options" id="taskPriorityOptions">
                         <div class="priority-option high" data-priority="high" onclick="selectPriority('high')">High</div>
                         <div class="priority-option selected" data-priority="medium" onclick="selectPriority('medium')">Medium</div>
                         <div class="priority-option low" data-priority="low" onclick="selectPriority('low')">Low</div>
@@ -1297,7 +1315,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Color</label>
-                    <div class="priority-options">
+                    <div class="priority-options" id="projectColorOptions">
                         <div class="priority-option selected" data-color="cyan" onclick="selectProjectColor('cyan')" style="color: var(--neon-cyan);">Cyan</div>
                         <div class="priority-option" data-color="magenta" onclick="selectProjectColor('magenta')" style="color: var(--neon-magenta);">Magenta</div>
                         <div class="priority-option" data-color="lime" onclick="selectProjectColor('lime')" style="color: var(--neon-lime);">Lime</div>
@@ -1322,18 +1340,60 @@
     </div>
 
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        // Error handling wrapper
+        function showError(message) {
+            console.error(message);
+            const banner = document.getElementById('errorBanner');
+            if (banner) {
+                banner.textContent = message;
+                banner.classList.add('show');
+                setTimeout(() => banner.classList.remove('show'), 5000);
+            }
+        }
 
-        // Data Management
-        let projects = JSON.parse(localStorage.getItem('murshad_projects')) || [
+        // Safe localStorage access
+        function safeGetStorage(key, defaultValue) {
+            try {
+                const data = localStorage.getItem(key);
+                return data ? JSON.parse(data) : defaultValue;
+            } catch (e) {
+                console.warn('localStorage access failed:', e);
+                return defaultValue;
+            }
+        }
+
+        function safeSetStorage(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+                return true;
+            } catch (e) {
+                console.warn('localStorage save failed:', e);
+                return false;
+            }
+        }
+
+        // Initialize Lucide icons safely
+        function initIcons() {
+            try {
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                } else {
+                    console.warn('Lucide not loaded yet');
+                }
+            } catch (e) {
+                console.warn('Icon initialization error:', e);
+            }
+        }
+
+        // Default data
+        const defaultProjects = [
             { id: 'website', name: 'Website', color: 'cyan', desc: 'Sialkot AI Masters website' },
             { id: 'flatlay', name: 'Flat Lay Pro', color: 'magenta', desc: 'AI product photography tool' },
             { id: 'crm', name: 'CRM System', color: 'lime', desc: 'Lead management system' },
             { id: 'content', name: 'Content Strategy', color: 'orange', desc: 'Blog and SEO content' }
         ];
 
-        let tasks = JSON.parse(localStorage.getItem('murshad_tasks')) || [
+        const defaultTasks = [
             { id: 1, title: 'Complete blog post: How to Find Buyers', desc: 'Write comprehensive guide for exporters', project: 'content', status: 'progress', priority: 'high', dueDate: '2026-03-18' },
             { id: 2, title: 'Update About page with new photo', desc: 'Profile image deployed', project: 'website', status: 'done', priority: 'medium', dueDate: '2026-03-16' },
             { id: 3, title: 'Create Lead Generation service page', desc: 'New service for exporter pain point #5', project: 'website', status: 'pending', priority: 'high', dueDate: '2026-03-20' },
@@ -1341,25 +1401,40 @@
             { id: 5, title: 'Import leads from WhatsApp', desc: 'Add new contacts to CRM', project: 'crm', status: 'cancelled', priority: 'low', dueDate: '2026-03-15' }
         ];
 
+        // Data Management
+        let projects = safeGetStorage('murshad_projects', defaultProjects);
+        let tasks = safeGetStorage('murshad_tasks', defaultTasks);
+
         let editingTaskId = null;
         let selectedPriority = 'medium';
         let selectedProjectColor = 'cyan';
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            renderProjects();
-            renderTasks();
-            updateStats();
-            updateTime();
-            setInterval(updateTime, 1000);
-            setupDragAndDrop();
-            setupChatInput();
+            try {
+                initIcons();
+                renderProjects();
+                renderTasks();
+                updateStats();
+                updateTime();
+                setInterval(updateTime, 1000);
+                setupDragAndDrop();
+                setupChatInput();
+                console.log('Control Room initialized successfully');
+            } catch (e) {
+                showError('Failed to initialize: ' + e.message);
+            }
         });
 
         // Render Functions
         function renderProjects() {
             const list = document.getElementById('projectsList');
             const select = document.getElementById('taskProject');
+            
+            if (!list || !select) {
+                console.warn('Project elements not found');
+                return;
+            }
             
             list.innerHTML = projects.map(p => `
                 <div class="project-chip ${p.id}" data-id="${p.id}" onclick="filterByProject('${p.id}')">
@@ -1376,7 +1451,10 @@
             const statuses = ['pending', 'progress', 'done', 'cancelled'];
             
             statuses.forEach(status => {
-                const list = document.getElementById(`list${status.charAt(0).toUpperCase() + status.slice(1)}`);
+                const listId = `list${status.charAt(0).toUpperCase() + status.slice(1)}`;
+                const list = document.getElementById(listId);
+                if (!list) return;
+                
                 const statusTasks = tasks.filter(t => t.status === status);
                 
                 list.innerHTML = statusTasks.map(task => {
@@ -1387,7 +1465,7 @@
                     return `
                         <div class="task-card" draggable="true" data-id="${task.id}">
                             <div class="task-priority ${priorityClass}"></div>
-                            <div class="task-title">${task.title}</div>
+                            <div class="task-title">${escapeHtml(task.title)}</div>
                             <div class="task-meta">
                                 ${project ? `<span class="task-project">@${project.id}</span>` : ''}
                                 <span class="task-date">
@@ -1400,8 +1478,15 @@
                 }).join('');
             });
 
-            lucide.createIcons();
+            initIcons();
             setupDragAndDrop();
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
 
         function updateStats() {
@@ -1412,27 +1497,41 @@
                 cancelled: tasks.filter(t => t.status === 'cancelled').length
             };
 
-            document.getElementById('statPending').textContent = counts.pending;
-            document.getElementById('statProgress').textContent = counts.progress;
-            document.getElementById('statDone').textContent = counts.done;
-            document.getElementById('statCancelled').textContent = counts.cancelled;
+            const elements = {
+                statPending: document.getElementById('statPending'),
+                statProgress: document.getElementById('statProgress'),
+                statDone: document.getElementById('statDone'),
+                statCancelled: document.getElementById('statCancelled'),
+                countPending: document.getElementById('countPending'),
+                countProgress: document.getElementById('countProgress'),
+                countDone: document.getElementById('countDone'),
+                countCancelled: document.getElementById('countCancelled'),
+                taskCount: document.getElementById('taskCount')
+            };
 
-            document.getElementById('countPending').textContent = counts.pending;
-            document.getElementById('countProgress').textContent = counts.progress;
-            document.getElementById('countDone').textContent = counts.done;
-            document.getElementById('countCancelled').textContent = counts.cancelled;
+            if (elements.statPending) elements.statPending.textContent = counts.pending;
+            if (elements.statProgress) elements.statProgress.textContent = counts.progress;
+            if (elements.statDone) elements.statDone.textContent = counts.done;
+            if (elements.statCancelled) elements.statCancelled.textContent = counts.cancelled;
 
-            document.getElementById('taskCount').textContent = tasks.length;
+            if (elements.countPending) elements.countPending.textContent = counts.pending;
+            if (elements.countProgress) elements.countProgress.textContent = counts.progress;
+            if (elements.countDone) elements.countDone.textContent = counts.done;
+            if (elements.countCancelled) elements.countCancelled.textContent = counts.cancelled;
+
+            if (elements.taskCount) elements.taskCount.textContent = tasks.length;
         }
 
         function updateTime() {
+            const el = document.getElementById('currentTime');
+            if (!el) return;
             const now = new Date();
             const time = now.toLocaleTimeString('en-US', { 
                 hour: '2-digit', 
                 minute: '2-digit',
                 hour12: true 
             });
-            document.getElementById('currentTime').textContent = time;
+            el.textContent = time;
         }
 
         // Drag and Drop
@@ -1475,54 +1574,79 @@
         // Modal Functions
         function openTaskModal(defaultStatus = 'pending') {
             editingTaskId = null;
-            document.getElementById('taskTitle').value = '';
-            document.getElementById('taskDesc').value = '';
-            document.getElementById('taskProject').value = '';
-            document.getElementById('taskStatus').value = defaultStatus;
-            document.getElementById('taskDueDate').value = '';
+            const titleEl = document.getElementById('taskTitle');
+            const descEl = document.getElementById('taskDesc');
+            const projectEl = document.getElementById('taskProject');
+            const statusEl = document.getElementById('taskStatus');
+            const dueDateEl = document.getElementById('taskDueDate');
+            
+            if (titleEl) titleEl.value = '';
+            if (descEl) descEl.value = '';
+            if (projectEl) projectEl.value = '';
+            if (statusEl) statusEl.value = defaultStatus;
+            if (dueDateEl) dueDateEl.value = '';
+            
             selectPriority('medium');
             
-            document.querySelector('.modal-title').textContent = 'New Task';
-            document.querySelector('.btn-primary').textContent = 'Create Task';
+            const modalTitle = document.querySelector('#taskModal .modal-title');
+            const btnPrimary = document.querySelector('#taskModal .btn-primary');
+            if (modalTitle) modalTitle.textContent = 'New Task';
+            if (btnPrimary) btnPrimary.textContent = 'Create Task';
             
-            document.getElementById('taskModal').classList.add('show');
+            const modal = document.getElementById('taskModal');
+            if (modal) modal.classList.add('show');
         }
 
         function closeTaskModal() {
-            document.getElementById('taskModal').classList.remove('show');
+            const modal = document.getElementById('taskModal');
+            if (modal) modal.classList.remove('show');
         }
 
         function openProjectModal() {
-            document.getElementById('projectName').value = '';
-            document.getElementById('projectDesc').value = '';
+            const nameEl = document.getElementById('projectName');
+            const descEl = document.getElementById('projectDesc');
+            
+            if (nameEl) nameEl.value = '';
+            if (descEl) descEl.value = '';
             selectProjectColor('cyan');
-            document.getElementById('projectModal').classList.add('show');
+            
+            const modal = document.getElementById('projectModal');
+            if (modal) modal.classList.add('show');
         }
 
         function closeProjectModal() {
-            document.getElementById('projectModal').classList.remove('show');
+            const modal = document.getElementById('projectModal');
+            if (modal) modal.classList.remove('show');
         }
 
         // Selection Functions
         function selectPriority(priority) {
             selectedPriority = priority;
-            document.querySelectorAll('.priority-option').forEach(opt => {
+            const options = document.querySelectorAll('#taskPriorityOptions .priority-option');
+            options.forEach(opt => {
                 opt.classList.remove('selected');
+                if (opt.dataset.priority === priority) {
+                    opt.classList.add('selected');
+                }
             });
-            document.querySelector(`.priority-option[data-priority="${priority}"]`).classList.add('selected');
         }
 
         function selectProjectColor(color) {
             selectedProjectColor = color;
-            document.querySelectorAll('#projectModal .priority-option').forEach(opt => {
+            const options = document.querySelectorAll('#projectColorOptions .priority-option');
+            options.forEach(opt => {
                 opt.classList.remove('selected');
+                if (opt.dataset.color === color) {
+                    opt.classList.add('selected');
+                }
             });
-            document.querySelector(`#projectModal .priority-option[data-color="${color}"]`).classList.add('selected');
         }
 
         // Save Functions
         function saveTask() {
-            const title = document.getElementById('taskTitle').value.trim();
+            const titleEl = document.getElementById('taskTitle');
+            const title = titleEl ? titleEl.value.trim() : '';
+            
             if (!title) {
                 alert('Please enter a task title');
                 return;
@@ -1531,16 +1655,16 @@
             const taskData = {
                 id: editingTaskId || Date.now(),
                 title: title,
-                desc: document.getElementById('taskDesc').value,
-                project: document.getElementById('taskProject').value,
-                status: document.getElementById('taskStatus').value,
+                desc: document.getElementById('taskDesc')?.value || '',
+                project: document.getElementById('taskProject')?.value || '',
+                status: document.getElementById('taskStatus')?.value || 'pending',
                 priority: selectedPriority,
-                dueDate: document.getElementById('taskDueDate').value
+                dueDate: document.getElementById('taskDueDate')?.value || ''
             };
 
             if (editingTaskId) {
                 const index = tasks.findIndex(t => t.id === editingTaskId);
-                tasks[index] = taskData;
+                if (index !== -1) tasks[index] = taskData;
             } else {
                 tasks.push(taskData);
             }
@@ -1552,19 +1676,21 @@
         }
 
         function saveProject() {
-            const name = document.getElementById('projectName').value.trim();
+            const nameEl = document.getElementById('projectName');
+            const name = nameEl ? nameEl.value.trim() : '';
+            
             if (!name) {
                 alert('Please enter a project name');
                 return;
             }
 
-            const id = name.toLowerCase().replace(/\s+/g, '-');
+            const id = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
             
             projects.push({
                 id: id,
                 name: name,
                 color: selectedProjectColor,
-                desc: document.getElementById('projectDesc').value
+                desc: document.getElementById('projectDesc')?.value || ''
             });
 
             saveData();
@@ -1573,8 +1699,8 @@
         }
 
         function saveData() {
-            localStorage.setItem('murshad_projects', JSON.stringify(projects));
-            localStorage.setItem('murshad_tasks', JSON.stringify(tasks));
+            safeSetStorage('murshad_projects', projects);
+            safeSetStorage('murshad_tasks', tasks);
         }
 
         function exportData() {
@@ -1591,6 +1717,7 @@
         // Chat Functions
         function setupChatInput() {
             const input = document.getElementById('chatInput');
+            if (!input) return;
             
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
@@ -1613,6 +1740,8 @@
 
         function showMentionDropdown() {
             const dropdown = document.getElementById('mentionDropdown');
+            if (!dropdown) return;
+            
             dropdown.innerHTML = projects.map(p => `
                 <div class="mention-item" onclick="insertMention('@${p.id}')">
                     <div class="project-dot ${p.color}"></div>
@@ -1628,11 +1757,14 @@
         }
 
         function hideMentionDropdown() {
-            document.getElementById('mentionDropdown').classList.remove('show');
+            const dropdown = document.getElementById('mentionDropdown');
+            if (dropdown) dropdown.classList.remove('show');
         }
 
         function insertMention(text) {
             const input = document.getElementById('chatInput');
+            if (!input) return;
+            
             const currentValue = input.value;
             const lastAtIndex = currentValue.lastIndexOf('@');
             
@@ -1643,21 +1775,20 @@
 
         function sendMessage() {
             const input = document.getElementById('chatInput');
-            const message = input.value.trim();
+            if (!input) return;
             
+            const message = input.value.trim();
             if (!message) return;
 
-            // Add user message
             addMessage(message, 'user');
             input.value = '';
             input.style.height = 'auto';
 
-            // Show typing indicator
-            document.getElementById('typingIndicator').classList.add('show');
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) typingIndicator.classList.add('show');
 
-            // Simulate AI response
             setTimeout(() => {
-                document.getElementById('typingIndicator').classList.remove('show');
+                if (typingIndicator) typingIndicator.classList.remove('show');
                 const response = generateResponse(message);
                 addMessage(response, 'assistant');
             }, 1000 + Math.random() * 1000);
@@ -1665,6 +1796,8 @@
 
         function addMessage(text, type) {
             const container = document.getElementById('chatMessages');
+            if (!container) return;
+            
             const time = new Date().toLocaleTimeString('en-US', { 
                 hour: '2-digit', 
                 minute: '2-digit' 
@@ -1673,7 +1806,7 @@
             const div = document.createElement('div');
             div.className = `message ${type}`;
             div.innerHTML = `
-                <div>${text}</div>
+                <div>${text.replace(/\n/g, '<br>')}</div>
                 <div class="message-time">${time}</div>
             `;
             
@@ -1684,7 +1817,6 @@
         function generateResponse(message) {
             const lowerMsg = message.toLowerCase();
             
-            // Check for project mentions
             const mentionedProject = projects.find(p => lowerMsg.includes(`@${p.id}`));
             
             if (lowerMsg.includes('status') || lowerMsg.includes('overview')) {
@@ -1709,7 +1841,6 @@
             }
             
             if (lowerMsg.includes('create task') || lowerMsg.includes('add task')) {
-                // Extract task info
                 const titleMatch = message.match(/:\s*(.+?)(?:\s*$|for\s*@)/);
                 const projectMatch = message.match(/@(\w+)/);
                 
@@ -1757,22 +1888,20 @@
         }
 
         function openChatWithMessage(message) {
-            document.getElementById('chatInput').value = message;
+            const input = document.getElementById('chatInput');
+            if (input) input.value = message;
             sendMessage();
         }
 
         function filterByProject(projectId) {
-            // Toggle active state
             document.querySelectorAll('.project-chip').forEach(chip => {
                 chip.classList.toggle('active', chip.dataset.id === projectId);
             });
             
-            // Show filtered tasks
             const filteredTasks = tasks.filter(t => t.project === projectId);
             alert(`@${projectId} has ${filteredTasks.length} tasks:\n${filteredTasks.map(t => `[${t.status}] ${t.title}`).join('\n')}`);
         }
 
-        // Utility Functions
         function formatDate(dateStr) {
             if (!dateStr) return 'No date';
             const date = new Date(dateStr);
@@ -1792,7 +1921,6 @@
             item.addEventListener('click', () => {
                 document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
                 item.classList.add('active');
-                // View switching logic would go here
             });
         });
     </script>
