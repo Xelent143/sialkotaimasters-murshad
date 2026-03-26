@@ -461,7 +461,7 @@
                 <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
                 Book a Call
             </a>
-            <button class="mobile-toggle" id="mobileToggle">
+            <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
                 <i data-lucide="menu"></i>
             </button>
         </div>
@@ -794,6 +794,34 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.querySelector('.nav-links');
+        const mobileToggleIcon = mobileToggle ? mobileToggle.querySelector('i') : null;
+
+        function setMobileMenu(open) {
+            if (!mobileToggle || !navLinks) return;
+            navLinks.classList.toggle('open', open);
+            document.body.classList.toggle('menu-open', open);
+            mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (mobileToggleIcon) {
+                mobileToggleIcon.setAttribute('data-lucide', open ? 'x' : 'menu');
+                lucide.createIcons();
+            }
+        }
+
+        if (mobileToggle && navLinks) {
+            mobileToggle.addEventListener('click', () => setMobileMenu(!navLinks.classList.contains('open')));
+            navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMobileMenu(false)));
+            window.addEventListener('resize', () => { if (window.innerWidth > 968) setMobileMenu(false); });
+            document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMobileMenu(false); });
+            document.addEventListener('click', (event) => {
+                if (window.innerWidth > 968 || !navLinks.classList.contains('open')) return;
+                if (navLinks.contains(event.target) || mobileToggle.contains(event.target)) return;
+                setMobileMenu(false);
+            });
+            setMobileMenu(false);
+        }
     </script>
 </body>
 </html>

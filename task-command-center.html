@@ -725,15 +725,83 @@
         }
 
         @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+                align-items: stretch;
+            }
+            .header-left,
+            .header-actions,
+            .active-task-banner {
+                width: 100%;
+            }
+            .header-actions {
+                flex-direction: column;
+            }
+            .header-actions .btn,
+            .project-filter,
+            .task-action-btn,
+            .modal-actions .btn {
+                min-height: 46px;
+            }
             .task-board {
                 grid-template-columns: 1fr;
             }
             .filter-bar {
                 flex-direction: column;
                 align-items: stretch;
+                padding: 1rem;
+            }
+            .project-filters,
+            .filter-group {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+            .project-filter,
+            .filter-select,
+            .search-box,
+            .search-box input {
+                width: 100%;
+            }
+            .main-content {
+                padding: 1rem;
+            }
+            .project-section,
+            .task-column,
+            .task-card,
+            .modal-content {
+                min-width: 0;
             }
             .project-section-stats {
                 display: none;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .header,
+            .filter-bar,
+            .main-content {
+                padding-left: 0.875rem;
+                padding-right: 0.875rem;
+            }
+            .active-task-banner {
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+            }
+            .active-task-name {
+                max-width: 100%;
+                white-space: normal;
+            }
+            .column-header,
+            .task-card,
+            .modal-header,
+            .modal-body,
+            .modal-actions {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .timer-display {
+                font-size: 1rem;
             }
         }
 

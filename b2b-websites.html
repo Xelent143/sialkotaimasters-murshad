@@ -191,10 +191,17 @@
             color: var(--white);
         }
         
+        .comparison-table-wrap {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: var(--space-10);
+        }
+
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: var(--space-10);
         }
         
         .comparison-table th {
@@ -408,6 +415,19 @@
                 gap: var(--space-8);
             }
         }
+
+        @media (max-width: 768px) {
+            .comparison-table {
+                width: 100%;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: var(--space-3) var(--space-4);
+                white-space: normal;
+                overflow-wrap: anywhere;
+            }
+        }
     </style>
 </head>
 <body>
@@ -416,7 +436,7 @@
             <a href="index.html" class="logo">
                 <img src="images/logo.svg" alt="Sialkot AI Masters" class="logo-img">
             </a>
-            <button class="mobile-toggle" id="mobileToggle">
+            <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
                 <i data-lucide="menu"></i>
             </button>
             <ul class="nav-menu" id="navMenu">
@@ -614,57 +634,59 @@
                 <p class="section-subtitle">See what you're missing with a standard website</p>
             </div>
             
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Generic Website</th>
-                        <th>Our B2B Platform</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Product Display</td>
-                        <td><i data-lucide="x-circle" class="cross-icon"></i> Static images only</td>
-                        <td><i data-lucide="check-circle" class="check-icon"></i> 3D customizer + multi-angle photos</td>
-                    </tr>
-                    <tr>
-                        <td>Pricing Display</td>
-                        <td><i data-lucide="x-circle" class="cross-icon"></i> Fixed price or "Contact Us"</td>
-                        <td><i data-lucide="check-circle" class="check-icon"></i> Dynamic tiered/slab pricing</td>
-                    </tr>
-                    <tr>
-                        <td>Ordering System</td>
-                        <td><i data-lucide="x-circle" class="cross-icon"></i> Standard checkout</td>
-                        <td><i data-lucide="check-circle" class="check-icon"></i> B2B inquiry workflow</td>
-                    </tr>
-                    <tr>
-                        <td>Product Information</td>
-                        <td><i data-lucide="x-circle" class="cross-icon"></i> Basic description</td>
-                        <td><i data-lucide="check-circle" class="check-icon"></i> Technical specs + manufacturing details</td>
-                    </tr>
-                    <tr>
-                        <td>SEO Optimization</td>
-                        <td><i data-lucide="x-circle" class="cross-icon"></i> Basic meta tags</td>
-                        <td><i data-lucide="check-circle" class="check-icon"></i> Full schema markup + GEO targeting</td>
-                    </tr>
-                    <tr>
-                        <td>Communication</td>
-                        <td><i data-lucide="x-circle" class="cross-icon"></i> Contact form only</td>
-                        <td><i data-lucide="check-circle" class="check-icon"></i> WhatsApp + phone + email + RFQ</td>
-                    </tr>
-                    <tr>
-                        <td>Mobile Experience</td>
-                        <td><i data-lucide="x-circle" class="cross-icon"></i> Responsive only</td>
-                        <td><i data-lucide="check-circle" class="check-icon"></i> Touch-optimized 3D controls</td>
-                    </tr>
-                    <tr>
-                        <td>Lead Quality</td>
-                        <td><i data-lucide="x-circle" class="cross-icon"></i> Unqualified inquiries</td>
-                        <td><i data-lucide="check-circle" class="check-icon"></i> Detailed RFQ with requirements</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="comparison-table-wrap">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Generic Website</th>
+                            <th>Our B2B Platform</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Product Display</td>
+                            <td><i data-lucide="x-circle" class="cross-icon"></i> Static images only</td>
+                            <td><i data-lucide="check-circle" class="check-icon"></i> 3D customizer + multi-angle photos</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing Display</td>
+                            <td><i data-lucide="x-circle" class="cross-icon"></i> Fixed price or "Contact Us"</td>
+                            <td><i data-lucide="check-circle" class="check-icon"></i> Dynamic tiered/slab pricing</td>
+                        </tr>
+                        <tr>
+                            <td>Ordering System</td>
+                            <td><i data-lucide="x-circle" class="cross-icon"></i> Standard checkout</td>
+                            <td><i data-lucide="check-circle" class="check-icon"></i> B2B inquiry workflow</td>
+                        </tr>
+                        <tr>
+                            <td>Product Information</td>
+                            <td><i data-lucide="x-circle" class="cross-icon"></i> Basic description</td>
+                            <td><i data-lucide="check-circle" class="check-icon"></i> Technical specs + manufacturing details</td>
+                        </tr>
+                        <tr>
+                            <td>SEO Optimization</td>
+                            <td><i data-lucide="x-circle" class="cross-icon"></i> Basic meta tags</td>
+                            <td><i data-lucide="check-circle" class="check-icon"></i> Full schema markup + GEO targeting</td>
+                        </tr>
+                        <tr>
+                            <td>Communication</td>
+                            <td><i data-lucide="x-circle" class="cross-icon"></i> Contact form only</td>
+                            <td><i data-lucide="check-circle" class="check-icon"></i> WhatsApp + phone + email + RFQ</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile Experience</td>
+                            <td><i data-lucide="x-circle" class="cross-icon"></i> Responsive only</td>
+                            <td><i data-lucide="check-circle" class="check-icon"></i> Touch-optimized 3D controls</td>
+                        </tr>
+                        <tr>
+                            <td>Lead Quality</td>
+                            <td><i data-lucide="x-circle" class="cross-icon"></i> Unqualified inquiries</td>
+                            <td><i data-lucide="check-circle" class="check-icon"></i> Detailed RFQ with requirements</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
@@ -895,7 +917,7 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=mobile-20260326"></script>
     <script>
         // Initialize FAQ accordion
         document.querySelectorAll('.faq-question').forEach(question => {

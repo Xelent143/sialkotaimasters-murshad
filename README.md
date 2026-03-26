@@ -112,17 +112,72 @@ All text content is in the HTML files:
 
 ## 🚀 Deployment
 
-### Option 1: Netlify (Free)
+### GitHub → Hostinger Auto-Deploy (recommended)
+This repo includes a GitHub Actions workflow at `.github/workflows/deploy-hostinger.yml` that deploys automatically on every push to `main` or `master`, and can also be run manually from the **Actions** tab.
+
+#### Required GitHub repository secrets
+Add these in **GitHub → Repo → Settings → Secrets and variables → Actions → New repository secret**:
+
+- `HOSTINGER_HOST` → `72.62.109.41`
+- `HOSTINGER_PORT` → `65002`
+- `HOSTINGER_USERNAME` → `u441219509`
+- `HOSTINGER_PASSWORD` → your Hostinger SFTP/SSH password
+- `HOSTINGER_REMOTE_PATH` → `domains/peru-weasel-303251.hostingersite.com/public_html`
+
+#### What the workflow does
+- Triggers on push to `main` or `master`
+- Uploads the static site to Hostinger over SCP/SFTP-compatible SSH access
+- Excludes repo-only files/folders like `.git`, `.github`, `README.md`, `DEPLOYMENT_SUMMARY.md`, and `scripts`
+- Overwrites changed site files on the server without deleting the whole remote directory
+
+#### Setup steps
+1. Push this repo to GitHub.
+2. Add the five secrets above.
+3. Make sure your production branch is `main` or `master`.
+4. Push any change and watch **Actions → Deploy to Hostinger**.
+5. Confirm the site updates at `https://peru-weasel-303251.hostingersite.com/`.
+
+### Manual local deploy (optional)
+If you want a one-command Windows deploy from your machine, use `scripts/deploy-hostinger.ps1`.
+
+#### Requirements
+- Windows
+- [WinSCP](https://winscp.net/eng/download.php) installed (`WinSCP.com`)
+- The same five environment variables set locally:
+  - `HOSTINGER_HOST`
+  - `HOSTINGER_PORT`
+  - `HOSTINGER_USERNAME`
+  - `HOSTINGER_PASSWORD`
+  - `HOSTINGER_REMOTE_PATH`
+
+#### Run it
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\deploy-hostinger.ps1
+```
+
+You can also pass values directly:
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\deploy-hostinger.ps1 \
+  -Host "72.62.109.41" \
+  -Port "65002" \
+  -Username "u441219509" \
+  -Password "YOUR_PASSWORD" \
+  -RemotePath "domains/peru-weasel-303251.hostingersite.com/public_html"
+```
+
+### Other options
+
+#### Option 1: Netlify (Free)
 1. Drag and drop the folder to [Netlify Drop](https://app.netlify.com/drop)
 2. Get instant HTTPS URL
 3. Connect custom domain
 
-### Option 2: Vercel (Free)
+#### Option 2: Vercel (Free)
 1. Install Vercel CLI: `npm i -g vercel`
 2. Run: `vercel`
 3. Follow prompts
 
-### Option 3: Traditional Hosting
+#### Option 3: Traditional Hosting
 1. Upload files via FTP/cPanel
 2. Point domain to hosting
 3. Ensure SSL certificate is installed

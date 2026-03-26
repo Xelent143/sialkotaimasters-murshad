@@ -578,3 +578,78 @@
         height: 20px;
     }
 }
+
+/* ========================================
+   STORE MOBILE IMPROVEMENTS - 2026-03-26
+   ======================================== */
+
+/* Prevent iOS zoom on inputs */
+@media (max-width: 768px) {
+    .store-page input,
+    .store-page textarea,
+    .store-page select,
+    .store-page button {
+        font-size: 16px !important;
+    }
+    
+    /* Better touch targets for store buttons */
+    .store-page .btn,
+    .store-page .btn-xl {
+        min-height: 48px;
+        min-width: 48px;
+    }
+    
+    /* Single column products on small screens */
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    /* Better card spacing */
+    .product-card {
+        padding: 24px;
+    }
+    
+    /* Improved typography */
+    .product-card h3 {
+        font-size: 1.25rem;
+    }
+    
+    .product-description {
+        font-size: 0.95rem;
+    }
+    
+    /* Better price display */
+    .product-price {
+        font-size: 1.5rem;
+    }
+    
+    /* Ensure images don't overflow */
+    .product-image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Small phone optimizations */
+@media (max-width: 375px) {
+    .page-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .featured-product {
+        padding: 20px;
+    }
+    
+    .product-card {
+        padding: 20px;
+    }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .featured-product-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}

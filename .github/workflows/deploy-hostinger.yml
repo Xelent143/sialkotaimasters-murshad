@@ -1,0 +1,42 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+concurrency:
+  group: hostinger-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy static site to Hostinger via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          password: ${{ secrets.HOSTINGER_PASSWORD }}
+          port: ${{ secrets.HOSTINGER_PORT }}
+          source: "."
+          target: ${{ secrets.HOSTINGER_REMOTE_PATH }}
+          strip_components: 0
+          overwrite: true
+          rm: false
+          debug: false
+          exclude: ".git,.github,.gitignore,README.md,DEPLOYMENT_SUMMARY.md,scripts"
+
+      - name: Deployment summary
+        run: |
+          echo "Deployed branch ${GITHUB_REF_NAME} to Hostinger path: ${HOSTINGER_REMOTE_PATH}"
+        env:
+          HOSTINGER_REMOTE_PATH: ${{ secrets.HOSTINGER_REMOTE_PATH }}

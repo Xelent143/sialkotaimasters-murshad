@@ -170,7 +170,8 @@
             background: rgba(0, 245, 255, 0.1);
             box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
         }
-        .mobile-toggle { display: none; background: none; border: none; color: var(--text-primary); cursor: pointer; }
+        .mobile-toggle { display: none; width: 48px; height: 48px; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid var(--border-color); background: rgba(255, 255, 255, 0.02); color: var(--text-primary); cursor: pointer; flex-shrink: 0; }
+        .mobile-toggle i { width: 22px; height: 22px; }
 
         /* Hero Section */
         .hero {
@@ -713,9 +714,47 @@
 
         @media (max-width: 768px) {
             body { cursor: auto; }
+            body.menu-open { overflow: hidden; }
             .cursor, .cursor-follower { display: none; }
-            .nav-links { display: none; }
-            .mobile-toggle { display: block; }
+            .mobile-toggle { display: inline-flex; }
+            .nav-links {
+                display: flex;
+                position: fixed;
+                top: 84px;
+                left: 1rem;
+                right: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+                background: rgba(10, 10, 10, 0.98);
+                border: 1px solid var(--border-color);
+                border-radius: 18px;
+                box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transform: translateY(-8px);
+                transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+                z-index: 1001;
+            }
+            .nav-links.open {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+            .nav-links li,
+            .nav-links a {
+                width: 100%;
+            }
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                min-height: 48px;
+                padding: 0.9rem 1rem;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.03);
+            }
             .problem-grid { grid-template-columns: 1fr; }
             .cost-impact-grid { grid-template-columns: 1fr; }
             .features-grid { grid-template-columns: 1fr; }
@@ -763,7 +802,7 @@
                     </ul>
                 </li>
                 <li><a href="../store.html">AI Tools</a></li>
-                <li><a href="../blog.html">Blog</a></li>
+                <li><a href="../blog/index.html">Blog</a></li>
                 <li><a href="../about.html">About</a></li>
                 <li><a href="../contact.html">Contact</a></li>
             </ul>
@@ -771,7 +810,7 @@
                 <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
                 WhatsApp
             </a>
-            <button class="mobile-toggle" id="mobileToggle">
+            <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
                 <i data-lucide="menu"></i>
             </button>
         </div>
@@ -1354,6 +1393,34 @@
                 }
             });
         });
+
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.querySelector('.nav-links');
+        const mobileToggleIcon = mobileToggle ? mobileToggle.querySelector('i') : null;
+
+        function setMobileMenu(open) {
+            if (!mobileToggle || !navLinks) return;
+            navLinks.classList.toggle('open', open);
+            document.body.classList.toggle('menu-open', open);
+            mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (mobileToggleIcon) {
+                mobileToggleIcon.setAttribute('data-lucide', open ? 'x' : 'menu');
+                lucide.createIcons();
+            }
+        }
+
+        if (mobileToggle && navLinks) {
+            mobileToggle.addEventListener('click', () => setMobileMenu(!navLinks.classList.contains('open')));
+            navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMobileMenu(false)));
+            window.addEventListener('resize', () => { if (window.innerWidth > 768) setMobileMenu(false); });
+            document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMobileMenu(false); });
+            document.addEventListener('click', (event) => {
+                if (window.innerWidth > 768 || !navLinks.classList.contains('open')) return;
+                if (navLinks.contains(event.target) || mobileToggle.contains(event.target)) return;
+                setMobileMenu(false);
+            });
+            setMobileMenu(false);
+        }
     </script>
 </body>
 </html>
