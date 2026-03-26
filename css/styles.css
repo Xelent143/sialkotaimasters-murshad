@@ -112,6 +112,8 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -121,6 +123,10 @@ body {
     color: var(--gray-800);
     background-color: var(--white);
     overflow-x: hidden;
+}
+
+body.nav-open {
+    overflow: hidden;
 }
 
 img {
@@ -133,6 +139,7 @@ a {
     color: inherit;
     text-decoration: none;
     transition: color var(--transition-fast);
+    overflow-wrap: anywhere;
 }
 
 button {
@@ -140,6 +147,14 @@ button {
     cursor: pointer;
     border: none;
     background: none;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+    touch-action: manipulation;
 }
 
 ul, ol {
@@ -1647,45 +1662,117 @@ p {
 
 @media (max-width: 768px) {
     :root {
+        --container-padding: 0.875rem;
         --text-5xl: 2.5rem;
         --text-4xl: 2rem;
+        --text-3xl: 1.75rem;
+        --text-2xl: 1.375rem;
+    }
+
+    .section-padding {
+        padding: var(--space-16) 0;
+    }
+
+    .section-header {
+        margin-bottom: var(--space-8);
+    }
+
+    .section-title,
+    .hero-title,
+    .cta-title {
+        line-height: 1.12;
+        text-wrap: balance;
+    }
+
+    .section-subtitle,
+    .hero-subtitle {
+        font-size: var(--text-base);
     }
     
     .mobile-toggle {
-        display: block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 48px;
+        min-height: 48px;
+        border-radius: var(--radius-lg);
     }
     
     .nav-menu {
         position: fixed;
         top: 72px;
-        left: 0;
         right: 0;
-        background: var(--white);
+        bottom: 0;
+        left: auto;
+        width: min(88vw, 360px);
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(18px);
         flex-direction: column;
-        padding: var(--space-6);
-        gap: var(--space-4);
-        border-bottom: 1px solid var(--gray-200);
-        box-shadow: var(--shadow-xl);
-        transform: translateY(-100%);
+        align-items: stretch;
+        padding: var(--space-5);
+        gap: var(--space-3);
+        border-left: 1px solid var(--gray-200);
+        box-shadow: var(--shadow-2xl);
+        transform: translateX(100%);
         opacity: 0;
         visibility: hidden;
-        transition: all var(--transition-base);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        transition: transform var(--transition-base), opacity var(--transition-base), visibility var(--transition-base);
+        z-index: 1001;
     }
     
     .nav-menu.active {
-        transform: translateY(0);
+        transform: translateX(0);
         opacity: 1;
         visibility: visible;
+    }
+
+    .nav-menu li,
+    .nav-menu .nav-link,
+    .nav-menu .dropdown-menu a {
+        width: 100%;
+    }
+
+    .nav-link,
+    .dropdown-menu a,
+    .btn,
+    .cta-buttons .btn {
+        min-height: 48px;
+    }
+
+    .nav-link,
+    .dropdown-menu a {
+        display: flex;
+        align-items: center;
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-lg);
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .nav-dropdown {
+        width: 100%;
     }
     
     .nav-dropdown .dropdown-menu {
         position: static;
+        min-width: 100%;
         opacity: 1;
         visibility: visible;
         transform: none;
         box-shadow: none;
-        padding: var(--space-2) 0;
+        padding: var(--space-2) 0 0;
         margin-top: var(--space-2);
+        border: 0;
+        background: transparent;
+        display: none;
+    }
+
+    .nav-dropdown.open .dropdown-menu {
+        display: block;
     }
     
     .nav-cta {
@@ -1694,14 +1781,36 @@ p {
     
     .hero {
         min-height: auto;
-        padding: calc(72px + var(--space-12)) 0 var(--space-12);
+        padding: calc(72px + var(--space-10)) 0 var(--space-10);
+    }
+
+    .hero-grid {
+        gap: var(--space-10);
+    }
+
+    .hero-cta-group,
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-cta-group .btn,
+    .cta-buttons .btn {
+        width: 100%;
     }
     
     .hero-card {
-        max-width: 320px;
+        max-width: min(100%, 320px);
+        margin: 0 auto;
+    }
+
+    .hero-stats {
+        gap: var(--space-5);
+        flex-wrap: wrap;
     }
     
-    .floating-badge {
+    .floating-badge,
+    .floating-element {
         display: none;
     }
     
@@ -1713,51 +1822,133 @@ p {
     .trust-item {
         flex-direction: column;
         gap: var(--space-2);
+        max-width: 220px;
     }
     
     .services-grid,
     .why-grid,
     .cases-grid,
     .testimonials-grid,
-    .industries-grid {
+    .industries-grid,
+    .pricing-tiers-modern {
         grid-template-columns: 1fr;
+    }
+
+    .service-card,
+    .why-card,
+    .case-card,
+    .testimonial-card,
+    .tool-card,
+    .pricing-card-modern {
+        padding: var(--space-6);
     }
     
     .cta-box {
-        padding: var(--space-8);
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
+        padding: var(--space-7);
     }
     
     .footer-grid {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: var(--space-8);
     }
     
     .footer-social {
         justify-content: center;
+        flex-wrap: wrap;
     }
     
     .footer-bottom {
         flex-direction: column;
+        gap: var(--space-3);
         text-align: center;
     }
 }
 
 @media (max-width: 480px) {
+    :root {
+        --container-padding: 0.75rem;
+        --text-5xl: 2.1rem;
+        --text-4xl: 1.75rem;
+        --text-base: 1rem;
+        --text-sm: 0.9375rem;
+        --text-xs: 0.875rem;
+    }
+
+    .navbar {
+        min-height: 72px;
+    }
+
+    .hero {
+        padding: calc(72px + var(--space-8)) 0 var(--space-8);
+    }
+
     .hero-cta-group {
         flex-direction: column;
     }
     
     .hero-stats {
         flex-direction: column;
-        gap: var(--space-6);
+        align-items: flex-start;
+        gap: var(--space-4);
+    }
+
+    .hero-badge,
+    .section-tag {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .service-card,
+    .why-card,
+    .case-card,
+    .testimonial-card,
+    .tool-card,
+    .cta-box,
+    .pricing-card-modern,
+    .parent-banner,
+    .parent-social {
+        padding: var(--space-5);
     }
     
     .section-padding {
         padding: var(--space-12) 0;
+    }
+
+    /* Ensure minimum 16px font size on mobile to prevent iOS zoom */
+    input,
+    select,
+    textarea,
+    button,
+    .btn,
+    .nav-link,
+    .dropdown-menu a,
+    .service-link,
+    .industry-link,
+    .contact-card,
+    .faq-question,
+    .pricing-features li,
+    .service-features li,
+    .footer-links a,
+    .footer-contact a,
+    .social-link,
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px !important;
+    }
+
+    /* Smaller text elements can be slightly smaller but still readable */
+    .pricing-description,
+    .feature-tag,
+    .product-status,
+    .case-tool,
+    .contact-hint,
+    .author-title,
+    .stat-label,
+    .trust-item,
+    .badge-dot {
+        font-size: 14px !important;
     }
 }
 
@@ -2546,8 +2737,368 @@ p {
 }
 
 /* ============================================
-   MODERN PRICING CARDS - Website Development
+   MOBILE RESPONSIVENESS IMPROVEMENTS
    ============================================ */
+
+/* Prevent horizontal overflow on all devices */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* Smooth scrolling for iOS */
+@supports (-webkit-touch-callout: none) {
+    html {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Ensure all touch targets are at least 48x48px */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .nav-link,
+    .dropdown-menu a,
+    .service-link,
+    .industry-link,
+    .footer-social a,
+    .faq-question,
+    .social-link,
+    .contact-card,
+    .mobile-toggle,
+    .footer-links a,
+    .footer-contact a,
+    .pricing-card-modern .btn,
+    .tier-card .btn,
+    .btn-full {
+        min-height: 48px;
+        min-width: 48px;
+    }
+    
+    /* Ensure checkboxes and radio buttons are large enough */
+    input[type="checkbox"],
+    input[type="radio"] {
+        min-width: 24px;
+        min-height: 24px;
+    }
+    
+    /* Improve form element touch targets */
+    .form-group input,
+    .form-group select,
+    .form-group textarea,
+    .form-group button {
+        min-height: 48px;
+        font-size: 16px;
+    }
+}
+
+/* Mobile typography improvements */
+@media (max-width: 768px) {
+    /* Better line height for readability */
+    p, li {
+        line-height: 1.7;
+    }
+    
+    /* Improved heading spacing */
+    h1 { 
+        font-size: clamp(1.75rem, 7vw, 2.5rem); 
+        margin-bottom: 1rem;
+    }
+    h2 { 
+        font-size: clamp(1.5rem, 6vw, 2rem); 
+        margin-bottom: 0.875rem;
+    }
+    h3 { 
+        font-size: clamp(1.25rem, 5vw, 1.5rem); 
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Better text wrapping */
+    h1, h2, h3, h4, h5, h6 {
+        text-wrap: balance;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    p {
+        text-wrap: pretty;
+        overflow-wrap: break-word;
+    }
+    
+    /* Ensure inputs don't zoom on iOS */
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+    
+    /* Improve tap targets in navigation */
+    .nav-link, 
+    .dropdown-menu a {
+        padding: 12px 16px;
+    }
+    
+    /* Better card spacing */
+    .service-card,
+    .why-card,
+    .case-card,
+    .testimonial-card {
+        margin-bottom: var(--space-4);
+    }
+    
+    /* Improved hero text */
+    .hero-title {
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    /* Better button spacing */
+    .hero-cta-group .btn,
+    .cta-buttons .btn {
+        margin-bottom: var(--space-3);
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 380px) {
+    :root {
+        --container-padding: 0.625rem;
+    }
+    
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.375rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+}
+
+/* Mobile navigation improvements */
+@media (max-width: 768px) {
+    .nav-menu {
+        /* Slide in from right */
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+    
+    /* Overlay when menu is open */
+    body.nav-open::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    /* Better mobile menu items */
+    .nav-menu li {
+        border-bottom: 1px solid var(--gray-100);
+    }
+    
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Fix for horizontal overflow issues */
+.container {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Ensure images don't cause overflow */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fix for pricing cards on mobile */
+@media (max-width: 768px) {
+    .pricing-tiers-modern {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+    
+    .pricing-card-modern {
+        width: 100%;
+    }
+    
+    /* Better comparison table on mobile */
+    .comparison-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Store page mobile improvements */
+@media (max-width: 768px) {
+    .product-price-large .amount {
+        font-size: 2.5rem;
+    }
+    
+    .btn-xl {
+        font-size: 1rem;
+        padding: var(--space-3) var(--space-6);
+    }
+    
+    .demo-mockup {
+        max-width: 100%;
+    }
+}
+
+/* Service detail page mobile fixes */
+@media (max-width: 768px) {
+    .service-icon-large {
+        font-size: 6rem;
+    }
+    
+    .pricing-tiers .tier-card {
+        margin-bottom: var(--space-4);
+    }
+    
+    .tier-card.featured {
+        transform: none;
+        order: -1;
+    }
+}
+
+/* Timeline mobile improvements */
+@media (max-width: 768px) {
+    .timeline-item {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+        padding: var(--space-6) 0;
+    }
+    
+    .timeline-year {
+        font-size: var(--text-xl);
+        color: var(--primary-600);
+    }
+}
+
+/* Footer mobile improvements */
+@media (max-width: 768px) {
+    .footer {
+        padding: var(--space-12) 0 var(--space-6);
+    }
+    
+    .footer-grid {
+        gap: var(--space-6);
+    }
+    
+    .footer-links h4,
+    .footer-contact h4 {
+        margin-bottom: var(--space-3);
+    }
+    
+    .footer-social {
+        gap: var(--space-2);
+    }
+    
+    .footer-social a {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* Contact page mobile improvements */
+@media (max-width: 768px) {
+    .contact-grid {
+        gap: var(--space-8);
+    }
+    
+    .contact-card {
+        padding: var(--space-4);
+    }
+    
+    .contact-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .form-card {
+        padding: var(--space-6);
+    }
+}
+
+/* Fix for very long words and URLs */
+a, p, li, span {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+    .navbar {
+        padding-left: max(var(--container-padding), env(safe-area-inset-left));
+        padding-right: max(var(--container-padding), env(safe-area-inset-right));
+    }
+    
+    .container {
+        padding-left: max(var(--container-padding), env(safe-area-inset-left));
+        padding-right: max(var(--container-padding), env(safe-area-inset-right));
+    }
+}
+
+/* ============================================
+   MOBILE FONT SIZE OVERRIDES
+   Prevents iOS zoom on input focus
+   ============================================ */
+@media (max-width: 768px) {
+    /* Override any inline font-size styles that are too small */
+    [style*="font-size: 0.7rem"],
+    [style*="font-size:0.7rem"],
+    [style*="font-size: 0.75rem"],
+    [style*="font-size:0.75rem"],
+    [style*="font-size: 0.8rem"],
+    [style*="font-size:0.8rem"],
+    [style*="font-size: 0.875rem"],
+    [style*="font-size:0.875rem"],
+    [style*="font-size: 0.9rem"],
+    [style*="font-size:0.9rem"],
+    [style*="font-size: 0.95rem"],
+    [style*="font-size:0.95rem"],
+    [style*="font-size: 10px"],
+    [style*="font-size: 11px"],
+    [style*="font-size: 12px"],
+    [style*="font-size: 13px"],
+    [style*="font-size: 14px"],
+    [style*="font-size: 15px"] {
+        font-size: 16px !important;
+    }
+    
+    /* Ensure form elements always have 16px font */
+    input:not([type="submit"]):not([type="button"]),
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Animation for mobile menu overlay */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
 .pricing-tiers-modern {
     display: grid;
